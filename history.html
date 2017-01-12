@@ -593,7 +593,7 @@ function initMap() {
         var so2= [];
         var pm25= [];
         var radio= [];
-        var aqi = [];       
+        
         var count = new Array(9000).fill(0);
 
         var good = [];
@@ -640,6 +640,7 @@ function initMap() {
                                         
                 }// end for
 
+
                 var newDisrict = [];
                 var newCO = [];            
                 var newNO2 = [];
@@ -650,7 +651,8 @@ function initMap() {
                 var newAQI = []
                 for(i = 0; i<co.length; i++){
                     if(co[i] != null){
-                                            
+                       
+
                       var resCO = co[i] /count[i];
                       var resNO2 = no2[i] / count[i];
                       var resO3 = o3[i] / count[i];
@@ -663,7 +665,7 @@ function initMap() {
                       resSO2= resSO2.toFixed(2);
                       resPM25 = resPM25.toFixed(2);
                       resRadio = resRadio.toFixed(2);
-                      var aqi = Math.max(resCO,resNO2,resO3,resSO2,resPM25);
+                      var aqina = Math.max(resCO,resNO2,resO3,resSO2,resPM25);
 
                       console.log("count[i]: " + count[i] + " i: " + i);
 
@@ -674,7 +676,7 @@ function initMap() {
                         newNO2.push(resNO2);
                         newPM25.push(resPM25);
                         newRadio.push(resRadio);                        
-                        newAQI.push(aqi);
+                        newAQI.push(aqina);
                     }
                 }
                 for(i = 0; i<newDisrict.length; i++){
@@ -1088,36 +1090,31 @@ var covered = {
         
     
   
-   var infoWindow = new google.maps.InfoWindow({
-           content: 
-           "<div class = 'text-primary'><b>Air Pollution Report + "+newAQI[i]+"</b></div>"
-            ,
+
+  var infoWindow = new google.maps.InfoWindow({           
             maxWidth: 500
       });   
-
           
             google.maps.event.addListener(mLayer, 'click', function(ev) {
-              
+                            
+              var districtID = parseInt(ev.row['CCA_2'].value);      
+
+              var aqi = Math.max(co[districtID],no2[districtID],o3[districtID],so2[districtID],pm25[districtID]);
+              var content = "<div class = 'text-primary'><b>Air Pollution Report</b></div>"+
+                             "<div class = 'text-muted'>Average All Day</div>"+
+                        "<div class = 'text-info'>AQI: "+aqi+"</div>"+
+                              "<div class = 'text-info'>CO: "+co[districtID]+"</div>"+
+                              "<div class = 'text-info'>NO2: "+no2[districtID]+"</div>"+
+                              "<div class = 'text-info'>O3: "+o3[districtID]+"</div>"+
+                          "<div class = 'text-info'>SO2: "+so2[districtID]+"</div>"+
+                              "<div class = 'text-info'>PM2.5: "+pm25[districtID]+"</div>"+
+                              "<div class = 'text-info'>RadioActive: "+radio[districtID]+"</div>"+
+                              "<button id = 'showGraph' type ='button'  class = 'btn btn-primary btn-xs btn-block' onClick = 'showGraph("+districtID+")' >Show Graph</button>";
+
+              infoWindow.setContent(content);
               infoWindow.setPosition(ev.latLng);
               infoWindow.open(map);                       
-        });//end of click on circle 
-
-
-                         /*  "<div class = 'text-primary'><b>Air Pollution Report</b></div>"+
-                             "<div class = 'text-muted'>Average All Day</div>"+
-                        "<div class = 'text-info'>AQI: </div>"+
-                              "<div class = 'text-info'>CO: </div>"+
-                              "<div class = 'text-info'>NO2: </div>"+
-                              "<div class = 'text-info'>O3: </div>"+
-                          "<div class = 'text-info'>SO2: </div>"+
-                              "<div class = 'text-info'>PM2.5: </div>"+
-                              "<div class = 'text-info'>RadioActive: </div>"+
-                              "<button id = 'showGraph' type ='button'  class = 'btn btn-primary btn-xs btn-block' onClick = 'showGraph()' >Show Graph</button>",*/
-
-  
-
-        
-     
+        });
          waitingDialog.hide();
     });//JSON
 
@@ -1150,9 +1147,9 @@ var covered = {
 
 
 
- function showGraph(){
+ function showGraph(districtID){
    var date = mydate;
-  console.log("mydate4 ID:" + myDistrictID + " date: " + mydate); 
+  console.log("mydate4 ID:" + districtID + " date: " + mydate); 
      var mDate = DatePickResponse(date);     
         var co = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
         var no2 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
@@ -1176,7 +1173,7 @@ var covered = {
              
 
 
-            if(myDistrictID == result[i].id){
+            if(districtID == result[i].id){
 
                 if(result[i].timestamp.match(re)){
                 
