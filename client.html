@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Websocket Client</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Bootstrap CDN (Content Delivery Network)-->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!-- jQuery CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="js/stomp.js"></script> 
+  <script>
+	var brokerURL = "ws://sysnet.utcc.ac.th:9000/stomp";
+	var topic = "/topic/aparcas_raw";
+
+	function sendMessage(){
+			var client = Stomp.client(brokerURL, "v11.stomp" );
+			var msgString = document.getElementById("msg").value;
+ 			
+		    client.connect( "", "", function(){
+			   //subscription_id = client.subscribe(topic, function(msg){});
+			   client.send(topic, {priority: 9}, msgString);
+			   client.disconnect();
+		    });
+		   
+	}
+		
+  </script>
+
+</head>
+<body>
+
+<div class="container-fluid">
+		<h1>Websocket Client</h1>
+		<form role="form" method="GET" action="checkLogin.jsp">
+		  <div class="form-group">
+			<label for="userName">Message</label>
+			<input type="text" class="form-control" name="msg" id="msg" >
+		  </div>
+		  <button type="button" class="btn btn-primary" onClick="sendMessage()">submit</button>
+		</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>Server</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/amq_jquery_adapter.js"></script>
+  <script type="text/javascript" src="js/amq.js"></script>
+  <script type="text/javascript">
+
+    var amq = org.activemq.Amq;
+    amq.init({ 
+     uri: 'amq',
+     logging: true,
+     timeout: 20
+    });
+
+	var jsonEvent;
+	
+	var myHandler =
+      {
+        rcvMessage: function(message)
+        {
+		   var tStamp = displayTime();
+		   $("#result").append(tStamp+" ---- received msg -> "+message.textContent+"<br>");
+		   jsonObj = JSON.parse(message.textContent);
+		   $("#result").append(" xxxxxxxxxxxxxxxxxxxxxxxxxxx sulfur dioxide(so2): "+jsonObj.so2+"<br>");
+		   $("#result").append(" xxxxxxxxxxxxxxxxxxxxxxxxxxx nitrogen dioxide(no2): "+jsonObj.no2+"<br>");
+		   $("#result").append(" xxxxxxxxxxxxxxxxxxxxxxxxxxx Ozone(o3): "+jsonObj.o3+"<br>");
+		   
+		   console.log(message);
+        },
+        myId: 'test0',
+        myDestination: 'topic://aparcas_conv'
+      };
+ 
+	amq.addListener(myHandler.myId, myHandler.myDestination,myHandler.rcvMessage);
+
+	function displayTime() {
+		var str = "";
+
+		var currentTime = new Date()
+		var hours = currentTime.getHours()
+		var minutes = currentTime.getMinutes()
+		var seconds = currentTime.getSeconds()
+
+		if (minutes < 10) {
+			minutes = "0" + minutes
+		}
+		if (seconds < 10) {
+			seconds = "0" + seconds
+		}
+		str += hours + ":" + minutes + ":" + seconds + " ";
+		if(hours > 11){
+			str += "PM"
+		} else {
+			str += "AM"
+		}
+		return str;
+	}
+  </script>
+ </head>
+ <body>
+	
+
+
+<div class="container-fluid">
+		<h1>AMQ Server</h1>
+		<div class="jumbotron" id="result">
+		</div>
+</div>
+ </body>
+</html>

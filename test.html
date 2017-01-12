@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BenTest </title>
+
+
+		
+<!-- 	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>                -->
+	
+
+
+
+	<script src="bower_components/jquery/dist/jquery.js"></script>    
+
+  <link rel="stylesheet" href = "bower_components/jquery/src/css/jquery-ui.css">
+    
+  <script src="bower_components/jquery/dist/jqeury-ui.js"></script>
+
+
+</head>
+<body>
+
+<input class="form-control" 
+                        id="txtDate" placeholder="Pick your Date"/>
+
+</body>
+
+
+<script>
+
+$(function(){  
+
+
+
+
+    $("#txtDate").datepicker();
+});
+
+function DatePickResponse(dateText){
+     var Month = dateText.substr(0,2);
+        var Day =  dateText.substr(3,2);
+        var Year =  dateText.substr(6,7);
+        var result = Year + "-" + Month + "-" +Day;
+        return result;
+}
+
+$("#txtDate").datepicker({
+    onSelect: function(dateText, inst) { 
+        myfunction();
+    }
+});
+function myfunction(){
+
+$.getJSON("http://sysnet.utcc.ac.th/aparcas/GetDistrict2.jsp",function(result){       
+        var co = [];
+        var no2 = [];
+        var o3= [];
+        var so2= [];
+        var pm25= [];
+        var radio= [];
+        var aqi = [];       
+        var count = new Array(9000).fill(0);
+
+        var good = [];
+		var mModerate = [];
+		var Unhealthy1 = [];
+		var Unhealthy2 = [];
+		var Unhealthy3 = [];
+
+        var check = 0;
+        var m = 0;
+        var mDate = document.getElementById("txtDate").value; //time    
+        mDate = DatePickResponse(mDate);
+            for(i = 0; i<result.length; i++){
+                var re = new RegExp(mDate, 'g');
+                if(result[i].timestamp.match(re)){
+                            disID =+ parseInt(result[i].id);    
+
+                         if(count[disID] != 0){
+
+                            co[disID] =co[disID]+ parseInt(result[i].co);
+                            no2[disID] =no2[disID]+ parseInt(result[i].no2);
+                            o3[disID] =co[disID]+ parseInt(result[i].o3);
+                            so2[disID] =co[disID]+ parseInt(result[i].so2);
+                            pm25[disID] =co[disID]+ parseInt(result[i].pm25);
+                            radio[disID] =co[disID]+ parseInt(result[i].radio);
+                            count[disID] = count[disID] + 1;
+                            console.log("Num2");
+                        }	    
+                        if(count[disID] == 0){
+                            co[disID] =+ parseInt(result[i].co);
+                            no2[disID] =+ parseInt(result[i].no2);
+                            o3[disID] =+ parseInt(result[i].o3);
+                            so2[disID] =+ parseInt(result[i].so2);
+                            pm25[disID] =+ parseInt(result[i].pm25);
+                            radio[disID] =+ parseInt(result[i].radio);
+                            count[disID] =+1;
+                            console.log("Num");
+
+                        }
+                                            
+							
+                            console.log("Time: "+ mDate+" District: " + disID + " co: " + co[disID] + " no2: " + no2[disID] + " o3: " + o3[disID] + " so2: " + so2[disID]  + " pm25: " + pm25[disID] + " radio: " +radio[disID]  + " count: " + count[disID]) ;
+                            
+                    }//end if                        
+                                        
+                }// end for
+
+                var newDisrict = [];
+                var newCO = [];            
+                var newNO2 = [];
+                var newO3 = [];
+                var newSO2 = [];
+                var newPM25 = [];
+                var newRadio = [];
+                var newAQI = []
+                for(i = 0; i<co.length; i++){
+                    if(co[i] != null){
+                    	                    	
+                    	var resCO = co[i] /count[i];
+                    	var resNO2 = no2[i] / count[i];
+                    	var resO3 = o3[i] / count[i];
+                    	var resSO2 = so2[i] / count[i];
+                    	var resPM25 = pm25[i] / count[i];
+                    	var resRadio = radio[i]/count[i];
+                    	resCO = resCO.toFixed(2); 
+                    	resNO2 = resNO2.toFixed(2);
+                    	resO3 = resO3.toFixed(2);
+                    	resSO2= resSO2.toFixed(2);
+                    	resPM25 = resPM25.toFixed(2);
+                    	resRadio = resRadio.toFixed(2);
+                    	var aqi = Math.max(resCO,resNO2,resO3,resSO2,resPM25);
+
+                    	console.log("count[i]: " + count[i] + " i: " + i);
+
+                        newDisrict.push(i);
+                        newCO.push(resCO);                        
+                        newO3.push(resO3);
+                        newSO2.push(resSO2);
+                        newNO2.push(resNO2);
+                        newPM25.push(resPM25);
+                        newRadio.push(resRadio);                        
+                        newAQI.push(aqi);
+                    }
+                }
+                for(i = 0; i<newDisrict.length; i++){
+
+                    console.log("newDistrictID: " + newDisrict[i] + " AQI: "+ newAQI[i] +" CO: " + newCO[i]  + " NO2: " + newNO2[i] + " O3: " + newO3[i] + " so2: " + newSO2[i] + " PM2.5: " + newPM25[i] + " Radio: " + newRadio[i] );
+
+                    if(newAQI[i] > 0 &&  newAQI[i] < 51){
+						good.push(newDisrict[i]);				
+					}
+					if(newAQI[i] > 50 && newAQI[i] <99){
+						mModerate.push(newDisrict[i]);
+					}
+					if(newAQI[i] > 100 && newAQI[i] < 199){
+						Unhealthy1.push(newDisrict[i]);
+					}
+					if(newAQI[i] > 200 && newAQI[i] < 299){
+						Unhealthy2.push(newDisrict[i]);
+					}
+					if(newAQI[i] > 300){
+						Unhealthy3.push(newDisrict[i]);
+					}
+
+                }    
+ 
+                console.log("Good.length: " + good.length);
+                for(i = 0; i<good.length; i++){
+                	console.log("Good: " + good[i]);
+                }
+
+                console.log("mModerate.length: " + mModerate.length);
+                for(i = 0; i<mModerate.length; i++){
+                	console.log("mModerate: " + mModerate[i]);
+                }
+
+                console.log("Unhealthy1.length: " + Unhealthy1.length);
+                for(i = 0; i<Unhealthy1.length; i++){
+                	console.log("Unhealthy1: " + Unhealthy1[i]);
+                }
+
+                console.log("Unhealthy2.length: " + Unhealthy2.length);
+                for(i = 0; i<Unhealthy2.length; i++){
+                	console.log("Unhealthy2: " + Unhealthy2[i]);
+                }
+
+                console.log("Unhealthy3.length: " + Unhealthy3.length);
+                for(i = 0; i<Unhealthy3.length; i++){
+                	console.log("Unhealthy3: " + Unhealthy3[i]);
+                }
+
+
+
+            });
+}
+</script>
+</html>

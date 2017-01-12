@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BenTest </title>
+
+
+    
+<!--  <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>                -->
+  
+
+
+
+  <script src="bower_components/jquery/dist/jquery.js"></script>    
+
+
+</head>
+<body>
+
+
+    
+</div>
+
+    
+</div>
+
+</body>
+
+
+<script>
+$.getJSON('http://sysnet.utcc.ac.th/aparcas/GetDistrict3.jsp', function(result){
+var a = performance.now();
+  
+    for(i = 0; i<result.length; i++){
+
+        console.log("index: "+i + " Name: " +result[i].name);
+    }
+    var b = performance.now();
+    var time = b - a;
+    console.log("Execution time: "+ time + " ms");
+});               
+</script>
+</html>

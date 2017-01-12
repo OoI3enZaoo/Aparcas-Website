@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random</title>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<script>
+$(function(){
+	/*var count = 1;
+	$.getJSON("http://sysnet.utcc.ac.th/aparcas/GetDistrict2.jsp",function(result){
+		var checkSame = ["555"];
+		
+		var Day = ["2016-12-01 " , "2016-12-02 ", "2016-12-03 ", "2016-12-04 ", "2016-12-05 ", "2016-12-06 ", "2016-12-07 ", "2016-12-08 ", "2016-12-09 ", "2016-12-10 ", "2016-12-11 ", "2016-12-12 ", "2016-12-13 ", "2016-12-14 ", "2016-12-15 ", "2016-12-16 ", "2016-12-17 ", "2016-12-18 ", "2016-12-19 ", "2016-12-20 ", "2016-12-21 ", "2016-12-22 ", "2016-12-23 ", "2016-12-24 ", "2016-12-25 ", "2016-12-26 ", "2016-12-27 ", "2016-12-28 ", "2016-12-29 ", "2016-12-30 ", "2016-12-31 "];
+		for(i = 0; i< result.length; i++){			
+			var DName = result[i].name;
+		
+
+			var ranMin=Math.floor((Math.random() * 59) + 11);			
+			var Time = ["00:"+ranMin+":"+ranMin+"","01:"+ranMin+":"+ranMin+"","02:"+ranMin+":"+ranMin+"","03:"+ranMin+":"+ranMin+"","04:"+ranMin+":"+ranMin+"","05:"+ranMin+":"+ranMin+"","06:"+ranMin+":"+ranMin+"","07:"+ranMin+":"+ranMin+"","08:"+ranMin+":"+ranMin+"","09:"+ranMin+":"+ranMin+"","10:"+ranMin+":"+ranMin+"","11:"+ranMin+":"+ranMin+"","12:"+ranMin+":"+ranMin+"","13:"+ranMin+":"+ranMin+"","14:"+ranMin+":"+ranMin+"","15:"+ranMin+":"+ranMin+"","16:"+ranMin+":"+ranMin+"","17:"+ranMin+":"+ranMin+"","18:"+ranMin+":"+ranMin+"","19:"+ranMin+":"+ranMin+"","20:"+ranMin+":"+ranMin+"","21:"+ranMin+":"+ranMin+"","22:"+ranMin+":"+ranMin+"","23:"+ranMin+":"+ranMin+""];
+
+			for(j = 0; j<checkSame.length; j++){
+				if(checkSame[j] == DName){
+			        count = 0;
+				}               
+			}
+			checkSame.push(DName);
+			if(count == 1){       
+
+				for(d = 0; d<Day.length; d++){
+
+					for(k = 0; k<Time.length; k++){
+								var ranCO = Math.floor((Math.random() * 80) + 1);
+								var ranNO2 =Math.floor((Math.random() * 100) + 15);
+								var ranO3=Math.floor((Math.random() * 25) + 1);
+								var ranSO2=Math.floor((Math.random() * 30) + 5);
+								var ranPM25=Math.floor((Math.random() * 400) + 80);
+								var ranRadio=Math.floor((Math.random() * 10) + 1);
+								$.post("http://sysnet.utcc.ac.th:8161/aparcas/SetDistrict3.jsp",
+					          	{
+					              id : result[i].id,
+					              name: result[i].name,
+					              co: ranCO,
+					              no2: ranNO2,
+					              o3: ranO3,
+					              so2:ranSO2,
+					              pm25:ranPM25,
+					              radio: ranRadio, 
+					              timestamp: Day[d]+Time[k]				             
+					          },
+
+					          function(data, status){
+					              alert("Data: " + data + "\nStatus: " + status);
+					          }); 
+					  	}//loop Time 
+					}//loop Date			
+				}//end count 1
+			count = 1;  
+			                                
+			}//end of all result in getDistrict2		
+	});*/
+
+	var Day = ["2016-12-01 " , "2016-12-02 ", "2016-12-03 ", "2016-12-04 ", "2016-12-05 ", "2016-12-06 ", "2016-12-07 ", "2016-12-08 ", "2016-12-09 ", "2016-12-10 ", "2016-12-11 ", "2016-12-12 ", "2016-12-13 ", "2016-12-14 ", "2016-12-15 ", "2016-12-16 ", "2016-12-17 ", "2016-12-18 ", "2016-12-19 ", "2016-12-20 ", "2016-12-21 ", "2016-12-22 ", "2016-12-23 ", "2016-12-24 ", "2016-12-25 ", "2016-12-26 ", "2016-12-27 ", "2016-12-28 ", "2016-12-29 ", "2016-12-30 ", "2016-12-31 "];
+
+	var ranMin=Math.floor((Math.random() * 59) + 11);			
+			var Time = ["00:"+ranMin+":"+ranMin+"","01:"+ranMin+":"+ranMin+"","02:"+ranMin+":"+ranMin+"","03:"+ranMin+":"+ranMin+"","04:"+ranMin+":"+ranMin+"","05:"+ranMin+":"+ranMin+"","06:"+ranMin+":"+ranMin+"","07:"+ranMin+":"+ranMin+"","08:"+ranMin+":"+ranMin+"","09:"+ranMin+":"+ranMin+"","10:"+ranMin+":"+ranMin+"","11:"+ranMin+":"+ranMin+"","12:"+ranMin+":"+ranMin+"","13:"+ranMin+":"+ranMin+"","14:"+ranMin+":"+ranMin+"","15:"+ranMin+":"+ranMin+"","16:"+ranMin+":"+ranMin+"","17:"+ranMin+":"+ranMin+"","18:"+ranMin+":"+ranMin+"","19:"+ranMin+":"+ranMin+"","20:"+ranMin+":"+ranMin+"","21:"+ranMin+":"+ranMin+"","22:"+ranMin+":"+ranMin+"","23:"+ranMin+":"+ranMin+""];
+
+			for(d = 0; d<Day.length; d++){
+
+					for(k = 0; k<Time.length; k++){
+								var ranCO = Math.floor((Math.random() * 80) + 1);
+								var ranNO2 =Math.floor((Math.random() * 100) + 15);
+								var ranO3=Math.floor((Math.random() * 25) + 1);
+								var ranSO2=Math.floor((Math.random() * 30) + 5);
+								var ranPM25=Math.floor((Math.random() * 400) + 80);
+								var ranRadio=Math.floor((Math.random() * 10) + 1);
+								$.post("http://sysnet.utcc.ac.th:8161/aparcas/SetDistrict2.jsp",
+					          	{
+					              id : 3307,
+					              name: "อำเภอปรางค์กู่",
+					              co: ranCO,
+					              no2: ranNO2,
+					              o3: ranO3,
+					              so2:ranSO2,
+					              pm25:ranPM25,
+					              radio: ranRadio, 
+					              timestamp: Day[d]+Time[k]				             
+					          },
+
+					          function(data, status){
+					              alert("Data: " + data + "\nStatus: " + status);
+					          }); 
+					  	}//loop Time 
+					}//loop Date	
+
+
+});
+</script>
+</body>
+</html>
