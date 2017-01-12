@@ -13,7 +13,8 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src = "bower_components/jquery-ui/jquery-ui.js" ></script>    
 
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+    <link rel="stylesheet" href = "bower_components/jquery/src/css/jquery-ui.css">
+
     <script src = "bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.js"></script>
 	<link href="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.css" rel="stylesheet" />
 
@@ -186,28 +187,37 @@
                     </button>
                     <a class="navbar-brand" href="#">Air Pollution</a>
                 </div>
+
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                    	<div class = "col-sm-12">
-                    	         <div class="dropdown">
-								   <button id = "mTime" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select your gas
-    								<span class="caret"></span></button>
-								  <ul class="dropdown-menu">																   
-								  	<li><a href="#"  data-value= "0">Air Quality Index (AQI)</a></li>
-									<li><a href="#"  data-value= "1">Carbon monoxide (CO)</a></li>
-									<li><a href="#"  data-value= "2">Nitrogen dioxide (NO2)</a></li>
-									<li><a href="#"  data-value= "3">Ozone (O3)</a></li>
-									<li><a href="#"  data-value= "4">Sulfur dioxide (SO2)</a></li>
-									<li><a href="#"  data-value= "5">Particle Pollution (PM2.5)</a></li>
-									<li><a href="#"  data-value= "6">Radioactive</a></li>									
-								  </ul>
-								</div>  
-							</div>
+                <ul class="nav navbar-nav navbar-left">                    
+                      <li>             
+                        <a href=""  data-toggle="modal" data-target="#myModalHorizontal">
+                                <i class="fa fa-search"></i>
+                            </a>  
+                      </li>
+                      </ul>
+
+                      <ul class="nav navbar-nav navbar-center">
+                        <div class="dropdown">
+                                 <button id = "myGas" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select your gas
+                                  <span class="caret"></span></button>
+                              <ul id = "dropdownGas" class="dropdown-menu">                                   
+                               
+
+                              </ul>
+                            </div>        
 
                     </ul>
 
-							<button id = "removeCircle" class = "btn btn-danger">Remove Circle on Map (Test2)</button>
-							<button id = "testBtn" class = "btn btn-danger">Test</button>
+                               
+                         
+                                                                     
+                    
+
+                  
+                    	
+                    	          							
+
                
 
                 </div>
@@ -218,6 +228,7 @@
 
 
 
+<div id= "showInfo" class="container">   </div>
 
          <div id="map" style="height:60%; margin-left:auto; margin-right:auto;"></div>
 
@@ -230,7 +241,7 @@
                             <div class="header">
                                 <h4 class="title">Date Selection</h4>
                                 <!-- <p class="category">Choose your range Date </p> -->
-                                <h5 id = "outputDate" class = "text-center text-primary">You selected 2016-12-01 to 2016-12-31</h5>
+                                <h5 id = "outputDate" class = "text-center text-primary">You selected 00:00 to 23:00</h5>
 
                                 <br>
 								<div id="flat-slider"></div>
@@ -248,6 +259,64 @@
 </div>
 
 
+
+<!-- Modal -->
+<div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Search System
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                             >Date</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" 
+                        id="txtDate" placeholder="Pick your Date"/>
+                        
+                    </div>
+                  </div>
+                  
+             
+                </form>
+                
+                
+                
+                
+                
+                
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                            Close
+                </button>
+                <button id= "DateSearch" type="button" class="btn btn-primary">
+                   Search
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 </body>
 
  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap"
@@ -259,10 +328,45 @@
   
   <script type="text/javascript" charset="utf-8">
 
-
-
+ 
 var indexTypeGas = 0; 
 var Circles = [];
+
+var markers = [];
+
+$(function(){
+
+
+  $("#txtDate").datepicker({
+    onSelect: function(dateText, inst) { 
+
+        var data = "<li><a href='#'  data-value= '0'>Air Quality Index (AQI)</a></li><li><a href='#'  data-value= '1'>Carbon monoxide (CO)</a></li><li><a href='#'  data-value= '2'>Nitrogen dioxide (NO2)</a></li><li><a href='#'  data-value= '3'>Ozone (O3)</a></li><li><a href='#'  data-value= '4'>Sulfur dioxide (SO2)</a></li><li><a href='#'  data-value= '5'>Particle Pollution (PM2.5)</a></li><li><a href='#'  data-value= '6'>Radioactive</a></li>"                                
+          $("#dropdownGas").append(data);  
+    }
+  });
+
+
+
+
+});
+
+
+
+function getNotification(micon,mtype,mdata)
+ {
+   
+   $.notify({
+          icon: micon,//icon
+          message: mdata//data
+
+      },{
+          type: mtype, //type  danger ,warning ,success ,info
+          timer: 4000
+      });   
+   
+   
+ }
+
 
     function RemoveMarker(){
 		for(i = 0; i<Circles.length; i++){
@@ -272,8 +376,10 @@ var Circles = [];
  function initMap() {
 
     
-    var myStartTime  = "2016-12-01";
-    var myEndTime  = "2016-12-31";
+     var myDate;
+
+    var myStartTime  = "00:00:00";
+    var myEndTime  = "23:00:00";
 	 var map = new google.maps.Map(document.getElementById('map'), {
 	      zoom: 7,
 	      center:  
@@ -284,36 +390,45 @@ var Circles = [];
 	    });
 	 	  		 
 	
-	$(".dropdown-menu li a").click(function(){// show value when click
-			  $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-			  $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-			  var mName = $(this).text();
-			  var mIndex = $(this).data('value');			  
-			  indexTypeGas = parseInt(mIndex);
-			  console.log("dropdown: " +  mName + "  data: " + indexTypeGas); 						
-				RemoveMarker();			
-			  		UpdateMap(indexTypeGas,myStartTime,myEndTime);
-			  
-		});		
 
-		$("#removeCircle").click(function(){      
-			RemoveMarker();			
-		});					
-	 
+$("#myGas").click(function(){
+
+  var txt = document.getElementById("txtDate").value;
+
+    if(txt == ""){
+       getNotification("pe-7s-close-circle","danger","<b>Error</b> Please select your date first");
+    }
+
+    $(".dropdown-menu li a").click(function(){// show value when click
+        $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+        $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+        var mName = $(this).text();
+        var mIndex = $(this).data('value');       
+        indexTypeGas = parseInt(mIndex);
+        console.log("dropdown: " +  mName + "  data: " + indexTypeGas);             
+        RemoveMarker();     
+
+            UpdateMap(indexTypeGas,myStartTime,myEndTime,myDate);
+        
+    });   
 
 
-	  var mDate = ['2016-12-01','2016-12-02','2016-12-03','2016-12-04','2016-12-05','2016-12-06','2016-12-07','2016-12-08','2016-12-09','2016-12-10',
-					'2016-12-11','2016-12-12','2016-12-13','2016-12-14','2016-12-15','2016-12-16','2016-12-17','2016-12-18','2016-12-19','2016-12-20',
-					'2016-12-21','2016-12-22','2016-12-23','2016-12-24','2016-12-25','2016-12-26','2016-12-27','2016-12-28','2016-12-29','2016-12-30',
-					'2016-12-31'];
+});
+
+	
+
+
+
+	  var mTime = ["00:00", "01:00", "02:00", "03:00:", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"];
+
      $("#flat-slider")
     
         .slider({
         
             range: true,
             min: 1,
-            max: 31,
-            values: [ 1, 31 ],
+            max: 24,
+            values: [ 1, 24 ],
         	step: 1        
         })
     
@@ -323,7 +438,7 @@ var Circles = [];
         	last: "label",
             rest: "label",
         	step: 1,
-        	labels: mDate,
+        	labels: mTime,
         	prefix: "",
         	suffix: ""
         
@@ -332,7 +447,7 @@ var Circles = [];
         	
         	handle: false,
         	pips: false,
-        	labels: mDate,
+        	labels: mTime,
         	prefix: "",
         	suffix: ""
         
@@ -340,60 +455,89 @@ var Circles = [];
 		.on("slidechange", function(e,ui) {
 			var startTime = ui.values[0];
 			var endTime = ui.values[1];
-	        $("#outputDate").text( "You selected " + mDate[startTime-1] + " to " + mDate[endTime-1]);
+	        $("#outputDate").text( "You selected " + mTime[startTime-1] + " to " + mTime[endTime-1]);
 	        RemoveMarker();
-	        myStartTime = mDate[startTime-1];
-	        myEndTime = mDate[endTime-1];
-	        UpdateMap(indexTypeGas,myStartTime,myEndTime);
-	    });
+	        myStartTime = mTime[startTime-1];
+	        myEndTime = mTime[endTime-1];
 
-		UpdateMap(0,myStartTime,myEndTime);
+	        UpdateMap(indexTypeGas,myStartTime,myEndTime,myDate);
+	    });		
 
-function UpdateMap (gIndex,startTime,endTime){
-  waitingDialog.show('Get data from database...');	
-  	console.log("UpdateMap("+gIndex+","+startTime+","+endTime+")");
+$("#DateSearch").click(function(){
+
+  $("#showInfo").empty();
+
+    var mDate = document.getElementById("txtDate").value;
+    myDate = DatePickResponse(mDate);
+  $('#myModalHorizontal').modal('toggle');  
+  waitingDialog.show('Get data from database...');        
+    UpdateMap(0,myStartTime,myEndTime,myDate);  
+    console.log("mDate: " + mDate);
+  $("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>ค้นหาเขต: "+myDate+"</h5></div>");
+
+                        
+});
+
+function UpdateMap (gIndex,startTime,endTime,date){
+  
+    setMapOnAll(null);
+    markers = [];
+    
+
+  	console.log("UpdateMap("+gIndex+","+startTime+","+endTime+","+date+")");
 	  $.getJSON('http://sysnet.utcc.ac.th/aparcas/AQI2.jsp', function(result) {		         
 
 
 	  	/*var mStartTime = Date.parse(startTime);
 	  	var mEndTime = Date.parse(endTime);
-	  	console.log("StartTime: " + mStartTime + " EndTime: " + mEndTime); */
-			  	
-
+	  	console.log("StartTime: " + mStartTime + " EndTime: " + mEndTime); */			  	
         var myLocation = [];
 		var myGas  = [];
         var myDateTime = [];
-      for(i = 0; i<result.length; i++){       
-      		if(result[i].timestamp >= startTime && result[i].timestamp <= endTime){
-		//waitingDialog.message("Load data "+i+"/"+result.AQI.length + " <");    
-		        var mID = result[i].id;
-		        var mName = result[i].name;
-		        var mLat = result[i].lat;
-		        var mLong = result[i].long;                
-						var co = result[i].co;
-						var no2 = result[i].no2;
-						var o3 = result[i].o3;
-						var so2 = result[i].so2;
-						var pm25 = result[i].pm25;
-						var radio = result[i].radio;
-						var AQI = getAQI(co,no2,o3,so2,pm25);  //get AQI from getAQI function      
-		       			var mTimestamp = result[i].timestamp;
-		        
-		        myLocation[i] = [mName,mLat,mLong,mID];
-						myGas[i] = [AQI,co,no2,o3,so2,pm25,radio];	
-		        myDateTime[i] = [mTimestamp];
-						
-						
-					   // console.log('name: '+myLocation[i][0] +' lat:' + myLocation[i][1] + ' long: ' +  myLocation[i][2]); //for Debug
-					   // console.log('AQI: ' + myGas[i][0]+' CO: '+myGas[i][1] + ' NO2: ' + myGas[i][2] + ' O3: ' + myGas[i][3] + ' SO2: ' + myGas[i][4] + ' PM2.5: ' +myGas[i][5] + 'RadioActive: ' +  myGas[i][6]); //for debug
-					    			    
-					    placeMarker(myLocation[i],myGas[i],myDateTime[i],gIndex);//call method for create circle on the map			              
-			  	}
+      for(i = 0; i<result.length; i++){ 
+      var re = new RegExp(date, 'g');
+                if(result[i].timestamp.match(re)){
+
+                    var restime = result[i].timestamp;
+                    res1 = restime.substr(11,2);
+                    res2 = restime.substr(14,2);
+                    res3 = restime.substr(17,2);
+
+                      restime  = res1 + ":" + res2 + ":" + res3;
+                      //console.log("restime: " + restime + " startTime: " + startTime + " endTime: " + endTime);*/
+
+                  		if(restime >= startTime && restime <= endTime){
+            		        //waitingDialog.message("Load data "+i+"/"+result.AQI.length + " <");    
+            		        var mID = result[i].id;
+            		        var mName = result[i].name;
+            		        var mLat = result[i].lat;
+            		        var mLong = result[i].long;                
+            						var co = result[i].co;
+            						var no2 = result[i].no2;
+            						var o3 = result[i].o3;
+            						var so2 = result[i].so2;
+            						var pm25 = result[i].pm25;
+            						var radio = result[i].radio;
+            						var AQI = getAQI(co,no2,o3,so2,pm25);  //get AQI from getAQI function      
+            		       			var mTimestamp = result[i].timestamp;
+            		        
+            		        myLocation[i] = [mName,mLat,mLong,mID];
+            						myGas[i] = [AQI,co,no2,o3,so2,pm25,radio];	
+            		        myDateTime[i] = [mTimestamp];
+            						
+            						
+            					   // console.log('name: '+myLocation[i][0] +' lat:' + myLocation[i][1] + ' long: ' +  myLocation[i][2]); //for Debug
+            					   // console.log('AQI: ' + myGas[i][0]+' CO: '+myGas[i][1] + ' NO2: ' + myGas[i][2] + ' O3: ' + myGas[i][3] + ' SO2: ' + myGas[i][4] + ' PM2.5: ' +myGas[i][5] + 'RadioActive: ' +  myGas[i][6]); //for debug
+            					    			    
+            					    placeMarker(myLocation[i],myGas[i],myDateTime[i],gIndex);//call method for create circle on the map			              
+            			  	}
+             }
 		  	}//for		 
         
 		  	waitingDialog.message("Set data to map...");
 
     function placeMarker(mValue, mGas,mDateTime,type){   		
+
 
      console.log("placeMarker");
       var covered = {
@@ -413,6 +557,7 @@ function UpdateMap (gIndex,startTime,endTime){
         
 
 	     	getDistrictFromLatlng(mValue[1],mValue[2]);
+
 				var infoWindow = new google.maps.InfoWindow({
 			     content: 
            "<div class = 'text-primary'><b>Air Pollution Report</b></div>"+
@@ -429,14 +574,46 @@ function UpdateMap (gIndex,startTime,endTime){
 			      maxWidth: 500
 			});   
 
+ var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(mValue[1], mValue[2]),
+                title:"Hello World!"
+              });                         
 					
+          markers.push(marker);
+
+               map.addListener('zoom_changed', function() {
+                console.log("zoom: " + map.getZoom());
+                  if(map.getZoom() >= 8){
+                        setMapOnAll(null);
+                  }
+                  if(map.getZoom() < 8){
+                      setMapOnAll(map); 
+                  }
+                });
+
+setMapOnAll(map); 
+
+
 	        	google.maps.event.addListener(circle, 'click', function(ev) {
               
 		        	infoWindow.setPosition(ev.latLng);
-		        	infoWindow.open(map);           		        
-				});//end of click on circle	        		         	   
+		        	infoWindow.open(map);      
+              
+              
+
+
+				});//end of click on circle	 
+
+     
+
+       
+
+        
+        
+
     }//placeMarker(loc)
     
+
 
 	  $("button").click(function(){
 				console.log("Detail Button");
@@ -449,6 +626,7 @@ function UpdateMap (gIndex,startTime,endTime){
 
 
 	 });// json
+
 }
 	  var legend = document.createElement('div');
 	     legend.id = 'legend';
@@ -467,11 +645,17 @@ function UpdateMap (gIndex,startTime,endTime){
        
     var mResult = "";
 
+ function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
     function getAQI(co,no2,o3,so2,pm25){
     	   var mArray = [co,no2,o3,so2,pm25];    	
     	   var maxValueInArray = Math.max.apply(null, mArray);
     	   return parseFloat(maxValueInArray);
      }
+
 
 
     function getDistrictFromLatlng(lat, lng){	
@@ -518,7 +702,7 @@ function UpdateMap (gIndex,startTime,endTime){
 							
                           //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
                           //console.log("test: "  +mResult);
-                          getDistrictIDFromDistrictName(mResult);
+                          //getDistrictIDFromDistrictName(mResult);
 
     			       }
     			    }                
@@ -529,9 +713,18 @@ function UpdateMap (gIndex,startTime,endTime){
 
    }
 
+
+function DatePickResponse(dateText){
+   var Month = dateText.substr(0,2);
+        var Day =  dateText.substr(3,2);
+        var Year =  dateText.substr(6,7);
+        var result = Year + "-" + Month + "-" +Day;
+        return result;
+}
+
 //for test on url
 //https://www.googleapis.com/fusiontables/v2/query?sql=SELECT CCA_2 FROM17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs WHERE NL_NAME_2 = 'อำเภอท่าตูม'&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc
-function getDistrictIDFromDistrictName(name){
+/*function getDistrictIDFromDistrictName(name){
 	$.getJSON("https://www.googleapis.com/fusiontables/v2/query?sql="+
 				"SELECT CCA_2 "+
 				"FROM 17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs "+
@@ -541,7 +734,6 @@ function getDistrictIDFromDistrictName(name){
 					var str = result.rows+"";
 					var res = str.substr(0,4);
 
-/*
        $.post("http://sysnet.utcc.ac.th:8161/aparcas/SetDistrict2.jsp",
           {
               id : res,
@@ -577,11 +769,11 @@ function getDistrictIDFromDistrictName(name){
                   timestamp: time
               }
           });
-*/
+
 	});
 
 
-}
+}*/
 
     
      function showDetail(lat,lng){
