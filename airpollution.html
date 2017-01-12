@@ -149,77 +149,90 @@
         </div>
     </section>
     <!-- MENU SECTION END-->
-    <div class="content-wrapper">
-        <div class="container">
-            
-
- 
-
-
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">                        
-                        
-                        
-                              <form class="form-horizontal" role="form">
-                    <div class="form-group">                    
-                          <div class="col-sm-6">
-                                <h4 class="title text-center"><b>Date Selection</b></h4>
-                                <h5 id = "outputDate" class = "text-center text-primary">You selected 01/10/2017</h5>
-                                <input class="form-control" id="txtDate" placeholder="Pick your Date"/>
-                              
-                          </div>
-                          <div class="col-sm-6"> 
-                                <h4 class="title text-center"><b>Province Selection</b></h4>
-                                <h5 id = "outputDate" class = "text-center text-primary">You selected Bangkok</h5>                     
-                                <input class="form-control" 
-                              id="txtDate" placeholder="Pick your Date"/>
-                              
-                          </div>
-                                      
-                </form>
-                </div>  
-       
-
-
-
-
-
-
-                              <div class="header">                              
+    <div class="content"> 
+          
+            <div class = "col-sm-8">
+                        <div class="header">                              
                                 <h4 class="title text-center"><b>Time Selection</b></h4>
                                 <!-- <p class="category">Choose your range Date </p> -->
-                                <h5 id = "outputDate" class = "text-center text-primary">You selected 00:00 to 23:00</h5>
+                                <!-- <h5 id = "outputDate" class = "text-center text-primary">You selected 00:00 to 23:00</h5> -->
                                   <div id="flat-slider"></div>
                                   <br>
 
-                              </div>
                         </div>
-                    
-                </div>
+                        <div class ="row">     
+                               <div class="wrapper">              
+                                    <div id="map" style="height:80%; margin-left:auto; margin-right:auto;"></div>                
+                                </div>
+                        </div>                   
             </div>
+
+            <div class = "col-sm-4">
+                        <div class="header">       
+                        <br>                        
+                        <br>                        
+                        <br>                        
+                        <br>                    
+                        <br>              
+                              
+                                  <form class="form-horizontal">
+                                      <div class="form-group">
+                                        <label class="control-label col-sm-3  " for="email">Province:</label>
+                                        <div class="col-sm-7">                                              
+                                          <div  class="dropdown">
+                                         <button id = "mDistrict" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select your Province        
+
+                                          <span class="caret"></span></button>
+                                        <ul id = "dropdownDistrict" class="dropdown-menu">                  
+                                                                                                                                        
+                                        </ul>
+
+                                        </div>
+                                      </div>                                      
+                                      <br><br>
+                                      <div class="form-group">
+                                        <label class="control-label col-sm-3 " for="pwd">Date:</label>
+                                        <div class="col-sm-4">          
+                                                     <input class="form-control" id="txtDate" placeholder="Pick your Date"/>
+                                        </div>
+                                      </div>
+                                      <br>
+                                    <div class="form-group">
+                                      <div class="row">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-sm-offset-2">
+                                                      <input type="submit" class="btn btn-lg btn-success btn-block" value="Render">
+                                        </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 ">
+                                          <a href="" class="btn btn-lg btn-primary btn-block">Clear</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </form>
+                                  <br>
+                                  <div class="header">                              
+                                        
+
+                                          <div class="title col-sm-offset-3" id = "aqi"></div>
+                                  </div>
+                                            
+                                    
+                                    
+                                    
+
+                                  
+
+                        </div>
+                                    
             </div>
-          <div class="wrapper">
-               <div id="map" style="height:80%; margin-left:auto; margin-right:auto;"></div>
-      </div>
+
+
       </div>
       
 
-        
-    </div>
-  
-    <!-- CONTENT-WRAPPER SECTION END-->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    &copy; 2015 YourCompany | By : <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap</a>
-                </div>
 
-            </div>
-        </div>        
-    </footer>
+
+
+   
 
 
 
@@ -548,16 +561,20 @@ setMapOnAll(map);
     var legend = document.createElement('div');
        legend.id = 'legend';
        var content = [];
-       content.push('<h3>Air Quality Index</h3>');
-       content.push('<p><div class="color blue"></div>0-50 Good</p>');
-       content.push('<p><div class="color green"></div>51-100 Moderate</p>');
-       content.push('<p><div class="color yellow"></div>100-200 Unhealthy for Sensitive Groups</p>');
-       content.push('<p><div class="color orange"></div>201-300 Unhealthy</p>');
-       content.push('<p><div class="color red"></div>300+ Very Unhealty</p>');     
+       content.push('<h4>Air Quality Index</h4>');
+       content.push('<h5><div class="color blue"></div>0 - 50   Good</h5>');
+       content.push('<h5><div class="color green"></div>51 - 100     Moderate</h5>');
+       content.push('<h5><div class="color yellow"></div>100 - 200 Unhealthy for Sensitive Groups</h5>');
+       content.push('<h5><div class="color orange"></div>201 - 300 Unhealthy</h5>');
+       content.push('<h5><div class="color red"></div>300+ Very Unhealty</h5>');     
        legend.innerHTML = content.join('');
        legend.index = 1;
-       map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);                  
-   
+       map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);        
+
+       
+       $("#aqi").append(legend.innerHTML)
+       
+
      }//init map
        
     var mResult = "";
