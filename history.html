@@ -579,10 +579,10 @@ function initMap() {
       var Unhealthy2 = [];
       var Unhealthy3 = [];
 
-    $("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>"+date+"</h5></div>");
     mydate = date;
 
     var mDate = DatePickResponse(mydate);
+    $("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>ค้นหาเขต: "+mDate+"</h5></div>");
     $.getJSON("http://sysnet.utcc.ac.th/aparcas/GetDistrict2.jsp",function(result){                 
     
 
@@ -651,23 +651,31 @@ function initMap() {
                 var newAQI = []
                 for(i = 0; i<co.length; i++){
                     if(co[i] != null){
-                       
-
+                      console.log("count[i]: " + count[i] + " i: " + i); 
+                      console.log("before divide: " + "co: " + co[i] +" no2: " + no2[i]);
                       var resCO = co[i] /count[i];
                       var resNO2 = no2[i] / count[i];
                       var resO3 = o3[i] / count[i];
                       var resSO2 = so2[i] / count[i];
                       var resPM25 = pm25[i] / count[i];
                       var resRadio = radio[i]/count[i];
+                      console.log("after divide: " + "co: " + resCO + " no2: " + resNO2);
+
                       resCO = resCO.toFixed(2); 
                       resNO2 = resNO2.toFixed(2);
                       resO3 = resO3.toFixed(2);
                       resSO2= resSO2.toFixed(2);
                       resPM25 = resPM25.toFixed(2);
                       resRadio = resRadio.toFixed(2);
+                      co[i] = resCO;
+                      no2[i] = resNO2;
+                      o3[i] = resO3;
+                      so2[i] = resSO2;
+                      pm25[i] = resPM25;
+                      radio[i] = resRadio;
                       var aqina = Math.max(resCO,resNO2,resO3,resSO2,resPM25);
 
-                      console.log("count[i]: " + count[i] + " i: " + i);
+                      
 
                         newDisrict.push(i);
                         newCO.push(resCO);                        
@@ -1097,11 +1105,12 @@ var covered = {
           
             google.maps.event.addListener(mLayer, 'click', function(ev) {
                             
-              var districtID = parseInt(ev.row['CCA_2'].value);      
+              var districtID = parseInt(ev.row['CCA_2'].value);
+              var districtName = ev.row['NL_NAME_2'].value;
 
               var aqi = Math.max(co[districtID],no2[districtID],o3[districtID],so2[districtID],pm25[districtID]);
               var content = "<div class = 'text-primary'><b>Air Pollution Report</b></div>"+
-                             "<div class = 'text-muted'>Average All Day</div>"+
+                             "<div class = 'text-muted'>Average All Day Disstrict: "+districtName+"</div>"+
                         "<div class = 'text-info'>AQI: "+aqi+"</div>"+
                               "<div class = 'text-info'>CO: "+co[districtID]+"</div>"+
                               "<div class = 'text-info'>NO2: "+no2[districtID]+"</div>"+
@@ -1151,12 +1160,12 @@ var covered = {
    var date = mydate;
   console.log("mydate4 ID:" + districtID + " date: " + mydate); 
      var mDate = DatePickResponse(date);     
-        var co = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        var no2 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        var o3 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        var so2 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        var pm25 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        var radio = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+       var co = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
+        var no2 = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
+        var o3 = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
+        var so2 = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
+        var pm25 = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
+        var radio = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
         var checkSame2 = [55];
 
   $.getJSON("http://sysnet.utcc.ac.th/aparcas/GetDistrict2.jsp",function(result){        
