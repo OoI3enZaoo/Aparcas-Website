@@ -453,14 +453,25 @@ $("#myGas").click(function(){
         
     	})
 		.on("slidechange", function(e,ui) {
-			var startTime = ui.values[0];
-			var endTime = ui.values[1];
-	        $("#outputDate").text( "You selected " + mTime[startTime-1] + " to " + mTime[endTime-1]);
-	        RemoveMarker();
-	        myStartTime = mTime[startTime-1];
-	        myEndTime = mTime[endTime-1];
 
-	        UpdateMap(indexTypeGas,myStartTime,myEndTime,myDate);
+       var txt = document.getElementById("txtDate").value;
+
+    if(txt == ""){
+       getNotification("pe-7s-close-circle","danger","<b>Error</b> Please select your date first");
+       
+    }else{
+
+      var startTime = ui.values[0];
+      var endTime = ui.values[1];
+          $("#outputDate").text( "You selected " + mTime[startTime-1] + " to " + mTime[endTime-1]);
+          RemoveMarker();
+          myStartTime = mTime[startTime-1];
+          myEndTime = mTime[endTime-1];
+
+          UpdateMap(indexTypeGas,myStartTime,myEndTime,myDate);
+    }
+
+			
 	    });		
 
 $("#DateSearch").click(function(){
@@ -502,7 +513,6 @@ function UpdateMap (gIndex,startTime,endTime,date){
                     res1 = restime.substr(11,2);
                     res2 = restime.substr(14,2);
                     res3 = restime.substr(17,2);
-
                       restime  = res1 + ":" + res2 + ":" + res3;
                       //console.log("restime: " + restime + " startTime: " + startTime + " endTime: " + endTime);*/
 
