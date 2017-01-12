@@ -41,7 +41,7 @@
   <script type="text/javascript" src="js/amq.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
     
-    <script src = "bower_components/session/jquery.session.js"></script>
+
 </head>
  <style>  
   .modal-footer {
@@ -100,13 +100,8 @@
                         <p>Air Quality Index </p>
                     </a>
                 </li>                
-                  
-                <li class="active-pro">
-                    <a href="user.html">
-                        <i class="pe-7s-user"></i>
-                        <p>User Profile</p>
-                    </a>
-                </li>
+          
+
 
             </ul>
 
@@ -134,18 +129,7 @@
                     </ul>
 
 
-  						<ul id = "btnLoout" class="nav navbar-nav navbar-right">
-	                        <li id = "mlogout">
-	                           <a id = "hLogin" href="" data-toggle="modal" data-target="#login-modal">
-	                               Login
-	                            </a>
-	                        </li>
-	                        <li>
-	                           <a id = "hRegis" href="" data-toggle="modal" data-target="#register-modal">
-	                               Register
-	                            </a>
-	                        </li>                        
-                    	</ul>
+  						
                 </div>
             </div>
         </nav>
@@ -310,170 +294,6 @@
 
 
 
-		   		   		  
-<!-- Modal -->
-<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" 
-     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <button type="button" class="close" 
-                   data-dismiss="modal">
-                       <span aria-hidden="true">&times;</span>
-                       <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    Register System
-                </h4>
-            </div>            
-            <!-- Modal Body -->
-            <div class="modal-body"> 	
-                
-                <form class="form-horizontal" role="form" method="GET" action="http://sysnet.utcc.ac.th/aparcas/Register.jsp">
-                  <div class="form-group">
-                    <label  class="col-sm-2 control-label"
-                             >Username</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" 
-                        id="id" name = "id" type ="text" placeholder="Your Username Here" required/>
-                    </div>
-                  </div>           
-               	 <div class="form-group">
-                    <label class="col-sm-2 control-label"
-                          >E-Mail</label>
-                    <div class="col-sm-10">
-                        <input  class="form-control"
-                            id="email" name = "email" type = "email" placeholder="Your password Here" required/>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label"
-                          >First Name</label>
-                    <div class="col-sm-10">
-                        <input  class="form-control"
-                            id="fname" name = "fname" type = "text" placeholder="Your First Name Here" required/>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label"
-                          >Last Name</label>
-                    <div class="col-sm-10">
-                        <input  class="form-control"
-                            id="lname" name = "lname" type = "text" placeholder="Your Last Name Here" required/>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label"
-                          >Phone Number</label>
-                    <div class="col-sm-10">
-                        <input  class="form-control"
-                            id="phone" name = "phone" type = "text" placeholder="Your Phone Numnber Here" required/>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label"
-                          >Password</label>
-                    <div class="col-sm-10">
-                        <input  class="form-control"
-                            id="pass" name = "pass" type = "password" placeholder="Your password Here" required/>
-                    </div>
-                  </div>
-                <!--   <div class="form-group">
-                    <label class="col-sm-2 control-label"
-                          >Password (Confirm)</label>
-                    <div class="col-sm-10">
-                        <input  class="form-control"
-                            id="confirmPass" type = "password" placeholder="Comfirm Your Password Here" required/>                            
-                    </div>
-                  </div> -->
-                  
-                  
-                      
-					<div class="form-group">	               
-	            		<div class="modal-footer">
-	                		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	                		<button id= "DateSearch" type="submit" class="btn btn-primary">REGISTER NOW</button>
-	            		</div>
-	            	</div>
-                </form>
-                                                                                               
-            </div>
-            
-           
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-	   		   		  
-<!-- Modal -->
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" 
-     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <button type="button" class="close" 
-                   data-dismiss="modal">
-                       <span aria-hidden="true">&times;</span>
-                       <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    Login to Your Account
-                </h4>
-            </div>            
-            <!-- Modal Body -->
-            <div class="modal-body">
-			<form class="form-horizontal" role="form">
-                  <div class="form-group">                   
-                    <div class="col-sm-12">
-                        <input class="form-control" 
-                        id="lblUsername"  type ="text" placeholder="Username" required/>
-                    </div>
-                  </div>           
-               	 
-                  <div class="form-group">                  
-                    <div class="col-sm-12">
-                        <input  class="form-control"
-                            id="lblPassword"  type = "password" placeholder="Password" required/>
-                    </div>
-                  </div>
-                               
-                    <div class="form-group">
-                    <label  class="col-sm-2 control-label"
-                             ></label>
-                    <div class="col-sm-10">
-                        <p id= "txtError" style="color:#ff0000;"></p>
-                    </div>
-                  </div>
-                    	            	
-	            	<div class="form-group">                  
-                    <div class="col-sm-12">
-                        <button id= "btnLogin" type="button" class="btn btn-primary" ">Login</button>
-                    </div>
-                  </div>
-                        
-                </form>          
-                                                                                               
-            </div>
-            
-           
-        </div>
-    </div>
-</div>
-
-
-
 
 </body>
 
@@ -560,63 +380,9 @@ $(function(){
  -->
 
 
-<script>
+<script type="text/javascript">
 
 
-$("#btnLogin").click(function(){
-	var username = document.getElementById("lblUsername").value;
-	var password = document.getElementById("lblPassword").value;
-if(username != "" || password != ""){
-	
-	$.getJSON("http://sysnet.utcc.ac.th/aparcas/Login.jsp",function(result){
-		var username = document.getElementById("lblUsername").value;
-		var password = document.getElementById("lblPassword").value;
-		console.log('username: ' +username + ' password: ' + password);		
-		for(i = 0; i<result.Login.length; i++){
-			console.log('loop');
-			if(username == result.Login[i].id){
-				console.log('username success');
-				if(password == result.Login[i].pass){
-					console.log('password success');
-					console.log('id: ' + result.Login[i].member);					
-					$.session.set('id',result.Login[i].member);					
-					window.location.assign("http://sysnet.utcc.ac.th/aparcas/user.html");
-					$('#login-modal').modal('toggle');		
-					
-				}
-			}
-			
-		}
-		document.getElementById('txtError').innerHTML = '<b>Error</b>  Please Register First';
-		
-	});
-
-
-	}else{document.getElementById('txtError').innerHTML = '<b>Error</b>  Please fill First';
-}
-	});
-
-
-</script>
-
-  <script type="text/javascript">
-
-$(function(){// hide login and register when user login
-if($.session.get('id') > 0 ){
-	  $("#hLogin").hide();
-	  $("#hRegis").hide();
-		
-	var btnLogout = "<a id = 'myLogout' href=''>Log out</a>";
-	$("#mlogout").append(btnLogout);
-
-	$("#myLogout").click(function(){ // show button when user logout
-		$.session.set('id','0');			
-
-	});
-
-}					
-});
-	
 
     
 	var no2_val = 10;     
