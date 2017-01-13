@@ -596,7 +596,12 @@ setMapOnAll(map);
       
       //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc",function(result){                        
-          
+          for(j = 0; j<result.results[0].address_components.length; j++){           
+                  if(result.results[0].address_components[0]){ 
+
+                      console.log("Ben: " +result.results[0]address_components[0].long_name);
+                  }
+                }
             
 
           for(j = 0; j<result.results[0].address_components.length; j++){           
@@ -607,7 +612,7 @@ setMapOnAll(map);
                           //var a = mCutSpace+mCutTitle;
                           mResult = mCutSpace.valueOf();
                           var addText = "กิ่ง";                          
-                if(mResult == "อำเภอสามชัย" || mResult == "อำเภอนาคู" || mResult == "อำเภอพนมดงรัก" || mResult == "อำเภอโนนนารายณ์" ||            mResult == "อำเภอเนินขาม" || mResult == "อำเภอหนองหิน" || mResult == "อำเภอบึงสามัคคี" || mResult == "อำเภอบัวลาย" ||
+                if(mResult == "อำเภอสามชัย" || mResult == "อำเภอนาคู" || mResult == "อำเภอพนมดงรัก" || mResult == "อำเภอโนนนารายณ์" ||  mResult == "อำเภอเนินขาม" || mResult == "อำเภอหนองหิน" || mResult == "อำเภอบึงสามัคคี" || mResult == "อำเภอบัวลาย" ||
                   mResult ==    "อำเภอซับใหญ่" || mResult == "อำเภอศิลาลาด" || mResult == "อำเภอบ้านแฮด" || mResult == "อำเภอพระทองคำ" ||
                    mResult == "อำเภอสากเหล็ก"   || mResult ==   "อำเภอบึงนาราง" || mResult == "อำเภอกุดรัง" || mResult == "อำเภอหนองมะโมง" || mResult == "อำเภอสากเหล็ก" || mResult  == "อำเภอดงเจริญ" || mResult == "อำเภอเทพารักษ์" || mResult == "อำเภอแคนดง" ||mResult == "อำเภอฆ้องชัย" || mResult == "อำเภอเมืองยาง" || mResult == "อำเภอลำทะเมนชัย" || mResult == "อำเภอหนองฮี" || mResult =="อำเภอซำสูง" || mResult == "อำเภอโนนศิลา" || mResult == "อำเภอหนองนาคำ" || mResult == "อำเภอดอนจาน"){
                   mResult = addText+mResult;
@@ -636,7 +641,7 @@ setMapOnAll(map);
               
                           //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
                           //console.log("test: "  +mResult);
-                          //getDistrictIDFromDistrictName(mResult);
+                          getDistrictIDFromDistrictName(mResult);
 
                  }
               }                
@@ -658,8 +663,8 @@ function DatePickResponse(dateText){
 
 //for test on url
 //https://www.googleapis.com/fusiontables/v2/query?sql=SELECT CCA_2 FROM17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs WHERE NL_NAME_2 = 'อำเภอท่าตูม'&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc
-/*function getDistrictIDFromDistrictName(name){
-  $.getJSON("https://www.googleapis.com/fusiontables/v2/query?sql="+
+function getDistrictIDFromDistrictName(name){
+ /* $.getJSON("https://www.googleapis.com/fusiontables/v2/query?sql="+
         "SELECT CCA_2 "+
         "FROM 17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs "+
         "WHERE NL_NAME_2 = '"+name+"'"+
@@ -672,6 +677,7 @@ function DatePickResponse(dateText){
           {
               id : res,
               name: name,
+              province : 
               co: co,
               no2: no2,
               o3: o3,
@@ -702,12 +708,12 @@ function DatePickResponse(dateText){
                   radio: radio, 
                   timestamp: time
               }
-          });
+          });*/
 
-  });
+ // });
 
 
-}*/
+}
 
     
      function showDetail(lat,lng){
