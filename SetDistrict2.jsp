@@ -9,6 +9,7 @@ String urlDB = "jdbc:mysql://sysnet.utcc.ac.th/Aparcas?characterEncoding=UTF-8";
 
 String id = request.getParameter("id");
 String name = request.getParameter("name");
+String province = request.getParameter("province");
 String co = request.getParameter("co");
 String no2 = request.getParameter("no2");
 String o3 = request.getParameter("o3");
@@ -18,11 +19,10 @@ String radio = request.getParameter("radio");
 String timestamp = request.getParameter("timestamp");
 
 
-
  try {
 	  Class.forName("com.mysql.jdbc.Driver");
 	  Connection con = DriverManager.getConnection(urlDB,userDB,passDB);
-	  String sql = "INSERT INTO District2 VALUES ("+id+",'"+name+"',"+co+","+no2+","+o3+","+so2+","+pm25+","+radio+",'"+timestamp+"')";
+	  String sql = "INSERT INTO District2 VALUES ("+id+",'"+name+"','"+province+"',"+co+","+no2+","+o3+","+so2+","+pm25+","+radio+",'"+timestamp+"')";
 	  
 
       Statement stmt = con.createStatement();
