@@ -518,22 +518,23 @@ function UpdateMap (gIndex,startTime,endTime,date){
 
                   		if(restime >= startTime && restime <= endTime){
             		        //waitingDialog.message("Load data "+i+"/"+result.AQI.length + " <");    
+
             		        var mID = result[i].id;
             		        var mName = result[i].name;
             		        var mLat = result[i].lat;
             		        var mLong = result[i].long;                
-            						var co = result[i].co;
-            						var no2 = result[i].no2;
-            						var o3 = result[i].o3;
-            						var so2 = result[i].so2;
-            						var pm25 = result[i].pm25;
-            						var radio = result[i].radio;
+            						co = result[i].co;
+            						no2 = result[i].no2;
+            						o3 = result[i].o3;
+            						so2 = result[i].so2;
+            						pm25 = result[i].pm25;
+            						radio = result[i].radio;
             						var AQI = getAQI(co,no2,o3,so2,pm25);  //get AQI from getAQI function      
-            		       			var mTimestamp = result[i].timestamp;
+            		       	timestamp = result[i].timestamp;
             		        
             		        myLocation[i] = [mName,mLat,mLong,mID];
             						myGas[i] = [AQI,co,no2,o3,so2,pm25,radio];	
-            		        myDateTime[i] = [mTimestamp];
+            		        myDateTime[i] = [timestamp];
             						
             						
             					   // console.log('name: '+myLocation[i][0] +' lat:' + myLocation[i][1] + ' long: ' +  myLocation[i][2]); //for Debug
@@ -566,7 +567,7 @@ function UpdateMap (gIndex,startTime,endTime,date){
 	        Circles.push(circle);        
         
 
-	     	getDistrictFromLatlng(mValue[1],mValue[2]);
+	     	getDistrictFromLatlng(mValue[1],mValue[2],mGas[1],mGas[2],mGas[3],mGas[4],mGas[5],mGas[6],mDateTime[0]);
 
 				var infoWindow = new google.maps.InfoWindow({
 			     content: 
@@ -641,7 +642,7 @@ setMapOnAll(map);
 	  var legend = document.createElement('div');
 	     legend.id = 'legend';
 	     var content = [];
-	     content.push('<h3>Air Quality Index</h3>');
+	     content.push('<h3>Air Quality Index2</h3>');
 	     content.push('<p><div class="color blue"></div>0-50 Good</p>');
 	     content.push('<p><div class="color green"></div>51-100 Moderate</p>');
 	     content.push('<p><div class="color yellow"></div>100-200 Unhealthy for Sensitive Groups</p>');
@@ -668,12 +669,22 @@ setMapOnAll(map);
 
 
 
-    function getDistrictFromLatlng(lat, lng){	
+
+    function getDistrictFromLatlng(lat, lng ,co,no2,o3,so2,pm25,radio,time){	
       
     	//console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
     		$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc",function(result){    			    					
-	    		
+	    		var province;
 	    			
+for(j = 0; j<result.results[0].address_components.length; j++){           
+                  
+                  if(result.results[0].address_components[j].types[0] == "administrative_area_level_1"){
+                    province = result.results[0].address_components[j].long_name;
+                    
+                  }
+                    
+                    
+                }
 
     			for(j = 0; j<result.results[0].address_components.length; j++){    				
     				      if(result.results[0].address_components[j].long_name.match(/^เขต.*$/) || result.results[0].address_components[j].long_name.match(/^อำเภอ.*$/)){									
@@ -712,7 +723,7 @@ setMapOnAll(map);
 							
                           //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
                           //console.log("test: "  +mResult);
-                          //getDistrictIDFromDistrictName(mResult);
+                          getDistrictIDFromDistrictName(mResult,co,no2,o3,so2,pm25,radio,province,time);
 
     			       }
     			    }                
@@ -734,8 +745,8 @@ function DatePickResponse(dateText){
 
 //for test on url
 //https://www.googleapis.com/fusiontables/v2/query?sql=SELECT CCA_2 FROM17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs WHERE NL_NAME_2 = 'อำเภอท่าตูม'&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc
-/*function getDistrictIDFromDistrictName(name){
-	$.getJSON("https://www.googleapis.com/fusiontables/v2/query?sql="+
+function getDistrictIDFromDistrictName(name,co,no2,o3,so2,pm25,radio,province,timena){
+	/*$.getJSON("https://www.googleapis.com/fusiontables/v2/query?sql="+
 				"SELECT CCA_2 "+
 				"FROM 17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs "+
 				"WHERE NL_NAME_2 = '"+name+"'"+
@@ -743,26 +754,37 @@ function DatePickResponse(dateText){
 
 					var str = result.rows+"";
 					var res = str.substr(0,4);
+      
+          var newco = parseInt(co);
+          var newno2 = parseInt(no2);
+          var newo3 = parseInt(o3);
+          var newso2 = parseInt(so2);
+          var newpm25 = parseInt(pm25);
+          var newradio = parseInt(radio);
 
+
+      
+         
        $.post("http://sysnet.utcc.ac.th:8161/aparcas/SetDistrict2.jsp",
           {
               id : res,
               name: name,
-              co: co,
-              no2: no2,
-              o3: o3,
-              so2:so2,
-              pm25:pm25,
-              radio: radio, 
-              timestamp: time
+              province: province,
+              co: newco,
+              no2: newno2,
+              o3: newo3,
+              so2:newso2,
+              pm25:newpm25,
+              radio: newradio, 
+              timestamp: timena
 
               
           },
 
           function(data, status){
               alert("Data: " + data + "\nStatus: " + status);
-          }); */
-
+          }); 
+*/
           /*$.ajax({
               type: "POST",
                contentType: "charset=utf-8",
@@ -778,12 +800,12 @@ function DatePickResponse(dateText){
                   radio: radio, 
                   timestamp: time
               }
-          });
+          });*/
 
-	});
+	//});
 
 
-}*/
+}
 
     
      function showDetail(lat,lng){
