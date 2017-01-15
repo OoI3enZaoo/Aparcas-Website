@@ -178,6 +178,7 @@
                                   <form class="form-horizontal">
                                       <div class="form-group">
                                         <label class="control-label col-sm-3  " for="email">Province:</label>
+                                        
                                         <div class="col-sm-7">                                              
                                           <div  class="dropdown">
                                          <button id = "mDistrict" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select your Province        
@@ -209,6 +210,7 @@
                                     </div>
                                   </form>
                                   <br>
+
                                   <div class="header">                              
                                         
 
@@ -596,13 +598,13 @@ setMapOnAll(map);
       
       //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc",function(result){                        
-          for(j = 0; j<result.results[0].address_components.length; j++){           
+         /* for(j = 0; j<result.results[0].address_components.length; j++){           
                   if(result.results[0].address_components[0]){ 
 
-                      console.log("Ben: " +result.results[0]address_components[0].long_name);
+                      console.log("Ben: " +result.results[0].address_components[0].long_name);
                   }
-                }
-            
+            }
+            */
 
           for(j = 0; j<result.results[0].address_components.length; j++){           
                   if(result.results[0].address_components[j].long_name.match(/^เขต.*$/) || result.results[0].address_components[j].long_name.match(/^อำเภอ.*$/)){                 
