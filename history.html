@@ -33,10 +33,10 @@
     <!-- Animation library for notifications   -->
     <link href="bower_components/bootstrap/dist/css/animate.min.css" rel="stylesheet"/>
 
-
-  <script src="bower_components/hightcharts/highcharts.js"></script>
-  <script src="bower_components/hightcharts/exporting.js"></script>  
   
+    <script src="bower_components/chart.js/dist/Chart.bundle.js"></script>
+    <script src="bower_components/chart.js/samples/utils.js"></script>
+
   <link href="assets/css/style.css" rel="stylesheet" />
   
 
@@ -127,7 +127,7 @@
 
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
 
-                            <li><a  href="Dashboard.html">Dashboard</a></li>
+                            <li><a  href="#">Dashboard</a></li>
                             <li><a href="airpollution.html">Air pollution</a></li>
                             <li><a class="menu-top-active" href="history.html">History</a></li>                            
                             <li><a href="aqi.html">Air Quality index</a></li>
@@ -143,30 +143,18 @@
   
          
   
-    <div class="content"> 
-          
-            <div class = "col-sm-8">
-                        <div class="header">                              
-                                <h4 class="title text-center"><b>Time Selection</b></h4>
-                                <!-- <p class="category">Choose your range Date </p> -->
-                                <!-- <h5 id = "outputDate" class = "text-center text-primary">You selected 00:00 to 23:00</h5> -->
-                                  <div id="flat-slider"></div>
-                                  <br>
-
-                        </div>
-                        <div class ="row">     
-                               <div class="wrapper">       
-                                    <div style="width:100%; height:1200%;  position: absolute;"> <!-- ommiting the height and width will not show the map -->
+    <div class="content">           
+          <div class ="row">   
+            <div class = "col-sm-7">                                                                                
+                                    <div style="width:100%; height:1500%;  position: absolute;"> 
                                             <div id="map"></div>
                                       </div>
-                              </div>
-                                  
+                              
+                                          <h2>ben</h2>
                                 </div>
-                        </div>                   
-            </div>
-
-            <div class = "col-sm-4">
-                        <div class="header">       
+                        
+            <div class = "col-sm-5">
+                               
                         <br>                        
                         <br>                        
                         <br>                        
@@ -209,22 +197,26 @@
                                       </div>
                                     </div>
                                   </form>
-                                  <br>
 
-                                  <div class="header">                              
-                                        
-
-                                          <div class="title col-sm-offset-3" id = "aqi"></div>
-                                  </div>
+                                    <div id = "txtInfo">          
+                                          
+                                    </div>
+                                  
                                             
                                     
                                     
                                     
 
-                                  
-
-                        </div>
+                             
+                        
                                     
+        
+            </div>     
+
+        
+                                    
+                                    <canvas id="canvas"></canvas>
+                        </div>
             </div>
 
 
@@ -234,7 +226,9 @@
 
 
 
+   <div class = "container">
    
+   </div>
 
 </body>
    
@@ -249,8 +243,8 @@
  <script type="text/javascript">
 
 
- var FusionTable = [];
-
+var FusionTable = [];
+var haveChart = false;
 
  function RemoveMarker(){
     for(i = 0; i<FusionTable.length; i++){
@@ -352,14 +346,16 @@ function initMap() {
       document.getElementById("txtError").innerHTML = "Error: Select your Date First";
     }else{
 
-      $('#myModalHorizontal').modal('toggle');                        
+            waitingDialog.show('Loading...'); 
           console.log('mdate: ' + mDate);                        
+         
+         
+
             setCircleOnMap(mDate);                    
             getNotification("pe-7s-smile","success","<b>Success</b> scroll down for see your result.");
             document.getElementById("txtError").innerHTML =  "";
-            waitingDialog.show('Loading...'); 
+            
 
-            //myLineChart.destroy();
 
     }
 
@@ -402,7 +398,7 @@ function initMap() {
 
     var mDate = DatePickResponse(mydate);
     $("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>ค้นหาเขต: "+mDate+"</h5></div>");
-    $.getJSON("http://sysnet.utcc.ac.th/aparcas/GetDistrict2.jsp",function(result){                 
+    $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/GetDistrict2.jsp",function(result){                 
     
 
 
@@ -943,7 +939,11 @@ var covered = {
               infoWindow.setPosition(ev.latLng);
               infoWindow.open(map);                       
         });
+
          waitingDialog.hide();
+
+        
+
     });//JSON
 
 
@@ -976,7 +976,17 @@ var covered = {
 
 
  function showGraph(districtID){
+
    var date = mydate;
+    if(haveChart == true){
+        myLineChart.destroy();
+    }
+
+       var info = "<div class = 'container'><div class='header'><div class = 'row'><div class = 'col-sm-7'><h4 class='title text-primary text-center'><b>Your Selection</b></h4><p class='category text-info text-center'>Choose your range Date</p></div></div></div></div>"
+          $("#txtInfo").append(info);
+
+
+var mytext = "วันที่: " + mydate;
   console.log("mydate4 ID:" + districtID + " date: " + mydate); 
      var mDate = DatePickResponse(date);     
        var co = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
@@ -987,7 +997,7 @@ var covered = {
         var radio = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
         var checkSame2 = [55];
 
-  $.getJSON("http://sysnet.utcc.ac.th/aparcas/GetDistrict2.jsp",function(result){        
+  $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/GetDistrict2.jsp",function(result){        
         var count = 1;
         for(i = 0; i<result.length; i ++){
           var rco = parseInt(result[i].co);
@@ -1180,15 +1190,17 @@ var covered = {
                 },
                 title: {
                     display: true,
-                    text: 'Chart.js Line Chart - Different point sizes'
+                    text: mytext
                 }
             }
         };   
          var ctx = document.getElementById("canvas").getContext("2d");
-        myLineChart = new Chart(ctx, mychart);
+          myLineChart = new Chart(ctx, mychart);
+          
 });
         
-            
+            haveChart = true;
+
 
 }
 

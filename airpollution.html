@@ -150,7 +150,7 @@
 
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
 
-                            <li><a  href="Dashboard.html">Dashboard</a></li>
+                            <li><a  href="#">Dashboard</a></li>
                             <li><a class="menu-top-active" href="airpollution.html">Air pollution</a></li>
                             <li><a href="history.html">History</a></li>
                             
@@ -285,7 +285,7 @@ $(function(){
 
 
  
-  $.getJSON("http://sysnet.utcc.ac.th/aparcas/GetDistrict2.jsp",function(result){            
+  $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/GetDistrict2.jsp",function(result){            
         
           var checkSame = ['55'];
           var count = 1;
@@ -490,7 +490,7 @@ function UpdateMap (gIndex,startTime,endTime,date){
     
 
     console.log("UpdateMap("+gIndex+","+startTime+","+endTime+","+date+")");
-    $.getJSON('http://sysnet.utcc.ac.th/aparcas/AQI2.jsp', function(result) {            
+    $.getJSON('http://sysnet.utcc.ac.th/aparcas/api/AQI2.jsp', function(result) {            
 
 
       /*var mStartTime = Date.parse(startTime);
@@ -772,7 +772,7 @@ function getDistrictIDFromDistrictName(name){
           var str = result.rows+"";
           var res = str.substr(0,4);
 
-       $.post("http://sysnet.utcc.ac.th:8161/aparcas/SetDistrict2.jsp",
+       $.post("http://sysnet.utcc.ac.th:8161/aparcas/api/SetDistrict2.jsp",
           {
               id : res,
               name: name,
@@ -795,7 +795,7 @@ function getDistrictIDFromDistrictName(name){
           /*$.ajax({
               type: "POST",
                contentType: "charset=utf-8",
-              url: 'http://sysnet.utcc.ac.th:8161/aparcas/District2.jsp',
+              url: 'http://sysnet.utcc.ac.th:8161/aparcas/api/District2.jsp',
               data: { 
                   id : res,
                   name: name,

@@ -8,6 +8,7 @@ String urlDB = "jdbc:mysql://sysnet.utcc.ac.th/Aparcas?";
 
 Vector<String> idVec =  new Vector<String>();
 Vector<String> NameVec =  new Vector<String>();
+Vector<String> ProvinceVec =  new Vector<String>();
 Vector<Float> COVec =  new Vector<Float>();
 Vector<Float> NO2Vec =  new Vector<Float>();
 Vector<Float> O3Vec =  new Vector<Float>();
@@ -29,6 +30,7 @@ Vector<String> Time =  new Vector<String>();
 	  while (rs.next()) {
 		idVec.addElement(rs.getString("ID"));
 		NameVec.addElement(rs.getString("Name"));		
+		ProvinceVec.addElement(rs.getString("Province"));		
 		COVec.addElement(rs.getFloat("CO"));
 		NO2Vec.addElement(rs.getFloat("NO2"));
 		O3Vec.addElement(rs.getFloat("O3"));
@@ -53,6 +55,7 @@ for(int i=0; i<idVec.size(); i++){
 	
 	jsonStr += "{\"id\":\""+idVec.elementAt(i)+"\",";
 	jsonStr += "\"name\":\""+NameVec.elementAt(i)+"\",";	
+	jsonStr += "\"province\":\""+ProvinceVec.elementAt(i)+"\",";	
 	jsonStr += "\"co\":\""+COVec.elementAt(i)+"\",";
 	jsonStr += "\"no2\":\""+NO2Vec.elementAt(i)+"\",";
 	jsonStr += "\"o3\":\""+O3Vec.elementAt(i)+"\",";
