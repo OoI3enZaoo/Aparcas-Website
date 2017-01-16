@@ -9,35 +9,41 @@
 <!--   Core JS Files   -->
 
 
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src = "bower_components/jquery-ui/jquery-ui.js" ></script>    
-
-    <link rel="stylesheet" href = "bower_components/jquery/src/css/jquery-ui.css">
-
+    
     <script src = "bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.js"></script>
-  <link href="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.css" rel="stylesheet" />
+
 
 
 <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
 <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
- <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 
 
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+  <!--  Google Map Plugin -->
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=benMap"
+  type="text/javascript"></script>
+  <script src="bower_components/chart.js/dist/Chart.bundle.js"></script>
+    <script src="bower_components/chart.js/samples/utils.js"></script>
+
 
 
        <!-- Bootstrap core CSS     -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <!-- Animation library for notifications   -->
     <link href="bower_components/bootstrap/dist/css/animate.min.css" rel="stylesheet"/>
+       <link rel="stylesheet" href = "bower_components/jquery/src/css/jquery-ui.css">
+  <link href="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.css" rel="stylesheet" />
+ <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 
   
-    <script src="bower_components/chart.js/dist/Chart.bundle.js"></script>
-    <script src="bower_components/chart.js/samples/utils.js"></script>
+    
 
   <link href="assets/css/style.css" rel="stylesheet" />
+
   
 
   
@@ -232,9 +238,7 @@
 
 </body>
    
-      <!--  Google Map Plugin -->
-   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap"
-  type="text/javascript"></script>
+    
   
 
  
@@ -332,7 +336,7 @@ function getDistrictFromLatlng(lat, lng){
  
 
 
-function initMap() {
+function benMap() {
 
 
   
@@ -380,7 +384,7 @@ function initMap() {
      
      function setCircleOnMap(date){
       
-      //google.maps.event.addDomListener(window, 'load', initMap);
+      //google.maps.event.addDomListener(window, 'load', benMap);
         RemoveMarker();
     
  var simpleDistrict = [3702,3706,3704,3705,1502,3703];

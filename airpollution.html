@@ -10,35 +10,41 @@
 
 
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src = "bower_components/jquery-ui/jquery-ui.js" ></script>    
-
-    <link rel="stylesheet" href = "bower_components/jquery/src/css/jquery-ui.css">
-
-    <script src = "bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.js"></script>
-  <link href="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.css" rel="stylesheet" />
-
-
-<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-<script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
- <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-
-
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src = "bower_components/jquery-ui/jquery-ui.js" ></script>    
+    <script src = "bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.js"></script>
+<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="bower_components/hightcharts/highcharts.js"></script>
+  <script src="bower_components/hightcharts/exporting.js"></script>  
+  
+  
+  
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initialize"
+  type="text/javascript"></script>
 
+
+  <link href="assets/css/style.css" rel="stylesheet" />
+
+ <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
+
+
+
+
+    <link rel="stylesheet" href = "bower_components/jquery/src/css/jquery-ui.css">
+
+
+  <link href="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.css" rel="stylesheet" />
        <!-- Bootstrap core CSS     -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <!-- Animation library for notifications   -->
     <link href="bower_components/bootstrap/dist/css/animate.min.css" rel="stylesheet"/>
 
 
-  <script src="bower_components/hightcharts/highcharts.js"></script>
-  <script src="bower_components/hightcharts/exporting.js"></script>  
-  
-  <link href="assets/css/style.css" rel="stylesheet" />
-  
 
   
    <style>
@@ -212,7 +218,7 @@
 
                                         </div>
                                       </div>                                      
-                                      <br><br>
+                                      <br><br><br>
                                       <div class="form-group">
                                         <label class="control-label col-sm-3 " for="pwd">Date:</label>
 
@@ -225,7 +231,7 @@
                                     <div class="form-group">
                                       <div class="row">
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-sm-offset-2">
-                                                      <input  id = "DateSearch"  type="submit" class="btn btn-lg btn-success btn-block" value="Render">
+                                                      <input  id = "DateSearch"   class="btn btn-lg btn-success btn-block" value="Render">
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 ">
                                           <a href="" class="btn btn-lg btn-primary btn-block">Clear</a>
@@ -233,6 +239,7 @@
                                       </div>
                                     </div>
                                   </form>
+                                  <br>
                                   <br>
 
                                   <div class="header">                              
@@ -265,8 +272,7 @@
 
 </body>
 
- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap"
-  type="text/javascript"></script>
+ 
 
 
 
@@ -281,85 +287,8 @@ var Circles = [];
 var markers = [];
 
 
-$(function(){
 
-
- 
-  $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/GetDistrict2.jsp",function(result){            
-        
-          var checkSame = ['55'];
-          var count = 1;
-            for(i=0;i<result.length; i++){
-              
-              var districtname = result[i].name;
-              var DName = result[i].province;
-              var DID = result[i].id;
-
-                 for(j = 0; j<checkSame.length; j++){
-                    if(checkSame[j] == DName){                          
-                          count = 0;     
-                          break;                          
-                    }                                 
-                  }                                 
-                  if(count == 1 ){                    
-                       var query = "<li><a href='#'data-value='"+DID+"'>"+DName+"</a></li>";                            
-                      $("#dropdownProvince").append(query);                                                           
-                      checkSame.push(DName);
-                  }                 
-                  count = 1;
-            
-            }//for
-            
-              $(".dropdown-menu li a").click(function(){// show value when click
-                    $(this).parents(".dropdown").find('.btn').html($(this).text());
-                    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-                });                 
-      
-        });
-
-
-                $('#txtDate').datetimepicker({
-                 format: 'MM/DD/YYYY'
-           });
-            
-
-  /*$("#txtDate").datepicker({
-    onSelect: function(dateText, inst) { 
-
-        var data = "<li><a href='#'  data-value= '0'>Air Quality Index (AQI)</a></li><li><a href='#'  data-value= '1'>Carbon monoxide (CO)</a></li><li><a href='#'  data-value= '2'>Nitrogen dioxide (NO2)</a></li><li><a href='#'  data-value= '3'>Ozone (O3)</a></li><li><a href='#'  data-value= '4'>Sulfur dioxide (SO2)</a></li><li><a href='#'  data-value= '5'>Particle Pollution (PM2.5)</a></li><li><a href='#'  data-value= '6'>Radioactive</a></li>"                                
-          $("#dropdownGas").append(data);  
-    }
-  });*/
-
-
-
-
-});
-
-
-
-function getNotification(micon,mtype,mdata)
- {
-   
-   $.notify({
-          icon: micon,//icon
-          message: mdata//data
-
-      },{
-          type: mtype, //type  danger ,warning ,success ,info
-          timer: 4000
-      });   
-   
-   
- }
-
-
-    function RemoveMarker(){
-    for(i = 0; i<Circles.length; i++){
-      Circles[i].setMap(null);
-    }   
-    }
- function initMap() {
+ function initialize() {
 
     
      var myDate;
@@ -657,6 +586,7 @@ function UpdateMap (gIndex,startTime,endTime,date){
    });// json
 
 }
+
     var legend = document.createElement('div');
        legend.id = 'legend';
        var content = [];
@@ -672,12 +602,83 @@ function UpdateMap (gIndex,startTime,endTime,date){
 
        
        $("#aqi").append(legend.innerHTML)
+
+
        
 
      }//init map
        
     var mResult = "";
 
+
+
+
+$(function(){
+
+
+ 
+  $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/GetDistrict2.jsp",function(result){            
+        
+          var checkSame = ['55'];
+          var count = 1;
+            for(i=0;i<result.length; i++){
+              
+              var districtname = result[i].name;
+              var DName = result[i].province;
+              var DID = result[i].id;
+
+                 for(j = 0; j<checkSame.length; j++){
+                    if(checkSame[j] == DName){                          
+                          count = 0;     
+                          break;                          
+                    }                                 
+                  }                                 
+                  if(count == 1 ){                    
+                       var query = "<li><a href='#'data-value='"+DID+"'>"+DName+"</a></li>";                            
+                      $("#dropdownProvince").append(query);                                                           
+                      checkSame.push(DName);
+                  }                 
+                  count = 1;
+            
+            }//for
+            
+              $(".dropdown-menu li a").click(function(){// show value when click
+                    $(this).parents(".dropdown").find('.btn').html($(this).text());
+                    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+                });                 
+      
+        });
+
+
+                $('#txtDate').datetimepicker({
+                 format: 'MM/DD/YYYY'
+           });
+            
+});
+
+
+
+function getNotification(micon,mtype,mdata)
+ {
+   
+   $.notify({
+          icon: micon,//icon
+          message: mdata//data
+
+      },{
+          type: mtype, //type  danger ,warning ,success ,info
+          timer: 4000
+      });   
+   
+   
+ }
+
+
+    function RemoveMarker(){
+    for(i = 0; i<Circles.length; i++){
+      Circles[i].setMap(null);
+    }   
+    }
  function setMapOnAll(map) {
         for (var i = 0; i < markers.length; i++) {
           markers[i].setMap(map);
