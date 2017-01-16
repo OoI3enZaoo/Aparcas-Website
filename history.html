@@ -23,9 +23,7 @@
 <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
 
-  <!--  Google Map Plugin -->
-   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=benMap"
-  type="text/javascript"></script>
+
   <script src="bower_components/chart.js/dist/Chart.bundle.js"></script>
     <script src="bower_components/chart.js/samples/utils.js"></script>
 
@@ -240,103 +238,20 @@
    
     
   
-
- 
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap"
+  type="text/javascript"></script>
   
   
- <script type="text/javascript">
+ <script type="text/javascript" charset="utf-8">
 
 
 var FusionTable = [];
 var haveChart = false;
 
- function RemoveMarker(){
-    for(i = 0; i<FusionTable.length; i++){
-      FusionTable[i].setMap(null);
-      console.log("FusionTable: " + i );
-    }   
-  }
-
-
-
-
-$(function(){
-  var myDate = "";
-  var myDistrictID = "";  
-  var myLineChart;
- $('#txtDate').datetimepicker({
-                 format: 'MM/DD/YYYY'
-           });
-
-    
-});//function
-
-function DatePickResponse(dateText){
-   var Month = dateText.substr(0,2);
-        var Day =  dateText.substr(3,2);
-        var Year =  dateText.substr(6,7);
-        var result = Year + "-" + Month + "-" +Day;
-        return result;
-}
-function getDistrictFromLatlng(lat, lng){ 
-//  var myLocation = [["13.736623", "100.563866"],["13.757873","100.53623"]];   
-  //for(i = 0; i<myLocation.length; i++){ 
-    $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=true",function(result){           
-      for(j = 0; j<result.results[0].address_components.length; j++){     
-        if(result.results[0].address_components[j].long_name.match(/^เขต.*$/)){                 
-            var myDistrict = result.results[0].address_components[j].long_name
-            var mResult = myDistrict.replace("เขต ","");
-            console.log(mResult);
-            return mResult;
-            
-        }
-        
-      }
-    });
-                     
-  //}
-}
-                 
-                 
- function getAQIColor(number){
-    
-    var color;
-    if(number > 300){
-      return  "#ff4d4d";//red
-    }
-    if(number > 200){
-      return  "#ff944d";//orange
-    }
-    if(number > 100){
-      return   "#ffff4d";//yellow
-    }
-    if(number > 50){
-      return "#4dff88"//green
-    }
-    else{
-      return  "#4d4dff";//blue
-      
-    }
-    return null;
-  } 
- function getNotification(micon,mtype,mdata)
- {
-   
-   $.notify({
-          icon: micon,//icon
-          message: mdata//data
-
-      },{
-          type: mtype, //type  danger ,warning ,success ,info
-          timer: 4000
-      });   
-   
-   
- }
  
 
 
-function benMap() {
+function initMap() {
 
 
   
@@ -978,6 +893,89 @@ var covered = {
 }// init map
 
 
+ function RemoveMarker(){
+    for(i = 0; i<FusionTable.length; i++){
+      FusionTable[i].setMap(null);
+      console.log("FusionTable: " + i );
+    }   
+  }
+
+
+
+
+$(function(){
+  var myDate = "";
+  var myDistrictID = "";  
+  var myLineChart;
+ $('#txtDate').datetimepicker({
+                 format: 'MM/DD/YYYY'
+           });
+
+    
+});//function
+
+function DatePickResponse(dateText){
+   var Month = dateText.substr(0,2);
+        var Day =  dateText.substr(3,2);
+        var Year =  dateText.substr(6,7);
+        var result = Year + "-" + Month + "-" +Day;
+        return result;
+}
+function getDistrictFromLatlng(lat, lng){ 
+//  var myLocation = [["13.736623", "100.563866"],["13.757873","100.53623"]];   
+  //for(i = 0; i<myLocation.length; i++){ 
+    $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=true",function(result){           
+      for(j = 0; j<result.results[0].address_components.length; j++){     
+        if(result.results[0].address_components[j].long_name.match(/^เขต.*$/)){                 
+            var myDistrict = result.results[0].address_components[j].long_name
+            var mResult = myDistrict.replace("เขต ","");
+            console.log(mResult);
+            return mResult;
+            
+        }
+        
+      }
+    });
+                     
+  //}
+}
+                 
+                 
+ function getAQIColor(number){
+    
+    var color;
+    if(number > 300){
+      return  "#ff4d4d";//red
+    }
+    if(number > 200){
+      return  "#ff944d";//orange
+    }
+    if(number > 100){
+      return   "#ffff4d";//yellow
+    }
+    if(number > 50){
+      return "#4dff88"//green
+    }
+    else{
+      return  "#4d4dff";//blue
+      
+    }
+    return null;
+  } 
+ function getNotification(micon,mtype,mdata)
+ {
+   
+   $.notify({
+          icon: micon,//icon
+          message: mdata//data
+
+      },{
+          type: mtype, //type  danger ,warning ,success ,info
+          timer: 4000
+      });   
+   
+   
+ }
 
  function showGraph(districtID){
 
