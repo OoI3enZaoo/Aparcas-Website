@@ -908,15 +908,15 @@ $(function(){
   var myDistrictID = "";  
   var myLineChart;
  $('#txtDate').datetimepicker({
-                 format: 'MM/DD/YYYY'
+                  format: 'DD/MM/YYYY'
            });
 
     
 });//function
 
 function DatePickResponse(dateText){
-   var Month = dateText.substr(0,2);
-        var Day =  dateText.substr(3,2);
+   var Day = dateText.substr(0,2);
+        var Month =  dateText.substr(3,2);
         var Year =  dateText.substr(6,7);
         var result = Year + "-" + Month + "-" +Day;
         return result;

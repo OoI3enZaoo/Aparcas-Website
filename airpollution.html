@@ -511,6 +511,8 @@ function UpdateMap (gIndex,startTime,endTime,date){
 
  var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(mValue[1], mValue[2]),
+                icon: getIconMarker(mGas[0]),
+
                 title:"Hello World!"
               });                         
           
@@ -519,10 +521,10 @@ function UpdateMap (gIndex,startTime,endTime,date){
 
                map.addListener('zoom_changed', function() {
                 console.log("zoom: " + map.getZoom());
-                  if(map.getZoom() >= 10){
+                  if(map.getZoom() >= 11){
                         setMapOnAll(null);
                   }
-                  if(map.getZoom() < 10){
+                  if(map.getZoom() < 11){
                       setMapOnAll(map); 
                   }
                 });
@@ -652,7 +654,7 @@ $(function(){
 
 
                 $('#txtDate').datetimepicker({
-                 format: 'MM/DD/YYYY'
+                 format: 'DD/MM/YYYY'
            });
             
 });
@@ -755,10 +757,12 @@ function getNotification(micon,mtype,mdata)
 
 
 function DatePickResponse(dateText){
-   var Month = dateText.substr(0,2);
-        var Day =  dateText.substr(3,2);
+console.log("DatePickResponse1: " + dateText);
+   var Day = dateText.substr(0,2);
+        var Month =  dateText.substr(3,2);
         var Year =  dateText.substr(6,7);
         var result = Year + "-" + Month + "-" +Day;
+        console.log("DatePickResponse2: " + result);
         return result;
 }
 
@@ -824,9 +828,30 @@ function getDistrictIDFromDistrictName(name){
           
       }
 
+function getIconMarker(number){
+  
+    if(number > 300){
+      return  'http://maps.google.com/mapfiles/ms/icons/red-dot.png';//red
+    }
+    if(number > 201){
+      return  'http://maps.google.com/mapfiles/ms/icons/orange-dot.png';//orange
+    }
+    if(number > 100){
+      return   'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';//yellow
+    }
+    if(number > 51){
+      return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'//green
+    }
+    else{
+      return  'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';//blue
+      
+    }
+    return null;
+  } 
+
   function getfillColor(number){
     
-    var color;
+    
     if(number > 300){
       return  "#ff4d4d";//red
     }
