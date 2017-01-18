@@ -8,8 +8,8 @@ String urlDB = "jdbc:mysql://sysnet.utcc.ac.th/Aparcas?";
 
 Vector<String> idVec =  new Vector<String>();
 Vector<String> NameVec =  new Vector<String>();
-Vector<Float> LatVec =  new Vector<Float>();
-Vector<Float> LongVec =  new Vector<Float>();
+Vector<String> LatVec =  new Vector<String>();
+Vector<String> LongVec =  new Vector<String>();
 Vector<Float> COVec =  new Vector<Float>();
 Vector<Float> NO2Vec =  new Vector<Float>();
 Vector<Float> O3Vec =  new Vector<Float>();
@@ -31,8 +31,8 @@ Vector<String> Time =  new Vector<String>();
 	  while (rs.next()) {
 		idVec.addElement(rs.getString("id"));
 		NameVec.addElement(rs.getString("first_name"));
-		LatVec.addElement(rs.getFloat("Lat"));
-		LongVec.addElement(rs.getFloat("Lng"));
+		LatVec.addElement(rs.getString("Lat"));
+		LongVec.addElement(rs.getString("Lng"));
 		COVec.addElement(rs.getFloat("CO"));
 		NO2Vec.addElement(rs.getFloat("NO2"));
 		O3Vec.addElement(rs.getFloat("O3"));

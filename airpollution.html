@@ -619,7 +619,22 @@ function UpdateMap (gIndex,startTime,endTime,date){
 $(function(){
 
 
+/*
  
+ $.getJSON('http://sysnet.utcc.ac.th/aparcas/api/AQI2.jsp',function(result){  
+
+      for(i = 0; i<result.length; i++){
+        var mlat = result[i].lat;
+        var mlong = result[i].long;
+              
+        console.log("call Loopna"); 
+        postJSON(mlat,mlong);       
+            
+       }
+
+      
+  });*/
+
   $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/GetDistrict2.jsp",function(result){            
         
           var checkSame = ['55'];
@@ -659,6 +674,30 @@ $(function(){
             
 });
 
+/*
+
+function postJSON(mlat,mlong){
+  console.log("PostJSON");          
+  $.getJSON("https://www.googleapis.com/fusiontables/v1/query?key=AIzaSyD2Wl_1_czaWb9aBDSdMNLlOXMNI9ULibw&sql=SELECT%20CCA_2,NL_NAME_2%20FROM%2017Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs%20WHERE%20ST_INTERSECTS(geometry,%20CIRCLE(LATLNG(15.9443970094,100.1210692095),100))",function(result2){
+
+              //console.log("result: " + result2.code);             
+              var DistrictID = result2.rows[0][0];
+              var DistrictName = result2.rows[0][1];
+
+              console.log("ID: " + DistrictID + " Name: " + DistrictName + " Lat: " + mlat);
+               $.post("http://sysnet.utcc.ac.th/aparcas/api/updateAQI2.jsp",
+                  {
+                      did : DistrictID,                 
+                      dname: DistrictName,
+                      lat: "15.7183852478"                                   
+                  },
+
+                  function(data, status){
+                      alert("Data: " + data + "\nStatus: " + status);
+                  }); 
+           });
+
+}*/
 
 
 function getNotification(micon,mtype,mdata)
@@ -757,12 +796,10 @@ function getNotification(micon,mtype,mdata)
 
 
 function DatePickResponse(dateText){
-console.log("DatePickResponse1: " + dateText);
    var Day = dateText.substr(0,2);
         var Month =  dateText.substr(3,2);
         var Year =  dateText.substr(6,7);
         var result = Year + "-" + Month + "-" +Day;
-        console.log("DatePickResponse2: " + result);
         return result;
 }
 

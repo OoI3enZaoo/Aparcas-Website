@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+	<title>Ben</title>	
+</head>
+<body>
+
+
+
+<h2>Update DistrictName and DistrictID to Table AQI2</h2>
+
+</body>
+
+<script type="text/javascript">
+/*
+$.getJSON('http://sysnet.utcc.ac.th/aparcas/api/AQI2.jsp',function(result){	
+
+//			for(i = 0; i<result.length; i++){
+			$.each(result, function(i, item) {				
+				var mlat = result[i].lat;
+				var mlong = result[i].long;
+							
+				console.log("call Loopna");	
+				postJSON(mlat,mlong);				
+			    	
+			 });
+
+	    
+	});
+
+
+function postJSON(mlat,mlong){
+	console.log("PostJSON");					
+	$.getJSON("https://www.googleapis.com/fusiontables/v1/query?"+"key=AIzaSyBigRFIeRGKTdrs8WTZyZYK1QnOBHAIC9g"+
+			    	"&sql=SELECT%20CCA_2,NL_NAME_2%20FROM%2017Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs%20WHERE%20ST_INTERSECTS(geometry,%20CIRCLE(LATLNG("+mlat+","+mlong+"),100))",function(result2){
+
+			    		//console.log("result: " + result2.code);			    		
+			    		var DistrictID = result2.rows[0][0];
+			    		var DistrictName = result2.rows[0][1];
+
+			    		console.log("ID: " + DistrictID + " Name: " + DistrictName + " Lat: " + mlat);
+					     $.post("http://sysnet.utcc.ac.th/aparcas/api/updateAQI2.jsp",
+				          {
+				              did : DistrictID,		              
+				              dname: DistrictName,
+				              lat: mlat		              		              
+				          },
+
+				          function(data, status){
+				              alert("Data: " + data + "\nStatus: " + status);
+				          }); 
+			     });
+
+}*/
+
+
+$.getJSON('http://sysnet.utcc.ac.th/aparcas/api/AQI2.jsp',function(res){	
+
+		for(i=0;i<res.length; i ++)
+		{
+
+			if(res.district)
+				console.log("lat: " +res[i].lat + " long: " + res[i].long);		
+
+						$.getJSON("https://www.googleapis.com/fusiontables/v1/query?key=AIzaSyBigRFIeRGKTdrs8WTZyZYK1QnOBHAIC9g&sql=SELECT%20CCA_2,NL_NAME_2%20FROM%2017Vj_x8Kadu	Qcuxi_C0M6teVPKoId_7qQyyJC_zRs%20WHERE%20ST_INTERSECTS(geometry,%20CIRCLE(LATLNG("+res[i].lat+","+res[i].long+"),100))",function(result){
+
+									var DistrictID = result.rows[0][0];
+									var DistrictName = result.rows[0][1];
+
+						 		console.log("result: " + DistrictID + " name: " + DistrictName);
+					 					$.ajax({
+												  url: 'http://sysnet.utcc.ac.th/aparcas/api/updateAQI2.jsp',
+												  type: 'PUT',
+												  data: "id="+DistrictID+"&name="+DistrictName+"+&lat="+res[i].lat+"",
+												  success: function(data) {
+												    alert('Load was performed.');
+												  }
+												});
+
+					 				
+
+						 		});
+		}
+	});
+
+/*
+var id = "555";
+var name = "666";
+var mlat = "14.9312004345"
+	$.ajax({
+		  url: 'http://sysnet.utcc.ac.th/aparcas/api/updateAQI2.jsp',
+		  type: 'PUT',
+		  data: "id="+id+"&name="+name+"+&lat="+mlat+"",
+		  success: function(data) {
+		    alert('Load was performed.');
+		  }
+		});*/
+
+</script>
+</html>
