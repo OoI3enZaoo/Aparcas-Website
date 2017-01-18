@@ -1,51 +1,53 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <link rel="icon" type="image/png" href="aparcaslogo.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
   <title>Aparcas Project</title>
-<!--   Core JS Files   -->
+  <!--   Core JS Files   -->
 
 
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width" />
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src = "bower_components/jquery-ui/jquery-ui.js" ></script>    
-    
-    <script src = "bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+
+  <script src="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.js"></script>
 
 
 
-<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-<script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+  <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
 
 
   <script src="bower_components/chart.js/dist/Chart.bundle.js"></script>
-    <script src="bower_components/chart.js/samples/utils.js"></script>
+  <script src="bower_components/chart.js/samples/utils.js"></script>
 
 
 
-       <!-- Bootstrap core CSS     -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <!-- Animation library for notifications   -->
-    <link href="bower_components/bootstrap/dist/css/animate.min.css" rel="stylesheet"/>
-       <link rel="stylesheet" href = "bower_components/jquery/src/css/jquery-ui.css">
-  
- <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+  <!-- Bootstrap core CSS     -->
+  <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+  <!-- Animation library for notifications   -->
+  <link href="bower_components/bootstrap/dist/css/animate.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="bower_components/jquery/src/css/jquery-ui.css">
 
-  
-    
+  <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
+  />
+
+
+
 
   <link href="assets/css/style.css" rel="stylesheet" />
 
-  
 
-  
-   <style>
+
+
+  <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -109,138 +111,138 @@
   }
 </style>
 
-  
+
 </head>
+
 <body>
 
-  
 
-                                            
-                                            
-<header>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <strong>Air Pollution and Radioactive Contamination Analyzing System </strong>
-                    &nbsp;&nbsp;
-                    
-                </div>
 
-            </div>
+
+
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <strong>Air Pollution and Radioactive Contamination Analyzing System </strong> &nbsp;&nbsp;
+
         </div>
-    </header>
-    
-    <section class="menu-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              
-
-                        <ul id="menu-top" class="nav navbar-nav navbar-right">
-
-                            <li><a  href="#">Dashboard</a></li>
-                            <li><a href="airpollution.html">Air pollution</a></li>
-                            <li><a class="menu-top-active" href="history.html">History</a></li>                            
-                            <li><a href="aqi.html">Air Quality index</a></li>
-                            
-
-                        </ul>
-                           
-                </div>
-            </div>
-        </div>
-    </section>
-
-  
-         
-  
-    <div class="content">           
-          <div class ="row">   
-            <div class = "col-xs-7 col-sm-7 col-md-7 col-lg-7">            
-                            
-                                    <div style="width:100%; height:1500%;  position: absolute; "> 
-                                            <div id="map"></div>
-                                      </div>
-                            
-                              
-                                          <h2>ben</h2>
-                </div>
-                        
-            <div class = "col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                               
-                        <br>                        
-                        <br>                        
-                        <br>                        
-                        <br>                    
-                        <br>              
-                              
-                                  <form class="form-horizontal">
-                                      <div class="form-group">
-                                        <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3  " for="email">Province:</label>
-                                        
-                                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">                                              
-                                          <div  class="dropdown">
-                                         <button id = "mProvince" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select your Province        
-
-                                          <span class="caret"></span></button>
-                                        <ul id = "dropdownProvince" class="dropdown-menu">                  
-                                                                                                                                        
-                                        </ul>
-
-                                        </div>
-                                      </div>                                      
-                                      <br><br>
-                                      <div class="form-group">
-                                        <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3" for="pwd">Date:</label>
-
-                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">          
-                                                     <!-- <input class="form-control" id="txtDate" placeholder="Pick your Date"/> -->
-                                                      <input id = "txtDate" type='text' class="form-control" id='datepicker' />
-                                        </div>
-                                      </div>
-                                      <br>
-                                    <div class="form-group">
-                                      <div class="row">
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-sm-offset-2 ">
-                                                      <button  type= "button" id = "DateSearch"   class="btn btn-lg btn-success btn-block" >Render</button>
-                                        </div>
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                             <button  type= "button"  class="btn btn-lg btn-danger btn-block" >Clear</button>
-                                             
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </form>
-
-                                    <div id = "txtInfo">          
-                                          
-                                    </div>
-                                  
-                                            
-                                    
-                                    
-                                    
-
-                             
-                        
-                                    
-        
-            </div>     
-
-        
-                                                                      
-                        </div>
-            </div>
-
 
       </div>
-      
+    </div>
+  </header>
+
+  <section class="menu-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+
+          <ul id="menu-top" class="nav navbar-nav navbar-right">
+
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="airpollution.html">Air pollution</a></li>
+            <li><a class="menu-top-active" href="history.html">History</a></li>
+            <li><a href="aqi.html">Air Quality index</a></li>
+
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
 
 
 
 
-   
-   <!-- Modal -->
+  <div class="content">
+    <div class="row">
+      <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+
+        <div style="width:100%; height:1500%;  position: absolute; ">
+<div id="map"></div>
+</div>
+
+
+<h2>ben</h2>
+</div>
+
+<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3  " for="email">Province:</label>
+
+      <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+        <div class="dropdown">
+          <button id="mProvince" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select your Province        
+
+                                          <span class="caret"></span></button>
+          <ul id="dropdownProvince" class="dropdown-menu">
+
+          </ul>
+
+        </div>
+      </div>
+      <br><br>
+      <div class="form-group">
+        <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3" for="pwd">Date:</label>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <!-- <input class="form-control" id="txtDate" placeholder="Pick your Date"/> -->
+          <input id="txtDate" type='text' class="form-control" id='datepicker' />
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-sm-offset-2 ">
+            <button type="button" id="DateSearch" class="btn btn-lg btn-success btn-block">Render</button>
+          </div>
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <button type="button" class="btn btn-lg btn-danger btn-block">Clear</button>
+
+          </div>
+        </div>
+      </div>
+  </form>
+
+  <div id="txtInfo">
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+</div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -250,8 +252,8 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Modal Header</h4>
       </div>
-      <div class="modal-body">        
-         <canvas id="canvas"></canvas>
+      <div class="modal-body">
+        <canvas id="canvas"></canvas>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -263,73 +265,78 @@
 
 
 </body>
-   
-    
-  
+
+
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap"
   type="text/javascript"></script>
-  
-  
- <script type="text/javascript" charset="utf-8">
-
-var FusionTable = [];  
-var haveChart = false;  
 
 
-function initMap() {
+<script type="text/javascript" charset="utf-8">
+
+  var FusionTable = [];
+  var haveChart = false;
 
 
-  
-  $('#DateSearch').click(function(){
-    
-    $("#showInfo").empty();
-    var mDate = document.getElementById("txtDate").value; //time    
-    //var mDistrict = document.getElementById("mDistrict").value;//district
-            
-    if(mDate == ""){
-      getNotification("pe-7s-close-circle","danger","<b>Error</b> Please select your date first");
-    }else{
-
-            waitingDialog.show('Loading...'); 
-          console.log('mdate: ' + mDate);                        
-         
-         
-
-            setCircleOnMap(mDate);                    
-            getNotification("pe-7s-smile","success","<b>Success</b> scroll down for see your result.");
-            
-            
 
 
-    }
-
-          
-          
-          //});//getJSON  
-          
-                                    
-  });//date Click
 
 
-  
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 7,
-        center: new google.maps.LatLng(15.044938, 102.183838),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      });   //end of map
-      
-  
- 
 
-     
-     function setCircleOnMap(date){
-      
+  function initMap() {
+
+
+
+    $('#DateSearch').click(function () {
+
+      $("#showInfo").empty();
+      var mDate = document.getElementById("txtDate").value; //time    
+      //var mDistrict = document.getElementById("mDistrict").value;//district
+
+      if (mDate == "") {
+        getNotification("pe-7s-close-circle", "danger", "<b>Error</b> Please select your date first");
+      } else {
+
+        waitingDialog.show('Loading...');
+        console.log('mdate: ' + mDate);
+
+
+
+        setCircleOnMap(mDate);
+        getNotification("pe-7s-smile", "success", "<b>Success</b> scroll down for see your result.");
+
+
+
+
+      }
+
+
+
+      //});//getJSON  
+
+
+    });//date Click
+
+
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 7,
+      center: new google.maps.LatLng(15.044938, 102.183838),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });   //end of map
+
+
+
+
+
+    function setCircleOnMap(date) {
+
       //google.maps.event.addDomListener(window, 'load', benMap);
-        RemoveMarker();
-    
- var simpleDistrict = [3702,3706,3704,3705,1502,3703];
-        
-          
+      RemoveMarker();
+
+      var simpleDistrict = [3702, 3706, 3704, 3705, 1502, 3703];
+
+
       //var districtName = document.getElementById("mDistrict").innerHTML;
 
       var good = [];
@@ -338,962 +345,957 @@ function initMap() {
       var Unhealthy2 = [];
       var Unhealthy3 = [];
 
-    mydate = date;
+      mydate = date;
 
-    var mDate = DatePickResponse(mydate);
-    $("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>ค้นหาเขต: "+mDate+"</h5></div>");
-    $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/AQI2.jsp",function(result){                 
-    
+      var mDate = DatePickResponse(mydate);
+      $("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>ค้นหาเขต: " + mDate + "</h5></div>");
+      $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/AQI2.jsp", function (result) {
 
 
-    var co = [];
+
+        var co = [];
         var no2 = [];
-        var o3= [];
-        var so2= [];
-        var pm25= [];
-        var radio= [];
-        
+        var o3 = [];
+        var so2 = [];
+        var pm25 = [];
+        var radio = [];
+
         var count = new Array(9000).fill(0);
 
 
         var check = 0;
         var m = 0;
 
-            for(i = 0; i<result.length; i++){
-                var re = new RegExp(mDate, 'g');
-                if(result[i].timestamp.match(re)){
-                            disID =+ parseInt(result[i].districtID);    
+        for (i = 0; i < result.length; i++) {
+          var re = new RegExp(mDate, 'g');
+          if (result[i].timestamp.match(re)) {
+            disID = + parseInt(result[i].districtID);
 
-                         if(count[disID] != 0){
+            if (count[disID] != 0) {
 
-                            co[disID] =co[disID]+ parseInt(result[i].co);
-                            no2[disID] =no2[disID]+ parseInt(result[i].no2);
-                            o3[disID] =co[disID]+ parseInt(result[i].o3);
-                            so2[disID] =co[disID]+ parseInt(result[i].so2);
-                            pm25[disID] =co[disID]+ parseInt(result[i].pm25);
-                            radio[disID] =co[disID]+ parseInt(result[i].radio);
-                            count[disID] = count[disID] + 1;
-                            console.log("Num2");
-                        }     
-                        if(count[disID] == 0){
-                            co[disID] =+ parseInt(result[i].co);
-                            no2[disID] =+ parseInt(result[i].no2);
-                            o3[disID] =+ parseInt(result[i].o3);
-                            so2[disID] =+ parseInt(result[i].so2);
-                            pm25[disID] =+ parseInt(result[i].pm25);
-                            radio[disID] =+ parseInt(result[i].radio);
-                            count[disID] =+1;
-                            console.log("Num");
+              co[disID] = co[disID] + parseInt(result[i].co);
+              no2[disID] = no2[disID] + parseInt(result[i].no2);
+              o3[disID] = co[disID] + parseInt(result[i].o3);
+              so2[disID] = co[disID] + parseInt(result[i].so2);
+              pm25[disID] = co[disID] + parseInt(result[i].pm25);
+              radio[disID] = co[disID] + parseInt(result[i].radio);
+              count[disID] = count[disID] + 1;
+              console.log("Num2");
+            }
+            if (count[disID] == 0) {
+              co[disID] = + parseInt(result[i].co);
+              no2[disID] = + parseInt(result[i].no2);
+              o3[disID] = + parseInt(result[i].o3);
+              so2[disID] = + parseInt(result[i].so2);
+              pm25[disID] = + parseInt(result[i].pm25);
+              radio[disID] = + parseInt(result[i].radio);
+              count[disID] = +1;
+              console.log("Num");
 
-                        }
-                                            
-              
-                            console.log("Time: "+ mDate+" District: " + disID + " co: " + co[disID] + " no2: " + no2[disID] + " o3: " + o3[disID] + " so2: " + so2[disID]  + " pm25: " + pm25[disID] + " radio: " +radio[disID]  + " count: " + count[disID]) ;
-                            
-                    }//end if                        
-                                        
-                }// end for
+            }
 
 
-                var newDisrict = [];
-                var newCO = [];            
-                var newNO2 = [];
-                var newO3 = [];
-                var newSO2 = [];
-                var newPM25 = [];
-                var newRadio = [];
-                var newAQI = []
-                for(i = 0; i<co.length; i++){
-                    if(co[i] != null){
-                      console.log("count[i]: " + count[i] + " i: " + i); 
-                      console.log("before divide: " + "co: " + co[i] +" no2: " + no2[i]);
-                      var resCO = co[i] /count[i];
-                      var resNO2 = no2[i] / count[i];
-                      var resO3 = o3[i] / count[i];
-                      var resSO2 = so2[i] / count[i];
-                      var resPM25 = pm25[i] / count[i];
-                      var resRadio = radio[i]/count[i];
-                      console.log("after divide: " + "co: " + resCO + " no2: " + resNO2);
+            console.log("Time: " + mDate + " District: " + disID + " co: " + co[disID] + " no2: " + no2[disID] + " o3: " + o3[disID] + " so2: " + so2[disID] + " pm25: " + pm25[disID] + " radio: " + radio[disID] + " count: " + count[disID]);
 
-                      resCO = resCO.toFixed(2); 
-                      resNO2 = resNO2.toFixed(2);
-                      resO3 = resO3.toFixed(2);
-                      resSO2= resSO2.toFixed(2);
-                      resPM25 = resPM25.toFixed(2);
-                      resRadio = resRadio.toFixed(2);
-                      co[i] = resCO;
-                      no2[i] = resNO2;
-                      o3[i] = resO3;
-                      so2[i] = resSO2;
-                      pm25[i] = resPM25;
-                      radio[i] = resRadio;
-                      var aqina = Math.max(resCO,resNO2,resO3,resSO2,resPM25);
+          }//end if                        
 
-                      
+        }// end for
 
-                        newDisrict.push(i);
-                        newCO.push(resCO);                        
-                        newO3.push(resO3);
-                        newSO2.push(resSO2);
-                        newNO2.push(resNO2);
-                        newPM25.push(resPM25);
-                        newRadio.push(resRadio);                        
-                        newAQI.push(aqina);
-                    }
-                }
-                for(i = 0; i<newDisrict.length; i++){
 
-                    console.log("newDistrictID: " + newDisrict[i] + " AQI: "+ newAQI[i] +" CO: " + newCO[i]  + " NO2: " + newNO2[i] + " O3: " + newO3[i] + " so2: " + newSO2[i] + " PM2.5: " + newPM25[i] + " Radio: " + newRadio[i] );
+        var newDisrict = [];
+        var newCO = [];
+        var newNO2 = [];
+        var newO3 = [];
+        var newSO2 = [];
+        var newPM25 = [];
+        var newRadio = [];
+        var newAQI = []
+        for (i = 0; i < co.length; i++) {
+          if (co[i] != null) {
+            console.log("count[i]: " + count[i] + " i: " + i);
+            console.log("before divide: " + "co: " + co[i] + " no2: " + no2[i]);
+            var resCO = co[i] / count[i];
+            var resNO2 = no2[i] / count[i];
+            var resO3 = o3[i] / count[i];
+            var resSO2 = so2[i] / count[i];
+            var resPM25 = pm25[i] / count[i];
+            var resRadio = radio[i] / count[i];
+            console.log("after divide: " + "co: " + resCO + " no2: " + resNO2);
 
-                    if(newAQI[i] > 0 &&  newAQI[i] < 51){
-            good.push(newDisrict[i]);       
+            resCO = resCO.toFixed(2);
+            resNO2 = resNO2.toFixed(2);
+            resO3 = resO3.toFixed(2);
+            resSO2 = resSO2.toFixed(2);
+            resPM25 = resPM25.toFixed(2);
+            resRadio = resRadio.toFixed(2);
+            co[i] = resCO;
+            no2[i] = resNO2;
+            o3[i] = resO3;
+            so2[i] = resSO2;
+            pm25[i] = resPM25;
+            radio[i] = resRadio;
+            var aqina = Math.max(resCO, resNO2, resO3, resSO2, resPM25);
+
+
+
+            newDisrict.push(i);
+            newCO.push(resCO);
+            newO3.push(resO3);
+            newSO2.push(resSO2);
+            newNO2.push(resNO2);
+            newPM25.push(resPM25);
+            newRadio.push(resRadio);
+            newAQI.push(aqina);
           }
-          if(newAQI[i] > 50 && newAQI[i] <99){
+        }
+        for (i = 0; i < newDisrict.length; i++) {
+
+          console.log("newDistrictID: " + newDisrict[i] + " AQI: " + newAQI[i] + " CO: " + newCO[i] + " NO2: " + newNO2[i] + " O3: " + newO3[i] + " so2: " + newSO2[i] + " PM2.5: " + newPM25[i] + " Radio: " + newRadio[i]);
+
+          if (newAQI[i] > 0 && newAQI[i] < 51) {
+            good.push(newDisrict[i]);
+          }
+          if (newAQI[i] > 50 && newAQI[i] < 99) {
             mModerate.push(newDisrict[i]);
           }
-          if(newAQI[i] > 100 && newAQI[i] < 199){
+          if (newAQI[i] > 100 && newAQI[i] < 199) {
             Unhealthy1.push(newDisrict[i]);
           }
-          if(newAQI[i] > 200 && newAQI[i] < 299){
+          if (newAQI[i] > 200 && newAQI[i] < 299) {
             Unhealthy2.push(newDisrict[i]);
           }
-          if(newAQI[i] > 300){
+          if (newAQI[i] > 300) {
             Unhealthy3.push(newDisrict[i]);
           }
 
-                }    
- 
-                console.log("Good.length: " + good.length);
-                for(i = 0; i<good.length; i++){
-                  console.log("Good: " + good[i]);
-                }
+        }
 
-                console.log("mModerate.length: " + mModerate.length);
-                for(i = 0; i<mModerate.length; i++){
-                  console.log("mModerate: " + mModerate[i]);
-                }
+        console.log("Good.length: " + good.length);
+        for (i = 0; i < good.length; i++) {
+          console.log("Good: " + good[i]);
+        }
 
-                console.log("Unhealthy1.length: " + Unhealthy1.length);
-                for(i = 0; i<Unhealthy1.length; i++){
-                  console.log("Unhealthy1: " + Unhealthy1[i]);
-                }
+        console.log("mModerate.length: " + mModerate.length);
+        for (i = 0; i < mModerate.length; i++) {
+          console.log("mModerate: " + mModerate[i]);
+        }
 
-                console.log("Unhealthy2.length: " + Unhealthy2.length);
-                for(i = 0; i<Unhealthy2.length; i++){
-                  console.log("Unhealthy2: " + Unhealthy2[i]);
-                }
+        console.log("Unhealthy1.length: " + Unhealthy1.length);
+        for (i = 0; i < Unhealthy1.length; i++) {
+          console.log("Unhealthy1: " + Unhealthy1[i]);
+        }
 
-                console.log("Unhealthy3.length: " + Unhealthy3.length);
-                for(i = 0; i<Unhealthy3.length; i++){
-                  console.log("Unhealthy3: " + Unhealthy3[i]);
-                }
+        console.log("Unhealthy2.length: " + Unhealthy2.length);
+        for (i = 0; i < Unhealthy2.length; i++) {
+          console.log("Unhealthy2: " + Unhealthy2[i]);
+        }
 
-/*
-  var covered = {
-          query: {
-            select: 'geometry',
-            from: '17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs',
-            where :"CCA_2 = 3305",          
-          },
-          map: map,        
-          suppressInfoWindows: true ,
-          styles: [{
-            polygonOptions: {
-              strokeColor: "#ff0000",
-              fillColor: "#ff0000",                                                
-            }
-          }]};*/
+        console.log("Unhealthy3.length: " + Unhealthy3.length);
+        for (i = 0; i < Unhealthy3.length; i++) {
+          console.log("Unhealthy3: " + Unhealthy3[i]);
+        }
 
-       if(good == ""){
-            
-            var covered = {
-          query: {
-            select: 'geometry',
-            from: '17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs',
-            
-            
-          },
-          map: map,        
-          suppressInfoWindows: true ,
-          styles: [{
-            polygonOptions: {
-              //fillColor: getfillColor(aqi),
-              strokeColor: "#ffffff",
-              fillColor: "#ffffff",
-              opacity: .4,
-                       
-             
-            }
-          },
-          {
-              where : "CCA_2 IN ("+mModerate+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#4dff88",
-              strokeColor: "#00cc00",             
-              strokeWeight: 2
-            }
-          }
-          ,
-          {
-              where : "CCA_2 IN ("+Unhealthy1+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#ffff4d",
-              strokeColor: "#ffff00",             
-              strokeWeight: 2
-            }
-          }
-          ,
-          {
-              where : "CCA_2 IN ("+Unhealthy2+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#ff944d",
-              strokeColor: "#ff6600",             
-              strokeWeight: 2
-            }
-          }
-          ,
-          {
-              where : "CCA_2 IN ("+Unhealthy3+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#ff4d4d",
-              strokeColor: "#ff0000",             
-              strokeWeight: 2
-            }
-          }
-          ]                   
-        };
-         }
+        /*
+          var covered = {
+                  query: {
+                    select: 'geometry',
+                    from: '17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs',
+                    where :"CCA_2 = 3305",          
+                  },
+                  map: map,        
+                  suppressInfoWindows: true ,
+                  styles: [{
+                    polygonOptions: {
+                      strokeColor: "#ff0000",
+                      fillColor: "#ff0000",                                                
+                    }
+                  }]};*/
 
-         if(mModerate == ""){
+        if (good == "") {
 
-var covered = {
-          query: {
-            select: 'geometry',
-            from: '17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs',
-            
-          },
-          map: map,        
-          suppressInfoWindows: true ,
-          styles: [{
-            polygonOptions: {
-              //fillColor: getfillColor(aqi),
-              //strokeColor: getStrokeColor(aqi),
-              fillColor: "#ffffff",
-              opacity: .4,
-                       
-             
-            }
-          },
-          {
-
-            where : "CCA_2 IN ("+good+")",            
-            polygonOptions: {
-              fillColor: "#4d4dff",
-              strokeColor: "#0066ff",
-              //fillColor: "#ff0000",
-             // strokeColor: "#ff0000",             
-              strokeWeight: 2
-            }
-          },
-          {
-              where : "CCA_2 IN ("+Unhealthy1+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#ffff4d",
-              strokeColor: "#ffff00",             
-              strokeWeight: 2
-            }
-          }
-          ,
-          {
-              where : "CCA_2 IN ("+Unhealthy2+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#ff944d",
-              strokeColor: "#ff6600",             
-              strokeWeight: 2
-            }
-          }
-          ,
-          {
-              where : "CCA_2 IN ("+Unhealthy3+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#ff4d4d",
-              strokeColor: "#ff0000",             
-              strokeWeight: 2
-            }
-          }
-          ]                   
-        };
-         }
+          var covered = {
+            query: {
+              select: 'geometry',
+              from: '17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs',
 
 
-          if(Unhealthy1 == ""){
-
-var covered = {
-          query: {
-            select: 'geometry',
-            from: '17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs',
-            
-          },
-          map: map,        
-          suppressInfoWindows: true ,
-          styles: [{
-            polygonOptions: {
-              //fillColor: getfillColor(aqi),
-              //strokeColor: getStrokeColor(aqi),
-              fillColor: "#ffffff",
-              opacity: .4,
-                       
-             
-            }
-          },
-          {
-
-            where : "CCA_2 IN ("+good+")",            
-            polygonOptions: {
-              fillColor: "#4d4dff",
-              strokeColor: "#0066ff",
-              //fillColor: "#ff0000",
-             // strokeColor: "#ff0000",             
-              strokeWeight: 2
-            }
-          },
-          {
-              where : "CCA_2 IN ("+mModerate+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#4dff88",
-              strokeColor: "#00cc00",             
-              strokeWeight: 2
-            }
-          }
-          ,
-          {
-              where : "CCA_2 IN ("+Unhealthy2+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#ff944d",
-              strokeColor: "#ff6600",             
-              strokeWeight: 2
-            }
-          }
-          ,
-          {
-              where : "CCA_2 IN ("+Unhealthy3+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#ff4d4d",
-              strokeColor: "#ff0000",             
-              strokeWeight: 2
-            }
-          }
-          ]                   
-        };
-         }
+            },
+            map: map,
+            suppressInfoWindows: true,
+            styles: [{
+              polygonOptions: {
+                //fillColor: getfillColor(aqi),
+                strokeColor: "#ffffff",
+                fillColor: "#ffffff",
+                opacity: .4,
 
 
-          if(Unhealthy2 == ""){
+              }
+            },
+            {
+              where: "CCA_2 IN (" + mModerate + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#4dff88",
+                strokeColor: "#00cc00",
+                strokeWeight: 2
+              }
+            }
+              ,
+            {
+              where: "CCA_2 IN (" + Unhealthy1 + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#ffff4d",
+                strokeColor: "#ffff00",
+                strokeWeight: 2
+              }
+            }
+              ,
+            {
+              where: "CCA_2 IN (" + Unhealthy2 + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#ff944d",
+                strokeColor: "#ff6600",
+                strokeWeight: 2
+              }
+            }
+              ,
+            {
+              where: "CCA_2 IN (" + Unhealthy3 + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#ff4d4d",
+                strokeColor: "#ff0000",
+                strokeWeight: 2
+              }
+            }
+            ]
+          };
+        }
 
-var covered = {
-          query: {
-            select: 'geometry',
-            from: '17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs',
-            
-          },
-          map: map,        
-          suppressInfoWindows: true ,
-          styles: [{
-            polygonOptions: {
-              //fillColor: getfillColor(aqi),
-              //strokeColor: getStrokeColor(aqi),
-              fillColor: "#ffffff",
-              opacity: .4,
-                       
-             
-            }
-          },
-          {
+        if (mModerate == "") {
 
-            where : "CCA_2 IN ("+good+")",            
-            polygonOptions: {
-              fillColor: "#4d4dff",
-              strokeColor: "#0066ff",
-              //fillColor: "#ff0000",
-             // strokeColor: "#ff0000",             
-              strokeWeight: 2
-            }
-          },
-          {
-              where : "CCA_2 IN ("+mModerate+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#4dff88",
-              strokeColor: "#00cc00",             
-              strokeWeight: 2
-            }
-          },
-          {
-              where : "CCA_2 IN ("+Unhealthy1+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#ffff4d",
-              strokeColor: "#ffff00",             
-              strokeWeight: 2
-            }
-          }
-          
-          ,
-          {
-              where : "CCA_2 IN ("+Unhealthy3+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#ff4d4d",
-              strokeColor: "#ff0000",             
-              strokeWeight: 2
-            }
-          }
-          ]                   
-        };
-         }
+          var covered = {
+            query: {
+              select: 'geometry',
+              from: '17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs',
 
-         if(Unhealthy3 == ""){
-
-    var covered = {
-          query: {
-            select: 'geometry',
-            from: '17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs',
-            
-          },
-          map: map,        
-          suppressInfoWindows: true ,
-          styles: [{
-            polygonOptions: {
-              //fillColor: getfillColor(aqi),
-              //strokeColor: getStrokeColor(aqi),
-              fillColor: "#ffffff",
-              opacity: .4,
-                       
-             
-            }
-          },
-          {
-
-            where : "CCA_2 IN ("+good+")",            
-            polygonOptions: {
-              fillColor: "#4d4dff",
-              strokeColor: "#0066ff",
-              //fillColor: "#ff0000",
-             // strokeColor: "#ff0000",             
-              strokeWeight: 2
-            }
-          },
-          {
-              where : "CCA_2 IN ("+mModerate+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#4dff88",
-              strokeColor: "#00cc00",             
-              strokeWeight: 2
-            }
-          },
-          {
-              where : "CCA_2 IN ("+Unhealthy1+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#ffff4d",
-              strokeColor: "#ffff00",             
-              strokeWeight: 2
-            }
-          }
-          
-         ,
-          {
-              where : "CCA_2 IN ("+Unhealthy2+")",            
-            polygonOptions: {
-           //   fillColor: getfillColor(aqi),
-             // strokeColor: getStrokeColor(aqi),
-              fillColor: "#ff944d",
-              strokeColor: "#ff6600",             
-              strokeWeight: 2
-            }
-          }
-          ]                   
-        };
-         }
+            },
+            map: map,
+            suppressInfoWindows: true,
+            styles: [{
+              polygonOptions: {
+                //fillColor: getfillColor(aqi),
+                //strokeColor: getStrokeColor(aqi),
+                fillColor: "#ffffff",
+                opacity: .4,
 
 
-    
+              }
+            },
+            {
+
+              where: "CCA_2 IN (" + good + ")",
+              polygonOptions: {
+                fillColor: "#4d4dff",
+                strokeColor: "#0066ff",
+                //fillColor: "#ff0000",
+                // strokeColor: "#ff0000",             
+                strokeWeight: 2
+              }
+            },
+            {
+              where: "CCA_2 IN (" + Unhealthy1 + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#ffff4d",
+                strokeColor: "#ffff00",
+                strokeWeight: 2
+              }
+            }
+              ,
+            {
+              where: "CCA_2 IN (" + Unhealthy2 + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#ff944d",
+                strokeColor: "#ff6600",
+                strokeWeight: 2
+              }
+            }
+              ,
+            {
+              where: "CCA_2 IN (" + Unhealthy3 + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#ff4d4d",
+                strokeColor: "#ff0000",
+                strokeWeight: 2
+              }
+            }
+            ]
+          };
+        }
+
+
+        if (Unhealthy1 == "") {
+
+          var covered = {
+            query: {
+              select: 'geometry',
+              from: '17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs',
+
+            },
+            map: map,
+            suppressInfoWindows: true,
+            styles: [{
+              polygonOptions: {
+                //fillColor: getfillColor(aqi),
+                //strokeColor: getStrokeColor(aqi),
+                fillColor: "#ffffff",
+                opacity: .4,
+
+
+              }
+            },
+            {
+
+              where: "CCA_2 IN (" + good + ")",
+              polygonOptions: {
+                fillColor: "#4d4dff",
+                strokeColor: "#0066ff",
+                //fillColor: "#ff0000",
+                // strokeColor: "#ff0000",             
+                strokeWeight: 2
+              }
+            },
+            {
+              where: "CCA_2 IN (" + mModerate + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#4dff88",
+                strokeColor: "#00cc00",
+                strokeWeight: 2
+              }
+            }
+              ,
+            {
+              where: "CCA_2 IN (" + Unhealthy2 + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#ff944d",
+                strokeColor: "#ff6600",
+                strokeWeight: 2
+              }
+            }
+              ,
+            {
+              where: "CCA_2 IN (" + Unhealthy3 + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#ff4d4d",
+                strokeColor: "#ff0000",
+                strokeWeight: 2
+              }
+            }
+            ]
+          };
+        }
+
+
+        if (Unhealthy2 == "") {
+
+          var covered = {
+            query: {
+              select: 'geometry',
+              from: '17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs',
+
+            },
+            map: map,
+            suppressInfoWindows: true,
+            styles: [{
+              polygonOptions: {
+                //fillColor: getfillColor(aqi),
+                //strokeColor: getStrokeColor(aqi),
+                fillColor: "#ffffff",
+                opacity: .4,
+
+
+              }
+            },
+            {
+
+              where: "CCA_2 IN (" + good + ")",
+              polygonOptions: {
+                fillColor: "#4d4dff",
+                strokeColor: "#0066ff",
+                //fillColor: "#ff0000",
+                // strokeColor: "#ff0000",             
+                strokeWeight: 2
+              }
+            },
+            {
+              where: "CCA_2 IN (" + mModerate + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#4dff88",
+                strokeColor: "#00cc00",
+                strokeWeight: 2
+              }
+            },
+            {
+              where: "CCA_2 IN (" + Unhealthy1 + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#ffff4d",
+                strokeColor: "#ffff00",
+                strokeWeight: 2
+              }
+            }
+
+              ,
+            {
+              where: "CCA_2 IN (" + Unhealthy3 + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#ff4d4d",
+                strokeColor: "#ff0000",
+                strokeWeight: 2
+              }
+            }
+            ]
+          };
+        }
+
+        if (Unhealthy3 == "") {
+
+          var covered = {
+            query: {
+              select: 'geometry',
+              from: '17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs',
+
+            },
+            map: map,
+            suppressInfoWindows: true,
+            styles: [{
+              polygonOptions: {
+                //fillColor: getfillColor(aqi),
+                //strokeColor: getStrokeColor(aqi),
+                fillColor: "#ffffff",
+                opacity: .4,
+
+
+              }
+            },
+            {
+
+              where: "CCA_2 IN (" + good + ")",
+              polygonOptions: {
+                fillColor: "#4d4dff",
+                strokeColor: "#0066ff",
+                //fillColor: "#ff0000",
+                // strokeColor: "#ff0000",             
+                strokeWeight: 2
+              }
+            },
+            {
+              where: "CCA_2 IN (" + mModerate + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#4dff88",
+                strokeColor: "#00cc00",
+                strokeWeight: 2
+              }
+            },
+            {
+              where: "CCA_2 IN (" + Unhealthy1 + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#ffff4d",
+                strokeColor: "#ffff00",
+                strokeWeight: 2
+              }
+            }
+
+              ,
+            {
+              where: "CCA_2 IN (" + Unhealthy2 + ")",
+              polygonOptions: {
+                //   fillColor: getfillColor(aqi),
+                // strokeColor: getStrokeColor(aqi),
+                fillColor: "#ff944d",
+                strokeColor: "#ff6600",
+                strokeWeight: 2
+              }
+            }
+            ]
+          };
+        }
+
+
+
 
 
         var mLayer = new google.maps.FusionTablesLayer(covered);
-        FusionTable.push(mLayer);     
+        FusionTable.push(mLayer);
         console.log("mLayer: " + mLayer);
-        
-    
-  
 
-  var infoWindow = new google.maps.InfoWindow({           
-            maxWidth: 500
-      });   
-          
-            google.maps.event.addListener(mLayer, 'click', function(ev) {
-                            
-              var districtID = parseInt(ev.row['CCA_2'].value);
-              var districtName = ev.row['NL_NAME_2'].value;
 
-              var aqi = Math.max(co[districtID],no2[districtID],o3[districtID],so2[districtID],pm25[districtID]);
-              var content = "<div class = 'text-primary'><b>Air Pollution Report</b></div>"+
-                             "<div class = 'text-muted'>Average All Day on "+mDate+"</div>"+
-                             "<div class = 'text-info'>Disstrict: "+districtName+"</div>"+
-                        "<div class = 'text-info'>AQI: "+aqi+"</div>"+
-                              "<div class = 'text-info'>CO: "+co[districtID]+"</div>"+
-                              "<div class = 'text-info'>NO2: "+no2[districtID]+"</div>"+
-                              "<div class = 'text-info'>O3: "+o3[districtID]+"</div>"+
-                          "<div class = 'text-info'>SO2: "+so2[districtID]+"</div>"+
-                              "<div class = 'text-info'>PM2.5: "+pm25[districtID]+"</div>"+
-                              "<div class = 'text-info'>RadioActive: "+radio[districtID]+"</div>"+
-                              "<button id = 'showGraph' type ='button'  class = 'btn btn-primary btn-xs btn-block' onClick = 'showGraph("+districtID+")' >Show Graph</button>";
 
-              infoWindow.setContent(content);
-              infoWindow.setPosition(ev.latLng);
-              infoWindow.open(map);                       
+
+        var infoWindow = new google.maps.InfoWindow({
+          maxWidth: 500
         });
 
-         waitingDialog.hide();
+        google.maps.event.addListener(mLayer, 'click', function (ev) {
 
-        
+          var districtID = parseInt(ev.row['CCA_2'].value);
+          var districtName = ev.row['NL_NAME_2'].value;
 
-    });//JSON
+          var aqi = Math.max(co[districtID], no2[districtID], o3[districtID], so2[districtID], pm25[districtID]);
+          var content = "<div class = 'text-primary'><b>Air Pollution Report</b></div>" +
+            "<div class = 'text-muted'>Average All Day on " + mDate + "</div>" +
+            "<div class = 'text-info'>Disstrict: " + districtName + "</div>" +
+            "<div class = 'text-info'>AQI: " + aqi + "</div>" +
+            "<div class = 'text-info'>CO: " + co[districtID] + "</div>" +
+            "<div class = 'text-info'>NO2: " + no2[districtID] + "</div>" +
+            "<div class = 'text-info'>O3: " + o3[districtID] + "</div>" +
+            "<div class = 'text-info'>SO2: " + so2[districtID] + "</div>" +
+            "<div class = 'text-info'>PM2.5: " + pm25[districtID] + "</div>" +
+            "<div class = 'text-info'>RadioActive: " + radio[districtID] + "</div>" +
+            "<button id = 'showGraph' type ='button'  class = 'btn btn-primary btn-xs btn-block' onClick = 'showGraph(" + districtID + ")' >Show Graph</button>";
 
+          infoWindow.setContent(content);
+          infoWindow.setPosition(ev.latLng);
+          infoWindow.open(map);
+        });
 
-    $("#dropdownDistrict").empty(); 
-    $("#txtDate").val('');
-    //document.getElementById("mDistrict").innerHTML = "District";
-
-     
-    
-  }//setcircle on map
-
- 
-     // Create the legend and display on the map
-     var legend = document.createElement('div');
-     legend.id = 'legend';
-     var content = [];
-     content.push('<h3>Air Quality Index</h3>');
-     content.push('<p><div class="color blue"></div>0-50 Good</p>');
-     content.push('<p><div class="color green"></div>51-100 Moderate</p>');
-     content.push('<p><div class="color yellow"></div>100-200 Unhealthy for Sensitive Groups</p>');
-     content.push('<p><div class="color orange"></div>201-300 Unhealthy</p>');
-     content.push('<p><div class="color red"></div>300+ Very Unhealty</p>');     
-     legend.innerHTML = content.join('');
-     legend.index = 1;
-     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
-   
-
-}// init map
+        waitingDialog.hide();
 
 
- function RemoveMarker(){
-    for(i = 0; i<FusionTable.length; i++){
+
+      });//JSON
+
+
+      $("#dropdownDistrict").empty();
+      $("#txtDate").val('');
+      //document.getElementById("mDistrict").innerHTML = "District";
+
+
+
+    }//setcircle on map
+
+
+    // Create the legend and display on the map
+    var legend = document.createElement('div');
+    legend.id = 'legend';
+    var content = [];
+    content.push('<h3>Air Quality Index</h3>');
+    content.push('<p><div class="color blue"></div>0-50 Good</p>');
+    content.push('<p><div class="color green"></div>51-100 Moderate</p>');
+    content.push('<p><div class="color yellow"></div>100-200 Unhealthy for Sensitive Groups</p>');
+    content.push('<p><div class="color orange"></div>201-300 Unhealthy</p>');
+    content.push('<p><div class="color red"></div>300+ Very Unhealty</p>');
+    legend.innerHTML = content.join('');
+    legend.index = 1;
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+
+
+  }// init map
+
+
+  function RemoveMarker() {
+    for (i = 0; i < FusionTable.length; i++) {
       FusionTable[i].setMap(null);
-      console.log("FusionTable: " + i );
-    }   
+      console.log("FusionTable: " + i);
+    }
   }
 
 
 
 
-$(function(){
-  var myDate = "";
-  var myDistrictID = "";  
-  var myLineChart;
- $('#txtDate').datetimepicker({
-                  format: 'DD/MM/YYYY'
-           });
+  $(function () {
+    var myDate = "";
+    var myDistrictID = "";
+    var myLineChart;
+    $('#txtDate').datetimepicker({
+      format: 'DD/MM/YYYY'
+    });
 
-    
-});//function
 
-function DatePickResponse(dateText){
-   var Day = dateText.substr(0,2);
-        var Month =  dateText.substr(3,2);
-        var Year =  dateText.substr(6,7);
-        var result = Year + "-" + Month + "-" +Day;
-        return result;
-}
-function getDistrictFromLatlng(lat, lng){ 
-//  var myLocation = [["13.736623", "100.563866"],["13.757873","100.53623"]];   
-  //for(i = 0; i<myLocation.length; i++){ 
-    $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+"&sensor=true",function(result){           
-      for(j = 0; j<result.results[0].address_components.length; j++){     
-        if(result.results[0].address_components[j].long_name.match(/^เขต.*$/)){                 
-            var myDistrict = result.results[0].address_components[j].long_name
-            var mResult = myDistrict.replace("เขต ","");
-            console.log(mResult);
-            return mResult;
-            
+  });//function
+
+  function DatePickResponse(dateText) {
+    var Day = dateText.substr(0, 2);
+    var Month = dateText.substr(3, 2);
+    var Year = dateText.substr(6, 7);
+    var result = Year + "-" + Month + "-" + Day;
+    return result;
+  }
+  function getDistrictFromLatlng(lat, lng) {
+    //  var myLocation = [["13.736623", "100.563866"],["13.757873","100.53623"]];   
+    //for(i = 0; i<myLocation.length; i++){ 
+    $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&sensor=true", function (result) {
+      for (j = 0; j < result.results[0].address_components.length; j++) {
+        if (result.results[0].address_components[j].long_name.match(/^เขต.*$/)) {
+          var myDistrict = result.results[0].address_components[j].long_name
+          var mResult = myDistrict.replace("เขต ", "");
+          console.log(mResult);
+          return mResult;
+
         }
-        
+
       }
     });
-                     
-  //}
-}
-                 
-                 
- function getAQIColor(number){
-    
+
+    //}
+  }
+
+
+  function getAQIColor(number) {
+
     var color;
-    if(number > 300){
-      return  "#ff4d4d";//red
+    if (number > 300) {
+      return "#ff4d4d";//red
     }
-    if(number > 200){
-      return  "#ff944d";//orange
+    if (number > 200) {
+      return "#ff944d";//orange
     }
-    if(number > 100){
-      return   "#ffff4d";//yellow
+    if (number > 100) {
+      return "#ffff4d";//yellow
     }
-    if(number > 50){
+    if (number > 50) {
       return "#4dff88"//green
     }
-    else{
-      return  "#4d4dff";//blue
-      
+    else {
+      return "#4d4dff";//blue
+
     }
     return null;
-  } 
- function getNotification(micon,mtype,mdata)
- {
-   
-   $.notify({
-          icon: micon,//icon
-          message: mdata//data
+  }
+  function getNotification(micon, mtype, mdata) {
 
-      },{
-          type: mtype, //type  danger ,warning ,success ,info
-          timer: 4000
-      });   
-   
-   
- }
+    $.notify({
+      icon: micon,//icon
+      message: mdata//data
 
- function showGraph(districtID){
+    }, {
+        type: mtype, //type  danger ,warning ,success ,info
+        timer: 4000
+      });
 
-   var date = mydate;
-   
-    if(haveChart == true){
-        myLineChart.destroy();
+
+  }
+
+  function showGraph(districtID) {
+
+    var date = mydate;
+
+    if (haveChart == true) {
+      myLineChart.destroy();
     }
-/*
-       var info = "<div class = 'container'><div class='header'><div class = 'row'><div class = 'col-sm-7'><h4 class='title text-primary text-center'><b>Your Selection</b></h4><p class='category text-info text-center'>Choose your range Date</p></div></div></div></div>"
-          $("#txtInfo").append(info);*/
+    /*
+           var info = "<div class = 'container'><div class='header'><div class = 'row'><div class = 'col-sm-7'><h4 class='title text-primary text-center'><b>Your Selection</b></h4><p class='category text-info text-center'>Choose your range Date</p></div></div></div></div>"
+              $("#txtInfo").append(info);*/
 
 
-var mytext = "วันที่: " + mydate;
-  console.log("mydate4 ID:" + districtID + " date: " + mydate); 
-     var mDate = DatePickResponse(date);     
-       var co = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
-        var no2 = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
-        var o3 = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
-        var so2 = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
-        var pm25 = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
-        var radio = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
-        var checkSame2 = [55];
+    var mytext = "วันที่: " + mydate;
+    console.log("mydate4 ID:" + districtID + " date: " + mydate);
+    var mDate = DatePickResponse(date);
+    var co = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+    var no2 = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+    var o3 = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+    var so2 = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+    var pm25 = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+    var radio = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+    var checkSame2 = [55];
 
-  $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/AQI2.jsp",function(result){        
-        var count = 1;
-        for(i = 0; i<result.length; i ++){
-          var rco = parseInt(result[i].co);
-              var rno2 = parseInt(result[i].no2)
-                        var ro3 = parseInt(result[i].o3);
-                        var rso2 = parseInt(result[i].so2);
-                        var rpm25= parseInt(result[i].pm25);
-                        var rradio = parseInt(result[i].radio);
+    $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/AQI2.jsp", function (result) {
+      var count = 1;
+      for (i = 0; i < result.length; i++) {
+        var rco = parseInt(result[i].co);
+        var rno2 = parseInt(result[i].no2)
+        var ro3 = parseInt(result[i].o3);
+        var rso2 = parseInt(result[i].so2);
+        var rpm25 = parseInt(result[i].pm25);
+        var rradio = parseInt(result[i].radio);
 
-            var re = new RegExp(mDate, 'g');
-             
-
-
-            if(districtID == result[i].districtID){
-
-                if(result[i].timestamp.match(re)){
-                
-                var res = result[i].timestamp;
-                var res2 = res.substr(11,2);
-                if(res2.substr(0,1) == '0'){
-                  res2 = res2.replace('0','');
-                }
-
-                var res3 = parseInt(res2);
-
-                
-               /* for(k = 0; k < checkSame2.length; k++){ 
-                    if(checkSame2[k] == res3) {
-
-                        console.log("Same: "+ res3);
-
-                         var mCO = co[res3];                          
-                          mCO = (mCO +rco)/20;
-                          //mCO /= 2;
-                          mCO = mCO.toFixed(); 
-                          co[res3] = mCO;
-
-                          var mNO2 = no2[res3];                          
-                          mNO2 = (mNO2 +rno2)/20;
-                         // mNO2 /=2;
-                          mNO2 = mNO2.toFixed(); 
-                          no2[res3] = mNO2;
+        var re = new RegExp(mDate, 'g');
 
 
-                          var mO3 = o3[res3];                          
-                          mO3 = (mO3 +ro3)/20;
-                         // mO3/=2;
-                          mO3 = mO3.toFixed(); 
-                          o3[res3] = mO3;
 
+        if (districtID == result[i].districtID) {
 
-                          var mSO2 = so2[res3];                          
-                          mSO2 = (mSO2 +rso2)/20;
-                          //mSO2/=2;
-                          mSO2 = mSO2.toFixed(); 
-                          so2[res3] = mSO2;
+          if (result[i].timestamp.match(re)) {
 
-                          var mPM25 = pm25[res3];                          
-                          mPM25 = (mPM25 +rpm25)/20;
-                         // mPM25/=2;
-                          mPM25 = mPM25.toFixed(); 
-                          pm25[res3] = mPM25;
-
-                          var mRadio = radio[res3];                          
-                          mRadio = (mRadio +rradio)/20;
-                         // mRadio/=2;
-                          mRadio = mRadio.toFixed(); 
-                          radio[res3] = mRadio
-
-
-                        console.log("Same: "+res3+" SameCO: " +co[res3] +" SameNo2: " +no2[res3]  + " SameO3: " + o3[res3] +" SameSo2: " +so2[res3] +" SamePM25: " +pm25[res3]  + " SameRadio: "  + radio[res3]);
-                        count = 0;
-                        break;
-
-                    }
-                    
-                }*/
-                if(count == 1){
-                    co[res3] = rco; 
-                    no2[res3] = rno2; 
-                    o3[res3] = ro3;
-                    so2[res3] = rso2;
-                    pm25[res3] = rpm25;
-                    radio[res3] = rradio;
-                    console.log("Time: "+res3+" SameCO: " +co[res3] +" SameNo2: " +no2[res3]  + " SameO3: " + o3[res3] +" SameSo2: " +so2[res3] +" SamePM25: " +pm25[res3]  + " SameRadio: "  + radio[res3]);
-                    checkSame2.push(res3); 
-                }
-                count = 1; 
-
-                
-                
-            }    // if time match
-             }// if district match
-        }
-
-  
-   var mychart = {
-            type: 'line',
-            data: {
-                labels: ["00.00", "01.00", "02.00", "03.00", "04.00", "05.00", "06.00", "07.00", "08.00", "09.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00", "19.00", "20.00", "21.00", "22.00", "23.00"],
-                datasets: [{
-                    label: "CO",
-                    data: [
-                        co[0],co[1],co[2],co[3],co[4],co[5],co[6],co[7],co[8],co[9],co[10],co[11],co[12],co[13],co[14],co[15],co[16],co[17],co[18],co[19],co[20],co[21],co[22],co[23]
-                    ],
-                    backgroundColor: window.chartColors.red,
-                    borderColor: window.chartColors.red,
-                    fill: false,
-                    //borderDash: [5, 5],
-                    //pointRadius: 15,
-                    pointHoverRadius: 10,
-                }, {
-                    label: "NO2",
-                    data: [
-                    no2[0],no2[1],no2[2],no2[3],no2[4],no2[5],no2[6],no2[7],no2[8],no2[9],no2[10],no2[11],no2[12],no2[13],no2[14],no2[15],no2[16],no2[17],no2[18],no2[19],no2[20],no2[21],no2[22],no2[23]
-                       
-                    ],
-                    backgroundColor: window.chartColors.blue,
-                    borderColor: window.chartColors.blue,
-                    fill: false,
-                    pointHoverRadius: 20,
-                    //borderDash: [5, 5],
-                    //pointRadius: [2, 4, 6, 18, 0, 12, 20],
-                }, {
-                    label: "O3",
-                    data: [
-                       o3[0],o3[1],o3[2],o3[3],o3[4],o3[5],o3[6],o3[7],o3[8],o3[9],o3[10],o3[11],o3[12],o3[13],o3[14],o3[15],o3[16],o3[17],o3[18],o3[19],o3[20],o3[21],o3[22],o3[23]
-                    ],
-                    backgroundColor: window.chartColors.green,
-                    borderColor: window.chartColors.green,
-                    fill: false,
-                    pointHoverRadius: 20,
-                }, {
-                    label: "SO2",
-                    data: [
-                    so2[0],so2[1],so2[2],so2[3],so2[4],so2[5],so2[6],so2[7],so2[8],so2[9],so2[10],so2[11],so2[12],so2[13],so2[14],so2[15],so2[16],so2[17],so2[18],so2[19],so2[20],so2[21],so2[22],so2[23]
-                       
-                    ],
-                    backgroundColor: window.chartColors.yellow,
-                    borderColor: window.chartColors.yellow,
-                    fill: false,
-                    pointHitRadius: 20,
-                }, {
-                    label: "pm2.5",
-                    data: [
-                     pm25[0],pm25[1],pm25[2],pm25[3],pm25[4],pm25[5],pm25[6],pm25[7],pm25[8],pm25[9],pm25[10],pm25[11],pm25[12],pm25[13],pm25[14],pm25[15],pm25[16],pm25[17],pm25[18],pm25[19],pm25[20],pm25[21],pm25[22],pm25[23]
-                       
-                    ],
-                    backgroundColor: window.chartColors.purple,
-                    borderColor: window.chartColors.purple,
-                    fill: false,
-                    pointHitRadius: 20,
-                }
-                , {
-                    label: "Radio",
-                    data: [
-                     radio[0],radio[1],radio[2],radio[3],radio[4],radio[5],radio[6],radio[7],radio[8],radio[9],radio[10],radio[11],radio[12],radio[13],radio[14],radio[15],radio[16],radio[17],radio[18],radio[19],radio[20],radio[21],radio[22],radio[23]
-                       
-                    ],
-                    backgroundColor: window.chartColors.orange,
-                    borderColor: window.chartColors.orange,
-                    fill: false,
-                    pointHitRadius: 20,
-                }
-                ]
-            },
-            options: {
-                responsive: true,
-                legend: {
-                    position: 'bottom',
-                },
-                hover: {
-                    mode: 'index'
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Month'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Value'
-                        }
-                    }]
-                },
-                title: {
-                    display: true,
-                    text: mytext
-                }
+            var res = result[i].timestamp;
+            var res2 = res.substr(11, 2);
+            if (res2.substr(0, 1) == '0') {
+              res2 = res2.replace('0', '');
             }
-        };   
-         var ctx = document.getElementById("canvas").getContext("2d");
-          myLineChart = new Chart(ctx, mychart);
-          
-});
-        
 
-            haveChart = true;
-  $('#myModal').modal('show');
-
-}
+            var res3 = parseInt(res2);
 
 
-  function getfillColor(number){
-    
+            /* for(k = 0; k < checkSame2.length; k++){ 
+                 if(checkSame2[k] == res3) {
+
+                     console.log("Same: "+ res3);
+
+                      var mCO = co[res3];                          
+                       mCO = (mCO +rco)/20;
+                       //mCO /= 2;
+                       mCO = mCO.toFixed(); 
+                       co[res3] = mCO;
+
+                       var mNO2 = no2[res3];                          
+                       mNO2 = (mNO2 +rno2)/20;
+                      // mNO2 /=2;
+                       mNO2 = mNO2.toFixed(); 
+                       no2[res3] = mNO2;
+
+
+                       var mO3 = o3[res3];                          
+                       mO3 = (mO3 +ro3)/20;
+                      // mO3/=2;
+                       mO3 = mO3.toFixed(); 
+                       o3[res3] = mO3;
+
+
+                       var mSO2 = so2[res3];                          
+                       mSO2 = (mSO2 +rso2)/20;
+                       //mSO2/=2;
+                       mSO2 = mSO2.toFixed(); 
+                       so2[res3] = mSO2;
+
+                       var mPM25 = pm25[res3];                          
+                       mPM25 = (mPM25 +rpm25)/20;
+                      // mPM25/=2;
+                       mPM25 = mPM25.toFixed(); 
+                       pm25[res3] = mPM25;
+
+                       var mRadio = radio[res3];                          
+                       mRadio = (mRadio +rradio)/20;
+                      // mRadio/=2;
+                       mRadio = mRadio.toFixed(); 
+                       radio[res3] = mRadio
+
+
+                     console.log("Same: "+res3+" SameCO: " +co[res3] +" SameNo2: " +no2[res3]  + " SameO3: " + o3[res3] +" SameSo2: " +so2[res3] +" SamePM25: " +pm25[res3]  + " SameRadio: "  + radio[res3]);
+                     count = 0;
+                     break;
+
+                 }
+                 
+             }*/
+            if (count == 1) {
+              co[res3] = rco;
+              no2[res3] = rno2;
+              o3[res3] = ro3;
+              so2[res3] = rso2;
+              pm25[res3] = rpm25;
+              radio[res3] = rradio;
+              console.log("Time: " + res3 + " SameCO: " + co[res3] + " SameNo2: " + no2[res3] + " SameO3: " + o3[res3] + " SameSo2: " + so2[res3] + " SamePM25: " + pm25[res3] + " SameRadio: " + radio[res3]);
+              checkSame2.push(res3);
+            }
+            count = 1;
+
+
+
+          }    // if time match
+        }// if district match
+      }
+
+
+      var mychart = {
+        type: 'line',
+        data: {
+          labels: ["00.00", "01.00", "02.00", "03.00", "04.00", "05.00", "06.00", "07.00", "08.00", "09.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00", "17.00", "18.00", "19.00", "20.00", "21.00", "22.00", "23.00"],
+          datasets: [{
+            label: "CO",
+            data: [
+              co[0], co[1], co[2], co[3], co[4], co[5], co[6], co[7], co[8], co[9], co[10], co[11], co[12], co[13], co[14], co[15], co[16], co[17], co[18], co[19], co[20], co[21], co[22], co[23]
+            ],
+            backgroundColor: window.chartColors.red,
+            borderColor: window.chartColors.red,
+            fill: false,
+            //borderDash: [5, 5],
+            //pointRadius: 15,
+            pointHoverRadius: 10,
+          }, {
+            label: "NO2",
+            data: [
+              no2[0], no2[1], no2[2], no2[3], no2[4], no2[5], no2[6], no2[7], no2[8], no2[9], no2[10], no2[11], no2[12], no2[13], no2[14], no2[15], no2[16], no2[17], no2[18], no2[19], no2[20], no2[21], no2[22], no2[23]
+
+            ],
+            backgroundColor: window.chartColors.blue,
+            borderColor: window.chartColors.blue,
+            fill: false,
+            pointHoverRadius: 20,
+            //borderDash: [5, 5],
+            //pointRadius: [2, 4, 6, 18, 0, 12, 20],
+          }, {
+            label: "O3",
+            data: [
+              o3[0], o3[1], o3[2], o3[3], o3[4], o3[5], o3[6], o3[7], o3[8], o3[9], o3[10], o3[11], o3[12], o3[13], o3[14], o3[15], o3[16], o3[17], o3[18], o3[19], o3[20], o3[21], o3[22], o3[23]
+            ],
+            backgroundColor: window.chartColors.green,
+            borderColor: window.chartColors.green,
+            fill: false,
+            pointHoverRadius: 20,
+          }, {
+            label: "SO2",
+            data: [
+              so2[0], so2[1], so2[2], so2[3], so2[4], so2[5], so2[6], so2[7], so2[8], so2[9], so2[10], so2[11], so2[12], so2[13], so2[14], so2[15], so2[16], so2[17], so2[18], so2[19], so2[20], so2[21], so2[22], so2[23]
+
+            ],
+            backgroundColor: window.chartColors.yellow,
+            borderColor: window.chartColors.yellow,
+            fill: false,
+            pointHitRadius: 20,
+          }, {
+            label: "pm2.5",
+            data: [
+              pm25[0], pm25[1], pm25[2], pm25[3], pm25[4], pm25[5], pm25[6], pm25[7], pm25[8], pm25[9], pm25[10], pm25[11], pm25[12], pm25[13], pm25[14], pm25[15], pm25[16], pm25[17], pm25[18], pm25[19], pm25[20], pm25[21], pm25[22], pm25[23]
+
+            ],
+            backgroundColor: window.chartColors.purple,
+            borderColor: window.chartColors.purple,
+            fill: false,
+            pointHitRadius: 20,
+          }
+            , {
+            label: "Radio",
+            data: [
+              radio[0], radio[1], radio[2], radio[3], radio[4], radio[5], radio[6], radio[7], radio[8], radio[9], radio[10], radio[11], radio[12], radio[13], radio[14], radio[15], radio[16], radio[17], radio[18], radio[19], radio[20], radio[21], radio[22], radio[23]
+
+            ],
+            backgroundColor: window.chartColors.orange,
+            borderColor: window.chartColors.orange,
+            fill: false,
+            pointHitRadius: 20,
+          }
+          ]
+        },
+        options: {
+          responsive: true,
+          legend: {
+            position: 'bottom',
+          },
+          hover: {
+            mode: 'index'
+          },
+          scales: {
+            xAxes: [{
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: 'Month'
+              }
+            }],
+            yAxes: [{
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: 'Value'
+              }
+            }]
+          },
+          title: {
+            display: true,
+            text: mytext
+          }
+        }
+      };
+      var ctx = document.getElementById("canvas").getContext("2d");
+      myLineChart = new Chart(ctx, mychart);
+
+    });
+
+
+    haveChart = true;
+    $('#myModal').modal('show');
+
+  }
+
+
+  function getfillColor(number) {
+
     var color;
-    if(number > 300){
-      return  "#ff4d4d";//red
+    if (number > 300) {
+      return "#ff4d4d";//red
     }
-    if(number > 200){
-      return  "#ff944d";//orange
+    if (number > 200) {
+      return "#ff944d";//orange
     }
-    if(number > 100){
-      return   "#ffff4d";//yellow
+    if (number > 100) {
+      return "#ffff4d";//yellow
     }
-    if(number > 50){
+    if (number > 50) {
       return "#4dff88"//green
     }
-    else{
-      return  "#4d4dff";//blue
-      
+    else {
+      return "#4d4dff";//blue
+
     }
     return null;
-  } 
-  
-  function getStrokeColor(number){
-      
-      
-      if(number > 300){
-        return "#ff0000";//red
-      }
-      if(number > 200){
-        return  "#ff6600";//orange
-      }
-      if(number >100){
-        return   "#ffff00";//yellow
-      }
-      if(number > 50){
-        return  "#00cc00"//green
-      }
-      else{
-        return   "#0066ff";//blue       
-      }
-      return null;
-    } 
-  
+  }
+
+  function getStrokeColor(number) {
+
+
+    if (number > 300) {
+      return "#ff0000";//red
+    }
+    if (number > 200) {
+      return "#ff6600";//orange
+    }
+    if (number > 100) {
+      return "#ffff00";//yellow
+    }
+    if (number > 50) {
+      return "#00cc00"//green
+    }
+    else {
+      return "#0066ff";//blue       
+    }
+    return null;
+  }
+
 
 
 
 </script>
 
-    
-   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 
-  
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 
-  
-    
-    <script src="bower_components/bootstrap/dist/js/bootstrap-notify.js"></script>
+
+
+
+
+<script src="bower_components/bootstrap/dist/js/bootstrap-notify.js"></script>
 
 <script src="bower_components/bootstrap-waitingfor/build/bootstrap-waitingfor.js"></script>
 
-   
+
 
 
 </html>
-
-
-
-

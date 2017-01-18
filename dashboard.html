@@ -1,295 +1,296 @@
 <!doctype html>
-<html lang="en" >
+<html lang="en">
+
 <head>
 	<meta charset="utf-8" />
-	
+
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>Aparcas Project</title>
-<!--   Core JS Files   -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<!--   Core JS Files   -->
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+	<meta name="viewport" content="width=device-width" />
 
 
-       <!-- Bootstrap core CSS     -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Animation library for notifications   -->
-    <link href="bower_components/bootstrap/dist/css/animate.min.css" rel="stylesheet"/>
+	<!-- Bootstrap core CSS     -->
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<!-- Animation library for notifications   -->
+	<link href="bower_components/bootstrap/dist/css/animate.min.css" rel="stylesheet" />
 
 
-<!--  Light Bootstrap Table core CSS    -->
-    <link href="bower_components/bootstrap/dist/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
-    
-  
-      <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="bower_components/other/css/demo.css" rel="stylesheet" />
+	<!--  Light Bootstrap Table core CSS    -->
+	<link href="bower_components/bootstrap/dist/css/light-bootstrap-dashboard.css" rel="stylesheet" />
+
+
+	<!--  CSS for Demo Purpose, don't include it in your project     -->
+	<link href="bower_components/other/css/demo.css" rel="stylesheet" />
 
 
 
-<!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="bower_components/font/css/pe-icon-7-stroke.css" rel="stylesheet" />
+	<!--     Fonts and icons     -->
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+	<link href="bower_components/font/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
-  <script src="bower_components/hightcharts/highcharts.js"></script>
-  <script src="bower_components/hightcharts/exporting.js"></script>
-    <script type="text/javascript" src="js/amq_jquery_adapter.js"></script>
-  <script type="text/javascript" src="js/amq.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
-    
+	<script src="bower_components/hightcharts/highcharts.js"></script>
+	<script src="bower_components/hightcharts/exporting.js"></script>
+	<script type="text/javascript" src="js/amq_jquery_adapter.js"></script>
+	<script type="text/javascript" src="js/amq.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+
 
 </head>
- <style>  
+<style>  
   .modal-footer {
       background-color: #f9f9f9;
   }
   </style>
-  
+
 <body>
 
 
 
 
-<div class="wrapper">
-    <div class="sidebar" data-color="blue" data-image="bower_components/font/img/sidebar-5.jpg">
+	<div class="wrapper">
+		<div class="sidebar" data-color="blue" data-image="bower_components/font/img/sidebar-5.jpg">
 
-    <!--
+			<!--
         Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
         Tip 2: you can also add an image using data-image tag
 
     -->
-    
 
-    	<div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="index.html" class="simple-text">
+
+			<div class="sidebar-wrapper">
+				<div class="logo">
+					<a href="index.html" class="simple-text">
                     Home Page
                 </a>
-            </div>
+				</div>
 
-            <ul class="nav" id = "mNav">
-                <li class="active">
-                    <a href="dashboard.html">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+				<ul class="nav" id="mNav">
+					<li class="active">
+						<a href="dashboard.html">
+							<i class="pe-7s-graph"></i>
+							<p>Dashboard</p>
+						</a>
+					</li>
 
-                <li>
-                    <a href="airpollution.html">
-                        <i class="pe-7s-compass"></i>
-                        <p>Air pollution</p>
-                    </a>
-                </li>
-
-
-                 <li>
-                    <a href="history.html">
-                        <i class="pe-7s-back"></i>
-                        <p>History</p>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="aqi.html">
-                        <i class="pe-7s-display1"></i>
-                        <p>Air Quality Index </p>
-                    </a>
-                </li>                
-          
+					<li>
+						<a href="airpollution.html">
+							<i class="pe-7s-compass"></i>
+							<p>Air pollution</p>
+						</a>
+					</li>
 
 
-            </ul>
+					<li>
+						<a href="history.html">
+							<i class="pe-7s-back"></i>
+							<p>History</p>
+						</a>
+					</li>
 
-    	</div>
-    </div>
+					<li>
+						<a href="aqi.html">
+							<i class="pe-7s-display1"></i>
+							<p>Air Quality Index </p>
+						</a>
+					</li>
 
-    <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+
+
+				</ul>
+
+			</div>
+		</div>
+
+		<div class="main-panel">
+			<nav class="navbar navbar-default navbar-fixed">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
-                </div>
-
-                
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                       
-
-                        <p class="navbar-brand" >Air Pollution and Radioactive Contamination Analyzing System</p>
-
-                    </ul>
+						<a class="navbar-brand" href="#">Dashboard</a>
+					</div>
 
 
-  						
-                </div>
-            </div>
-        </nav>
-
-                <div class="content">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Carbon monoxide(CO)</h4>
-                                <p class="category">Apacas System</p>
-                            </div>
-                            <div class="content">
-
-                                <div id="gCO" style="min-width: 310px; height: 400px; margin: 0 auto"></div>  
-
-                                    <div class="footer">
-                                        <hr>
-                                        <div class="stats">
-                                            <i class="fa fa-history"></i> Updated 3 Hour ago
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Nitrogen dioxide(NO2)</h4>
-                                <p class="category">Apacas System</p>
-                            </div>
-                            <div class="content">
-
-                                <div id="gNO2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>  
-
-                                    <div class="footer">
-                                        <hr>
-                                        <div class="stats">
-                                            <i class="fa fa-history"></i> Updated 3 Hour ago
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-               
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Ozone(O3)</h4>
-                                <p class="category">Apacas System</p>
-                            </div>
-                            <div class="content">
-
-                                <div id="gO3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>  
-
-                                    <div class="footer">
-                                        <hr>
-                                        <div class="stats">
-                                            <i class="fa fa-history"></i> Updated 3 Hour ago
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-               
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Particle Matter 2.5(PM2.5)</h4>
-                                <p class="category">Apacas System</p>
-                            </div>
-                            <div class="content">
-
-                                <div id="gPM25" style="min-width: 310px; height: 400px; margin: 0 auto"></div>  
-
-                                    <div class="footer">
-                                        <hr>
-                                        <div class="stats">
-                                            <i class="fa fa-history"></i> Updated 3 Hour ago
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-               
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Sulfur dioxide(SO2)</h4>
-                                <p class="category">Apacas System</p>
-                            </div>
-                            <div class="content">
-
-                                <div id="gSO2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>  
-
-                                    <div class="footer">
-                                        <hr>
-                                        <div class="stats">
-                                            <i class="fa fa-history"></i> Updated 3 Hour ago
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-              
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Radioactive</h4>
-                                <p class="category">Apacas System</p>
-                            </div>
-                            <div class="content">
-
-                                <div id="gRadio" style="min-width: 310px; height: 400px; margin: 0 auto"></div>  
-
-                                    <div class="footer">
-                                        <hr>
-                                        <div class="stats">
-                                            <i class="fa fa-history"></i> Updated 3 Hour ago
-                                        </div>
-                                    </div>
-                            </div>
-                        
-                    </div>
-                </div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-left">
 
 
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
+							<p class="navbar-brand">Air Pollution and Radioactive Contamination Analyzing System</p>
 
-                </div>
-            </div>
-        </div>
+						</ul>
 
 
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
+
+					</div>
+				</div>
+			</nav>
+
+			<div class="content">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="header">
+							<h4 class="title">Carbon monoxide(CO)</h4>
+							<p class="category">Apacas System</p>
+						</div>
+						<div class="content">
+
+							<div id="gCO" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<div class="footer">
+	<hr>
+	<div class="stats">
+		<i class="fa fa-history"></i> Updated 3 Hour ago
+	</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-12">
+	<div class="card">
+		<div class="header">
+			<h4 class="title">Nitrogen dioxide(NO2)</h4>
+			<p class="category">Apacas System</p>
+		</div>
+		<div class="content">
+
+			<div id="gNO2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<div class="footer">
+	<hr>
+	<div class="stats">
+		<i class="fa fa-history"></i> Updated 3 Hour ago
+	</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-12">
+	<div class="card">
+		<div class="header">
+			<h4 class="title">Ozone(O3)</h4>
+			<p class="category">Apacas System</p>
+		</div>
+		<div class="content">
+
+			<div id="gO3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<div class="footer">
+	<hr>
+	<div class="stats">
+		<i class="fa fa-history"></i> Updated 3 Hour ago
+	</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-12">
+	<div class="card">
+		<div class="header">
+			<h4 class="title">Particle Matter 2.5(PM2.5)</h4>
+			<p class="category">Apacas System</p>
+		</div>
+		<div class="content">
+
+			<div id="gPM25" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<div class="footer">
+	<hr>
+	<div class="stats">
+		<i class="fa fa-history"></i> Updated 3 Hour ago
+	</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-12">
+	<div class="card">
+		<div class="header">
+			<h4 class="title">Sulfur dioxide(SO2)</h4>
+			<p class="category">Apacas System</p>
+		</div>
+		<div class="content">
+
+			<div id="gSO2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<div class="footer">
+	<hr>
+	<div class="stats">
+		<i class="fa fa-history"></i> Updated 3 Hour ago
+	</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-12">
+	<div class="card">
+		<div class="header">
+			<h4 class="title">Radioactive</h4>
+			<p class="category">Apacas System</p>
+		</div>
+		<div class="content">
+
+			<div id="gRadio" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<div class="footer">
+	<hr>
+	<div class="stats">
+		<i class="fa fa-history"></i> Updated 3 Hour ago
+	</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+
+		</div>
+	</div>
+</div>
+
+
+<footer class="footer">
+	<div class="container-fluid">
+		<nav class="pull-left">
+			<ul>
+				<li>
+					<a href="#">
                                 Home
                             </a>
-                        </li>
+				</li>
 
-                    </ul>
-                </nav>
-                <p class="copyright pull-right">
-                    &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p>
-            </div>
-        </footer>
-
-
+			</ul>
+		</nav>
+		<p class="copyright pull-right">
+			&copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+		</p>
+	</div>
+</footer>
 
 
-    </div>
+
+
+</div>
 </div>
 
 
@@ -300,25 +301,25 @@
 </body>
 
 
-	
+
 
 
 <script>
 
-$(document).ready(function(){
-    
-    $.notify({
-        icon: 'pe-7s-gift',
-        message: "Welcome to <b>Air Pollution and ​Radioactive Contamination Analyzing System</b>"
+	$(document).ready(function () {
 
-    },{
-        type: 'info',
-        timer: 4000
-    });
+		$.notify({
+			icon: 'pe-7s-gift',
+			message: "Welcome to <b>Air Pollution and ​Radioactive Contamination Analyzing System</b>"
 
-});
+		}, {
+				type: 'info',
+				timer: 4000
+			});
 
-     
+	});
+
+
  /*
 
         $(function () {
@@ -370,7 +371,7 @@ $(document).ready(function(){
     });
 });
 */
-    </script>
+</script>
 
 <!-- for add user tab 
 <script>
@@ -386,56 +387,55 @@ $(function(){
 
 
 
-    
-	var no2_val = 10;     
- 	var o3_val = 20;
-    var pm25_val= 30;
-    var so2_val= 40;
-    var co_val= 50;
-    var gamma_val= 60;
 
-    
-   /*  
-    var mtext = no2_val;
-    while(no2_val != mText){
-    	mText = no2_val;
-    } */
-    
-    
-    
-    
-    var amq = org.activemq.Amq;
-    amq.init({ 
-     uri: 'amq',
-     logging: true,
-     timeout: 20
-    });
-	
+	var no2_val = 10;
+	var o3_val = 20;
+	var pm25_val = 30;
+	var so2_val = 40;
+	var co_val = 50;
+	var gamma_val = 60;
+
+
+	/*  
+	 var mtext = no2_val;
+	 while(no2_val != mText){
+		 mText = no2_val;
+	 } */
+
+
+
+
+	var amq = org.activemq.Amq;
+	amq.init({
+		uri: 'amq',
+		logging: true,
+		timeout: 20
+	});
+
 	var jsonEvent;
 	var test1 = "test1";
 	var myHandler =
-      {
-        rcvMessage: function(message)
-        {
-		   var tStamp = displayTime();
-		   //$("#result").append(tStamp+" ---- received msg -> "+message.textContent+"<br>");
-		   jsonObj = JSON.parse(message.textContent);
-		   //$("#result").append(" xxxxxxxxxxxxxxxxxxxxxxxxxxx sulfur dioxide(so2): "+jsonObj.so2+"<br>");        
-           so2_val =  eval(jsonObj.so2);
-           no2_val =  eval(jsonObj.no2);		   
-           o3_val =  eval(jsonObj.o3);
-           pm25_val =  eval(jsonObj.pm25);           
-           co_val =  eval(jsonObj.co);
-           gamma_val = eval(jsonObj.gamma) 
-		   console.log(message);
-        },
-        myId: 'test0',
-        myDestination: 'topic://aparcas_conv'
-      };
+		{
+			rcvMessage: function (message) {
+				var tStamp = displayTime();
+				//$("#result").append(tStamp+" ---- received msg -> "+message.textContent+"<br>");
+				jsonObj = JSON.parse(message.textContent);
+				//$("#result").append(" xxxxxxxxxxxxxxxxxxxxxxxxxxx sulfur dioxide(so2): "+jsonObj.so2+"<br>");        
+				so2_val = eval(jsonObj.so2);
+				no2_val = eval(jsonObj.no2);
+				o3_val = eval(jsonObj.o3);
+				pm25_val = eval(jsonObj.pm25);
+				co_val = eval(jsonObj.co);
+				gamma_val = eval(jsonObj.gamma)
+				console.log(message);
+			},
+			myId: 'test0',
+			myDestination: 'topic://aparcas_conv'
+		};
 
-	amq.addListener(myHandler.myId, myHandler.myDestination,myHandler.rcvMessage);
-		
-	
+	amq.addListener(myHandler.myId, myHandler.myDestination, myHandler.rcvMessage);
+
+
 	function displayTime() {
 		var str = "";
 
@@ -451,7 +451,7 @@ $(function(){
 			seconds = "0" + seconds
 		}
 		str += hours + ":" + minutes + ":" + seconds + " ";
-		if(hours > 11){
+		if (hours > 11) {
 			str += "PM"
 		} else {
 			str += "AM"
@@ -459,464 +459,463 @@ $(function(){
 		return str;
 	}
 
-  </script>
-  <script >
-  
-  
-  $(function () {
-	    $(document).ready(function () {
-		   
-	        Highcharts.setOptions({
-	            global: {
-	                useUTC: false
-	            }
-	        });
+</script>
+<script>
 
-	        //-gCO
-	        Highcharts.chart('gCO', {
-	            chart: {
-	                type: 'spline',
-	                animation: Highcharts.svg, // don't animate in old IE
-	                marginRight: 10,
-	                events: {
-	                    load: function () {
 
-	                        // set up the updating of the chart each second
-	                        var series = this.series[0];
-	                        setInterval(function () {
-	                            var x = (new Date()).getTime(), // current time
-	                                y = co_val;
-	                            series.addPoint([x, y], true, true);
-	                        }, 1000);
-	                    }
-	                }
-	            },
-	            title: {
-	                text: 'Average in Bangkok Area'
-	            },
-	            xAxis: {
-	                type: 'datetime',
-	                tickPixelInterval: 150
-	            },
-	            yAxis: {
-	                title: {
-	                    text: 'Value'
-	                },
-	                plotLines: [{
-	                    value: 0,
-	                    width: 1,
-	                    color: '#808080'
-	                }]
-	            },
-	            tooltip: {
-	                formatter: function () {
-	                    return '<b>' + this.series.name + '</b><br/>' +
-	                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-	                        Highcharts.numberFormat(this.y, 2);
-	                }
-	            },
-	            legend: {
-	                enabled: false
-	            },
-	            exporting: {
-	                enabled: false
-	            },
-	            series: [{
-	                name: 'Random data',
-	                data: (function () {
-	                    // generate an array of random data
-	                    var data = [],
-	                        time = (new Date()).getTime(),
-	                        i;
+	$(function () {
+		$(document).ready(function () {
 
-	                    for (i = -19; i <= 0; i += 1) {
-	                        data.push({
-	                            x: time + i * 1000,
-	                            y: Math.random()
-	                        });
-	                    }
-	                    return data;
-	                }())
-	            }]
-	        });//end of gCO
-	        
-	        
-	      //gNO2
-	        Highcharts.chart('gNO2', {
-	            chart: {
-	                type: 'spline',
-	                animation: Highcharts.svg, // don't animate in old IE
-	                marginRight: 10,
-	                events: {
-	                    load: function () {
+			Highcharts.setOptions({
+				global: {
+					useUTC: false
+				}
+			});
 
-	                        // set up the updating of the chart each second
-	                        var series = this.series[0];
-	                        setInterval(function () {
-	                            var x = (new Date()).getTime(), // current time
-	                                y = no2_val;
-	                            series.addPoint([x, y], true, true);
-	                        }, 1000);
-	                    }
-	                }
-	            },
-	            title: {
-	                text: 'Average in Bangkok Area'
-	            },
-	            xAxis: {
-	                type: 'datetime',
-	                tickPixelInterval: 150
-	            },
-	            yAxis: {
-	                title: {
-	                    text: 'Value'
-	                },
-	                plotLines: [{
-	                    value: 0,
-	                    width: 1,
-	                    color: '#808080'
-	                }]
-	            },
-	            tooltip: {
-	                formatter: function () {
-	                    return '<b>' + this.series.name + '</b><br/>' +
-	                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-	                        Highcharts.numberFormat(this.y, 2);
-	                }
-	            },
-	            legend: {
-	                enabled: false
-	            },
-	            exporting: {
-	                enabled: false
-	            },
-	            series: [{
-	                name: 'Random data',
-	                data: (function () {
-	                    // generate an array of random data
-	                    var data = [],
-	                        time = (new Date()).getTime(),
-	                        i;
+			//-gCO
+			Highcharts.chart('gCO', {
+				chart: {
+					type: 'spline',
+					animation: Highcharts.svg, // don't animate in old IE
+					marginRight: 10,
+					events: {
+						load: function () {
 
-	                    for (i = -19; i <= 0; i += 1) {
-	                        data.push({
-	                            x: time + i * 1000,
-	                            y: Math.random()
-	                        });
-	                    }
-	                    return data;
-	                }())
-	            }]
-	        });// end of gNO2 
-			
-	      //gO3
-	        Highcharts.chart('gO3', {
-	            chart: {
-	                type: 'spline',
-	                animation: Highcharts.svg, // don't animate in old IE
-	                marginRight: 10,
-	                events: {
-	                    load: function () {
+							// set up the updating of the chart each second
+							var series = this.series[0];
+							setInterval(function () {
+								var x = (new Date()).getTime(), // current time
+									y = co_val;
+								series.addPoint([x, y], true, true);
+							}, 1000);
+						}
+					}
+				},
+				title: {
+					text: 'Average in Bangkok Area'
+				},
+				xAxis: {
+					type: 'datetime',
+					tickPixelInterval: 150
+				},
+				yAxis: {
+					title: {
+						text: 'Value'
+					},
+					plotLines: [{
+						value: 0,
+						width: 1,
+						color: '#808080'
+					}]
+				},
+				tooltip: {
+					formatter: function () {
+						return '<b>' + this.series.name + '</b><br/>' +
+							Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+							Highcharts.numberFormat(this.y, 2);
+					}
+				},
+				legend: {
+					enabled: false
+				},
+				exporting: {
+					enabled: false
+				},
+				series: [{
+					name: 'Random data',
+					data: (function () {
+						// generate an array of random data
+						var data = [],
+							time = (new Date()).getTime(),
+							i;
 
-	                        // set up the updating of the chart each second
-	                        var series = this.series[0];
-	                        setInterval(function () {
-	                            var x = (new Date()).getTime(), // current time
-	                                y = o3_val;
-	                            series.addPoint([x, y], true, true);
-	                        }, 1000);
-	                    }
-	                }
-	            },
-	            title: {
-	                text: 'Average in Bangkok Area'
-	            },
-	            xAxis: {
-	                type: 'datetime',
-	                tickPixelInterval: 150
-	            },
-	            yAxis: {
-	                title: {
-	                    text: 'Value'
-	                },
-	                plotLines: [{
-	                    value: 0,
-	                    width: 1,
-	                    color: '#808080'
-	                }]
-	            },
-	            tooltip: {
-	                formatter: function () {
-	                    return '<b>' + this.series.name + '</b><br/>' +
-	                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-	                        Highcharts.numberFormat(this.y, 2);
-	                }
-	            },
-	            legend: {
-	                enabled: false
-	            },
-	            exporting: {
-	                enabled: false
-	            },
-	            series: [{
-	                name: 'Random data',
-	                data: (function () {
-	                    // generate an array of random data
-	                    var data = [],
-	                        time = (new Date()).getTime(),
-	                        i;
+						for (i = -19; i <= 0; i += 1) {
+							data.push({
+								x: time + i * 1000,
+								y: Math.random()
+							});
+						}
+						return data;
+					} ())
+				}]
+			});//end of gCO
 
-	                    for (i = -19; i <= 0; i += 1) {
-	                        data.push({
-	                            x: time + i * 1000,
-	                            y: Math.random()
-	                        });
-	                    }
-	                    return data;
-	                }())
-	            }]
-	        });//end of gO3
-	      
-	      //gPM25
-	        Highcharts.chart('gPM25', {
-	            chart: {
-	                type: 'spline',
-	                animation: Highcharts.svg, // don't animate in old IE
-	                marginRight: 10,
-	                events: {
-	                    load: function () {
 
-	                        // set up the updating of the chart each second
-	                        var series = this.series[0];
-	                        setInterval(function () {
-	                            var x = (new Date()).getTime(), // current time
-	                                y = pm25_val;
-	                            series.addPoint([x, y], true, true);
-	                        }, 1000);
-	                    }
-	                }
-	            },
-	            title: {
-	                text: 'Average in Bangkok Area'
-	            },
-	            xAxis: {
-	                type: 'datetime',
-	                tickPixelInterval: 150
-	            },
-	            yAxis: {
-	                title: {
-	                    text: 'Value'
-	                },
-	                plotLines: [{
-	                    value: 0,
-	                    width: 1,
-	                    color: '#808080'
-	                }]
-	            },
-	            tooltip: {
-	                formatter: function () {
-	                    return '<b>' + this.series.name + '</b><br/>' +
-	                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-	                        Highcharts.numberFormat(this.y, 2);
-	                }
-	            },
-	            legend: {
-	                enabled: false
-	            },
-	            exporting: {
-	                enabled: false
-	            },
-	            series: [{
-	                name: 'Random data',
-	                data: (function () {
-	                    // generate an array of random data
-	                    var data = [],
-	                        time = (new Date()).getTime(),
-	                        i;
+			//gNO2
+			Highcharts.chart('gNO2', {
+				chart: {
+					type: 'spline',
+					animation: Highcharts.svg, // don't animate in old IE
+					marginRight: 10,
+					events: {
+						load: function () {
 
-	                    for (i = -19; i <= 0; i += 1) {
-	                        data.push({
-	                            x: time + i * 1000,
-	                            y: Math.random()
-	                        });
-	                    }
-	                    return data;
-	                }())
-	            }]
-	        });// end of gPM25			
-		      //gSO2
-		        Highcharts.chart('gSO2', {
-		            chart: {
-		                type: 'spline',
-		                animation: Highcharts.svg, // don't animate in old IE
-		                marginRight: 10,
-		                events: {
-		                    load: function () {
+							// set up the updating of the chart each second
+							var series = this.series[0];
+							setInterval(function () {
+								var x = (new Date()).getTime(), // current time
+									y = no2_val;
+								series.addPoint([x, y], true, true);
+							}, 1000);
+						}
+					}
+				},
+				title: {
+					text: 'Average in Bangkok Area'
+				},
+				xAxis: {
+					type: 'datetime',
+					tickPixelInterval: 150
+				},
+				yAxis: {
+					title: {
+						text: 'Value'
+					},
+					plotLines: [{
+						value: 0,
+						width: 1,
+						color: '#808080'
+					}]
+				},
+				tooltip: {
+					formatter: function () {
+						return '<b>' + this.series.name + '</b><br/>' +
+							Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+							Highcharts.numberFormat(this.y, 2);
+					}
+				},
+				legend: {
+					enabled: false
+				},
+				exporting: {
+					enabled: false
+				},
+				series: [{
+					name: 'Random data',
+					data: (function () {
+						// generate an array of random data
+						var data = [],
+							time = (new Date()).getTime(),
+							i;
 
-		                        // set up the updating of the chart each second
-		                        var series = this.series[0];
-		                        setInterval(function () {
-		                            var x = (new Date()).getTime(), // current time
-		                                y = so2_val;
-		                            series.addPoint([x, y], true, true);
-		                        }, 1000);
-		                    }
-		                }
-		            },
-		            title: {
-		                text: 'Average in Bangkok Area'
-		            },
-		            xAxis: {
-		                type: 'datetime',
-		                tickPixelInterval: 150
-		            },
-		            yAxis: {
-		                title: {
-		                    text: 'Value'
-		                },
-		                plotLines: [{
-		                    value: 0,
-		                    width: 1,
-		                    color: '#808080'
-		                }]
-		            },
-		            tooltip: {
-		                formatter: function () {
-		                    return '<b>' + this.series.name + '</b><br/>' +
-		                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-		                        Highcharts.numberFormat(this.y, 2);
-		                }
-		            },
-		            legend: {
-		                enabled: false
-		            },
-		            exporting: {
-		                enabled: false
-		            },
-		            series: [{
-		                name: 'Random data',
-		                data: (function () {
-		                    // generate an array of random data
-		                    var data = [],
-		                        time = (new Date()).getTime(),
-		                        i;
+						for (i = -19; i <= 0; i += 1) {
+							data.push({
+								x: time + i * 1000,
+								y: Math.random()
+							});
+						}
+						return data;
+					} ())
+				}]
+			});// end of gNO2 
 
-		                    for (i = -19; i <= 0; i += 1) {
-		                        data.push({
-		                            x: time + i * 1000,
-		                            y: Math.random()
-		                        });
-		                    }
-		                    return data;
-		                }())
-		            }]
-		        }); // end of gSO2
-				
-		     
-		        //gRadio
-		        Highcharts.chart('gRadio', {
-		            chart: {
-		                type: 'spline',
-		                animation: Highcharts.svg, // don't animate in old IE
-		                marginRight: 10,
-		                events: {
-		                    load: function () {
+			//gO3
+			Highcharts.chart('gO3', {
+				chart: {
+					type: 'spline',
+					animation: Highcharts.svg, // don't animate in old IE
+					marginRight: 10,
+					events: {
+						load: function () {
 
-		                        // set up the updating of the chart each second
-		                        var series = this.series[0];
-		                        setInterval(function () {
-		                            var x = (new Date()).getTime(), // current time
-		                                y = gamma_val;
-		                            series.addPoint([x, y], true, true);
-		                        }, 1000);
-		                    }
-		                }
-		            },
-		            title: {
-		                text: 'Average in Bangkok Area'
-		            },
-		            xAxis: {
-		                type: 'datetime',
-		                tickPixelInterval: 150
-		            },
-		            yAxis: {
-		                title: {
-		                    text: 'Value'
-		                },
-		                plotLines: [{
-		                    value: 0,
-		                    width: 1,
-		                    color: '#808080'
-		                }]
-		            },
-		            tooltip: {
-		                formatter: function () {
-		                    return '<b>' + this.series.name + '</b><br/>' +
-		                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-		                        Highcharts.numberFormat(this.y, 2);
-		                }
-		            },
-		            legend: {
-		                enabled: false
-		            },
-		            exporting: {
-		                enabled: false
-		            },
-		            series: [{
-		                name: 'Random data',
-		                data: (function () {
-		                    // generate an array of random data
-		                    var data = [],
-		                        time = (new Date()).getTime(),
-		                        i;
+							// set up the updating of the chart each second
+							var series = this.series[0];
+							setInterval(function () {
+								var x = (new Date()).getTime(), // current time
+									y = o3_val;
+								series.addPoint([x, y], true, true);
+							}, 1000);
+						}
+					}
+				},
+				title: {
+					text: 'Average in Bangkok Area'
+				},
+				xAxis: {
+					type: 'datetime',
+					tickPixelInterval: 150
+				},
+				yAxis: {
+					title: {
+						text: 'Value'
+					},
+					plotLines: [{
+						value: 0,
+						width: 1,
+						color: '#808080'
+					}]
+				},
+				tooltip: {
+					formatter: function () {
+						return '<b>' + this.series.name + '</b><br/>' +
+							Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+							Highcharts.numberFormat(this.y, 2);
+					}
+				},
+				legend: {
+					enabled: false
+				},
+				exporting: {
+					enabled: false
+				},
+				series: [{
+					name: 'Random data',
+					data: (function () {
+						// generate an array of random data
+						var data = [],
+							time = (new Date()).getTime(),
+							i;
 
-		                    for (i = -19; i <= 0; i += 1) {
-		                        data.push({
-		                            x: time + i * 1000,
-		                            y: Math.random()
-		                        });
-		                    }
-		                    return data;
-		                }())
-		            }]
-		        });//end of gRadio	
-		        
-		        
-	    });
+						for (i = -19; i <= 0; i += 1) {
+							data.push({
+								x: time + i * 1000,
+								y: Math.random()
+							});
+						}
+						return data;
+					} ())
+				}]
+			});//end of gO3
+
+			//gPM25
+			Highcharts.chart('gPM25', {
+				chart: {
+					type: 'spline',
+					animation: Highcharts.svg, // don't animate in old IE
+					marginRight: 10,
+					events: {
+						load: function () {
+
+							// set up the updating of the chart each second
+							var series = this.series[0];
+							setInterval(function () {
+								var x = (new Date()).getTime(), // current time
+									y = pm25_val;
+								series.addPoint([x, y], true, true);
+							}, 1000);
+						}
+					}
+				},
+				title: {
+					text: 'Average in Bangkok Area'
+				},
+				xAxis: {
+					type: 'datetime',
+					tickPixelInterval: 150
+				},
+				yAxis: {
+					title: {
+						text: 'Value'
+					},
+					plotLines: [{
+						value: 0,
+						width: 1,
+						color: '#808080'
+					}]
+				},
+				tooltip: {
+					formatter: function () {
+						return '<b>' + this.series.name + '</b><br/>' +
+							Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+							Highcharts.numberFormat(this.y, 2);
+					}
+				},
+				legend: {
+					enabled: false
+				},
+				exporting: {
+					enabled: false
+				},
+				series: [{
+					name: 'Random data',
+					data: (function () {
+						// generate an array of random data
+						var data = [],
+							time = (new Date()).getTime(),
+							i;
+
+						for (i = -19; i <= 0; i += 1) {
+							data.push({
+								x: time + i * 1000,
+								y: Math.random()
+							});
+						}
+						return data;
+					} ())
+				}]
+			});// end of gPM25			
+			//gSO2
+			Highcharts.chart('gSO2', {
+				chart: {
+					type: 'spline',
+					animation: Highcharts.svg, // don't animate in old IE
+					marginRight: 10,
+					events: {
+						load: function () {
+
+							// set up the updating of the chart each second
+							var series = this.series[0];
+							setInterval(function () {
+								var x = (new Date()).getTime(), // current time
+									y = so2_val;
+								series.addPoint([x, y], true, true);
+							}, 1000);
+						}
+					}
+				},
+				title: {
+					text: 'Average in Bangkok Area'
+				},
+				xAxis: {
+					type: 'datetime',
+					tickPixelInterval: 150
+				},
+				yAxis: {
+					title: {
+						text: 'Value'
+					},
+					plotLines: [{
+						value: 0,
+						width: 1,
+						color: '#808080'
+					}]
+				},
+				tooltip: {
+					formatter: function () {
+						return '<b>' + this.series.name + '</b><br/>' +
+							Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+							Highcharts.numberFormat(this.y, 2);
+					}
+				},
+				legend: {
+					enabled: false
+				},
+				exporting: {
+					enabled: false
+				},
+				series: [{
+					name: 'Random data',
+					data: (function () {
+						// generate an array of random data
+						var data = [],
+							time = (new Date()).getTime(),
+							i;
+
+						for (i = -19; i <= 0; i += 1) {
+							data.push({
+								x: time + i * 1000,
+								y: Math.random()
+							});
+						}
+						return data;
+					} ())
+				}]
+			}); // end of gSO2
+
+
+			//gRadio
+			Highcharts.chart('gRadio', {
+				chart: {
+					type: 'spline',
+					animation: Highcharts.svg, // don't animate in old IE
+					marginRight: 10,
+					events: {
+						load: function () {
+
+							// set up the updating of the chart each second
+							var series = this.series[0];
+							setInterval(function () {
+								var x = (new Date()).getTime(), // current time
+									y = gamma_val;
+								series.addPoint([x, y], true, true);
+							}, 1000);
+						}
+					}
+				},
+				title: {
+					text: 'Average in Bangkok Area'
+				},
+				xAxis: {
+					type: 'datetime',
+					tickPixelInterval: 150
+				},
+				yAxis: {
+					title: {
+						text: 'Value'
+					},
+					plotLines: [{
+						value: 0,
+						width: 1,
+						color: '#808080'
+					}]
+				},
+				tooltip: {
+					formatter: function () {
+						return '<b>' + this.series.name + '</b><br/>' +
+							Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+							Highcharts.numberFormat(this.y, 2);
+					}
+				},
+				legend: {
+					enabled: false
+				},
+				exporting: {
+					enabled: false
+				},
+				series: [{
+					name: 'Random data',
+					data: (function () {
+						// generate an array of random data
+						var data = [],
+							time = (new Date()).getTime(),
+							i;
+
+						for (i = -19; i <= 0; i += 1) {
+							data.push({
+								x: time + i * 1000,
+								y: Math.random()
+							});
+						}
+						return data;
+					} ())
+				}]
+			});//end of gRadio	
+
+
+		});
 	});
 
 
 
-  window.setInterval(function(){
-  	  console.log('call' + o3_val);
-  	}, 5000);
-  
-  </script>
+	window.setInterval(function () {
+		console.log('call' + o3_val);
+	}, 5000);
+
+</script>
 
 
 
 
 </body>
 
-    
-	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 
-	<!--  Checkbox, Radio & Switch Plugins -->
-  <script src="bower_components/bootstrap/dist/js/bootstrap-checkbox-radio-switch.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+
+<!--  Checkbox, Radio & Switch Plugins -->
+<script src="bower_components/bootstrap/dist/js/bootstrap-checkbox-radio-switch.js"></script>
 
 
-    <!--  Notifications Plugin    -->
-    
-    <script src="bower_components/bootstrap/dist/js/bootstrap-notify.js"></script>
+<!--  Notifications Plugin    -->
 
-   
+<script src="bower_components/bootstrap/dist/js/bootstrap-notify.js"></script>
 
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	 <script src="bower_components/font/js/light-bootstrap-dashboard.js"></script>
 
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="bower_components/font/js/demo.js"></script>
+
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="bower_components/font/js/light-bootstrap-dashboard.js"></script>
+
+<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+<script src="bower_components/font/js/demo.js"></script>
 
 
 </html>
-
