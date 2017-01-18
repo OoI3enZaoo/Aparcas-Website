@@ -16,7 +16,8 @@ Vector<Float> O3Vec =  new Vector<Float>();
 Vector<Float> SO2Vec =  new Vector<Float>();
 Vector<Float> PM25Vec =  new Vector<Float>();
 Vector<Float> RadioVec =  new Vector<Float>();
-
+Vector<String> DID =  new Vector<String>();
+Vector<String> DNAME =  new Vector<String>();
 Vector<String> Time =  new Vector<String>();
 
 
@@ -38,6 +39,8 @@ Vector<String> Time =  new Vector<String>();
 		O3Vec.addElement(rs.getFloat("O3"));
 		SO2Vec.addElement(rs.getFloat("SO2"));
 		PM25Vec.addElement(rs.getFloat("PM25"));
+		DID.addElement(rs.getString("district_id"));
+		DNAME.addElement(rs.getString("district_name"));
 		RadioVec.addElement(rs.getFloat("Radio"));
 		
 		Time.addElement(rs.getString("timestamp"));
@@ -66,6 +69,8 @@ for(int i=0; i<idVec.size(); i++){
 	jsonStr += "\"so2\":\""+SO2Vec.elementAt(i)+"\",";
 	jsonStr += "\"pm25\":\""+PM25Vec.elementAt(i)+"\",";
 	jsonStr += "\"radio\":\""+RadioVec.elementAt(i)+"\",";
+	jsonStr += "\"districtID\":\""+DID.elementAt(i)+"\",";
+	jsonStr += "\"districtName\":\""+DNAME.elementAt(i)+"\",";
 	jsonStr += "\"timestamp\":\""+Time.elementAt(i)+"\"}";
 	
 		if((i+1) != idVec.size()){ 
