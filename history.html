@@ -61,6 +61,13 @@
         margin: auto; 
         padding: 0;
       }
+
+.modal-body {
+    position: relative;
+    overflow-y: auto;
+    max-height: 400px;
+    padding: 15px;
+}
     </style>
 
 <style type="text/css">
@@ -149,13 +156,15 @@
   
     <div class="content">           
           <div class ="row">   
-            <div class = "col-xs-7 col-sm-7 col-md-7 col-lg-7">                                                                                
-                                    <div style="width:100%; height:1500%;  position: absolute;"> 
+            <div class = "col-xs-7 col-sm-7 col-md-7 col-lg-7">            
+                            
+                                    <div style="width:100%; height:1500%;  position: absolute; "> 
                                             <div id="map"></div>
                                       </div>
+                            
                               
                                           <h2>ben</h2>
-                                </div>
+                </div>
                         
             <div class = "col-xs-5 col-sm-5 col-md-5 col-lg-5">
                                
@@ -197,6 +206,7 @@
                                         </div>
                                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                              <button  type= "button"  class="btn btn-lg btn-danger btn-block" >Clear</button>
+                                             
                                         </div>
                                       </div>
                                     </div>
@@ -218,8 +228,7 @@
             </div>     
 
         
-                                    
-                                    <canvas id="canvas"></canvas>
+                                                                      
                         </div>
             </div>
 
@@ -230,9 +239,28 @@
 
 
 
-   <div class = "container">
    
-   </div>
+   <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">        
+         <canvas id="canvas"></canvas>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 </body>
    
@@ -244,11 +272,8 @@
   
  <script type="text/javascript" charset="utf-8">
 
-
-var FusionTable = [];
-var haveChart = false;
-
- 
+var FusionTable = [];  
+var haveChart = false;  
 
 
 function initMap() {
@@ -272,7 +297,7 @@ function initMap() {
 
             setCircleOnMap(mDate);                    
             getNotification("pe-7s-smile","success","<b>Success</b> scroll down for see your result.");
-            document.getElementById("txtError").innerHTML =  "";
+            
             
 
 
@@ -839,7 +864,8 @@ var covered = {
 
               var aqi = Math.max(co[districtID],no2[districtID],o3[districtID],so2[districtID],pm25[districtID]);
               var content = "<div class = 'text-primary'><b>Air Pollution Report</b></div>"+
-                             "<div class = 'text-muted'>Average All Day Disstrict: "+districtName+"</div>"+
+                             "<div class = 'text-muted'>Average All Day on "+mDate+"</div>"+
+                             "<div class = 'text-info'>Disstrict: "+districtName+"</div>"+
                         "<div class = 'text-info'>AQI: "+aqi+"</div>"+
                               "<div class = 'text-info'>CO: "+co[districtID]+"</div>"+
                               "<div class = 'text-info'>NO2: "+no2[districtID]+"</div>"+
@@ -975,12 +1001,13 @@ function getDistrictFromLatlng(lat, lng){
  function showGraph(districtID){
 
    var date = mydate;
+   
     if(haveChart == true){
         myLineChart.destroy();
     }
-
+/*
        var info = "<div class = 'container'><div class='header'><div class = 'row'><div class = 'col-sm-7'><h4 class='title text-primary text-center'><b>Your Selection</b></h4><p class='category text-info text-center'>Choose your range Date</p></div></div></div></div>"
-          $("#txtInfo").append(info);
+          $("#txtInfo").append(info);*/
 
 
 var mytext = "วันที่: " + mydate;
@@ -1196,8 +1223,9 @@ var mytext = "วันที่: " + mydate;
           
 });
         
-            haveChart = true;
 
+            haveChart = true;
+  $('#myModal').modal('show');
 
 }
 
