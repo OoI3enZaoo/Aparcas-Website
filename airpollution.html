@@ -238,10 +238,11 @@
   <br>
   <br>
 
-  <div class="header">
+  <!--<div class="header">
 
     <div class="title col-sm-offset-3" id="aqi"></div>
-  </div>
+  </div>-->
+
 
 
 
@@ -390,7 +391,7 @@
 
     $("#DateSearch").click(function () {
 
-      $("#showInfo").empty();
+      //$("#showInfo").empty();
 
 
       var mDate = document.getElementById("txtDate").value;
@@ -403,7 +404,7 @@
         waitingDialog.show('Get data from database...');
         UpdateMap(0, myStartTime, myEndTime, myDate);
         console.log("mDate: " + mDate);
-        $("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>ค้นหาเขต: " + myDate + "</h5></div>");
+        //$("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>ค้นหาเขต: " + myDate + "</h5></div>");
 
 
       }
@@ -489,7 +490,7 @@
           Circles.push(circle);
 
 
-          getDistrictFromLatlng(mValue[1], mValue[2]);
+          //getDistrictFromLatlng(mValue[1], mValue[2]);
 
           var infoWindow = new google.maps.InfoWindow({
             content:
@@ -564,48 +565,42 @@
 
           });//end of click on circle  
 
-
-       
-
+          countzoom = false;
 
 
-
-      countzoom = false;
-
-
-    }//placeMarker(loc)
+        }//placeMarker(loc)
 
 
 
-    $("button").click(function () {
-      console.log("Detail Button");
-    });
+        $("button").click(function () {
+          console.log("Detail Button");
+        });
 
-    setTimeout(function () {
-      waitingDialog.hide();
-    }, 1000);
+        setTimeout(function () {
+          waitingDialog.hide();
+        }, 1000);
 
 
 
-  });// json
+      });// json
 
     }
 
-  var legend = document.createElement('div');
-  legend.id = 'legend';
-  var content = [];
-  content.push('<h4>Air Quality Index</h4>');
-  content.push('<h5><div class="color blue"></div>0 - 50   Good</h5>');
-  content.push('<h5><div class="color green"></div>51 - 100     Moderate</h5>');
-  content.push('<h5><div class="color yellow"></div>100 - 200 Unhealthy for Sensitive Groups</h5>');
-  content.push('<h5><div class="color orange"></div>201 - 300 Unhealthy</h5>');
-  content.push('<h5><div class="color red"></div>300+ Very Unhealty</h5>');
-  legend.innerHTML = content.join('');
-  legend.index = 1;
-  //map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);        
+    /*var legend = document.createElement('div');
+    legend.id = 'legend';
+    var content = [];
+    content.push('<h4>Air Quality Index</h4>');
+    content.push('<h5><div class="color blue"></div>0 - 50   Good</h5>');
+    content.push('<h5><div class="color green"></div>51 - 100     Moderate</h5>');
+    content.push('<h5><div class="color yellow"></div>100 - 200 Unhealthy for Sensitive Groups</h5>');
+    content.push('<h5><div class="color orange"></div>201 - 300 Unhealthy</h5>');
+    content.push('<h5><div class="color red"></div>300+ Very Unhealty</h5>');
+    legend.innerHTML = content.join('');
+    legend.index = 1;*/
+    //map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);        
 
 
-  $("#aqi").append(legend.innerHTML)
+   // $("#aqi").append(legend.innerHTML)
 
 
 
@@ -734,17 +729,11 @@
 
 
 
-  function getDistrictFromLatlng(lat, lng) {
+ /* function getDistrictFromLatlng(lat, lng) {
 
     //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc", function (result) {
-      /* for(j = 0; j<result.results[0].address_components.length; j++){           
-               if(result.results[0].address_components[0]){ 
-
-                   console.log("Ben: " +result.results[0].address_components[0].long_name);
-               }
-         }
-         */
+     
 
       for (j = 0; j < result.results[0].address_components.length; j++) {
         if (result.results[0].address_components[j].long_name.match(/^เขต.*$/) || result.results[0].address_components[j].long_name.match(/^อำเภอ.*$/)) {
@@ -793,7 +782,7 @@
     });
 
   }
-
+*/
 
   function DatePickResponse(dateText) {
     var Day = dateText.substr(0, 2);
@@ -858,12 +847,12 @@
   }
 
 
-  function showDetail(lat, lng) {
-    getDistrictFromLatlng(lat, lng);
+ /* function showDetail(lat, lng) {
+    //getDistrictFromLatlng(lat, lng);
     console.log("Lat: " + lat, " long: " + lng);
     console.log("District: " + mResult);
 
-  }
+  }*/
 
   function getIconMarker(number) {
 

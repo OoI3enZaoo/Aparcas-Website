@@ -1,0 +1,70 @@
+<html>
+
+<head>
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+</head>
+
+<body>
+    <h2>Insert AQI2 to event_raw Database</h2>
+
+</body>
+<script>
+    //console.log(Math.round(new Date(mtime).getTime()/1000));
+
+    $.getJSON('http://sysnet.utcc.ac.th/aparcas/api/AQI2.jsp', function (result) {
+        for (i = 0; i < result.length; i++) {
+
+            var id = result[i].id;
+            var lat = result[i].lat;
+            var long = result[i].long
+            var co = result[i].co;
+            var no2 = result[i].no2;
+            var o3 = result[i].o3;
+            var so2 = result[i].so2;
+            var pm25 = result[i].pm25;
+            var radio = result[i].radio;
+            var rad = result[i].radio;
+            var ts = result[i].timestamp
+                        
+            console.log("1: " + ts);             //ts = "2016-12-14 03:56:19"            
+            var tstamp = moment(ts).format('X'); // 2016-12-14 03:56:19  to  1481662579
+            console.log("2: " + tstamp);
+            //var day =moment.unix(tstamp).format("YYYY-MM-DD HH:mm:ss");  // 1481662579 to 2016-12-14 03:56:19                   
+            //console.log("3: " + day);
+
+
+
+
+
+
+            $.post("http://sysnet.utcc.ac.th/aparcas/api/insert_to_event_raw.jsp",
+             {
+                 
+
+                id  : id,
+                lat : lat,
+                lon : long,
+                co  : co,
+                no2 : no2,
+                o3  : o3,
+                so2 : so2,
+                pm25 : pm25,
+                rad : radio,
+                tstamp : tstamp
+
+
+
+             },
+ 
+
+             function(data, status){
+                 alert("Data: " + data + "\nStatus: " + status);
+             }); 
+
+        }
+    });
+</script>
+
+</html>
