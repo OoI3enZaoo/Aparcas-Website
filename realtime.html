@@ -14,14 +14,15 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
 
-    
 
 
 
-    
-    
 
 
+
+
+    <script type="text/javascript" src="js/amq_jquery_adapter.js"></script>
+    <script type="text/javascript" src="js/amq.js"></script>
 
 
 
@@ -132,13 +133,13 @@ th{
 <section class="menu-section">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
-                 <ul id="menu-top" class="nav navbar-nav navbar-right">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul id="menu-top" class="nav navbar-nav navbar-right">
                     <li><a class="menu-top-active" href="realtime.html">คุณภาพอากาศแบบเรียลไทม์</a></li>
                     <li><a href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
                     <li><a href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
                     <li><a href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
-                    <li><a  href="predict.html">พยากรณ์คุณภาพอากาศ</a></li>
+                    <li><a href="predict.html">พยากรณ์คุณภาพอากาศ</a></li>
                     <li><a href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
                 </ul>
             </div>
@@ -162,7 +163,7 @@ th{
 
 
 <script>
-
+    var markers = [];
 
     function initMap() {
 
@@ -174,6 +175,87 @@ th{
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });   //end of map
 
+
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(15.9443970094, 100.1210692095),        
+            map: map,
+            title: "Hello World!"
+        });
+
+        var amq = org.activemq.Amq;
+        amq.init({
+            uri: 'amq',
+            logging: true,
+            timeout: 20
+        });
+
+
+
+        var myHandler =
+            {
+                rcvMessage: function (message) {
+                    jsonObj = JSON.parse(message.textContent);
+                    var jsonEvent;
+                    var test1 = "test1";
+                    var tStamp = displayTime();
+                    var mID;
+                    var mfirst_name;
+                    var mlast_name;
+                    var mLat;
+                    var mLng;
+                    var mCO;
+                    var mNO2;
+                    var mO3;
+                    var mSO2;
+                    var mPM25;
+                    var mRadio;
+                    mID = eval(jsonObj.ID);
+                    mfirst_name = jsonObj.first_name;
+                    mlast_name = jsonObj.last_name;
+                    mLat = eval(jsonObj.Lat);
+                    mLng = eval(jsonObj.Lng);
+                    mCO = eval(jsonObj.CO);
+                    mNO2 = eval(jsonObj.Lng);
+                    mO3 = eval(jsonObj.O3);
+                    mSO2 = eval(jsonObj.SO2);
+                    mPM25 = eval(jsonObj.PM25);
+                    mRadio = eval(jsonObj.Radio);
+                    UpdateMap(mID, mfirst_name, mlast_name, mLat, mLng, mCO, mNO2, mO3, mSO2, mPM25, mRadio);
+
+                },
+                myId: 'test0',
+                myDestination: 'topic://aparcas_conv'
+            };
+
+        amq.addListener(myHandler.myId, myHandler.myDestination, myHandler.rcvMessage);
+
+
+
+        function UpdateMap(id, first_name, last_name, Lat, Lng, CO, NO2, O3, SO2, PM25, Radio) {
+            CO = CO.toFixed(2);
+            NO2 = NO2.toFixed(2);
+            O3 = O3.toFixed(2);
+            SO2 = SO2.toFixed(2);
+            PM25 = PM25.toFixed(2);
+            Radio = Radio.toFixed(2);
+
+            console.log("showData: id: " + id + " first_name: " + first_name + " last_name: " + last_name + " Lat: " + Lat + " Lng: " + Lng + " CO: " + CO + " NO2: " + NO2 + " O3: " + O3 + " SO2: " + SO2 + " PM25: " + PM25 + " Radio: " + Radio);
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(Lat, Lng),
+                map: map,
+                //                icon: getIconMarker('http://maps.google.com/mapfiles/ms/icons/red-dot.png'),
+                title: "Hello World!"
+            });
+
+            markers.push(marker);
+
+
+        }
+
+
+
+
     }
 </script>
 
@@ -183,4 +265,41 @@ th{
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap"
     type="text/javascript"></script>
+
+<script>
+
+
+
+
+    function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+        }
+    }
+
+    function displayTime() {
+        var str = "";
+
+        var currentTime = new Date()
+        var hours = currentTime.getHours()
+        var minutes = currentTime.getMinutes()
+        var seconds = currentTime.getSeconds()
+
+        if (minutes < 10) {
+            minutes = "0" + minutes
+        }
+        if (seconds < 10) {
+            seconds = "0" + seconds
+        }
+        str += hours + ":" + minutes + ":" + seconds + " ";
+        if (hours > 11) {
+            str += "PM"
+        } else {
+            str += "AM"
+        }
+        return str;
+    }
+
+</script>
+
 </html>

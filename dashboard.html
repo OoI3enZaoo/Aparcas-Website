@@ -421,13 +421,39 @@ $(function(){
 				//$("#result").append(tStamp+" ---- received msg -> "+message.textContent+"<br>");
 				jsonObj = JSON.parse(message.textContent);
 				//$("#result").append(" xxxxxxxxxxxxxxxxxxxxxxxxxxx sulfur dioxide(so2): "+jsonObj.so2+"<br>");        
-				so2_val = eval(jsonObj.so2);
+				/*so2_val = eval(jsonObj.so2);
 				no2_val = eval(jsonObj.no2);
 				o3_val = eval(jsonObj.o3);
 				pm25_val = eval(jsonObj.pm25);
 				co_val = eval(jsonObj.co);
-				gamma_val = eval(jsonObj.gamma)
-				console.log(message);
+				gamma_val = eval(jsonObj.gamma)*/
+				//test = eval(jsonObj.first_name);
+
+				var mID;
+				var mfirst_name;
+				var mlast_name;
+				var mLat;
+				var mLng;
+				var mCO;
+				var mNO2;
+				var mO3;
+				var mSO2;
+				var mPM25;
+				var mRadio;
+				mID = eval(jsonObj.ID);
+				mfirst_name = jsonObj.first_name;
+				mlast_name = jsonObj.last_name;
+				mLat = eval(jsonObj.Lat);
+				mLng = eval(jsonObj.Lng);
+				mCO = eval(jsonObj.CO);
+				mNO2 = eval(jsonObj.Lng);
+				mO3 = eval(jsonObj.O3);
+				mSO2 = eval(jsonObj.SO2);
+				mPM25 = eval(jsonObj.PM25);
+				mRadio = eval(jsonObj.Radio);
+				showData(mID, mfirst_name, mlast_name, mLat, mLng, mCO, mNO2, mO3, mSO2, mPM25, mRadio);
+
+
 			},
 			myId: 'test0',
 			myDestination: 'topic://aparcas_conv'
@@ -435,6 +461,17 @@ $(function(){
 
 	amq.addListener(myHandler.myId, myHandler.myDestination, myHandler.rcvMessage);
 
+
+
+	function showData(id, first_name, last_name, Lat, Lng, CO, NO2, O3, SO2, PM25, Radio) {
+		CO = CO.toFixed(2);
+		NO2 = NO2.toFixed(2);
+		O3 = O3.toFixed(2);
+		SO2 = SO2.toFixed(2);
+		PM25 = PM25.toFixed(2);
+		Radio = Radio.toFixed(2);				
+		console.log("showData: id: " + id + " first_name: " + first_name + " last_name: " + last_name + " Lat: " + Lat + " Lng: " + Lng + " CO: " + CO + " NO2: " + NO2 + " O3: " + O3 + " SO2: " + SO2 + " PM25: " + PM25 + " Radio: " + Radio);
+	}
 
 	function displayTime() {
 		var str = "";
