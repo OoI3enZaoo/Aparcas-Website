@@ -7,39 +7,106 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <title>Aparcas Project</title>
-    <!--   Core JS Files   -->
 
-
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
 
-    <link rel="stylesheet" href="bower_components/jquery/src/css/jquery-ui.css">
-
-    <script src="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.js"></script>
-    <link href="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.css" rel="stylesheet" />
 
 
-    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-    <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
-    />
 
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+
+
+
 
 
     <!-- Bootstrap core CSS     -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <!-- Animation library for notifications   -->
     <link href="bower_components/bootstrap/dist/css/animate.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="bower_components/jquery/src/css/jquery-ui.css">
 
 
-    <script src="bower_components/hightcharts/highcharts.js"></script>
-    <script src="bower_components/hightcharts/exporting.js"></script>
+    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
+    />
+
+    <link href="https://fonts.googleapis.com/css?family=Mitr" rel="stylesheet">
+
+
+
 
     <link href="assets/css/style.css" rel="stylesheet" />
+
+
+
+    <style type="text/css">
+     
+     
+
+      html, body {
+        margin-left:auto;
+        margin-right:auto;
+        font-family: 'Mitr', sans-serif;
+        margin: auto; 
+        padding: 0 0 0 0;
+      }
+
+table{
+    border: 1px solid black;
+}
+th{
+    padding: 0px 0px 0px 50px;
+}
+.modal-body {
+    position: relative;
+    overflow-y: auto;
+    max-height: 400px;
+    padding: 15px;
+}
+ 
+  #legend {
+    background: #FFF;
+    padding: 10px;
+    margin: 5px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+  }
+
+  .color {
+    border: 1px solid;
+    height: 12px;
+    width: 12px;
+    margin-right: 3px;
+    float: left;
+  }
+
+  .blue {
+    background: #4d4dff;
+  }
+
+  .green {
+    background: #4dff88;
+  }
+
+  .yellow {
+    background: #ffff4d;
+  }
+
+  .orange {
+    background: #ff944d;
+  }
+
+  .red {
+    background: #ff4d4d;
+  }
+
+  #full-width {
+       padding: 0 0 0 0;
+   } 
+</style>
 
 
 </head>
@@ -47,65 +114,59 @@
 <body>
 
 
+    <header style="position:relataive">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h4><strong>Air Pollution and Radioactive Contamination Analyzing System </strong> &nbsp;&nbsp;</h4>
 
-
-
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <strong>Air Pollution and Radioactive Contamination Analyzing System </strong> &nbsp;&nbsp;
-
-                </div>
-
-            </div>
         </div>
-    </header>
 
-    <section class="menu-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
+    </div>
+</div>
+</header>
 
 
-                    <ul id="menu-top" class="nav navbar-nav navbar-right">
-
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="airpollution.html">Air pollution</a></li>
-                        <li><a href="history.html">History</a></li>
-                        <li><a class="menu-top-active" href="aqi.html">Air Quality index</a></li>
-
-
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
+<section class="menu-section">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="card">
 
-                    <div class="header">
-                        <br>
-                        <h4 class="title text-center">Air Quality Index</h4>
-                        <p class="category text-center">Here is a subtitle for this table</p>
-                    </div>
-                    <div class="content table-responsive table-full-width">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                                <th>AQI</th>
-                                <th>Air Pollution Level</th>
-                                <th>Health Implications</th>
+               <ul id="menu-top" class="nav navbar-nav navbar-right">
+                    <li><a  href="realtime.html">คุณภาพอากาศแบบเรียลไทม์</a></li>
+                    <li><a  href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
+                    <li><a  href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
+                    <li><a  href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
+                    <li><a  href="predict.html">พยากรณ์คุณภาพอากาศ</a></li>
+                    <li><a  class="menu-top-active" href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
-                            </thead>
-                            <tbody>
-                                <tr style="background-color:#b3e0ff">
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            
+                    <br>
+                    <h2 class="title text-center">ดัชนีคุณภาพอากาศ</h2>
+                    <h3 class="category text-center">การปรับตัวต่อค่าดัชนีคุณภาพในอากาศที่พบเจอ</h3>
+                    <br>
+                
+                
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <th  style="background-color: #ff4d4d" ><h4><b>ดัชนี</b></h4></th>
+                            <th style="background-color: #ff4d4d"><h4><b>คุณภาพ</b></h4></th>
+                            <th style="background-color: #ff4d4d"><h4><b>การปรับตัว</b></h4></th>
+
+</thead>
+<tbody>
+    <tr style="background-color:#b3e0ff">
 <td>0-50</td>
 <td>คุณภาพดี</td>
 <td>คุณภาพอากาศอยู่ในเกณฑ์ดี ไม่มีผลกระทบต่อสุขภาพ</td>
@@ -122,7 +183,7 @@
 
 <td>100-200</td>
 <td>มีผลกระทบต่อสุขภาพ</td>
-<td>คุณภาพอากาศมีผลกระทบต่อสุขภาพ ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ
+    <td>คุณภาพอากาศมีผลกระทบต่อสุขภาพ ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br>
     ไม่ควรทำกิจกรรมภายนอกอาคารเป็นเวลานาน
 </td>
 
@@ -130,13 +191,71 @@
 <tr style="background-color:#ffd9b3">
 <td>201-300</td>
 <td>มีผลกระทบต่อสุขภาพมาก</td>
-<td>คุณภาพอากาศมีผลกระทบต่อสุขภาพมาก ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงกิจกรรมภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ
+<td>คุณภาพอากาศมีผลกระทบต่อสุขภาพมาก ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงกิจกรรมภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br>
     ควรจำกัดการออกกำลังภายนอกอาคาร
 </td>
 
 </tr>
 <tr style="background-color:#ffcccc">
-<td>มากกว่า 300</td>
+<td>มากกว่า300</td>
+<td>อันตราย</td>
+<td>คุณภาพอากาศอยู่ในอันตราย บุคคลทั่วไปควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร สำหรับผู้ป่วยโรคระบบทางเดินหารใจ ควรอยู่ภายในอาคาร</td>
+</tr>
+
+</tbody>
+</table>
+<a href="#"><h4 style="margin-left: 80%; padding-top: 0">ดัชนีคุณภาพอากาศคืออะไร?</h4></a>
+<a href="#"><h4 style="margin-left: 80%; padding-top: 0">การคำนวณดัชนีคุณภาพอากาศ</h4></a>
+
+
+
+
+ <br>
+                    <h2 class="title text-center">ดัชนีรังสี</h2>
+                    <h3 class="category text-center">การปรับตัวต่อค่าดัชนีรังสีในอากาศที่พบเจอ</h3>
+                    <br>
+                
+                
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <th  style="background-color: #ff4d4d" ><h4><b>ดัชนี</b></h4></th>
+                            <th style="background-color: #ff4d4d"><h4><b>คุณภาพ</b></h4></th>
+                            <th style="background-color: #ff4d4d"><h4><b>การปรับตัว</b></h4></th>
+
+</thead>
+<tbody>
+    <tr style="background-color:#b3e0ff">
+<td>0-50</td>
+<td>คุณภาพดี</td>
+<td>คุณภาพอากาศอยู่ในเกณฑ์ดี ไม่มีผลกระทบต่อสุขภาพ</td>
+
+</tr>
+<tr style="background-color:#c2f0c2">
+<td>51-100</td>
+<td>คุณภาพปานกลาง</td>
+<td>คุณภาพปานกลาง ไม่มีผลกระทบต่อสุขภาพ</td>
+
+</tr>
+<tr style="background-color:#ffffb3">
+
+
+<td>100-200</td>
+<td>มีผลกระทบต่อสุขภาพ</td>
+    <td>คุณภาพอากาศมีผลกระทบต่อสุขภาพ ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br>
+    ไม่ควรทำกิจกรรมภายนอกอาคารเป็นเวลานาน
+</td>
+
+</tr>
+<tr style="background-color:#ffd9b3">
+<td>201-300</td>
+<td>มีผลกระทบต่อสุขภาพมาก</td>
+<td>คุณภาพอากาศมีผลกระทบต่อสุขภาพมาก ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงกิจกรรมภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br>
+    ควรจำกัดการออกกำลังภายนอกอาคาร
+</td>
+
+</tr>
+<tr style="background-color:#ffcccc">
+<td>มากกว่า300</td>
 <td>อันตราย</td>
 <td>คุณภาพอากาศอยู่ในอันตราย บุคคลทั่วไปควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร สำหรับผู้ป่วยโรคระบบทางเดินหารใจ ควรอยู่ภายในอาคาร</td>
 </tr>
@@ -144,15 +263,21 @@
 </tbody>
 </table>
 </div>
+
+
+
+
+
+    </div>
 </div>
-</div>
 
 
 
 
 
-</div>
-</div>
+
+
+
 
 
 

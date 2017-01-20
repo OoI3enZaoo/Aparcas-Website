@@ -14,9 +14,12 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
 
+    
 
 
 
+    
+    
 
 
 
@@ -29,10 +32,8 @@
     <link href="bower_components/bootstrap/dist/css/animate.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="bower_components/jquery/src/css/jquery-ui.css">
 
-
     <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
     />
-
     <link href="https://fonts.googleapis.com/css?family=Mitr" rel="stylesheet">
 
 
@@ -109,6 +110,7 @@ th{
 </style>
 
 
+
 </head>
 
 <body>
@@ -130,15 +132,14 @@ th{
 <section class="menu-section">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-               <ul id="menu-top" class="nav navbar-nav navbar-right">
-                    <li><a  href="realtime.html">คุณภาพอากาศแบบเรียลไทม์</a></li>
-                    <li><a  href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
-                    <li><a  href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
-                    <li><a class="menu-top-active" href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
+                 <ul id="menu-top" class="nav navbar-nav navbar-right">
+                    <li><a class="menu-top-active" href="realtime.html">คุณภาพอากาศแบบเรียลไทม์</a></li>
+                    <li><a href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
+                    <li><a href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
+                    <li><a href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
                     <li><a  href="predict.html">พยากรณ์คุณภาพอากาศ</a></li>
-                    <li><a   href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
+                    <li><a href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
                 </ul>
             </div>
         </div>
@@ -148,30 +149,38 @@ th{
 
 
 
-<div class="container">
+<div id="full-width" class="container-fluid">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            
-                    <br>
-                    <h2 class="title text-center">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</h2>
-                    <h3 class="category text-center">การค้นหาเส้นทางหลีกเลี่ยงมลพิษ</h3>
-                    <br>
-
-        </div>
-    </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+            <div id="map" style="width:100%; height:1000px;" ></div>
 </div>
-
+</div>
+</div>
 </body>
 
+
+
+
+<script>
+
+
+    function initMap() {
+
+
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 7,
+            center: new google.maps.LatLng(15.044938, 102.183838),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });   //end of map
+
+    }
+</script>
+
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-
-
-
-
-
 <script src="bower_components/bootstrap/dist/js/bootstrap-notify.js"></script>
+<script src="bower_components/bootstrap-waitingfor/build/bootstrap-waitingfor.js"></script>
 
-
-
-
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap"
+    type="text/javascript"></script>
 </html>
