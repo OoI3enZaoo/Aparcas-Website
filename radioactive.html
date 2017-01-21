@@ -171,11 +171,11 @@
     <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 ">
       <br>
       <div class="container-fluid">
-        
+
         <h4 class="title text-center text-info">เลื่อนที่แถบเพื่อเลือกเวลา</h4>
         <div id="flat-slider"></div>
       </div>
-      <br>      <br>
+      <br> <br>
 
       <div id="map" style="width:100%; height:1000px;" ></div>
 </div>
@@ -186,33 +186,67 @@
   <br>
   <br>
   <br>
-  <h2 class = "text-center text-primary"><b>ระบุเงื่อนไข</h2>
-  <h3 class = "text-center text-info">กรุณาเลือกจังหวัดและวันที่เพื่อแสดงข้อมูล</h3>
+  <h2 class="text-center text-primary"><b>ระบุเงื่อนไข</h2>
+  <h3 class = "text-center text-info">กรุณาเลือกพื้นที่และวันที่เพื่อแสดงข้อมูล</h3>
   
   <br>
   <from>
     <div class="form-group" >
-      <h4 class=" col-xs-1 col-sm-1 col-md-1 col-lg-1  col-sm-offset-2 text-info"  for="email">จังหวัด:</h4>
+      <h4 class=" col-xs-1 col-sm-1 col-md-1 col-lg-1  col-sm-offset-2 text-info" >จังหวัด:</h4>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
           <div class="dropdown">
-            <button id="mProvince" class="btn btn-info dropdown-toggle" style= "width: 356px; position:relative; font-size:18px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกจังหวัด       
+            <button id="pname" class="btn btn-info dropdowSn-toggle" style= "width: 356px; position:relative; font-size:18px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกจังหวัด
 
-                                                  <span class="caret"  ></span></button>
-            <ul id="dropdownProvince" class="dropdown-menu" style= "width: 356px" >
+<span class="caret"></span></button>
+<ul id="dropdownP" class="dropdown-menu" role="menu" style="width: 356px" >
+<li><a href='#' data-value='10'>กรุงเทพมหานคร</a></li>
 
-            </ul>
+</ul>
 
-          </div>
-    </div>
 </div>
+</div>
+</div>
+<br><br><br>
+<div class="form-group">
+  <h4 class=" col-xs-1 col-sm-1 col-md-1 col-lg-1  col-sm-offset-2 text-info">เขต:</h4>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="dropdown">
+      <button id="dname" class="btn btn-info dropdown-toggle" style="width: 356px; position:relative; font-size:18px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกเขต
+<span class="caret"></span></button>
+<ul id="dropdownD" class="dropdown-menu" style="width: 356px" >
+
+
+</ul>
+
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<div class="form-group">
+  <h4 class=" col-xs-1 col-sm-1 col-md-1 col-lg-1  col-sm-offset-2 text-info">แขวง:</h4>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="dropdown">
+      <button id="sname" class="btn btn-info dropdown-toggle" style="width: 356px; position:relative; font-size:18px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกแขวง
+<span class="caret"></span></button>
+<ul id="dropdownS" class="dropdown-menu" style="width: 356px" >
+
+
+</ul>
+
+</div>
+</div>
+</div>
+
 <br><br>
 <br>
 <div class="form-group">
-  <h4 class=" col-xs-1 col-sm-1 col-md-1 col-lg-1  col-sm-offset-2 text-info"  for="email">วัน:</h4>
+  <h4 class=" col-xs-1 col-sm-1 col-md-1 col-lg-1  col-sm-offset-2 text-info" for="email">วัน:</h4>
   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
     <!-- <input class="form-control" id="txtDate" placeholder="Pick your Date"/> -->
-    <input id="txtDate" type='text' class="form-control" style="position:relative; " id='datepicker' />
-  </div>
+    <input id="txtDate" type='text' class="form-control" style="position:relative; "/>
+</div>
 </div>
 <br>
 <br>
@@ -220,20 +254,20 @@
 <div class="form-group">
   <div class="row">
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="margin-left:150px">
-      <button type="button" id="DateSearch" class="btn btn-lg btn-success btn-block">แสดงข้อมูล</button>
-    </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      <button type="button" class="btn btn-lg btn-danger btn-block" style="margin-left:49px">ล้าง</button>
+<button type="button" id="Search" class="btn btn-lg btn-success btn-block">แสดงข้อมูล</button>
+</div>
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+  <button type="button" class="btn btn-lg btn-danger btn-block" style="margin-left:49px">ล้าง</button>
 
-    </div>
-  </div>
+</div>
+</div>
 </div>
 </form>
 
-  <br>
-  <br>
+<br>
+<br>
 
-  <!--<div class="header">
+<!--<div class="header">
 
     <div class="title col-sm-offset-3" id="aqi"></div>
   </div>-->
@@ -245,7 +279,7 @@
 
 
 
-  </div>
+</div>
 
 </div>
 </div>
@@ -273,7 +307,7 @@
   var markers = [];
 
 
-
+  //dname
   function initMap() {
 
 
@@ -375,16 +409,25 @@
 
       });
 
-    $("#DateSearch").click(function () {
+    $("#Search").click(function () {
 
       //$("#showInfo").empty();
 
 
       var mDate = document.getElementById("txtDate").value;
+      var dname = document.getElementById("dname").value;
+      var sname = document.getElementById("sname").value;
 
       if (mDate == "") {
         getNotification("pe-7s-close-circle", "danger", "<b>Error</b> Please select your date first");
-      } else {
+      }
+      if (dname == "") {
+        getNotification("pe-7s-close-circle", "danger", "<b>Error</b>กรุณาเลือกเขต");
+      }
+      if (sname == "") {
+        getNotification("pe-7s-close-circle", "danger", "<b>Error</b>กรุณาเลือกแขวง");
+      }
+      else {
         myDate = DatePickResponse(mDate);
         RemoveMarker();
         waitingDialog.show('Get data from database...');
@@ -405,59 +448,72 @@
 
 
       console.log("UpdateMap(" + gIndex + "," + startTime + "," + endTime + "," + date + ")");
-      $.getJSON('http://sysnet.utcc.ac.th/aparcas/api/AQI2.jsp', function (result) {
-
+      $.getJSON('http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp', function (result) {
 
         /*var mStartTime = Date.parse(startTime);
         var mEndTime = Date.parse(endTime);
         console.log("StartTime: " + mStartTime + " EndTime: " + mEndTime); */
+
+
         var myLocation = [];
         var myGas = [];
         var myDateTime = [];
+        var check = false;
+        var did = document.getElementById("dname").value;
+        var sid = document.getElementById("dname").value;
+        console.log("Dname: " + dname + " did: " + did);
         for (i = 0; i < result.length; i++) {
-          var re = new RegExp(date, 'g');
-          if (result[i].timestamp.match(re)) {
 
-            var restime = result[i].timestamp;
-            res1 = restime.substr(11, 2);
-            res2 = restime.substr(14, 2);
-            res3 = restime.substr(17, 2);
-            restime = res1 + ":" + res2 + ":" + res3;
-            //console.log("restime: " + restime + " startTime: " + startTime + " endTime: " + endTime);*/
+          if (did == result[i].grid_id || did == 1111) {
+            
+            var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
+            var re = new RegExp(date, 'g');
+            if (day.match(re)) {
 
-            if (restime >= startTime && restime <= endTime) {
-              //waitingDialog.message("Load data "+i+"/"+result.AQI.length + " <");    
-              var mID = result[i].id;
-              var mName = result[i].name;
-              var mLat = result[i].lat;
-              var mLong = result[i].long;
-              var co = result[i].co;
-              var no2 = result[i].no2;
-              var o3 = result[i].o3;
-              var so2 = result[i].so2;
-              var pm25 = result[i].pm25;
-              var radio = result[i].radio;
-              var AQI = getAQI(co, no2, o3, so2, pm25);  //get AQI from getAQI function      
-              var mTimestamp = result[i].timestamp;
+              var restime = day;
+              res1 = restime.substr(11, 2);
+              res2 = restime.substr(14, 2);
+              res3 = restime.substr(17, 2);
+              restime = res1 + ":" + res2 + ":" + res3;
+              //console.log("restime: " + restime + " startTime: " + startTime + " endTime: " + endTime);
 
-              myLocation[i] = [mName, mLat, mLong, mID];
-              myGas[i] = [AQI, co, no2, o3, so2, pm25, radio];
-              myDateTime[i] = [mTimestamp];
+              if (restime >= startTime && restime <= endTime) {
+                //waitingDialog.message("Load data "+i+"/"+result.AQI.length + " <");    
+                var mID = result[i].id;
+                var mLat = result[i].lat;
+                var mLong = result[i].lon;
+                var co = result[i].co;
+                var no2 = result[i].no2;
+                var o3 = result[i].o3;
+                var so2 = result[i].so2;
+                var pm25 = result[i].pm25;
+                var radio = result[i].radio;
+                var AQI = getAQI(co, no2, o3, so2, pm25);  //get AQI from getAQI function      
 
 
-              // console.log('name: '+myLocation[i][0] +' lat:' + myLocation[i][1] + ' long: ' +  myLocation[i][2]); //for Debug
-              // console.log('AQI: ' + myGas[i][0]+' CO: '+myGas[i][1] + ' NO2: ' + myGas[i][2] + ' O3: ' + myGas[i][3] + ' SO2: ' + myGas[i][4] + ' PM2.5: ' +myGas[i][5] + 'RadioActive: ' +  myGas[i][6]); //for debug
+                myLocation[i] = [mLat, mLong, mID];
+                myGas[i] = [radio];
+                myDateTime[i] = [day];
+                check = true;
+                // console.log('name: '+myLocation[i][0] +' lat:' + myLocation[i][1] + ' long: ' +  myLocation[i][2]); //for Debug
+                // console.log('AQI: ' + myGas[i][0]+' CO: '+myGas[i][1] + ' NO2: ' + myGas[i][2] + ' O3: ' + myGas[i][3] + ' SO2: ' + myGas[i][4] + ' PM2.5: ' +myGas[i][5] + 'RadioActive: ' +  myGas[i][6]); //for debug
 
-              placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex);//call method for create circle on the map                   
+                placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex);//call method for create circle on the map                   
+              }
+            } else {
+              if (check == false) {
+                check = true;
+                //getNotification("pe-7s-close-circle", "danger", "<b>Error</b>ไม่พบข้อมูล กรุณาเลือกเป็นวันอื่นๆ");
+              }
+
             }
           }
         }//for     
 
+
         waitingDialog.message("Set data to map...");
 
         function placeMarker(mValue, mGas, mDateTime, type) {
-
-
 
           console.log("placeMarker");
           var covered = {
@@ -467,7 +523,7 @@
             fillColor: getfillColor(mGas[type]),//พื้น
             fillOpacity: 0.35,
             map: map,
-            center: new google.maps.LatLng(mValue[1], mValue[2]),
+            center: new google.maps.LatLng(mValue[0], mValue[1]),
             radius: 500
           };
 
@@ -480,24 +536,20 @@
 
           var infoWindow = new google.maps.InfoWindow({
             content:
-            "<div class = 'text-primary'><b>Air Pollution Report</b></div>" +
-            "<div class = 'text-muted'>Last up date : Date/Time: " + mDateTime[0] + "</div>" +
-            "<div class = 'text-info'>Name: " + mValue[0] + "</div>" +
-            "<div class = 'text-info'>AQI: " + mGas[0] + "</div>" +
-            "<div class = 'text-info'>CO: " + mGas[1] + "</div>" +
-            "<div class = 'text-info'>NO2: " + mGas[2] + "</div>" +
-            "<div class = 'text-info'>O3: " + mGas[3] + "</div>" +
-            "<div class = 'text-info'>SO2: " + mGas[4] + "</div>" +
-            "<div class = 'text-info'>PM2.5: " + mGas[5] + "</div>" +
-            "<div class = 'text-info'>RadioActive: " + mGas[6] + "</div>"
-            ,
+            "<div class = 'text-primary'><b>การแจ้งเตือนปริมาณกัมมันตรังสี</b></div>" +
+            "<div class = 'text-muted'>เวลาอัพเดทล่าสุด " + mDateTime[0] + "</div>" +
+            "<div class = 'text-info'>ID: " + mValue[2] + "</div>" +
+            "<div class = 'text-info'>ค่ากัมมันตรังสี: " + mGas[0] + "</div>",
+
+
             maxWidth: 500
           });
 
+          console.log("mValue: " + mValue[0] + " 2: " + mValue[1]);
           var marker = new google.maps.Marker({
             position: new google.maps.LatLng(mValue[1], mValue[2]),
+            map: map,
             icon: getIconMarker(mGas[0]),
-
             title: "Hello World!"
           });
 
@@ -515,8 +567,6 @@
           });
 
 
-
-
           setMapOnAll(map);
 
 
@@ -529,7 +579,7 @@
 
           if (countzoom == true) {
 
-            var province = document.getElementById("mProvince").innerHTML;
+            var province = document.getElementById("dname").innerHTML;
             console.log("Province: " + province);
             var geocoder = new google.maps.Geocoder();
 
@@ -601,309 +651,349 @@
   $(function () {
 
 
-    /*
-     
-     $.getJSON('http://sysnet.utcc.ac.th/aparcas/api/AQI2.jsp',function(result){  
-    
-          for(i = 0; i<result.length; i++){
-            var mlat = result[i].lat;
-            var mlong = result[i].long;
-                  
-            console.log("call Loopna"); 
-            postJSON(mlat,mlong);       
-                
-           }
-    
-          
-      });*/
 
-    $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/GetDistrict2.jsp", function (result) {
+    /*
+        $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/get_lat_long_from_event_trans.jsp", function (result1) {
+    
+          for (i = 0; i < result1.length; i++) {
+    
+            var mlat = result1[i].lat;
+            var mlon = result1[i].lon;
+            var uid = result1[i].uid;
+            console.log("call Loopna");
+            postJSON(uid,mlat, mlon);
+    
+          }
+    
+    
+        });*/
+
+    $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/grid_lut.jsp", function (result) {
 
       var checkSame = ['55'];
       var count = 1;
+      var districtname;
+
+      var query = "<li ><a href='#'data-value='1111'>เขตทั้งหมด</a></li>";
+      $("#dropdownD").append(query);
       for (i = 0; i < result.length; i++) {
 
-        var districtname = result[i].name;
-        var DName = result[i].province;
-        var DID = result[i].id;
+        districtname = result[i].dname;
+        var districtcode = result[i].dcode;
 
         for (j = 0; j < checkSame.length; j++) {
-          if (checkSame[j] == DName) {
+          if (checkSame[j] == districtcode) {
             count = 0;
             break;
           }
         }
         if (count == 1) {
-          var query = "<li><a href='#'data-value='" + DID + "'>" + DName + "</a></li>";
-          $("#dropdownProvince").append(query);
-          checkSame.push(DName);
+          var query = "<li ><a href='#'data-value='" + districtcode + "'>" + districtname + "</a></li>";
+          $("#dropdownD").append(query);
+          checkSame.push(districtcode);
         }
         count = 1;
 
       }//for
 
+
       $(".dropdown-menu li a").click(function () {// show value when click
+        $("#dropdownS").empty();
         $(this).parents(".dropdown").find('.btn').html($(this).text());
         $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-      });
-
-    });
 
 
-    $('#txtDate').datetimepicker({
-      format: 'DD/MM/YYYY'
-    });
+        var query = "<li ><a href='#'data-value='2222'>แขวงทั้งหมด</a></li>";
+        $("#dropdownS").append(query);
 
-  });
+        var dname = document.getElementById("dname").innerHTML;
+        var checkSame2 = ['55555'];
+        var count2 = 1;
 
-  /*
-  
-  function postJSON(mlat,mlong){
-    console.log("PostJSON");          
-    $.getJSON("https://www.googleapis.com/fusiontables/v1/query?key=AIzaSyD2Wl_1_czaWb9aBDSdMNLlOXMNI9ULibw&sql=SELECT%20CCA_2,NL_NAME_2%20FROM%2017Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs%20WHERE%20ST_INTERSECTS(geometry,%20CIRCLE(LATLNG(15.9443970094,100.1210692095),100))",function(result2){
-  
-                //console.log("result: " + result2.code);             
-                var DistrictID = result2.rows[0][0];
-                var DistrictName = result2.rows[0][1];
-  
-                console.log("ID: " + DistrictID + " Name: " + DistrictName + " Lat: " + mlat);
-                 $.post("http://sysnet.utcc.ac.th/aparcas/api/updateAQI2.jsp",
-                    {
-                        did : DistrictID,                 
-                        dname: DistrictName,
-                        lat: "15.7183852478"                                   
-                    },
-  
-                    function(data, status){
-                        alert("Data: " + data + "\nStatus: " + status);
-                    }); 
-             });
-  
-  }*/
+        console.log("dname: " + dname);
 
+        for (i = 0; i < result.length; i++) {
+          var sname = result[i].sname;
+          var scode = result[i].scode;
+          for (j = 0; j < checkSame.length; j++) {
 
-  function getNotification(micon, mtype, mdata) {
+            if (checkSame2[j] == sname) {
+              count2 = 0;
+              break;
+            }
+          }
+          if (result[i].dname == dname) {
+            if (count2 == 1) {
+              console.log("DNAME: " + dname + " Sname: " + sname);
+              checkSame2.push(sname);
+              var query = "<li ><a href='#'data-value='" + scode + "'>" + sname + "</a></li>";
+              $("#dropdownS").append(query);
 
-    $.notify({
-      icon: micon,//icon
-      message: mdata//data
-
-    }, {
-        type: mtype, //type  danger ,warning ,success ,info
-        timer: 4000
-      });
-
-
-  }
-
-
-  function RemoveMarker() {
-    for (i = 0; i < Circles.length; i++) {
-      Circles[i].setMap(null);
-    }
-  }
-  function setMapOnAll(map) {
-    for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(map);
-    }
-  }
-  function getAQI(co, no2, o3, so2, pm25) {
-    var mArray = [co, no2, o3, so2, pm25];
-    var maxValueInArray = Math.max.apply(null, mArray);
-    return parseFloat(maxValueInArray);
-  }
-
-
-
-  /* function getDistrictFromLatlng(lat, lng) {
- 
-     //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
-     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc", function (result) {
-      
- 
-       for (j = 0; j < result.results[0].address_components.length; j++) {
-         if (result.results[0].address_components[j].long_name.match(/^เขต.*$/) || result.results[0].address_components[j].long_name.match(/^อำเภอ.*$/)) {
-           var myDistrict = result.results[0].address_components[j].long_name;
-           var mCutSpace = myDistrict.replace(" ", "");
-           // var mCutTitle = myDistrict.replace("เขต ","");    
-           //var a = mCutSpace+mCutTitle;
-           mResult = mCutSpace.valueOf();
-           var addText = "กิ่ง";
-           if (mResult == "อำเภอสามชัย" || mResult == "อำเภอนาคู" || mResult == "อำเภอพนมดงรัก" || mResult == "อำเภอโนนนารายณ์" || mResult == "อำเภอเนินขาม" || mResult == "อำเภอหนองหิน" || mResult == "อำเภอบึงสามัคคี" || mResult == "อำเภอบัวลาย" ||
-             mResult == "อำเภอซับใหญ่" || mResult == "อำเภอศิลาลาด" || mResult == "อำเภอบ้านแฮด" || mResult == "อำเภอพระทองคำ" ||
-             mResult == "อำเภอสากเหล็ก" || mResult == "อำเภอบึงนาราง" || mResult == "อำเภอกุดรัง" || mResult == "อำเภอหนองมะโมง" || mResult == "อำเภอสากเหล็ก" || mResult == "อำเภอดงเจริญ" || mResult == "อำเภอเทพารักษ์" || mResult == "อำเภอแคนดง" || mResult == "อำเภอฆ้องชัย" || mResult == "อำเภอเมืองยาง" || mResult == "อำเภอลำทะเมนชัย" || mResult == "อำเภอหนองฮี" || mResult == "อำเภอซำสูง" || mResult == "อำเภอโนนศิลา" || mResult == "อำเภอหนองนาคำ" || mResult == "อำเภอดอนจาน") {
-             mResult = addText + mResult;
-           }
-           if (mResult == "อำเภอปทุมรัตน์") {
-             mResult = "อำเภอปทุมรัตต์";
-           }
-           if (mResult == "อำเภอหนองบุนนาก") {
-             mResult = "อำเภอหนองบุญนาก";
-           }
-           if (mResult == "อำเภอกุฉินารายณ์") {
-             mResult = "อำเภอกุฉินารายน์";
-           }
-           if (mResult == "อำเภอโคกโพธิ์ไชย") {
-             mResult = "กิ่งอำเภอโคกโพธิ์ชัย";
-           }
-           if (mResult == "อำเภอเมืองนครราชสีมา") {
-             mResult = "เมืองนครราชสีมา";
-           }
-           if (mResult == "อำเภอเวียงเก่า") {
-             mResult = "อำเภอภูเวียง";
-           }
-           if (mResult == "อำเภอโพทะเล") {
-             mResult = "โพทะเล";
-           }
- 
-           //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
-           //console.log("test: "  +mResult);
-           getDistrictIDFromDistrictName(mResult);
- 
-         }
-       }
- 
- 
- 
-     });
- 
-   }
- */
-
-  function DatePickResponse(dateText) {
-    var Day = dateText.substr(0, 2);
-    var Month = dateText.substr(3, 2);
-    var Year = dateText.substr(6, 7);
-    var result = Year + "-" + Month + "-" + Day;
-    return result;
-  }
-
-  //for test on url
-  //https://www.googleapis.com/fusiontables/v2/query?sql=SELECT CCA_2 FROM17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs WHERE NL_NAME_2 = 'อำเภอท่าตูม'&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc
-  function getDistrictIDFromDistrictName(name) {
-    /* $.getJSON("https://www.googleapis.com/fusiontables/v2/query?sql="+
-           "SELECT CCA_2 "+
-           "FROM 17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs "+
-           "WHERE NL_NAME_2 = '"+name+"'"+
-           "&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc",function(result){
-   
-             var str = result.rows+"";
-             var res = str.substr(0,4);
-   
-          $.post("http://sysnet.utcc.ac.th:8161/aparcas/api/SetDistrict2.jsp",
-             {
-                 id : res,
-                 name: name,
-                 province : 
-                 co: co,
-                 no2: no2,
-                 o3: o3,
-                 so2:so2,
-                 pm25:pm25,
-                 radio: radio, 
-                 timestamp: time
-   
-                 
-             },
-   
-             function(data, status){
-                 alert("Data: " + data + "\nStatus: " + status);
-             }); */
-
-    /*$.ajax({
-        type: "POST",
-         contentType: "charset=utf-8",
-        url: 'http://sysnet.utcc.ac.th:8161/aparcas/api/District2.jsp',
-        data: { 
-            id : res,
-            name: name,
-            co: co,
-            no2: no2,
-            o3: o3,
-            so2:so2,
-            pm25:pm25,
-            radio: radio, 
-            timestamp: time
+            }
+            count2 = 1;
+          }
         }
-    });*/
+        $(".dropdown-menu li a").click(function () {// show value when click
+          $(this).parents(".dropdown").find('.btn').html($(this).text());
+          $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+        });
 
-    // });
+        });
+
+      });
 
 
-  }
+      $('#txtDate').datetimepicker({
+        format: 'DD/MM/YYYY'
+      });
+
+    });
 
 
-  /* function showDetail(lat, lng) {
-     //getDistrictFromLatlng(lat, lng);
-     console.log("Lat: " + lat, " long: " + lng);
-     console.log("District: " + mResult);
- 
-   }*/
-
-  function getIconMarker(number) {
-
-    if (number > 300) {
-      return 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';//red
+    /*function postJSON(id,lat,lon){
+    
+    
+            console.log("PostJSON");
+            $.getJSON("https://www.googleapis.com/fusiontables/v1/query?key=AIzaSyD2Wl_1_czaWb9aBDSdMNLlOXMNI9ULibw&sql=SELECT DCODE FROM 1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G WHERE ST_INTERSECTS(geometry, CIRCLE(LATLNG(" + lat + "," + lon + "),100))", function (result2) {
+              
+              var DistrictID = result2.rows[0][0];
+              
+              
+              console.log("uid: " + id + " did: " + DistrictID + " lat: " + lat + " lon: " + lon);
+              $.ajax({
+                url: 'http://sysnet.utcc.ac.th/aparcas/api/update_event_trans.jsp',
+                type: 'PUT',
+                data: "did=" + DistrictID + "&uid=" + id + "",
+                success: function (data) {
+                  alert('Load was performed.');
+                }
+              });
+            });
+    
     }
-    if (number > 201) {
-      return 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png';//orange
-    }
-    if (number > 100) {
-      return 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';//yellow
-    }
-    if (number > 51) {
-      return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'//green
-    }
-    else {
-      return 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';//blue
+    */
+    function getNotification(micon, mtype, mdata) {
 
-    }
-    return null;
-  }
+      $.notify({
+        icon: micon,//icon
+        message: mdata//data
 
-  function getfillColor(number) {
+      }, {
+          type: mtype, //type  danger ,warning ,success ,info
+          timer: 4000
+        });
 
-
-    if (number > 300) {
-      return "#ff4d4d";//red
-    }
-    if (number > 201) {
-      return "#ff944d";//orange
-    }
-    if (number > 100) {
-      return "#ffff4d";//yellow
-    }
-    if (number > 51) {
-      return "#4dff88"//green
-    }
-    else {
-      return "#4d4dff";//blue
 
     }
-    return null;
-  }
-
-  function getStrokeColor(number) {
 
 
+    function RemoveMarker() {
+      for (i = 0; i < Circles.length; i++) {
+        Circles[i].setMap(null);
+      }
+    }
+    function setMapOnAll(map) {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+      }
+    }
+    function getAQI(co, no2, o3, so2, pm25) {
+      var mArray = [co, no2, o3, so2, pm25];
+      var maxValueInArray = Math.max.apply(null, mArray);
+      return parseFloat(maxValueInArray);
+    }
 
-    if (number > 300) {
-      return "#ff0000";//red
+
+
+    /* function getDistrictFromLatlng(lat, lng) {
+   
+       //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
+       $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc", function (result) {
+        
+   
+         for (j = 0; j < result.results[0].address_components.length; j++) {
+           if (result.results[0].address_components[j].long_name.match(/^เขต.*$/) || result.results[0].address_components[j].long_name.match(/^อำเภอ.*$/)) {
+             var myDistrict = result.results[0].address_components[j].long_name;
+             var mCutSpace = myDistrict.replace(" ", "");
+             // var mCutTitle = myDistrict.replace("เขต ","");    
+             //var a = mCutSpace+mCutTitle;
+             mResult = mCutSpace.valueOf();
+             var addText = "กิ่ง";
+             if (mResult == "อำเภอสามชัย" || mResult == "อำเภอนาคู" || mResult == "อำเภอพนมดงรัก" || mResult == "อำเภอโนนนารายณ์" || mResult == "อำเภอเนินขาม" || mResult == "อำเภอหนองหิน" || mResult == "อำเภอบึงสามัคคี" || mResult == "อำเภอบัวลาย" ||
+               mResult == "อำเภอซับใหญ่" || mResult == "อำเภอศิลาลาด" || mResult == "อำเภอบ้านแฮด" || mResult == "อำเภอพระทองคำ" ||
+               mResult == "อำเภอสากเหล็ก" || mResult == "อำเภอบึงนาราง" || mResult == "อำเภอกุดรัง" || mResult == "อำเภอหนองมะโมง" || mResult == "อำเภอสากเหล็ก" || mResult == "อำเภอดงเจริญ" || mResult == "อำเภอเทพารักษ์" || mResult == "อำเภอแคนดง" || mResult == "อำเภอฆ้องชัย" || mResult == "อำเภอเมืองยาง" || mResult == "อำเภอลำทะเมนชัย" || mResult == "อำเภอหนองฮี" || mResult == "อำเภอซำสูง" || mResult == "อำเภอโนนศิลา" || mResult == "อำเภอหนองนาคำ" || mResult == "อำเภอดอนจาน") {
+               mResult = addText + mResult;
+             }
+             if (mResult == "อำเภอปทุมรัตน์") {
+               mResult = "อำเภอปทุมรัตต์";
+             }
+             if (mResult == "อำเภอหนองบุนนาก") {
+               mResult = "อำเภอหนองบุญนาก";
+             }
+             if (mResult == "อำเภอกุฉินารายณ์") {
+               mResult = "อำเภอกุฉินารายน์";
+             }
+             if (mResult == "อำเภอโคกโพธิ์ไชย") {
+               mResult = "กิ่งอำเภอโคกโพธิ์ชัย";
+             }
+             if (mResult == "อำเภอเมืองนครราชสีมา") {
+               mResult = "เมืองนครราชสีมา";
+             }
+             if (mResult == "อำเภอเวียงเก่า") {
+               mResult = "อำเภอภูเวียง";
+             }
+             if (mResult == "อำเภอโพทะเล") {
+               mResult = "โพทะเล";
+             }
+   
+             //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
+             //console.log("test: "  +mResult);
+             getDistrictIDFromDistrictName(mResult);
+   
+           }
+         }
+   
+   
+   
+       });
+   
+     }
+   */
+
+    function DatePickResponse(dateText) {
+      var Day = dateText.substr(0, 2);
+      var Month = dateText.substr(3, 2);
+      var Year = dateText.substr(6, 7);
+      var result = Year + "-" + Month + "-" + Day;
+      return result;
     }
-    if (number > 201) {
-      return "#ff6600";//orange
+
+    //for test on url
+    //https://www.googleapis.com/fusiontables/v2/query?sql=SELECT CCA_2 FROM17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs WHERE NL_NAME_2 = 'อำเภอท่าตูม'&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc
+    function getDistrictIDFromDistrictName(name) {
+      /* $.getJSON("https://www.googleapis.com/fusiontables/v2/query?sql="+
+             "SELECT CCA_2 "+
+             "FROM 17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs "+
+             "WHERE NL_NAME_2 = '"+name+"'"+
+             "&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc",function(result){
+     
+               var str = result.rows+"";
+               var res = str.substr(0,4);
+     
+            $.post("http://sysnet.utcc.ac.th:8161/aparcas/api/SetDistrict2.jsp",
+               {
+                   id : res,
+                   name: name,
+                   province : 
+                   co: co,
+                   no2: no2,
+                   o3: o3,
+                   so2:so2,
+                   pm25:pm25,
+                   radio: radio, 
+                   timestamp: time
+     
+                   
+               },
+     
+               function(data, status){
+                   alert("Data: " + data + "\nStatus: " + status);
+               }); */
+
+      /*$.ajax({
+          type: "POST",
+           contentType: "charset=utf-8",
+          url: 'http://sysnet.utcc.ac.th:8161/aparcas/api/District2.jsp',
+          data: { 
+              id : res,
+              name: name,
+              co: co,
+              no2: no2,
+              o3: o3,
+              so2:so2,
+              pm25:pm25,
+              radio: radio, 
+              timestamp: time
+          }
+      });*/
+
+      // });
+
+
     }
-    if (number > 100) {
-      return "#ffff00";//yellow
+
+
+    /* function showDetail(lat, lng) {
+       //getDistrictFromLatlng(lat, lng);
+       console.log("Lat: " + lat, " long: " + lng);
+       console.log("District: " + mResult);
+   
+     }*/
+
+    function getIconMarker(number) {
+
+      if (number > 300) {
+        return 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';//red
+      }
+      if (number > 201) {
+        return 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png';//orange
+      }
+      if (number > 100) {
+        return 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';//yellow
+      }
+      if (number > 51) {
+        return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'//green
+      }
+      else {
+        return 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';//blue
+
+      }
+      return null;
     }
-    if (number > 51) {
-      return "#00cc00"//green
+
+    function getfillColor(number) {
+
+
+      if (number > 300) {
+        return "#ff4d4d";//red
+      }
+      if (number > 201) {
+        return "#ff944d";//orange
+      }
+      if (number > 100) {
+        return "#ffff4d";//yellow
+      }
+      if (number > 51) {
+        return "#4dff88"//green
+      }
+      else {
+        return "#4d4dff";//blue
+
+      }
+      return null;
     }
-    else {
-      return "#0066ff";//blue       
+
+    function getStrokeColor(number) {
+
+
+
+      if (number > 300) {
+        return "#ff0000";//red
+      }
+      if (number > 201) {
+        return "#ff6600";//orange
+      }
+      if (number > 100) {
+        return "#ffff00";//yellow
+      }
+      if (number > 51) {
+        return "#00cc00"//green
+      }
+      else {
+        return "#0066ff";//blue       
+      }
+      return null;
     }
-    return null;
-  }
 
 
 
