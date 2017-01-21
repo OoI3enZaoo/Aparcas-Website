@@ -569,9 +569,11 @@ $(".dropdown-menu li a").click(function () {// show value when click
 
         var check = 0;
         var m = 0;
-        var did = document.getElementById("dname").value;
+        var did = document.getElementById("sname").value;
+        
         for (i = 0; i < result.length; i++) {
- 
+
+        console.log("sid: " + did + " indata: "+ result[i].grid_id);
           
           var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
           var re = new RegExp(mDate, 'g');
@@ -649,9 +651,7 @@ $(".dropdown-menu li a").click(function () {// show value when click
             var resSO2 = so2[i] / count[i];
             var resPM25 = pm25[i] / count[i];
             var resRadio = radio[i] / count[i];
-
-            var reslat = result[i].lat;
-            var reslon = result[i].lon;
+            
 
             console.log("after divide: " + "co: " + resCO + " no2: " + resNO2);
 
@@ -768,7 +768,7 @@ $(".dropdown-menu li a").click(function () {// show value when click
               }
             },
             {
-              where: "DCODE IN (" + good + ")",
+              where: "SUB_CODE IN (" + good + ")",
               polygonOptions: {
 
                 fillColor: "#4d4dff",
@@ -802,7 +802,7 @@ $(".dropdown-menu li a").click(function () {// show value when click
             },
             {
 
-              where: "DCODE IN (" + mModerate + ")",
+              where: "SUB_CODE IN (" + mModerate + ")",
               polygonOptions: {
                 fillColor: "#4dff88",
                 strokeColor: "#4dff88",
@@ -836,7 +836,7 @@ $(".dropdown-menu li a").click(function () {// show value when click
             },
             {
 
-              where: "DCODE IN (" + Unhealthy1 + ")",
+              where: "SUB_CODE IN (" + Unhealthy1 + ")",
               polygonOptions: {
                 fillColor: "#ffff4d",
                 strokeColor: "#ffff4d",
@@ -871,7 +871,7 @@ $(".dropdown-menu li a").click(function () {// show value when click
               }
             },
             {
-              where: "DCODE IN (" + Unhealthy2 + ")",
+              where: "SUB_CODE IN (" + Unhealthy2 + ")",
               polygonOptions: {
                 //   fillColor: getfillColor(aqi),
                 // strokeColor: getStrokeColor(aqi),
@@ -905,7 +905,7 @@ $(".dropdown-menu li a").click(function () {// show value when click
             }
               ,
             {
-              where: "DCODE IN (" + Unhealthy3 + ")",
+              where: "SUB_CODE IN (" + Unhealthy3 + ")",
               polygonOptions: {
 
                 fillColor: "#ff4d4d",
@@ -944,20 +944,21 @@ $(".dropdown-menu li a").click(function () {// show value when click
 
         google.maps.event.addListener(mLayer, 'click', function (ev) {
 
-          var districtID = parseInt(ev.row['DCODE'].value);
-          var districtName = ev.row['DNAME'].value;
-
+          var districtID = parseInt(ev.row['SUB_CODE'].value);
+          var DName = ev.row['DNAME'].value;
+          var SName = ev.row['SNAME'].value;
           var aqi = Math.max(co[districtID], no2[districtID], o3[districtID], so2[districtID], pm25[districtID]);
-          var content = "<div class = 'text-primary'><b>Air Pollution Report</b></div>" +
-            "<div class = 'text-muted'>Average All Day on " + mDate + "</div>" +
-            "<div class = 'text-info'>Disstrict: " + districtName + "</div>" +
+          var content = "<div class = 'text-primary'><b>การแจ้งเตือนสภาพอากาศ</b></div>" +
+            "<div class = 'text-muted'>ค่าเฉลี่ยทั้งวันของวัน " + mDate + "</div>" +
+            "<div class = 'text-info'>" + DName + "</div>" +
+            "<div class = 'text-info'>" + SName + "</div>" +
             "<div class = 'text-info'>AQI: " + aqi + "</div>" +
             "<div class = 'text-info'>CO: " + co[districtID] + "</div>" +
             "<div class = 'text-info'>NO2: " + no2[districtID] + "</div>" +
             "<div class = 'text-info'>O3: " + o3[districtID] + "</div>" +
             "<div class = 'text-info'>SO2: " + so2[districtID] + "</div>" +
             "<div class = 'text-info'>PM2.5: " + pm25[districtID] + "</div>" +
-            "<div class = 'text-info'>RadioActive: " + radio[districtID] + "</div>" +
+            "<div class = 'text-info'>ค่ากัมมันตรังสี: " + radio[districtID] + "</div>" +
             "<button id = 'showGraph' type ='button'  class = 'btn btn-primary btn-xs btn-block' onClick = 'showGraph(" + districtID + ")' >Show Graph</button>";
 
           infoWindow.setContent(content);

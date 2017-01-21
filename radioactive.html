@@ -307,6 +307,13 @@
   var markers = [];
 
 
+
+$(".dropdown-menu li a").click(function () {// show value when click
+        $(this).parents(".dropdown").find('.btn').html($(this).text());
+        $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+      });
+      
+      
   //dname
   function initMap() {
 
@@ -460,11 +467,11 @@
         var myDateTime = [];
         var check = false;
         var did = document.getElementById("dname").value;
-        var sid = document.getElementById("dname").value;
+        var sid = document.getElementById("sname").value;
         console.log("Dname: " + dname + " did: " + did);
         for (i = 0; i < result.length; i++) {
 
-          if (did == result[i].grid_id || did == 1111) {
+          if (sid == result[i].grid_id || sid == 1111) {
             
             var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
             var re = new RegExp(date, 'g');
@@ -538,7 +545,7 @@
             content:
             "<div class = 'text-primary'><b>การแจ้งเตือนปริมาณกัมมันตรังสี</b></div>" +
             "<div class = 'text-muted'>เวลาอัพเดทล่าสุด " + mDateTime[0] + "</div>" +
-            "<div class = 'text-info'>ID: " + mValue[2] + "</div>" +
+            "<div class = 'text-info'>ไอดีผู้ใช้: " + mValue[2] + "</div>" +
             "<div class = 'text-info'>ค่ากัมมันตรังสี: " + mGas[0] + "</div>",
 
 
@@ -652,8 +659,8 @@
 
 
 
-    /*
-        $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/get_lat_long_from_event_trans.jsp", function (result1) {
+    
+        /*$.getJSON("http://sysnet.utcc.ac.th/aparcas/api/get_lat_long_from_event_trans.jsp", function (result1) {
     
           for (i = 0; i < result1.length; i++) {
     
@@ -754,7 +761,7 @@
     
     
             console.log("PostJSON");
-            $.getJSON("https://www.googleapis.com/fusiontables/v1/query?key=AIzaSyD2Wl_1_czaWb9aBDSdMNLlOXMNI9ULibw&sql=SELECT DCODE FROM 1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G WHERE ST_INTERSECTS(geometry, CIRCLE(LATLNG(" + lat + "," + lon + "),100))", function (result2) {
+            $.getJSON("https://www.googleapis.com/fusiontables/v1/query?key=AIzaSyD2Wl_1_czaWb9aBDSdMNLlOXMNI9ULibw&sql=SELECT SUB_CODE FROM 1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G WHERE ST_INTERSECTS(geometry, CIRCLE(LATLNG(" + lat + "," + lon + "),100))", function (result2) {
               
               var DistrictID = result2.rows[0][0];
               
@@ -770,8 +777,8 @@
               });
             });
     
-    }
-    */
+    }*/
+    
     function getNotification(micon, mtype, mdata) {
 
       $.notify({

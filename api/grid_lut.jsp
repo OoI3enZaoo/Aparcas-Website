@@ -22,12 +22,12 @@ Vector<String> pcode =  new Vector<String>();
  try {
 	  Class.forName("com.mysql.jdbc.Driver");
 	  Connection con = DriverManager.getConnection(urlDB,userDB,passDB);	  
-	  String sql = "select SCODE,SNAME,DCODE,DNAME ,xmin,xmax,ymin,ymax  ,PNAME,PCODE from grid_lut ";
+	  String sql = "select SUB_CODE ,SNAME,DCODE,DNAME ,xmin,xmax,ymin,ymax  ,PNAME,PCODE from grid_lut ";
       Statement stmt = con.createStatement();
       ResultSet rs = stmt.executeQuery(sql);
 
 	  while (rs.next()) {		
-        scode.addElement(rs.getString("SCODE"));
+        scode.addElement(rs.getString("SUB_CODE"));
         sname.addElement(rs.getString("SNAME"));
         dcode.addElement(rs.getString("DCODE"));
         dname.addElement(rs.getString("DNAME"));
