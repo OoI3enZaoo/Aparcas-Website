@@ -653,9 +653,9 @@
 
           console.log("mValue: " + mValue[0] + " 2: " + mValue[1]);
           var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(mValue[1], mValue[2]),
-            map: map,
+            position: new google.maps.LatLng(mValue[0], mValue[1]),            
             icon: getIconMarker(mGas[0]),
+            map:map,
             title: "Hello World!"
           });
 
@@ -701,9 +701,6 @@
 
             infoWindow.setPosition(ev.latLng);
             infoWindow.open(map);
-
-
-
 
           });//end of click on circle  
 
@@ -1043,6 +1040,7 @@
 
   function getIconMarker(number) {
 
+    console.log("getICONmarker: " + number);
     if (number > 300) {
       return 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';//red
     }
@@ -1055,9 +1053,8 @@
     if (number > 51) {
       return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'//green
     }
-    else {
-      return 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';//blue
-
+    if(number > 0){
+      return 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';//blue    
     }
     return null;
   }
