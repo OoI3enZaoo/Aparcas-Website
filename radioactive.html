@@ -306,14 +306,14 @@
 
   var markers = [];
 
+  var allS = [];
+
+  $(".dropdown-menu li a").click(function () {// show value when click
+    $(this).parents(".dropdown").find('.btn').html($(this).text());
+    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+  });
 
 
-$(".dropdown-menu li a").click(function () {// show value when click
-        $(this).parents(".dropdown").find('.btn').html($(this).text());
-        $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-      });
-      
-      
   //dname
   function initMap() {
 
@@ -466,26 +466,121 @@ $(".dropdown-menu li a").click(function () {// show value when click
         var myGas = [];
         var myDateTime = [];
         var check = false;
-        var did = document.getElementById("dname").value;
-        var sid = document.getElementById("sname").value;
+        var did = document.getElementById("dname").value;//เขต
+        var sid = document.getElementById("sname").value;//แขวง
+        var dname = document.getElementById("dname").innerHTML;
+        var sname = document.getElementById("sname").innerHTML;
         console.log("Dname: " + dname + " did: " + did);
-        for (i = 0; i < result.length; i++) {
-
-          if (sid == result[i].grid_id || sid == 1111) {
-            
+        var re = new RegExp(date, 'g');
+        if (sid != 2222 && did != 2222) {// เลือกแขวง
+          for (i = 0; i < result.length; i++) {
             var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
-            var re = new RegExp(date, 'g');
             if (day.match(re)) {
+              if (sid == result[i].grid_id) {
 
+                var restime = day;
+                res1 = restime.substr(11, 2);
+                res2 = restime.substr(14, 2);
+                res3 = restime.substr(17, 2);
+                restime = res1 + ":" + res2 + ":" + res3;
+
+                if (restime >= startTime && restime <= endTime) {
+
+                  var mID = result[i].id;
+                  var mLat = result[i].lat;
+                  var mLong = result[i].lon;
+                  var co = result[i].co;
+                  var no2 = result[i].no2;
+                  var o3 = result[i].o3;
+                  var so2 = result[i].so2;
+                  var pm25 = result[i].pm25;
+                  var radio = result[i].radio;
+                  var AQI = getAQI(co, no2, o3, so2, pm25);  //get AQI from getAQI function      
+
+
+                  myLocation[i] = [mLat, mLong, mID];
+                  myGas[i] = [radio];
+                  myDateTime[i] = [day];
+                  check = true;
+
+
+                  placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex);//call method for create circle on the map                   
+                }
+              }
+            }
+          }//for
+          if (check == false) {
+            getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
+          } else {
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'address': sname }, function (results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                map.setZoom(13);
+              }
+            });
+          }
+        }
+        if (sid == 2222 & did != 2222) { // sid 2222 mean all Sub_CODE (แขวงทั้งหมด)
+          console.log("do in allS");
+          for (j = 0; j < allS.length; j++) {
+            for (i = 0; i < result.length; i++) {
+              var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
+              if (day.match(re)) {
+                if (allS[j] == result[i].grid_id) {
+
+                  var restime = day;
+                  res1 = restime.substr(11, 2);
+                  res2 = restime.substr(14, 2);
+                  res3 = restime.substr(17, 2);
+                  restime = res1 + ":" + res2 + ":" + res3;
+
+                  if (restime >= startTime && restime <= endTime) {
+                    var mID = result[i].id;
+                    var mLat = result[i].lat;
+                    var mLong = result[i].lon;
+                    var co = result[i].co;
+                    var no2 = result[i].no2;
+                    var o3 = result[i].o3;
+                    var so2 = result[i].so2;
+                    var pm25 = result[i].pm25;
+                    var radio = result[i].radio;
+                    var AQI = getAQI(co, no2, o3, so2, pm25);  //get AQI from getAQI function      
+                    myLocation[i] = [mLat, mLong, mID];
+                    myGas[i] = [radio];
+                    myDateTime[i] = [day];
+                    check = true;
+                    placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex);//call method for create circle on the map     
+
+                  }
+                }
+              }
+            }
+          }
+          if (check == false) {
+            getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
+          } else {
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'address': dname }, function (results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                map.setZoom(12);
+              }
+            });
+
+          }
+        }
+        if (did == 2222) {// if all dist
+          for (i = 0; i < result.length; i++) {
+            var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
+            if (day.match(re)) {
               var restime = day;
               res1 = restime.substr(11, 2);
               res2 = restime.substr(14, 2);
               res3 = restime.substr(17, 2);
               restime = res1 + ":" + res2 + ":" + res3;
-              //console.log("restime: " + restime + " startTime: " + startTime + " endTime: " + endTime);
 
               if (restime >= startTime && restime <= endTime) {
-                //waitingDialog.message("Load data "+i+"/"+result.AQI.length + " <");    
                 var mID = result[i].id;
                 var mLat = result[i].lat;
                 var mLong = result[i].lon;
@@ -496,27 +591,31 @@ $(".dropdown-menu li a").click(function () {// show value when click
                 var pm25 = result[i].pm25;
                 var radio = result[i].radio;
                 var AQI = getAQI(co, no2, o3, so2, pm25);  //get AQI from getAQI function      
-
-
                 myLocation[i] = [mLat, mLong, mID];
                 myGas[i] = [radio];
                 myDateTime[i] = [day];
                 check = true;
-                // console.log('name: '+myLocation[i][0] +' lat:' + myLocation[i][1] + ' long: ' +  myLocation[i][2]); //for Debug
-                // console.log('AQI: ' + myGas[i][0]+' CO: '+myGas[i][1] + ' NO2: ' + myGas[i][2] + ' O3: ' + myGas[i][3] + ' SO2: ' + myGas[i][4] + ' PM2.5: ' +myGas[i][5] + 'RadioActive: ' +  myGas[i][6]); //for debug
+                placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex);//call method for create circle on the map     
 
-                placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex);//call method for create circle on the map                   
               }
-            } else {
-              if (check == false) {
-                check = true;
-                //getNotification("pe-7s-close-circle", "danger", "<b>Error</b>ไม่พบข้อมูล กรุณาเลือกเป็นวันอื่นๆ");
-              }
-
             }
           }
-        }//for     
+          if (check == false) {
+            getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
+          } else {
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'address': 'กรุงเทพมหานคร' }, function (results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                map.setZoom(11);
+              }
+            });
 
+          }
+
+        }
+
+        console.log("SID: " + sid + " DID: " + did);
 
         waitingDialog.message("Set data to map...");
 
@@ -659,21 +758,21 @@ $(".dropdown-menu li a").click(function () {// show value when click
 
 
 
-    
-        /*$.getJSON("http://sysnet.utcc.ac.th/aparcas/api/get_lat_long_from_event_trans.jsp", function (result1) {
-    
-          for (i = 0; i < result1.length; i++) {
-    
-            var mlat = result1[i].lat;
-            var mlon = result1[i].lon;
-            var uid = result1[i].uid;
-            console.log("call Loopna");
-            postJSON(uid,mlat, mlon);
-    
-          }
-    
-    
-        });*/
+
+    /*$.getJSON("http://sysnet.utcc.ac.th/aparcas/api/get_lat_long_from_event_trans.jsp", function (result1) {
+ 
+      for (i = 0; i < result1.length; i++) {
+ 
+        var mlat = result1[i].lat;
+        var mlon = result1[i].lon;
+        var uid = result1[i].uid;
+        console.log("call Loopna");
+        postJSON(uid,mlat, mlon);
+ 
+      }
+ 
+ 
+    });*/
 
     $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/grid_lut.jsp", function (result) {
 
@@ -681,7 +780,7 @@ $(".dropdown-menu li a").click(function () {// show value when click
       var count = 1;
       var districtname;
 
-      var query = "<li ><a href='#'data-value='1111'>เขตทั้งหมด</a></li>";
+      var query = "<li ><a href='#'data-value='2222'>เขตทั้งหมด</a></li>";
       $("#dropdownD").append(query);
       for (i = 0; i < result.length; i++) {
 
@@ -716,7 +815,8 @@ $(".dropdown-menu li a").click(function () {// show value when click
         var dname = document.getElementById("dname").innerHTML;
         var checkSame2 = ['55555'];
         var count2 = 1;
-
+        allS = null;
+        allS = [];
         console.log("dname: " + dname);
 
         for (i = 0; i < result.length; i++) {
@@ -732,6 +832,7 @@ $(".dropdown-menu li a").click(function () {// show value when click
           if (result[i].dname == dname) {
             if (count2 == 1) {
               console.log("DNAME: " + dname + " Sname: " + sname);
+              allS.push(scode);
               checkSame2.push(sname);
               var query = "<li ><a href='#'data-value='" + scode + "'>" + sname + "</a></li>";
               $("#dropdownS").append(query);
@@ -740,267 +841,270 @@ $(".dropdown-menu li a").click(function () {// show value when click
             count2 = 1;
           }
         }
+        for (i = 0; i < allS.length; i++) {
+          console.log("allS: " + allS[i]);
+        }
         $(".dropdown-menu li a").click(function () {// show value when click
           $(this).parents(".dropdown").find('.btn').html($(this).text());
           $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
         });
 
-        });
-
-      });
-
-
-      $('#txtDate').datetimepicker({
-        format: 'DD/MM/YYYY'
       });
 
     });
 
 
-    /*function postJSON(id,lat,lon){
-    
-    
-            console.log("PostJSON");
-            $.getJSON("https://www.googleapis.com/fusiontables/v1/query?key=AIzaSyD2Wl_1_czaWb9aBDSdMNLlOXMNI9ULibw&sql=SELECT SUB_CODE FROM 1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G WHERE ST_INTERSECTS(geometry, CIRCLE(LATLNG(" + lat + "," + lon + "),100))", function (result2) {
-              
-              var DistrictID = result2.rows[0][0];
-              
-              
-              console.log("uid: " + id + " did: " + DistrictID + " lat: " + lat + " lon: " + lon);
-              $.ajax({
-                url: 'http://sysnet.utcc.ac.th/aparcas/api/update_event_trans.jsp',
-                type: 'PUT',
-                data: "did=" + DistrictID + "&uid=" + id + "",
-                success: function (data) {
-                  alert('Load was performed.');
-                }
-              });
+    $('#txtDate').datetimepicker({
+      format: 'DD/MM/YYYY'
+    });
+
+  });
+
+
+  /*function postJSON(id,lat,lon){
+  
+  
+          console.log("PostJSON");
+          $.getJSON("https://www.googleapis.com/fusiontables/v1/query?key=AIzaSyD2Wl_1_czaWb9aBDSdMNLlOXMNI9ULibw&sql=SELECT SUB_CODE FROM 1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G WHERE ST_INTERSECTS(geometry, CIRCLE(LATLNG(" + lat + "," + lon + "),100))", function (result2) {
+            
+            var DistrictID = result2.rows[0][0];
+            
+            
+            console.log("uid: " + id + " did: " + DistrictID + " lat: " + lat + " lon: " + lon);
+            $.ajax({
+              url: 'http://sysnet.utcc.ac.th/aparcas/api/update_event_trans.jsp',
+              type: 'PUT',
+              data: "did=" + DistrictID + "&uid=" + id + "",
+              success: function (data) {
+                alert('Load was performed.');
+              }
             });
-    
-    }*/
-    
-    function getNotification(micon, mtype, mdata) {
+          });
+  
+  }*/
 
-      $.notify({
-        icon: micon,//icon
-        message: mdata//data
+  function getNotification(micon, mtype, mdata) {
 
-      }, {
-          type: mtype, //type  danger ,warning ,success ,info
-          timer: 4000
-        });
+    $.notify({
+      icon: micon,//icon
+      message: mdata//data
+
+    }, {
+        type: mtype, //type  danger ,warning ,success ,info
+        timer: 4000
+      });
 
 
+  }
+
+
+  function RemoveMarker() {
+    for (i = 0; i < Circles.length; i++) {
+      Circles[i].setMap(null);
     }
-
-
-    function RemoveMarker() {
-      for (i = 0; i < Circles.length; i++) {
-        Circles[i].setMap(null);
-      }
+  }
+  function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
     }
-    function setMapOnAll(map) {
-      for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
-      }
-    }
-    function getAQI(co, no2, o3, so2, pm25) {
-      var mArray = [co, no2, o3, so2, pm25];
-      var maxValueInArray = Math.max.apply(null, mArray);
-      return parseFloat(maxValueInArray);
-    }
+  }
+  function getAQI(co, no2, o3, so2, pm25) {
+    var mArray = [co, no2, o3, so2, pm25];
+    var maxValueInArray = Math.max.apply(null, mArray);
+    return parseFloat(maxValueInArray);
+  }
 
 
 
-    /* function getDistrictFromLatlng(lat, lng) {
-   
-       //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
-       $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc", function (result) {
-        
-   
-         for (j = 0; j < result.results[0].address_components.length; j++) {
-           if (result.results[0].address_components[j].long_name.match(/^เขต.*$/) || result.results[0].address_components[j].long_name.match(/^อำเภอ.*$/)) {
-             var myDistrict = result.results[0].address_components[j].long_name;
-             var mCutSpace = myDistrict.replace(" ", "");
-             // var mCutTitle = myDistrict.replace("เขต ","");    
-             //var a = mCutSpace+mCutTitle;
-             mResult = mCutSpace.valueOf();
-             var addText = "กิ่ง";
-             if (mResult == "อำเภอสามชัย" || mResult == "อำเภอนาคู" || mResult == "อำเภอพนมดงรัก" || mResult == "อำเภอโนนนารายณ์" || mResult == "อำเภอเนินขาม" || mResult == "อำเภอหนองหิน" || mResult == "อำเภอบึงสามัคคี" || mResult == "อำเภอบัวลาย" ||
-               mResult == "อำเภอซับใหญ่" || mResult == "อำเภอศิลาลาด" || mResult == "อำเภอบ้านแฮด" || mResult == "อำเภอพระทองคำ" ||
-               mResult == "อำเภอสากเหล็ก" || mResult == "อำเภอบึงนาราง" || mResult == "อำเภอกุดรัง" || mResult == "อำเภอหนองมะโมง" || mResult == "อำเภอสากเหล็ก" || mResult == "อำเภอดงเจริญ" || mResult == "อำเภอเทพารักษ์" || mResult == "อำเภอแคนดง" || mResult == "อำเภอฆ้องชัย" || mResult == "อำเภอเมืองยาง" || mResult == "อำเภอลำทะเมนชัย" || mResult == "อำเภอหนองฮี" || mResult == "อำเภอซำสูง" || mResult == "อำเภอโนนศิลา" || mResult == "อำเภอหนองนาคำ" || mResult == "อำเภอดอนจาน") {
-               mResult = addText + mResult;
-             }
-             if (mResult == "อำเภอปทุมรัตน์") {
-               mResult = "อำเภอปทุมรัตต์";
-             }
-             if (mResult == "อำเภอหนองบุนนาก") {
-               mResult = "อำเภอหนองบุญนาก";
-             }
-             if (mResult == "อำเภอกุฉินารายณ์") {
-               mResult = "อำเภอกุฉินารายน์";
-             }
-             if (mResult == "อำเภอโคกโพธิ์ไชย") {
-               mResult = "กิ่งอำเภอโคกโพธิ์ชัย";
-             }
-             if (mResult == "อำเภอเมืองนครราชสีมา") {
-               mResult = "เมืองนครราชสีมา";
-             }
-             if (mResult == "อำเภอเวียงเก่า") {
-               mResult = "อำเภอภูเวียง";
-             }
-             if (mResult == "อำเภอโพทะเล") {
-               mResult = "โพทะเล";
-             }
-   
-             //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
-             //console.log("test: "  +mResult);
-             getDistrictIDFromDistrictName(mResult);
-   
+  /* function getDistrictFromLatlng(lat, lng) {
+ 
+     //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
+     $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc", function (result) {
+      
+ 
+       for (j = 0; j < result.results[0].address_components.length; j++) {
+         if (result.results[0].address_components[j].long_name.match(/^เขต.*$/) || result.results[0].address_components[j].long_name.match(/^อำเภอ.*$/)) {
+           var myDistrict = result.results[0].address_components[j].long_name;
+           var mCutSpace = myDistrict.replace(" ", "");
+           // var mCutTitle = myDistrict.replace("เขต ","");    
+           //var a = mCutSpace+mCutTitle;
+           mResult = mCutSpace.valueOf();
+           var addText = "กิ่ง";
+           if (mResult == "อำเภอสามชัย" || mResult == "อำเภอนาคู" || mResult == "อำเภอพนมดงรัก" || mResult == "อำเภอโนนนารายณ์" || mResult == "อำเภอเนินขาม" || mResult == "อำเภอหนองหิน" || mResult == "อำเภอบึงสามัคคี" || mResult == "อำเภอบัวลาย" ||
+             mResult == "อำเภอซับใหญ่" || mResult == "อำเภอศิลาลาด" || mResult == "อำเภอบ้านแฮด" || mResult == "อำเภอพระทองคำ" ||
+             mResult == "อำเภอสากเหล็ก" || mResult == "อำเภอบึงนาราง" || mResult == "อำเภอกุดรัง" || mResult == "อำเภอหนองมะโมง" || mResult == "อำเภอสากเหล็ก" || mResult == "อำเภอดงเจริญ" || mResult == "อำเภอเทพารักษ์" || mResult == "อำเภอแคนดง" || mResult == "อำเภอฆ้องชัย" || mResult == "อำเภอเมืองยาง" || mResult == "อำเภอลำทะเมนชัย" || mResult == "อำเภอหนองฮี" || mResult == "อำเภอซำสูง" || mResult == "อำเภอโนนศิลา" || mResult == "อำเภอหนองนาคำ" || mResult == "อำเภอดอนจาน") {
+             mResult = addText + mResult;
            }
+           if (mResult == "อำเภอปทุมรัตน์") {
+             mResult = "อำเภอปทุมรัตต์";
+           }
+           if (mResult == "อำเภอหนองบุนนาก") {
+             mResult = "อำเภอหนองบุญนาก";
+           }
+           if (mResult == "อำเภอกุฉินารายณ์") {
+             mResult = "อำเภอกุฉินารายน์";
+           }
+           if (mResult == "อำเภอโคกโพธิ์ไชย") {
+             mResult = "กิ่งอำเภอโคกโพธิ์ชัย";
+           }
+           if (mResult == "อำเภอเมืองนครราชสีมา") {
+             mResult = "เมืองนครราชสีมา";
+           }
+           if (mResult == "อำเภอเวียงเก่า") {
+             mResult = "อำเภอภูเวียง";
+           }
+           if (mResult == "อำเภอโพทะเล") {
+             mResult = "โพทะเล";
+           }
+ 
+           //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
+           //console.log("test: "  +mResult);
+           getDistrictIDFromDistrictName(mResult);
+ 
          }
+       }
+ 
+ 
+ 
+     });
+ 
+   }
+ */
+
+  function DatePickResponse(dateText) {
+    var Day = dateText.substr(0, 2);
+    var Month = dateText.substr(3, 2);
+    var Year = dateText.substr(6, 7);
+    var result = Year + "-" + Month + "-" + Day;
+    return result;
+  }
+
+  //for test on url
+  //https://www.googleapis.com/fusiontables/v2/query?sql=SELECT CCA_2 FROM17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs WHERE NL_NAME_2 = 'อำเภอท่าตูม'&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc
+  function getDistrictIDFromDistrictName(name) {
+    /* $.getJSON("https://www.googleapis.com/fusiontables/v2/query?sql="+
+           "SELECT CCA_2 "+
+           "FROM 17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs "+
+           "WHERE NL_NAME_2 = '"+name+"'"+
+           "&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc",function(result){
    
+             var str = result.rows+"";
+             var res = str.substr(0,4);
    
+          $.post("http://sysnet.utcc.ac.th:8161/aparcas/api/SetDistrict2.jsp",
+             {
+                 id : res,
+                 name: name,
+                 province : 
+                 co: co,
+                 no2: no2,
+                 o3: o3,
+                 so2:so2,
+                 pm25:pm25,
+                 radio: radio, 
+                 timestamp: time
    
-       });
+                 
+             },
    
-     }
-   */
+             function(data, status){
+                 alert("Data: " + data + "\nStatus: " + status);
+             }); */
 
-    function DatePickResponse(dateText) {
-      var Day = dateText.substr(0, 2);
-      var Month = dateText.substr(3, 2);
-      var Year = dateText.substr(6, 7);
-      var result = Year + "-" + Month + "-" + Day;
-      return result;
+    /*$.ajax({
+        type: "POST",
+         contentType: "charset=utf-8",
+        url: 'http://sysnet.utcc.ac.th:8161/aparcas/api/District2.jsp',
+        data: { 
+            id : res,
+            name: name,
+            co: co,
+            no2: no2,
+            o3: o3,
+            so2:so2,
+            pm25:pm25,
+            radio: radio, 
+            timestamp: time
+        }
+    });*/
+
+    // });
+
+
+  }
+
+
+  /* function showDetail(lat, lng) {
+     //getDistrictFromLatlng(lat, lng);
+     console.log("Lat: " + lat, " long: " + lng);
+     console.log("District: " + mResult);
+ 
+   }*/
+
+  function getIconMarker(number) {
+
+    if (number > 300) {
+      return 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';//red
     }
-
-    //for test on url
-    //https://www.googleapis.com/fusiontables/v2/query?sql=SELECT CCA_2 FROM17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs WHERE NL_NAME_2 = 'อำเภอท่าตูม'&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc
-    function getDistrictIDFromDistrictName(name) {
-      /* $.getJSON("https://www.googleapis.com/fusiontables/v2/query?sql="+
-             "SELECT CCA_2 "+
-             "FROM 17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs "+
-             "WHERE NL_NAME_2 = '"+name+"'"+
-             "&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc",function(result){
-     
-               var str = result.rows+"";
-               var res = str.substr(0,4);
-     
-            $.post("http://sysnet.utcc.ac.th:8161/aparcas/api/SetDistrict2.jsp",
-               {
-                   id : res,
-                   name: name,
-                   province : 
-                   co: co,
-                   no2: no2,
-                   o3: o3,
-                   so2:so2,
-                   pm25:pm25,
-                   radio: radio, 
-                   timestamp: time
-     
-                   
-               },
-     
-               function(data, status){
-                   alert("Data: " + data + "\nStatus: " + status);
-               }); */
-
-      /*$.ajax({
-          type: "POST",
-           contentType: "charset=utf-8",
-          url: 'http://sysnet.utcc.ac.th:8161/aparcas/api/District2.jsp',
-          data: { 
-              id : res,
-              name: name,
-              co: co,
-              no2: no2,
-              o3: o3,
-              so2:so2,
-              pm25:pm25,
-              radio: radio, 
-              timestamp: time
-          }
-      });*/
-
-      // });
-
+    if (number > 201) {
+      return 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png';//orange
+    }
+    if (number > 100) {
+      return 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';//yellow
+    }
+    if (number > 51) {
+      return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'//green
+    }
+    else {
+      return 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';//blue
 
     }
+    return null;
+  }
+
+  function getfillColor(number) {
 
 
-    /* function showDetail(lat, lng) {
-       //getDistrictFromLatlng(lat, lng);
-       console.log("Lat: " + lat, " long: " + lng);
-       console.log("District: " + mResult);
-   
-     }*/
-
-    function getIconMarker(number) {
-
-      if (number > 300) {
-        return 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';//red
-      }
-      if (number > 201) {
-        return 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png';//orange
-      }
-      if (number > 100) {
-        return 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';//yellow
-      }
-      if (number > 51) {
-        return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'//green
-      }
-      else {
-        return 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';//blue
-
-      }
-      return null;
+    if (number > 300) {
+      return "#ff4d4d";//red
     }
-
-    function getfillColor(number) {
-
-
-      if (number > 300) {
-        return "#ff4d4d";//red
-      }
-      if (number > 201) {
-        return "#ff944d";//orange
-      }
-      if (number > 100) {
-        return "#ffff4d";//yellow
-      }
-      if (number > 51) {
-        return "#4dff88"//green
-      }
-      else {
-        return "#4d4dff";//blue
-
-      }
-      return null;
+    if (number > 201) {
+      return "#ff944d";//orange
     }
-
-    function getStrokeColor(number) {
-
-
-
-      if (number > 300) {
-        return "#ff0000";//red
-      }
-      if (number > 201) {
-        return "#ff6600";//orange
-      }
-      if (number > 100) {
-        return "#ffff00";//yellow
-      }
-      if (number > 51) {
-        return "#00cc00"//green
-      }
-      else {
-        return "#0066ff";//blue       
-      }
-      return null;
+    if (number > 100) {
+      return "#ffff4d";//yellow
     }
+    if (number > 51) {
+      return "#4dff88"//green
+    }
+    else {
+      return "#4d4dff";//blue
+
+    }
+    return null;
+  }
+
+  function getStrokeColor(number) {
+
+
+
+    if (number > 300) {
+      return "#ff0000";//red
+    }
+    if (number > 201) {
+      return "#ff6600";//orange
+    }
+    if (number > 100) {
+      return "#ffff00";//yellow
+    }
+    if (number > 51) {
+      return "#00cc00"//green
+    }
+    else {
+      return "#0066ff";//blue       
+    }
+    return null;
+  }
 
 
 
