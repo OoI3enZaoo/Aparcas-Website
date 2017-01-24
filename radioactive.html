@@ -130,139 +130,123 @@
 
 
 
+      <header>
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-sm-12">
+                      <h4><strong>Air Pollution and Radioactive Contamination Analyzing System (APARCAS)</strong> &nbsp;&nbsp;</h4>
 
-      <header style="position:relataive">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <h4><strong>Air Pollution and Radioactive Contamination Analyzing System (APARCAS) </strong> &nbsp;&nbsp;</h4>
+                  </div>
 
-            </div>
-
+              </div>
           </div>
-        </div>
       </header>
-
-
       <section class="menu-section">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <ul id="menu-top" class="nav navbar-nav navbar-right">
-                <li><a href="realtime.html">คุณภาพอากาศแบบเรียลไทม์</a></li>
-                <li><a class="menu-top-active" href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
-                <li><a href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
-                <li><a href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
-                <li><a href="predict.html">พยากรณ์คุณภาพอากาศ</a></li>
-                <li><a href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
-              </ul>
-            </div>
+          <div class="container">
+              <div class="row">
+                  <div class="col-sm-12">
+
+                      <ul id="menu-top" class="nav navbar-nav navbar-right">
+                          <li><a href="realtime.html">คุณภาพอากาศแบบเรียลไทม์</a></li>
+                          <li><a class="menu-top-active"href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
+                          <li><a  href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
+                          <li><a href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
+                          <li><a href="predict.html">พยากรณ์คุณภาพอากาศ</a></li>
+                          <li><a href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
+                      </ul>
+                  </div>
+              </div>
           </div>
-        </div>
       </section>
 
 
 
 
 
-
       <div id="full-width" class="container-fluid">
-        <div class="row">
-          <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 ">
-            <br>
-            <div class="container-fluid">
+          <div class="row">
+              <div class="col-sm-7">
+                  <div id="map" style="width:100%; height:800px; "></div>
 
-              <h4 class="title text-center text-info">เลื่อนที่แถบเพื่อเลือกเวลา</h4>
-              <div id="flat-slider"></div>
-            </div>
-            <br> <br>
+              </div>
+              <div class="col-sm-5">
+                  <br>
 
-            <div id="map" style="width:100%; height:1000px;" ></div>
-          </div>
-          <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 ">
+                  <h4 class="text-center text-primary">กรุณาเลือกพื้นที่และวันที่เพื่อแสดงข้อมูล</h4>
 
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <h2 class="text-center text-primary"><b>ระบุเงื่อนไข</h2>
-              <h3 class = "text-center text-info">กรุณาเลือกพื้นที่และวันที่เพื่อแสดงข้อมูล</h3>
+                  <br>
+                  <from>
+                      <div class="form-group">
+                          <h5 class=" col-sm-1 col-sm-offset-2 text-info">จังหวัด:</h5>
+                          <div class="col-sm-6 ">
 
-              <br>
-              <from>
-                <div class="form-group" >
-                  <h4 class=" col-xs-1 col-sm-1 col-md-1 col-lg-1  col-sm-offset-2 text-info" >จังหวัด:</h4>
-                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="dropdown">
-                      <button id="pname" class="btn btn-info dropdowSn-toggle" style= "width: 356px; position:relative; font-size:18px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกจังหวัด
+                              <div class="dropdown">
+                                  <button id="pname" class="btn btn-info dropdown-toggle" style="width: 356px;  font-size:14px " type="button" data-toggle="dropdown">
+                      <span class="caret"></span></button>
+                                  <ul id="dropdownP" class="dropdown-menu" role="menu" style="width: 356px">
+                                      <!-- <li selected="selected"><a href='#' data-value='10'>กรุงเทพมหานคร</a></li> -->
+                                  </ul>
+                              </div>
 
-                        <span class="caret"></span></button>
-                        <ul id="dropdownP" class="dropdown-menu" role="menu" style="width: 356px" >
-                          <li><a href='#' data-value='10'>กรุงเทพมหานคร</a></li>
-
-                        </ul>
-
-                      </div>
-                    </div>
-                  </div>
-                  <br><br><br>
-                  <div class="form-group">
-                    <h4 class=" col-xs-1 col-sm-1 col-md-1 col-lg-1  col-sm-offset-2 text-info">เขต:</h4>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                      <div class="dropdown">
-                        <button id="dname" class="btn btn-info dropdown-toggle" style="width: 356px; position:relative; font-size:18px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกเขต
-                          <span class="caret"></span></button>
-                          <ul id="dropdownD" class="dropdown-menu" style="width: 356px" >
-
-
-                          </ul>
-
-                        </div>
-                      </div>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="form-group">
-                      <h4 class=" col-xs-1 col-sm-1 col-md-1 col-lg-1  col-sm-offset-2 text-info">แขวง:</h4>
-                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <div class="dropdown">
-                          <button id="sname" class="btn btn-info dropdown-toggle" style="width: 356px; position:relative; font-size:18px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกแขวง
-                            <span class="caret"></span></button>
-                            <ul id="dropdownS" class="dropdown-menu" style="width: 356px" >
-
-
-                            </ul>
 
                           </div>
-                        </div>
+                      </div>
+                      <br><br><br>
+                      <div class="form-group">
+                          <h5 class="col-sm-1 col-sm-offset-2 text-info">เขต:</h5>
+                          <div class="col-sm-6">
+                              <div class="dropdown">
+                                  <button id="dname" class="btn btn-info dropdown-toggle" style="width: 356px;  font-size:14px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกเขต
+                        <span class="caret"></span></button>
+                                  <ul id="dropdownD" class="dropdown-menu" style="width: 356px">
+
+
+                                  </ul>
+
+                              </div>
+                          </div>
+                      </div>
+                      <br>
+                      <br>
+                      <br>
+                      <div class="form-group">
+                          <h5 class="col-sm-1  col-sm-offset-2 text-info">แขวง:</h5>
+                          <div class="col-sm-6">
+                              <div class="dropdown">
+                                  <button id="sname" class="btn btn-info dropdown-toggle" style="width: 356px;  font-size:14px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกแขวง
+                          <span class="caret"></span></button>
+                                  <ul id="dropdownS" class="dropdown-menu" style="width: 356px">
+
+
+                                  </ul>
+
+                              </div>
+                          </div>
                       </div>
 
                       <br><br>
                       <br>
                       <div class="form-group">
-                        <h4 class=" col-xs-1 col-sm-1 col-md-1 col-lg-1  col-sm-offset-2 text-info" for="email">วัน:</h4>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                          <!-- <input class="form-control" id="txtDate" placeholder="Pick your Date"/> -->
-                          <input id="txtDate" type='text' class="form-control" placeholder="คลิ๊กที่นี่เพื่อเลือกวัน" style="position:relative; "/>
-                        </div>
+                          <h5 class="col-sm-1 col-sm-offset-2 text-info">วัน:</h5>
+                          <div class="col-sm-6">
+                              <!-- <input class="form-control" id="txtDate" placeholder="Pick your Date"/> -->
+                              <input id="txtDate" type='text' class="form-control" placeholder="คลิ๊กที่นี่เพื่อเลือกวัน" style=" " />
+                          </div>
                       </div>
                       <br>
                       <br>
                       <br>
                       <div class="form-group">
-                        <div class="row">
-                          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="margin-left:150px">
-                            <button type="button" id="Search" class="btn btn-lg btn-success btn-block">แสดงข้อมูล</button>
+                          <div class="row">
+                              <div class="col-sm-3" style="margin-left:150px">
+                                  <button type="button" id="Search" class="btn btn-lg btn-success btn-block">แสดงข้อมูล</button>
+                              </div>
+                              <div class="col-sm-3">
+                                  <button id="clear" type="button" class="btn btn-lg btn-danger btn-block" style="margin-left:49px">ล้าง</button>
+                              </div>
                           </div>
-                          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                            <button type="button" id = "clear" class="btn btn-lg btn-danger btn-block" style="margin-left:49px">ล้าง</button>
-
-                          </div>
-                        </div>
                       </div>
-                    </form>
+                      </form>
 
                     <br>
                     <br>
@@ -321,10 +305,10 @@
             var myStartTime = "00:00:00";
             var myEndTime = "23:00:00";
             var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 7,
+              zoom: 11,
               center:
 
-              new google.maps.LatLng(15.038597, 101.438828)
+              new google.maps.LatLng(13.756331, 100.501765)
               ,
               mapTypeId: google.maps.MapTypeId.ROADMAP
             });
@@ -452,7 +436,7 @@
 
             function setDataOnMap(gIndex, startTime, endTime, date) {
 
-              setMapOnAll(null);
+              setMarkerAll(null);
               markers = [];
 
 
@@ -605,13 +589,13 @@
                   if (check == false) {
                     getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
                   } else {
-                    var geocoder = new google.maps.Geocoder();
-                    geocoder.geocode({ 'address': 'กรุงเทพมหานคร' }, function (results, status) {
-                      if (status == google.maps.GeocoderStatus.OK) {
-                        map.setCenter(results[0].geometry.location);
+                    // var geocoder = new google.maps.Geocoder();
+                    // geocoder.geocode({ 'address': 'กรุงเทพมหานคร' }, function (results, status) {
+                    //   if (status == google.maps.GeocoderStatus.OK) {
+                          map.setCenter(new google.maps.LatLng(13.756331, 100.501765));//bangkok
                         map.setZoom(11);
-                      }
-                    });
+                    //   }
+                    // });
 
                   }
 
@@ -624,19 +608,35 @@
                 function placeMarker(mValue, mGas, mDateTime, type) {
 
                   console.log("placeMarker");
-                  var covered = {
-                    strokeColor: getStrokeColor(mGas[type]),//ขอบ
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
-                    fillColor: getfillColor(mGas[type]),//พื้น
-                    fillOpacity: 0.35,
-                    map: map,
-                    center: new google.maps.LatLng(mValue[0], mValue[1]),
-                    radius: 500
-                  };
+                  // var covered = {
+                  //   strokeColor: getStrokeColor(mGas[type]),//ขอบ
+                  //   strokeOpacity: 0.8,
+                  //   strokeWeight: 2,
+                  //   fillColor: getfillColor(mGas[type]),//พื้น
+                  //   fillOpacity: 0.35,
+                  //   map: map,
+                  //   center: new google.maps.LatLng(mValue[0], mValue[1]),
+                  //   radius: 500
+                  // };
+                  //
+                  // // Add the circle for this city to the map.
+                  // var circle = new google.maps.Circle(covered);//Circles
 
-                  // Add the circle for this city to the map.
-                  var circle = new google.maps.Circle(covered);//Circles
+                  var circle = new google.maps.Marker({
+                            position: new google.maps.LatLng(mValue[0], mValue[1]),
+                            icon: {
+                              path: google.maps.SymbolPath.CIRCLE,
+                              scale: 10,
+                              strokeColor :"#51f08f",
+                              fillOpacity : 2,
+                              fillColor :"#eca51c",
+                              strokeWeight :3,
+                              fillOpacity: 0.35,
+                            },
+                            draggable: false,
+                            map: map
+                          });
+
                   Circles.push(circle);
 
 
@@ -665,16 +665,18 @@
 
                   map.addListener('zoom_changed', function () {
                     console.log("zoom: " + map.getZoom());
-                    if (map.getZoom() >= 11) {
-                      setMapOnAll(null);
+                    if (map.getZoom() == 11) {
+                      setMarkerAll(null);
+                      setCircleAll(map);
                     }
-                    if (map.getZoom() < 11) {
-                      setMapOnAll(map);
+                    if (map.getZoom() <= 10) {
+                      setMarkerAll(map);
+                      setCircleAll(null);
                     }
                   });
 
 
-                  setMapOnAll(map);
+                  setMarkerAll(map);
 
 
                   marker.addListener('click', function () {
@@ -760,7 +762,10 @@
             });
               $("#pname").text("กรุงเทพมหานคร");
               document.getElementById("pname").value = "10";
-
+              $("#dname").text("เขตทั้งหมด");
+              document.getElementById("dname").value = "2222";
+              $("#sname").text("แขวงทั้งหมด");
+              document.getElementById("sname").value = "2222";
             /*$.getJSON("http://sysnet.utcc.ac.th/aparcas/api/get_lat_long_from_event_trans.jsp", function (result1) {
 
             for (i = 0; i < result1.length; i++) {
@@ -902,12 +907,19 @@ function RemoveMarker() {
   for (i = 0; i < Circles.length; i++) {
     Circles[i].setMap(null);
   }
-  setMapOnAll(null);
+  setMarkerAll(null);
+  setCircleAll(null);
   markers = [];
+  Circles = [];
 }
-function setMapOnAll(map) {
+function setMarkerAll(map) {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map);
+  }
+}
+function setCircleAll(map){
+  for( var i = 0; i<Circles.length; i++){
+      Circles[i].setMap(map);
   }
 }
 function getAQI(co, no2, o3, so2, pm25) {
