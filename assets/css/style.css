@@ -1,4 +1,3 @@
-﻿
 /*=============================================================
     Authour URL: www.designbootstrap.com
 
@@ -19,7 +18,9 @@
    GENERAL STYLES
  ============================================================ */
 
-@import url(http://fonts.googleapis.com/css?family=Roboto); /* FREE GOOGLE FONT */
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+/* FREE GOOGLE FONT */
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -60,38 +61,40 @@ body {
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
 }
+
 .login-icon {
     height: 60px;
-width: 60px;
-padding: 13px;
-border-radius: 50%;
-font-size: 30px;
-margin-bottom: 20px;
-color: #fff;
-text-align: center;
-cursor:pointer;
-background-color:#668cff;
--webkit-border-radius:50%;
-    -moz-border-radius:50%;
+    width: 60px;
+    padding: 13px;
+    border-radius: 50%;
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    background-color: #668cff;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
 }
+
+
 /* =============================================================
    HEADER SECTION STYLES
  ============================================================ */
+
 header {
-    background-color:  #668cff;
+    background-color: #668cff;
     color: #fff;
-    padding: 10px;
+    padding: 0.5%;
     text-align: center;
-    padding-left: 910px
-
-
-
+    padding-left: 50%
 }
 
 
 /* =============================================================
    LOGO SECTION STYLES
  ============================================================ */
+
 .left-div {
     padding-left: 30px;
     margin-top: 40px;
@@ -103,8 +106,10 @@ header {
     padding-top: 30px;
 }
 
+
 /* USER SETTINGS DIV */
-.user-settings-wrapper .nav > li > a {
+
+.user-settings-wrapper .nav>li>a {
     position: relative;
     display: block;
     padding: 15px 18px;
@@ -121,42 +126,43 @@ header {
     margin-top: 10px;
 }
 
-    .user-settings-wrapper li {
-        display: inline-block;
-    }
+.user-settings-wrapper li {
+    display: inline-block;
+}
 
-    .user-settings-wrapper .dropdown-settings {
-        width: 200px;
-        padding: 10px;
-    }
+.user-settings-wrapper .dropdown-settings {
+    width: 200px;
+    padding: 10px;
+}
 
-    .user-settings-wrapper .nav > li > a:hover,.user-settings-wrapper .nav > li > a:focus {
-        text-decoration: none;
-        background-color: #C36464!important;
-    }
+.user-settings-wrapper .nav>li>a:hover, .user-settings-wrapper .nav>li>a:focus {
+    text-decoration: none;
+    background-color: #C36464!important;
+}
 
-    .user-settings-wrapper img {
-        height: 64px;
-        width: 64px;
-        border: 1px solid #000000;
-    }
+.user-settings-wrapper img {
+    height: 64px;
+    width: 64px;
+    border: 1px solid #000000;
+}
 
-    .user-settings-wrapper .dropdown-menu {
-        margin: 0px;
-        border-radius: 0px!important;
-        -moz-border-radius: 0px!important;
-        -webkit-border-radius: 0px!important;
-    }
+.user-settings-wrapper .dropdown-menu {
+    margin: 0px;
+    border-radius: 0px!important;
+    -moz-border-radius: 0px!important;
+    -webkit-border-radius: 0px!important;
+}
 
-    .user-settings-wrapper .btn {
-        border-radius: 0px!important;
-        -moz-border-radius: 0px!important;
-        -webkit-border-radius: 0px!important;
-    }
+.user-settings-wrapper .btn {
+    border-radius: 0px!important;
+    -moz-border-radius: 0px!important;
+    -webkit-border-radius: 0px!important;
+}
 
-    .user-settings-wrapper .media-heading {
-        padding-top: 10px;
-    }
+.user-settings-wrapper .media-heading {
+    padding-top: 10px;
+}
+
 
 /* MENU LINKS SECTION*/
 
@@ -176,11 +182,11 @@ header {
     background-color: #668cff;
 }
 
-.menu-section .nav > li > a:hover,.menu-section .nav > li > a:focus {
+.menu-section .nav>li>a:hover, .menu-section .nav>li>a:focus {
     background-color: #668cff!important;
 }
 
-.menu-section .dropdown-menu > li > a:hover,.menu-section .dropdown-menu > li > a:focus {
+.menu-section .dropdown-menu>li>a:hover, .menu-section .dropdown-menu>li>a:focus {
     background-color: #668cff!important;
 }
 
@@ -197,9 +203,12 @@ header {
 .navbar {
     margin-bottom: 0px;
 }
+
+
 /* =============================================================
    FOOTER SECTION STYLES
  ============================================================ */
+
 footer {
     padding: 10px;
     color: #fff;
@@ -207,14 +216,16 @@ footer {
     background-color: #C36464;
 }
 
-    footer a, footer a:hover {
-        color: #fff;
-        text-decoration: none;
-    }
+footer a, footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
 
 /*==============================================
     DASHBOARD  STYLES
  =============================================*/
+
 
 /* DASHBOARD ICONS */
 
@@ -240,8 +251,8 @@ footer {
     border: 2px solid #fff;
     padding: 20px;
     border-radius: 50%;
-    -webkit-border-radius:50%;
-    -moz-border-radius:50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     font-size: 30px;
     margin-bottom: 20px;
     color: #fff;
@@ -255,12 +266,12 @@ footer {
     margin-bottom: 50px;
 }
 
-    .dashboard-div-wrapper .progress {
-        height: 2px;
-    }
+.dashboard-div-wrapper .progress {
+    height: 2px;
+}
+
 
 /* NOTICE BOARD */
-
 
 .notice-board .panel {
     border-radius: 0px;
@@ -278,28 +289,30 @@ footer {
     border-bottom: 1px solid #E5E5E5;
 }
 
-    .notice-board li span {
-        margin-right: 10px;
-        border: 1px solid #DBDBDB;
-        padding: 5px;
-    }
+.notice-board li span {
+    margin-right: 10px;
+    border: 1px solid #DBDBDB;
+    padding: 5px;
+}
 
-    .notice-board li a, li a:hover {
-        text-decoration: none;
-        color: #000;
-    }
+.notice-board li a, li a:hover {
+    text-decoration: none;
+    color: #000;
+}
+
 
 /* SOCIAL BUTTONS */
+
 .btn-social {
     color: white;
     opacity: 0.8;
 }
 
-    .btn-social:hover {
-        color: white;
-        opacity: 1;
-        text-decoration: none;
-    }
+.btn-social:hover {
+    color: white;
+    opacity: 1;
+    text-decoration: none;
+}
 
 .btn-facebook {
     background-color: #3b5998;

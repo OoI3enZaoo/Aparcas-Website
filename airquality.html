@@ -50,7 +50,18 @@
             margin-right: auto;
             font-family: 'Mitr', sans-serif;
             margin: auto;
+            position: relative;
             padding: 0 0 0 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #map {
+            position: relative;
+            width: 100%;
+            height: 94vh;
+            margin: 0;
+            padding: 0;
         }
 
         th {
@@ -101,10 +112,11 @@
         }
 
         #full-width {
-            padding:inherit;
+            padding: inherit;
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="container-fluid">
@@ -121,7 +133,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-
                     <ul id="menu-top" class="nav navbar-nav navbar-right">
                         <li><a href="realtime.html">คุณภาพอากาศแบบเรียลไทม์</a></li>
                         <li><a href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
@@ -142,22 +153,23 @@
     <div id="full-width" class="container-fluid">
         <div class="row">
             <div class="col-sm-7">
-                <div id="map" style="width:100%; height:900px;"></div>
+                <div id="map"></div>
 
             </div>
             <div class="col-sm-5">
                 <br>
 
+
                 <h4 class="text-center text-primary">กรุณาเลือกพื้นที่และวันที่เพื่อแสดงข้อมูล</h4>
 
-                <br>
+
                 <from>
                     <div class="form-group">
                         <h5 class=" col-sm-1 col-sm-offset-2 text-info">จังหวัด:</h5>
                         <div class="col-sm-6 ">
 
                             <div class="dropdown">
-                                <button id="pname" class="btn btn-info dropdown-toggle" style="width: 356px;  font-size:14px " type="button" data-toggle="dropdown">
+                                <button id="pname" class="btn btn-info dropdown-toggle" style="width: 100%;  font-size:14px " type="button" data-toggle="dropdown">
                     <span class="caret"></span></button>
                                 <ul id="dropdownP" class="dropdown-menu" role="menu" style="width: 356px">
                                     <!-- <li selected="selected"><a href='#' data-value='10'>กรุงเทพมหานคร</a></li> -->
@@ -172,7 +184,7 @@
                         <h5 class="col-sm-1 col-sm-offset-2 text-info">เขต:</h5>
                         <div class="col-sm-6">
                             <div class="dropdown">
-                                <button id="dname" class="btn btn-info dropdown-toggle" style="width: 356px;  font-size:14px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกเขต
+                                <button id="dname" class="btn btn-info dropdown-toggle" style="width: 100%;  font-size:14px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกเขต
                       <span class="caret"></span></button>
                                 <ul id="dropdownD" class="dropdown-menu" style="width: 356px">
 
@@ -189,7 +201,7 @@
                         <h5 class="col-sm-1  col-sm-offset-2 text-info">แขวง:</h5>
                         <div class="col-sm-6">
                             <div class="dropdown">
-                                <button id="sname" class="btn btn-info dropdown-toggle" style="width: 356px;  font-size:14px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกแขวง
+                                <button id="sname" class="btn btn-info dropdown-toggle" style="width: 100%;  font-size:14px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกแขวง
                         <span class="caret"></span></button>
                                 <ul id="dropdownS" class="dropdown-menu" style="width: 356px">
 
@@ -206,31 +218,33 @@
                         <h5 class="col-sm-1 col-sm-offset-2 text-info">วัน:</h5>
                         <div class="col-sm-6">
                             <!-- <input class="form-control" id="txtDate" placeholder="Pick your Date"/> -->
-                            <input id="txtDate" type='text' class="form-control" placeholder="คลิ๊กที่นี่เพื่อเลือกวัน" style=" " />
+                            <input id="txtDate" type='text' class="form-control" placeholder="คลิ๊กที่นี่เพื่อเลือกวัน" style="width: 100%;" />
                         </div>
                     </div>
                     <br>
                     <br>
                     <br>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-3" style="margin-left:150px">
-                                <button type="button" id="Search" class="btn btn-lg btn-success btn-block">แสดงข้อมูล</button>
-                            </div>
-                            <div class="col-sm-3">
-                                <button id="clear" type="button" class="btn btn-lg btn-danger btn-block" style="margin-left:49px">ล้าง</button>
-                            </div>
+                    <div class="form-group col-sm-offset-3">
+
+                        <div class="col-sm-4">
+                            <button type="button" id="Search" class="btn btn-lg btn-success btn-block">แสดงข้อมูล</button>
                         </div>
+
+                        <div class="col-sm-4">
+                            <button id="clear" type="button" class="btn btn-lg btn-danger btn-block">ล้าง</button>
+                        </div>
+
                     </div>
                     </form>
 
                     <br>
-
+                    <br>
+                    <br>
                     <h4 class="text-primary text-center" style="">คำอธิบายสัญลักษณ์ เกณฑ์ของดัชนีคุณภาพอากาศ</h4>
 
                     <div clsss="col-sm-1">
                         <div class="row">
-                            <div class="container" style="width : 70%; margin-left: 100px;  ">
+                            <div class="container" style="width : 90%;">
                                 <table class="table table-hover table-bordered">
                                     <thead>
                                         <th style="background-color: #ff4d4d">
@@ -295,6 +309,7 @@
 
                                         </div>
                                       </div>
+                                    </div>
 
 
 
@@ -692,8 +707,8 @@
                         //     'address': "กรุงเทพมหานคร"
                         // }, function(results, status) {
                         //     if (status == google.maps.GeocoderStatus.OK) {
-                                map.setCenter(new google.maps.LatLng(13.756331, 100.501765));//bangkok
-                                map.setZoom(11);
+                        map.setCenter(new google.maps.LatLng(13.756331, 100.501765)); //bangkok
+                        map.setZoom(11);
                         //     }
                         // });
                         getNotification("pe-7s-smile", "success", "<b>กดที่จุดแผนที่ที่ต้องการเพื่อดูข้อมูล</b>");
@@ -2784,14 +2799,14 @@
                             display: true,
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Month'
+                                labelString: '24 ชั่วโมง'
                             }
                         }],
                         yAxes: [{
                             display: true,
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Value'
+                                labelString: 'ค่า'
                             }
                         }]
                     },
