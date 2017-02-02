@@ -51,6 +51,9 @@
             font-family: 'Mitr', sans-serif;
             margin: auto;
             padding: 0 0 0 0;
+            position: relative;
+            height: 100%;
+            width: 100%;
         }
 
         table {
@@ -138,7 +141,7 @@
                         <li><a href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
                         <li><a href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
                         <li><a href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
-                        <li><a href="predict.html">พยากรณ์คุณภาพอากาศ</a></li>
+                        <!-- <li><a href="predict.html">พยากรณ์คุณภาพอากาศ</a></li> -->
                         <li><a href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
                     </ul>
                 </div>
@@ -176,32 +179,26 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }); //end of map
 
-        var marker = new google.maps.Marker({
+      /*  var marker = new google.maps.Marker({
             position: new google.maps.LatLng(15.9443970094, 100.1210692095),
             icon: new google.maps.MarkerImage('http://maps.google.com/mapfiles/ms/icons/blue-dot.png', undefined, undefined, undefined, new google.maps.Size(50, 50)),
             map: map,
             title: "Hello World!"
-        });
+        });*/
 
 
         var amq = org.activemq.Amq;
         amq.init({
             uri: 'amq',
-            logging: true,
-            timeout: 20
+            logging: true
+            //timeout: 20
         });
-
-
 
         var myHandler = {
             rcvMessage: function(message) {
                 jsonObj = JSON.parse(message.textContent);
-                var jsonEvent;
-                var test1 = "test1";
-                var tStamp = displayTime();
+                console.log("message2: " + JSON.stringify(jsonObj));
                 var mID;
-                var mfirst_name;
-                var mlast_name;
                 var mLat;
                 var mLng;
                 var mCO;
@@ -210,18 +207,17 @@
                 var mSO2;
                 var mPM25;
                 var mRadio;
-                mID = eval(jsonObj.ID);
-                mfirst_name = jsonObj.first_name;
-                mlast_name = jsonObj.last_name;
-                mLat = eval(jsonObj.Lat);
-                mLng = eval(jsonObj.Lng);
-                mCO = eval(jsonObj.CO);
-                mNO2 = eval(jsonObj.Lng);
-                mO3 = eval(jsonObj.O3);
-                mSO2 = eval(jsonObj.SO2);
-                mPM25 = eval(jsonObj.PM25);
-                mRadio = eval(jsonObj.Radio);
-                UpdateMap(mID, mfirst_name, mlast_name, mLat, mLng, mCO, mNO2, mO3, mSO2, mPM25, mRadio);
+                mID = eval(jsonObj.id);
+                mLat = jsonObj.lat;
+                mLng = jsonObj.lon;
+                mCO = eval(jsonObj.co);
+                mNO2 = eval(jsonObj.no2);
+                mO3 = eval(jsonObj.o3);
+                mSO2 = eval(jsonObj.so2);
+                mPM25 = eval(jsonObj.pm25);
+                mRadio = jsonObj.rad;
+                mTime = jsonObj.tstamp;
+                UpdateMap(mID, mLat, mLng, mCO, mNO2, mO3, mSO2, mPM25, mRadio, mTime);
 
             },
             myId: 'test0',
@@ -232,7 +228,8 @@
 
 
 
-        function UpdateMap(id, first_name, last_name, Lat, Lng, CO, NO2, O3, SO2, PM25, Radio) {
+        function UpdateMap(id, Lat, Lng, CO, NO2, O3, SO2, PM25, Radio, Time) {
+            console.log("UpdateMap()");
             CO = CO.toFixed(2);
             NO2 = NO2.toFixed(2);
             O3 = O3.toFixed(2);
@@ -240,17 +237,33 @@
             PM25 = PM25.toFixed(2);
             Radio = Radio.toFixed(2);
 
-            console.log("showData: id: " + id + " first_name: " + first_name + " last_name: " + last_name + " Lat: " + Lat + " Lng: " + Lng + " CO: " + CO + " NO2: " + NO2 + " O3: " + O3 + " SO2: " + SO2 + " PM25: " + PM25 + " Radio: " + Radio);
+            //  console.log("showData: id: " + id + " first_name: " + first_name + " last_name: " + last_name + " Lat: " + Lat + " Lng: " + Lng + " CO: " + CO + " NO2: " + NO2 + " O3: " + O3 + " SO2: " + SO2 + " PM25: " + PM25 + " Radio: " + Radio);
 
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(Lat, Lng),
                 map: map,
-                //                icon: getIconMarker('http://maps.google.com/mapfiles/ms/icons/red-dot.png'),
+                icon: new google.maps.MarkerImage('http://maps.google.com/mapfiles/ms/icons/blue-dot.png'),
                 title: "Hello World!"
             });
 
             markers.push(marker);
 
+            var infoWindow = new google.maps.InfoWindow({
+                content: "<div class = 'text-primary'><b>การแจ้งเตือนปริมาณกัมมันตรังสี</b></div>" +
+                    "<div class = 'text-muted'>เวลาอัพเดทล่าสุด " + Time + "</div>" +
+                    "<div class = 'text-info'>ไอดีผู้ใช้: " + id + "</div>" +
+                    "<div class = 'text-info'>CO: " + CO + "</div>" +
+                    "<div class = 'text-info'>NO2: " + NO2 + "</div>" +
+                    "<div class = 'text-info'>O3: " + O3 + "</div>" +
+                    "<div class = 'text-info'>SO2: " + SO2 + "</div>" +
+                    "<div class = 'text-info'>PM2.5: " + PM25 + "</div>" +
+                    "<div class = 'text-info'>ค่ากัมมันตรังสี: " + Radio + "</div>",
+
+                maxWidth: 500
+            });
+            marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+            });
 
         }
 

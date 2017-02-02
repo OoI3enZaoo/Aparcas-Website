@@ -2,265 +2,269 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="icon" type="image/png" href="aparcaslogo.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="aparcaslogo.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>Aparcas Project</title>
-  <!--   Core JS Files   -->
-
-
-
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/jquery-ui/jquery-ui.js"></script>
-  <script src="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.js"></script>
-  <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-  <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <title>Aparcas Project</title>
+    <!--   Core JS Files   -->
 
 
 
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
-
-  <link href="assets/css/style.css" rel="stylesheet" />
-
-  <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
-  />
-
-
-
-
-
-  <link rel="stylesheet" href="bower_components/jquery/src/css/jquery-ui.css">
-
-
-  <link href="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.css" rel="stylesheet" />
-  <!-- Bootstrap core CSS     -->
-  <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-  <!-- Animation library for notifications   -->
-  <link href="bower_components/bootstrap/dist/css/animate.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Mitr" rel="stylesheet">
-
-
-
-
-  <style>
-
-  html, body {
-    margin-left:auto;
-    margin-right:auto;
-    font-family: 'Mitr', sans-serif;
-    margin: auto;
-    position: relative;
-    padding: 0 0 0 0;
-    height: 100%;
-    width: 100%;
-  }
-  #map {
-      position: relative;
-      width: 100%;
-      height: 85vh;
-      margin: 0;
-      padding: 0;
-  }
-
-  </style>
-
-  <style type="text/css">
-
-
-  .ui-state-focus,
-  .ui-widget-content .ui-state-focus,
-  .ui-widget-header .ui-state-focus,
-  .ui-state-hover,
-  .ui-widget-content .ui-state-hover,
-  .ui-widget-header .ui-state-hover,
-  .ui-state-default,
-  .ui-widget-content .ui-state-default,
-  .ui-widget-header .ui-state-default {
-    background: #2b2b2b;
-    border-color: transparent;
-  }
-
-  .ui-slider .ui-slider-pip-initial-1 .ui-slider-label {
-    color: #E80949; }
-
-    .ui-slider .ui-slider-pip-initial-2 .ui-slider-label {
-      color: #920AFF; }
-
-      #legend {
-        background: #FFF;
-        padding: 10px;
-        margin: 5px;
-        font-size: 12px;
-        font-family: Arial, sans-serif;
-      }
-
-      .color {
-        border: 1px solid;
-        height: 12px;
-        width: 12px;
-        margin-right: 3px;
-        float: left;
-      }
-
-      .blue {
-        background: #4d4dff;
-      }
-
-      .green {
-        background: #4dff88;
-      }
-
-      .yellow {
-        background: #ffff4d;
-      }
-
-      .orange {
-        background: #ff944d;
-      }
-
-      .red {
-        background: #ff4d4d;
-      }
-
-      #full-width {
-        padding: 0 0 0 0;
-      }
-
-      </style>
-
-    </head>
-
-    <body>
-
-
-
-
-      <header>
-          <div class="container-fluid">
-              <div class="row">
-                  <div class="col-sm-12">
-                      <h4><strong>Air Pollution and Radioactive Contamination Analyzing System (APARCAS)</strong> &nbsp;&nbsp;</h4>
-
-                  </div>
-
-              </div>
-          </div>
-      </header>
-      <section class="menu-section">
-          <div class="container">
-              <div class="row">
-                  <div class="col-sm-12">
-
-                      <ul id="menu-top" class="nav navbar-nav navbar-right">
-                          <li><a href="realtime.html">คุณภาพอากาศแบบเรียลไทม์</a></li>
-                          <li><a class="menu-top-active"href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
-                          <li><a  href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
-                          <li><a href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
-                          <li><a href="predict.html">พยากรณ์คุณภาพอากาศ</a></li>
-                          <li><a href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-      </section>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
 
 
 
 
 
-          <div id="full-width" class="container-fluid">
-              <div class="row">
-                  <div class="col-sm-7">
-                      <div id="map"></div>
 
-                  </div>
-                  <div class="col-sm-5">
-                      <br>
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 
 
-                      <h4 class="text-center text-primary">กรุณาเลือกพื้นที่และวันที่เพื่อแสดงข้อมูล</h4>
 
 
-                      <from>
-                          <div class="form-group">
-                              <h5 class=" col-sm-1 col-sm-offset-2 text-info">จังหวัด:</h5>
-                              <div class="col-sm-6 ">
 
-                                  <div class="dropdown">
-                                      <button id="pname" class="btn btn-info dropdown-toggle" style="width: 100%;  font-size:14px " type="button" data-toggle="dropdown">
+    <link rel="stylesheet" href="bower_components/jquery/src/css/jquery-ui.css">
+
+
+    <link href="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS     -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <!-- Animation library for notifications   -->
+    <link href="bower_components/bootstrap/dist/css/animate.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Mitr" rel="stylesheet">
+
+
+
+
+    <style>
+        html,
+        body {
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'Mitr', sans-serif;
+            margin: auto;
+            position: relative;
+            padding: 0 0 0 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #map {
+            position: relative;
+            width: 100%;
+            height: 85vh;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <style type="text/css">
+        .ui-state-focus,
+        .ui-widget-content .ui-state-focus,
+        .ui-widget-header .ui-state-focus,
+        .ui-state-hover,
+        .ui-widget-content .ui-state-hover,
+        .ui-widget-header .ui-state-hover,
+        .ui-state-default,
+        .ui-widget-content .ui-state-default,
+        .ui-widget-header .ui-state-default {
+            background: #2b2b2b;
+            border-color: transparent;
+        }
+
+        .ui-slider .ui-slider-pip-initial-1 .ui-slider-label {
+            color: #E80949;
+        }
+
+        .ui-slider .ui-slider-pip-initial-2 .ui-slider-label {
+            color: #920AFF;
+        }
+
+        #legend {
+            background: #FFF;
+            padding: 10px;
+            margin: 5px;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+        }
+
+        .color {
+            border: 1px solid;
+            height: 12px;
+            width: 12px;
+            margin-right: 3px;
+            float: left;
+        }
+
+        .blue {
+            background: #4d4dff;
+        }
+
+        .green {
+            background: #4dff88;
+        }
+
+        .yellow {
+            background: #ffff4d;
+        }
+
+        .orange {
+            background: #ff944d;
+        }
+
+        .red {
+            background: #ff4d4d;
+        }
+
+        #full-width {
+            padding: 0 0 0 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4><strong>Air Pollution and Radioactive Contamination Analyzing System (APARCAS)</strong> &nbsp;&nbsp;</h4>
+
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <section class="menu-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <ul id="menu-top" class="nav navbar-nav navbar-right">
+                        <li><a href="realtime.html">คุณภาพอากาศแบบเรียลไทม์</a></li>
+                        <li><a class="menu-top-active" href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
+                        <li><a href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
+                        <li><a href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
+                        <!-- <li><a href="predict.html">พยากรณ์คุณภาพอากาศ</a></li> -->
+                        <li><a href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <div id="full-width" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="container-fluid">
+
+                    <h4 class="title text-center text-info">เลื่อนที่แถบเพื่อเลือกเวลา</h4>
+                    <div id="flat-slider"></div>
+                </div>
+                <br>
+                <div id="map"></div>
+
+            </div>
+            <div class="col-sm-5">
+                <br>
+
+
+                <h4 class="text-center text-primary">กรุณาเลือกพื้นที่และวันที่เพื่อแสดงข้อมูล</h4>
+
+
+                <from>
+                    <div class="form-group">
+                        <h5 class=" col-sm-1 col-sm-offset-2 text-info">จังหวัด:</h5>
+                        <div class="col-sm-6 ">
+
+                            <div class="dropdown">
+                                <button id="pname" class="btn btn-info dropdown-toggle" style="width: 100%;  font-size:14px " type="button" data-toggle="dropdown">
                           <span class="caret"></span></button>
-                                      <ul id="dropdownP" class="dropdown-menu" role="menu" style="width: 356px">
-                                          <!-- <li selected="selected"><a href='#' data-value='10'>กรุงเทพมหานคร</a></li> -->
-                                      </ul>
-                                  </div>
+                                <ul id="dropdownP" class="dropdown-menu" role="menu" style="width: 356px">
+                                    <!-- <li selected="selected"><a href='#' data-value='10'>กรุงเทพมหานคร</a></li> -->
+                                </ul>
+                            </div>
 
 
-                              </div>
-                          </div>
-                          <br><br><br>
-                          <div class="form-group">
-                              <h5 class="col-sm-1 col-sm-offset-2 text-info">เขต:</h5>
-                              <div class="col-sm-6">
-                                  <div class="dropdown">
-                                      <button id="dname" class="btn btn-info dropdown-toggle" style="width: 100%;  font-size:14px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกเขต
+                        </div>
+                    </div>
+                    <br><br><br>
+                    <div class="form-group">
+                        <h5 class="col-sm-1 col-sm-offset-2 text-info">เขต:</h5>
+                        <div class="col-sm-6">
+                            <div class="dropdown">
+                                <button id="dname" class="btn btn-info dropdown-toggle" style="width: 100%;  font-size:14px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกเขต
                             <span class="caret"></span></button>
-                                      <ul id="dropdownD" class="dropdown-menu" style="width: 356px">
+                                <ul id="dropdownD" class="dropdown-menu" style="width: 356px">
 
 
-                                      </ul>
+                                </ul>
 
-                                  </div>
-                              </div>
-                          </div>
-                          <br>
-                          <br>
-                          <br>
-                          <div class="form-group">
-                              <h5 class="col-sm-1  col-sm-offset-2 text-info">แขวง:</h5>
-                              <div class="col-sm-6">
-                                  <div class="dropdown">
-                                      <button id="sname" class="btn btn-info dropdown-toggle" style="width: 100%;  font-size:14px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกแขวง
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <h5 class="col-sm-1  col-sm-offset-2 text-info">แขวง:</h5>
+                        <div class="col-sm-6">
+                            <div class="dropdown">
+                                <button id="sname" class="btn btn-info dropdown-toggle" style="width: 100%;  font-size:14px " type="button" data-toggle="dropdown">คลิ๊กที่นี่ เพื่อเลือกแขวง
                               <span class="caret"></span></button>
-                                      <ul id="dropdownS" class="dropdown-menu" style="width: 356px">
+                                <ul id="dropdownS" class="dropdown-menu" style="width: 356px">
 
 
-                                      </ul>
+                                </ul>
 
-                                  </div>
-                              </div>
-                          </div>
+                            </div>
+                        </div>
+                    </div>
 
-                          <br><br>
-                          <br>
-                          <div class="form-group">
-                              <h5 class="col-sm-1 col-sm-offset-2 text-info">วัน:</h5>
-                              <div class="col-sm-6">
-                                  <!-- <input class="form-control" id="txtDate" placeholder="Pick your Date"/> -->
-                                  <input id="txtDate" type='text' class="form-control" placeholder="คลิ๊กที่นี่เพื่อเลือกวัน" style="width: 100%;" />
-                              </div>
-                          </div>
-                          <br>
-                          <br>
-                          <br>
-                          <div class="form-group col-sm-offset-3">
+                    <br><br>
+                    <br>
+                    <div class="form-group">
+                        <h5 class="col-sm-1 col-sm-offset-2 text-info">วัน:</h5>
+                        <div class="col-sm-6">
+                            <!-- <input class="form-control" id="txtDate" placeholder="Pick your Date"/> -->
+                            <input id="txtDate" type='text' class="form-control" placeholder="คลิ๊กที่นี่เพื่อเลือกวัน" style="width: 100%;" />
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="form-group col-sm-offset-3">
 
-                              <div class="col-sm-4">
-                                  <button type="button" id="Search" class="btn btn-lg btn-success btn-block">แสดงข้อมูล</button>
-                              </div>
+                        <div class="col-sm-4">
+                            <button type="button" id="Search" class="btn btn-lg btn-success btn-block">แสดงข้อมูล</button>
+                        </div>
 
-                              <div class="col-sm-4">
-                                  <button id="clear" type="button" class="btn btn-lg btn-danger btn-block">ล้าง</button>
-                              </div>
+                        <div class="col-sm-4">
+                            <button id="clear" type="button" class="btn btn-lg btn-danger btn-block">ล้าง</button>
+                        </div>
 
-                          </div>
-                          </form>
+                    </div>
+                    </form>
 
                     <br>
                     <br>
@@ -277,11 +281,10 @@
 
 
 
-                </div>
-
-              </div>
             </div>
 
+        </div>
+    </div>
 
 
 
@@ -290,54 +293,52 @@
 
 
 
-          </body>
+
+</body>
 
 
 
 
-          <script type="text/javascript" charset="utf-8">
+<script type="text/javascript" charset="utf-8">
+    var countzoom = true;
+    var indexTypeGas = 0;
+    var Circles = [];
+
+    var markers = [];
+
+    var allS = [];
+
+    $(".dropdown-menu li a").click(function() { // show value when click
+        $(this).parents(".dropdown").find('.btn').html($(this).text());
+        $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+    });
 
 
-          var countzoom = true;
-          var indexTypeGas = 0;
-          var Circles = [];
+    //dname
+    function initMap() {
 
-          var markers = [];
+        var myDate;
+        var myStartTime = "00:00:00";
+        var myEndTime = "23:00:00";
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 11,
+            center:
 
-          var allS = [];
-
-          $(".dropdown-menu li a").click(function () {// show value when click
-            $(this).parents(".dropdown").find('.btn').html($(this).text());
-            $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-          });
-
-
-          //dname
-          function initMap() {
-
-            var myDate;
-            var myStartTime = "00:00:00";
-            var myEndTime = "23:00:00";
-            var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 11,
-              center:
-
-              new google.maps.LatLng(13.756331, 100.501765)
-              ,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
+                new google.maps.LatLng(13.756331, 100.501765),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
 
 
 
-            $("#myGas").click(function () {
+        $("#myGas").click(function() {
 
-              var txt = document.getElementById("txtDate").value;
+            var txt = document.getElementById("txtDate").value;
 
-              if (txt == "") {
+            if (txt == "") {
                 getNotification("pe-7s-close-circle", "danger", "<b>Error</b> Please select your date first");
-              }
+            }
 
-              $(".dropdown-menu li a").click(function () {// show value when click
+            $(".dropdown-menu li a").click(function() { // show value when click
                 $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
                 $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
                 var mName = $(this).text();
@@ -348,92 +349,89 @@
 
                 setDataOnMap(indexTypeGas, myStartTime, myEndTime, myDate);
 
-              });
-
-
             });
 
 
+        });
 
 
 
-            var mTime = ["00:00", "01:00", "02:00", "03:00:", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"];
 
-            $("#flat-slider")
+
+        var mTime = ["00:00", "01:00", "02:00", "03:00:", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"];
+
+        $("#flat-slider")
 
             .slider({
 
-              range: true,
-              min: 1,
-              max: 24,
-              values: [1, 24],
-              step: 1
+                range: true,
+                min: 1,
+                max: 24,
+                values: [1, 24],
+                step: 1
             })
 
             .slider("pips", {
 
-              first: "label",
-              last: "label",
-              rest: "label",
-              step: 1,
-              labels: mTime,
-              prefix: "",
-              suffix: ""
+                first: "label",
+                last: "label",
+                rest: "label",
+                step: 1,
+                labels: mTime,
+                prefix: "",
+                suffix: ""
 
             })
             .slider("float", {
 
-              handle: false,
-              pips: false,
-              labels: mTime,
-              prefix: "",
-              suffix: ""
+                handle: false,
+                pips: false,
+                labels: mTime,
+                prefix: "",
+                suffix: ""
 
             })
-            .on("slidechange", function (e, ui) {
+            .on("slidechange", function(e, ui) {
 
-              var txt = document.getElementById("txtDate").value;
+                var txt = document.getElementById("txtDate").value;
 
-              if (txt == "") {
-                getNotification("pe-7s-close-circle", "danger", "<b>Error</b> Please select your date first");
+                if (txt == "") {
+                    getNotification("pe-7s-close-circle", "danger", "<b>Error</b> Please select your date first");
 
-              } else {
+                } else {
 
-                var startTime = ui.values[0];
-                var endTime = ui.values[1];
-                $("#outputDate").text("You selected " + mTime[startTime - 1] + " to " + mTime[endTime - 1]);
-                RemoveMarker();
-                myStartTime = mTime[startTime - 1];
-                myEndTime = mTime[endTime - 1];
+                    var startTime = ui.values[0];
+                    var endTime = ui.values[1];
+                    $("#outputDate").text("You selected " + mTime[startTime - 1] + " to " + mTime[endTime - 1]);
+                    RemoveMarker();
+                    myStartTime = mTime[startTime - 1];
+                    myEndTime = mTime[endTime - 1];
 
-                setDataOnMap(indexTypeGas, myStartTime, myEndTime, myDate);
-              }
+                    setDataOnMap(indexTypeGas, myStartTime, myEndTime, myDate);
+                }
 
 
             });
 
-            $("#Search").click(function () {
+        $("#Search").click(function() {
 
-              //$("#showInfo").empty();
+            //$("#showInfo").empty();
 
 
-              var mDate = document.getElementById("txtDate").value;
-              var dname = document.getElementById("dname").value;
-              var sname = document.getElementById("sname").value;
-              var pname = document.getElementById("pname").value;
+            var mDate = document.getElementById("txtDate").value;
+            var dname = document.getElementById("dname").value;
+            var sname = document.getElementById("sname").value;
+            var pname = document.getElementById("pname").value;
 
-              if(pname == ""){
+            if (pname == "") {
                 getNotification("pe-7s-close-circle", "danger", "<b>Error</b> กรุณาเลือกจังหวัด");
-              }
-              else if(dname == "" && pname != ""){
+            } else if (dname == "" && pname != "") {
                 getNotification("pe-7s-close-circle", "danger", "<b>Error</b> กรุณาเลือกเขต");
-              }
-              else if(sname == "" && pname != "" && dname != ""){
+            } else if (sname == "" && pname != "" && dname != "") {
                 getNotification("pe-7s-close-circle", "danger", "<b>Error</b> กรุณาเลือกแขวง");
-              }
-              else if (mDate == "" && pname != "" && sname != "" && dname !="") {
+            } else if (mDate == "" && pname != "" && sname != "" && dname != "") {
                 getNotification("pe-7s-close-circle", "danger", "<b>Error</b> กรุณาเลือกวัน");
-              } else {
+            } else {
 
                 myDate = DatePickResponse(mDate);
                 RemoveMarker();
@@ -443,19 +441,19 @@
                 //$("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>ค้นหาเขต: " + myDate + "</h5></div>");
 
 
-              }
+            }
 
 
-            });
+        });
 
-            function setDataOnMap(gIndex, startTime, endTime, date) {
+        function setDataOnMap(gIndex, startTime, endTime, date) {
 
-              setMarkerAll(null);
-              markers = [];
+            setMarkerAll(null);
+            markers = [];
 
 
-              console.log("setDataOnMap(" + gIndex + "," + startTime + "," + endTime + "," + date + ")");
-              $.getJSON('http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp', function (result) {
+            console.log("setDataOnMap(" + gIndex + "," + startTime + "," + endTime + "," + date + ")");
+            $.getJSON('http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp', function(result) {
 
                 /*var mStartTime = Date.parse(startTime);
                 var mEndTime = Date.parse(endTime);
@@ -466,152 +464,156 @@
                 var myGas = [];
                 var myDateTime = [];
                 var check = false;
-                var did = document.getElementById("dname").value;//เขต
-                var sid = document.getElementById("sname").value;//แขวง
+                var did = document.getElementById("dname").value; //เขต
+                var sid = document.getElementById("sname").value; //แขวง
                 var dname = document.getElementById("dname").innerHTML;
                 var sname = document.getElementById("sname").innerHTML;
                 console.log("Dname: " + dname + " did: " + did);
                 var re = new RegExp(date, 'g');
-                if (sid != 2222 && did != 2222) {// เลือกแขวง
-                  for (i = 0; i < result.length; i++) {
-                    var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
-                    if (day.match(re)) {
-                      if (sid == result[i].grid_id) {
+                if (sid != 2222 && did != 2222) { // เลือกแขวง
+                    for (i = 0; i < result.length; i++) {
+                        var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
+                        if (day.match(re)) {
+                            if (sid == result[i].grid_id) {
 
-                        var restime = day;
-                        res1 = restime.substr(11, 2);
-                        res2 = restime.substr(14, 2);
-                        res3 = restime.substr(17, 2);
-                        restime = res1 + ":" + res2 + ":" + res3;
+                                var restime = day;
+                                res1 = restime.substr(11, 2);
+                                res2 = restime.substr(14, 2);
+                                res3 = restime.substr(17, 2);
+                                restime = res1 + ":" + res2 + ":" + res3;
 
-                        if (restime >= startTime && restime <= endTime) {
+                                if (restime >= startTime && restime <= endTime) {
 
-                          var mID = result[i].id;
-                          var mLat = result[i].lat;
-                          var mLong = result[i].lon;
-                          var co = result[i].co;
-                          var no2 = result[i].no2;
-                          var o3 = result[i].o3;
-                          var so2 = result[i].so2;
-                          var pm25 = result[i].pm25;
-                          var radio = result[i].radio;
-                          var AQI = getAQI(co, no2, o3, so2, pm25);  //get AQI from getAQI function
-
-
-                          myLocation[i] = [mLat, mLong, mID];
-                          myGas[i] = [radio];
-                          myDateTime[i] = [day];
-                          check = true;
+                                    var mID = result[i].id;
+                                    var mLat = result[i].lat;
+                                    var mLong = result[i].lon;
+                                    var co = result[i].co;
+                                    var no2 = result[i].no2;
+                                    var o3 = result[i].o3;
+                                    var so2 = result[i].so2;
+                                    var pm25 = result[i].pm25;
+                                    var radio = result[i].radio;
+                                    var AQI = getAQI(co, no2, o3, so2, pm25); //get AQI from getAQI function
 
 
-                          placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex);//call method for create circle on the map
+                                    myLocation[i] = [mLat, mLong, mID];
+                                    myGas[i] = [radio];
+                                    myDateTime[i] = [day];
+                                    check = true;
+
+
+                                    placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex); //call method for create circle on the map
+                                }
+                            }
                         }
-                      }
+                    } //for
+                    if (check == false) {
+                        getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
+                    } else {
+                        var geocoder = new google.maps.Geocoder();
+                        geocoder.geocode({
+                            'address': sname
+                        }, function(results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                map.setCenter(results[0].geometry.location);
+                                map.setZoom(13);
+                            }
+                        });
                     }
-                  }//for
-                  if (check == false) {
-                    getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
-                  } else {
-                    var geocoder = new google.maps.Geocoder();
-                    geocoder.geocode({ 'address': sname }, function (results, status) {
-                      if (status == google.maps.GeocoderStatus.OK) {
-                        map.setCenter(results[0].geometry.location);
-                        map.setZoom(13);
-                      }
-                    });
-                  }
                 }
                 if (sid == 2222 & did != 2222) { // sid 2222 mean all Sub_CODE (แขวงทั้งหมด)
-                  console.log("do in allS");
-                  for (j = 0; j < allS.length; j++) {
-                    for (i = 0; i < result.length; i++) {
-                      var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
-                      if (day.match(re)) {
-                        if (allS[j] == result[i].grid_id) {
+                    console.log("do in allS");
+                    for (j = 0; j < allS.length; j++) {
+                        for (i = 0; i < result.length; i++) {
+                            var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
+                            if (day.match(re)) {
+                                if (allS[j] == result[i].grid_id) {
 
-                          var restime = day;
-                          res1 = restime.substr(11, 2);
-                          res2 = restime.substr(14, 2);
-                          res3 = restime.substr(17, 2);
-                          restime = res1 + ":" + res2 + ":" + res3;
+                                    var restime = day;
+                                    res1 = restime.substr(11, 2);
+                                    res2 = restime.substr(14, 2);
+                                    res3 = restime.substr(17, 2);
+                                    restime = res1 + ":" + res2 + ":" + res3;
 
-                          if (restime >= startTime && restime <= endTime) {
-                            var mID = result[i].id;
-                            var mLat = result[i].lat;
-                            var mLong = result[i].lon;
-                            var co = result[i].co;
-                            var no2 = result[i].no2;
-                            var o3 = result[i].o3;
-                            var so2 = result[i].so2;
-                            var pm25 = result[i].pm25;
-                            var radio = result[i].radio;
-                            var AQI = getAQI(co, no2, o3, so2, pm25);  //get AQI from getAQI function
-                            myLocation[i] = [mLat, mLong, mID];
-                            myGas[i] = [radio];
-                            myDateTime[i] = [day];
-                            check = true;
-                            placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex);//call method for create circle on the map
+                                    if (restime >= startTime && restime <= endTime) {
+                                        var mID = result[i].id;
+                                        var mLat = result[i].lat;
+                                        var mLong = result[i].lon;
+                                        var co = result[i].co;
+                                        var no2 = result[i].no2;
+                                        var o3 = result[i].o3;
+                                        var so2 = result[i].so2;
+                                        var pm25 = result[i].pm25;
+                                        var radio = result[i].radio;
+                                        var AQI = getAQI(co, no2, o3, so2, pm25); //get AQI from getAQI function
+                                        myLocation[i] = [mLat, mLong, mID];
+                                        myGas[i] = [radio];
+                                        myDateTime[i] = [day];
+                                        check = true;
+                                        placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex); //call method for create circle on the map
 
-                          }
+                                    }
+                                }
+                            }
                         }
-                      }
                     }
-                  }
-                  if (check == false) {
-                    getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
-                  } else {
-                    var geocoder = new google.maps.Geocoder();
-                    geocoder.geocode({ 'address': dname }, function (results, status) {
-                      if (status == google.maps.GeocoderStatus.OK) {
-                        map.setCenter(results[0].geometry.location);
-                        map.setZoom(12);
-                      }
-                    });
+                    if (check == false) {
+                        getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
+                    } else {
+                        var geocoder = new google.maps.Geocoder();
+                        geocoder.geocode({
+                            'address': dname
+                        }, function(results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                map.setCenter(results[0].geometry.location);
+                                map.setZoom(12);
+                            }
+                        });
 
-                  }
+                    }
                 }
-                if (did == 2222) {// if all dist
-                  for (i = 0; i < result.length; i++) {
-                    var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
-                    if (day.match(re)) {
-                      var restime = day;
-                      res1 = restime.substr(11, 2);
-                      res2 = restime.substr(14, 2);
-                      res3 = restime.substr(17, 2);
-                      restime = res1 + ":" + res2 + ":" + res3;
+                if (did == 2222) { // if all dist
+                    for (i = 0; i < result.length; i++) {
+                        var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
+                        if (day.match(re)) {
+                            var restime = day;
+                            res1 = restime.substr(11, 2);
+                            res2 = restime.substr(14, 2);
+                            res3 = restime.substr(17, 2);
+                            restime = res1 + ":" + res2 + ":" + res3;
 
-                      if (restime >= startTime && restime <= endTime) {
-                        var mID = result[i].id;
-                        var mLat = result[i].lat;
-                        var mLong = result[i].lon;
-                        var co = result[i].co;
-                        var no2 = result[i].no2;
-                        var o3 = result[i].o3;
-                        var so2 = result[i].so2;
-                        var pm25 = result[i].pm25;
-                        var radio = result[i].radio;
-                        var AQI = getAQI(co, no2, o3, so2, pm25);  //get AQI from getAQI function
-                        myLocation[i] = [mLat, mLong, mID];
-                        myGas[i] = [radio];
-                        myDateTime[i] = [day];
-                        check = true;
-                        placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex);//call method for create circle on the map
+                            if (restime >= startTime && restime <= endTime) {
+                                var mID = result[i].id;
+                                var mLat = result[i].lat;
+                                var mLong = result[i].lon;
+                                var co = result[i].co;
+                                var no2 = result[i].no2;
+                                var o3 = result[i].o3;
+                                var so2 = result[i].so2;
+                                var pm25 = result[i].pm25;
+                                var radio = result[i].radio;
+                                var AQI = getAQI(co, no2, o3, so2, pm25); //get AQI from getAQI function
+                                myLocation[i] = [mLat, mLong, mID];
+                                myGas[i] = [radio];
+                                myDateTime[i] = [day];
+                                check = true;
+                                placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex); //call method for create circle on the map
 
-                      }
+                            }
+                        }
                     }
-                  }
-                  if (check == false) {
-                    getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
-                  } else {
-                    // var geocoder = new google.maps.Geocoder();
-                    // geocoder.geocode({ 'address': 'กรุงเทพมหานคร' }, function (results, status) {
-                    //   if (status == google.maps.GeocoderStatus.OK) {
-                          map.setCenter(new google.maps.LatLng(13.756331, 100.501765));//bangkok
+                    if (check == false) {
+                        getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
+                    } else {
+                        // var geocoder = new google.maps.Geocoder();
+                        // geocoder.geocode({ 'address': 'กรุงเทพมหานคร' }, function (results, status) {
+                        //   if (status == google.maps.GeocoderStatus.OK) {
+                        map.setCenter(new google.maps.LatLng(13.756331, 100.501765)); //bangkok
                         map.setZoom(11);
-                    //   }
-                    // });
+                        //   }
+                        // });
 
-                  }
+                    }
 
                 }
 
@@ -621,166 +623,167 @@
 
                 function placeMarker(mValue, mGas, mDateTime, type) {
 
-                  console.log("placeMarker");
-                  // var covered = {
-                  //   strokeColor: getStrokeColor(mGas[type]),//ขอบ
-                  //   strokeOpacity: 0.8,
-                  //   strokeWeight: 2,
-                  //   fillColor: getfillColor(mGas[type]),//พื้น
-                  //   fillOpacity: 0.35,
-                  //   map: map,
-                  //   center: new google.maps.LatLng(mValue[0], mValue[1]),
-                  //   radius: 500
-                  // };
-                  //
-                  // // Add the circle for this city to the map.
-                  // var circle = new google.maps.Circle(covered);//Circles
+                    console.log("placeMarker");
+                    // var covered = {
+                    //   strokeColor: getStrokeColor(mGas[type]),//ขอบ
+                    //   strokeOpacity: 0.8,
+                    //   strokeWeight: 2,
+                    //   fillColor: getfillColor(mGas[type]),//พื้น
+                    //   fillOpacity: 0.35,
+                    //   map: map,
+                    //   center: new google.maps.LatLng(mValue[0], mValue[1]),
+                    //   radius: 500
+                    // };
+                    //
+                    // // Add the circle for this city to the map.
+                    // var circle = new google.maps.Circle(covered);//Circles
 
-                  var circle = new google.maps.Marker({
-                            position: new google.maps.LatLng(mValue[0], mValue[1]),
-                            icon: {
-                              path: google.maps.SymbolPath.CIRCLE,
-                              scale: 10,
-                              strokeColor :"#51f08f",
-                              fillOpacity : 2,
-                              fillColor :"#eca51c",
-                              strokeWeight :3,
-                              fillOpacity: 0.35,
-                            },
-                            draggable: false,
-                            map: map
-                          });
-
-                  Circles.push(circle);
-
-
-                  //getDistrictFromLatlng(mValue[1], mValue[2]);
-
-                  var infoWindow = new google.maps.InfoWindow({
-                    content:
-                    "<div class = 'text-primary'><b>การแจ้งเตือนปริมาณกัมมันตรังสี</b></div>" +
-                    "<div class = 'text-muted'>เวลาอัพเดทล่าสุด " + mDateTime[0] + "</div>" +
-                    "<div class = 'text-info'>ไอดีผู้ใช้: " + mValue[2] + "</div>" +
-                    "<div class = 'text-info'>ค่ากัมมันตรังสี: " + mGas[0] + "</div>",
-
-                    maxWidth: 500
-                  });
-
-                  console.log("mValue: " + mValue[0] + " 2: " + mValue[1]);
-                  var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(mValue[0], mValue[1]),
-                    icon: getIconMarker(mGas[0]),
-                    map:map,
-                    title: "Hello World!"
-                  });
-
-                  markers.push(marker);
-
-
-                  map.addListener('zoom_changed', function () {
-                    console.log("zoom: " + map.getZoom());
-                    if (map.getZoom() == 11) {
-                      setMarkerAll(null);
-                      setCircleAll(map);
-                    }
-                    if (map.getZoom() <= 10) {
-                      setMarkerAll(map);
-                      setCircleAll(null);
-                    }
-                  });
-
-
-                  setMarkerAll(map);
-
-
-                  marker.addListener('click', function () {
-                    infoWindow.open(map, marker);
-                  });
-
-
-
-
-                  if (countzoom == true) {
-
-                    var province = document.getElementById("dname").innerHTML;
-                    console.log("Province: " + province);
-                    var geocoder = new google.maps.Geocoder();
-
-                    geocoder.geocode({ 'address': province }, function (results, status) {
-                      if (status == google.maps.GeocoderStatus.OK) {
-                        map.setCenter(results[0].geometry.location);
-                        map.setZoom(9);
-                      }
+                    var circle = new google.maps.Marker({
+                        position: new google.maps.LatLng(mValue[0], mValue[1]),
+                        icon: {
+                            path: google.maps.SymbolPath.CIRCLE,
+                            scale: 17,
+                            strokeColor: "#51f08f",
+                            fillOpacity: 2,
+                            fillColor: "#eca51c",
+                            strokeWeight: 3,
+                            fillOpacity: 0.35,
+                        },
+                        draggable: true,
+                        map: map
                     });
-                  }
 
-                  google.maps.event.addListener(circle, 'click', function (ev) {
-
-                    infoWindow.setPosition(ev.latLng);
-                    infoWindow.open(map);
-
-                  });//end of click on circle
-
-                  countzoom = false;
+                    Circles.push(circle);
 
 
-                }//placeMarker(loc)
+                    //getDistrictFromLatlng(mValue[1], mValue[2]);
+
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: "<div class = 'text-primary'><b>การแจ้งเตือนปริมาณกัมมันตรังสี</b></div>" +
+                            "<div class = 'text-muted'>เวลาอัพเดทล่าสุด " + mDateTime[0] + "</div>" +
+                            "<div class = 'text-info'>ไอดีผู้ใช้: " + mValue[2] + "</div>" +
+                            "<div class = 'text-info'>ค่ากัมมันตรังสี: " + mGas[0] + "</div>",
+
+                        maxWidth: 500
+                    });
+
+                    console.log("mValue: " + mValue[0] + " 2: " + mValue[1]);
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(mValue[0], mValue[1]),
+                        icon: getIconMarker(mGas[0]),
+                        map: map,
+                        title: "Hello World!"
+                    });
+
+                    markers.push(marker);
+
+
+                    map.addListener('zoom_changed', function() {
+                        console.log("zoom: " + map.getZoom());
+                        if (map.getZoom() == 11) {
+                            setMarkerAll(null);
+                            setCircleAll(map);
+                        }
+                        if (map.getZoom() <= 10) {
+                            setMarkerAll(map);
+                            setCircleAll(null);
+                        }
+                    });
+
+
+                    setMarkerAll(map);
+
+
+                    marker.addListener('click', function() {
+                        infoWindow.open(map, marker);
+                    });
 
 
 
-                $("button").click(function () {
-                  console.log("Detail Button");
+
+                    if (countzoom == true) {
+
+                        var province = document.getElementById("dname").innerHTML;
+                        console.log("Province: " + province);
+                        var geocoder = new google.maps.Geocoder();
+
+                        geocoder.geocode({
+                            'address': province
+                        }, function(results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                map.setCenter(results[0].geometry.location);
+                                map.setZoom(9);
+                            }
+                        });
+                    }
+
+                    google.maps.event.addListener(circle, 'click', function(ev) {
+
+                        infoWindow.setPosition(ev.latLng);
+                        infoWindow.open(map);
+
+                    }); //end of click on circle
+
+                    countzoom = false;
+
+
+                } //placeMarker(loc)
+
+
+
+                $("button").click(function() {
+                    console.log("Detail Button");
                 });
 
-                setTimeout(function () {
-                  waitingDialog.hide();
+                setTimeout(function() {
+                    waitingDialog.hide();
                 }, 1000);
 
 
 
-              });// json
+            }); // json
 
-            }
+        }
 
-            /*var legend = document.createElement('div');
-            legend.id = 'legend';
-            var content = [];
-            content.push('<h4>Air Quality Index</h4>');
-            content.push('<h5><div class="color blue"></div>0 - 50   Good</h5>');
-            content.push('<h5><div class="color green"></div>51 - 100     Moderate</h5>');
-            content.push('<h5><div class="color yellow"></div>100 - 200 Unhealthy for Sensitive Groups</h5>');
-            content.push('<h5><div class="color orange"></div>201 - 300 Unhealthy</h5>');
-            content.push('<h5><div class="color red"></div>300+ Very Unhealty</h5>');
-            legend.innerHTML = content.join('');
-            legend.index = 1;*/
-            //map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
-
-
-            // $("#aqi").append(legend.innerHTML)
+        /*var legend = document.createElement('div');
+        legend.id = 'legend';
+        var content = [];
+        content.push('<h4>Air Quality Index</h4>');
+        content.push('<h5><div class="color blue"></div>0 - 50   Good</h5>');
+        content.push('<h5><div class="color green"></div>51 - 100     Moderate</h5>');
+        content.push('<h5><div class="color yellow"></div>100 - 200 Unhealthy for Sensitive Groups</h5>');
+        content.push('<h5><div class="color orange"></div>201 - 300 Unhealthy</h5>');
+        content.push('<h5><div class="color red"></div>300+ Very Unhealty</h5>');
+        legend.innerHTML = content.join('');
+        legend.index = 1;*/
+        //map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 
 
-
-
-          }//init map
-
-          var mResult = "";
+        // $("#aqi").append(legend.innerHTML)
 
 
 
 
-          $(function () {
+    } //init map
+
+    var mResult = "";
 
 
-            $('#txtDate').datetimepicker({
-              format: 'DD/MM/YYYY'
-            });
-              $("#pname").text("กรุงเทพมหานคร");
-              document.getElementById("pname").value = "10";
-              $("#dname").text("เขตทั้งหมด");
-              document.getElementById("dname").value = "2222";
-              $("#sname").text("แขวงทั้งหมด");
-              document.getElementById("sname").value = "2222";
-            /*$.getJSON("http://sysnet.utcc.ac.th/aparcas/api/get_lat_long_from_event_trans.jsp", function (result1) {
+
+
+    $(function() {
+
+
+        $('#txtDate').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+        $("#pname").text("กรุงเทพมหานคร");
+        document.getElementById("pname").value = "10";
+        $("#dname").text("เขตทั้งหมด");
+        document.getElementById("dname").value = "2222";
+        $("#sname").text("แขวงทั้งหมด");
+        document.getElementById("sname").value = "2222";
+        /*$.getJSON("http://sysnet.utcc.ac.th/aparcas/api/get_lat_long_from_event_trans.jsp", function (result1) {
 
             for (i = 0; i < result1.length; i++) {
 
@@ -795,92 +798,92 @@
 
         });*/
 
-        $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/grid_lut.jsp", function (result) {
+        $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/grid_lut.jsp", function(result) {
 
-          var checkSame = ['55'];
-          var count = 1;
-          var districtname;
+            var checkSame = ['55'];
+            var count = 1;
+            var districtname;
 
-          var query = "<li ><a href='#'data-value='2222'>เขตทั้งหมด</a></li>";
-          $("#dropdownD").append(query);
-          for (i = 0; i < result.length; i++) {
-
-            districtname = result[i].dname;
-            var districtcode = result[i].dcode;
-
-            for (j = 0; j < checkSame.length; j++) {
-              if (checkSame[j] == districtcode) {
-                count = 0;
-                break;
-              }
-            }
-            if (count == 1) {
-              var query = "<li ><a href='#'data-value='" + districtcode + "'>" + districtname + "</a></li>";
-              $("#dropdownD").append(query);
-              checkSame.push(districtcode);
-            }
-            count = 1;
-
-          }//for
-
-
-          $(".dropdown-menu li a").click(function () {// show value when click
-            $("#dropdownS").empty();
-            $("#sname").text('คลิ๊กที่นี่ เพื่อเลือกแขวง');
-            document.getElementById("sname").value = "";
-
-            $(this).parents(".dropdown").find('.btn').html($(this).text());
-            $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-            var query = "<li ><a href='#'data-value='2222'>แขวงทั้งหมด</a></li>";
-            $("#dropdownS").append(query);
-
-            var dname = document.getElementById("dname").innerHTML;
-            var checkSame2 = ['55555'];
-            var count2 = 1;
-            allS = null;
-            allS = [];
-            console.log("dname: " + dname);
-
+            var query = "<li ><a href='#'data-value='2222'>เขตทั้งหมด</a></li>";
+            $("#dropdownD").append(query);
             for (i = 0; i < result.length; i++) {
-              var sname = result[i].sname;
-              var scode = result[i].scode;
-              for (j = 0; j < checkSame.length; j++) {
 
-                if (checkSame2[j] == sname) {
-                  count2 = 0;
-                  break;
-                }
-              }
-              if (result[i].dname == dname) {
-                if (count2 == 1) {
-                  console.log("DNAME: " + dname + " Sname: " + sname);
-                  allS.push(scode);
-                  checkSame2.push(sname);
-                  var query = "<li ><a href='#'data-value='" + scode + "'>" + sname + "</a></li>";
-                  $("#dropdownS").append(query);
+                districtname = result[i].dname;
+                var districtcode = result[i].dcode;
 
+                for (j = 0; j < checkSame.length; j++) {
+                    if (checkSame[j] == districtcode) {
+                        count = 0;
+                        break;
+                    }
                 }
-                count2 = 1;
-              }
-            }
-            for (i = 0; i < allS.length; i++) {
-              console.log("allS: " + allS[i]);
-            }
-            $(".dropdown-menu li a").click(function () {// show value when click
-              $(this).parents(".dropdown").find('.btn').html($(this).text());
-              $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+                if (count == 1) {
+                    var query = "<li ><a href='#'data-value='" + districtcode + "'>" + districtname + "</a></li>";
+                    $("#dropdownD").append(query);
+                    checkSame.push(districtcode);
+                }
+                count = 1;
+
+            } //for
+
+
+            $(".dropdown-menu li a").click(function() { // show value when click
+                $("#dropdownS").empty();
+                $("#sname").text('คลิ๊กที่นี่ เพื่อเลือกแขวง');
+                document.getElementById("sname").value = "";
+
+                $(this).parents(".dropdown").find('.btn').html($(this).text());
+                $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+                var query = "<li ><a href='#'data-value='2222'>แขวงทั้งหมด</a></li>";
+                $("#dropdownS").append(query);
+
+                var dname = document.getElementById("dname").innerHTML;
+                var checkSame2 = ['55555'];
+                var count2 = 1;
+                allS = null;
+                allS = [];
+                console.log("dname: " + dname);
+
+                for (i = 0; i < result.length; i++) {
+                    var sname = result[i].sname;
+                    var scode = result[i].scode;
+                    for (j = 0; j < checkSame.length; j++) {
+
+                        if (checkSame2[j] == sname) {
+                            count2 = 0;
+                            break;
+                        }
+                    }
+                    if (result[i].dname == dname) {
+                        if (count2 == 1) {
+                            console.log("DNAME: " + dname + " Sname: " + sname);
+                            allS.push(scode);
+                            checkSame2.push(sname);
+                            var query = "<li ><a href='#'data-value='" + scode + "'>" + sname + "</a></li>";
+                            $("#dropdownS").append(query);
+
+                        }
+                        count2 = 1;
+                    }
+                }
+                for (i = 0; i < allS.length; i++) {
+                    console.log("allS: " + allS[i]);
+                }
+                $(".dropdown-menu li a").click(function() { // show value when click
+                    $(this).parents(".dropdown").find('.btn').html($(this).text());
+                    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+                });
+
             });
-
-          });
 
         });
 
 
 
-      });
+    });
 
 
-      /*function postJSON(id,lat,lon){
+    /*function postJSON(id,lat,lon){
 
 
       console.log("PostJSON");
@@ -902,115 +905,118 @@
 
 }*/
 
-function getNotification(micon, mtype, mdata) {
+    function getNotification(micon, mtype, mdata) {
 
-  $.notify({
-    icon: micon,//icon
-    message: mdata//data
+        $.notify({
+            icon: micon, //icon
+            message: mdata //data
 
-  }, {
-    type: mtype, //type  danger ,warning ,success ,info
-    timer: 2000
-  });
-
-
-}
+        }, {
+            type: mtype, //type  danger ,warning ,success ,info
+            timer: 2000
+        });
 
 
-function RemoveMarker() {
-  for (i = 0; i < Circles.length; i++) {
-    Circles[i].setMap(null);
-  }
-  setMarkerAll(null);
-  setCircleAll(null);
-  markers = [];
-  Circles = [];
-}
-function setMarkerAll(map) {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
-  }
-}
-function setCircleAll(map){
-  for( var i = 0; i<Circles.length; i++){
-      Circles[i].setMap(map);
-  }
-}
-function getAQI(co, no2, o3, so2, pm25) {
-  var mArray = [co, no2, o3, so2, pm25];
-  var maxValueInArray = Math.max.apply(null, mArray);
-  return parseFloat(maxValueInArray);
-}
+    }
 
 
+    function RemoveMarker() {
+        for (i = 0; i < Circles.length; i++) {
+            Circles[i].setMap(null);
+        }
+        setMarkerAll(null);
+        setCircleAll(null);
+        markers = [];
+        Circles = [];
+    }
 
-/* function getDistrictFromLatlng(lat, lng) {
+    function setMarkerAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+        }
+    }
 
-//console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
-$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc", function (result) {
+    function setCircleAll(map) {
+        for (var i = 0; i < Circles.length; i++) {
+            Circles[i].setMap(map);
+        }
+    }
 
-
-for (j = 0; j < result.results[0].address_components.length; j++) {
-if (result.results[0].address_components[j].long_name.match(/^เขต.*$/) || result.results[0].address_components[j].long_name.match(/^อำเภอ.*$/)) {
-var myDistrict = result.results[0].address_components[j].long_name;
-var mCutSpace = myDistrict.replace(" ", "");
-// var mCutTitle = myDistrict.replace("เขต ","");
-//var a = mCutSpace+mCutTitle;
-mResult = mCutSpace.valueOf();
-var addText = "กิ่ง";
-if (mResult == "อำเภอสามชัย" || mResult == "อำเภอนาคู" || mResult == "อำเภอพนมดงรัก" || mResult == "อำเภอโนนนารายณ์" || mResult == "อำเภอเนินขาม" || mResult == "อำเภอหนองหิน" || mResult == "อำเภอบึงสามัคคี" || mResult == "อำเภอบัวลาย" ||
-mResult == "อำเภอซับใหญ่" || mResult == "อำเภอศิลาลาด" || mResult == "อำเภอบ้านแฮด" || mResult == "อำเภอพระทองคำ" ||
-mResult == "อำเภอสากเหล็ก" || mResult == "อำเภอบึงนาราง" || mResult == "อำเภอกุดรัง" || mResult == "อำเภอหนองมะโมง" || mResult == "อำเภอสากเหล็ก" || mResult == "อำเภอดงเจริญ" || mResult == "อำเภอเทพารักษ์" || mResult == "อำเภอแคนดง" || mResult == "อำเภอฆ้องชัย" || mResult == "อำเภอเมืองยาง" || mResult == "อำเภอลำทะเมนชัย" || mResult == "อำเภอหนองฮี" || mResult == "อำเภอซำสูง" || mResult == "อำเภอโนนศิลา" || mResult == "อำเภอหนองนาคำ" || mResult == "อำเภอดอนจาน") {
-mResult = addText + mResult;
-}
-if (mResult == "อำเภอปทุมรัตน์") {
-mResult = "อำเภอปทุมรัตต์";
-}
-if (mResult == "อำเภอหนองบุนนาก") {
-mResult = "อำเภอหนองบุญนาก";
-}
-if (mResult == "อำเภอกุฉินารายณ์") {
-mResult = "อำเภอกุฉินารายน์";
-}
-if (mResult == "อำเภอโคกโพธิ์ไชย") {
-mResult = "กิ่งอำเภอโคกโพธิ์ชัย";
-}
-if (mResult == "อำเภอเมืองนครราชสีมา") {
-mResult = "เมืองนครราชสีมา";
-}
-if (mResult == "อำเภอเวียงเก่า") {
-mResult = "อำเภอภูเวียง";
-}
-if (mResult == "อำเภอโพทะเล") {
-mResult = "โพทะเล";
-}
-
-//console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
-//console.log("test: "  +mResult);
-getDistrictIDFromDistrictName(mResult);
-
-}
-}
+    function getAQI(co, no2, o3, so2, pm25) {
+        var mArray = [co, no2, o3, so2, pm25];
+        var maxValueInArray = Math.max.apply(null, mArray);
+        return parseFloat(maxValueInArray);
+    }
 
 
 
-});
+    /* function getDistrictFromLatlng(lat, lng) {
 
-}
-*/
+    //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
+    $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc", function (result) {
 
-function DatePickResponse(dateText) {
-  var Day = dateText.substr(0, 2);
-  var Month = dateText.substr(3, 2);
-  var Year = dateText.substr(6, 7);
-  var result = Year + "-" + Month + "-" + Day;
-  return result;
-}
 
-//for test on url
-//https://www.googleapis.com/fusiontables/v2/query?sql=SELECT CCA_2 FROM17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs WHERE NL_NAME_2 = 'อำเภอท่าตูม'&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc
-function getDistrictIDFromDistrictName(name) {
-  /* $.getJSON("https://www.googleapis.com/fusiontables/v2/query?sql="+
+    for (j = 0; j < result.results[0].address_components.length; j++) {
+    if (result.results[0].address_components[j].long_name.match(/^เขต.*$/) || result.results[0].address_components[j].long_name.match(/^อำเภอ.*$/)) {
+    var myDistrict = result.results[0].address_components[j].long_name;
+    var mCutSpace = myDistrict.replace(" ", "");
+    // var mCutTitle = myDistrict.replace("เขต ","");
+    //var a = mCutSpace+mCutTitle;
+    mResult = mCutSpace.valueOf();
+    var addText = "กิ่ง";
+    if (mResult == "อำเภอสามชัย" || mResult == "อำเภอนาคู" || mResult == "อำเภอพนมดงรัก" || mResult == "อำเภอโนนนารายณ์" || mResult == "อำเภอเนินขาม" || mResult == "อำเภอหนองหิน" || mResult == "อำเภอบึงสามัคคี" || mResult == "อำเภอบัวลาย" ||
+    mResult == "อำเภอซับใหญ่" || mResult == "อำเภอศิลาลาด" || mResult == "อำเภอบ้านแฮด" || mResult == "อำเภอพระทองคำ" ||
+    mResult == "อำเภอสากเหล็ก" || mResult == "อำเภอบึงนาราง" || mResult == "อำเภอกุดรัง" || mResult == "อำเภอหนองมะโมง" || mResult == "อำเภอสากเหล็ก" || mResult == "อำเภอดงเจริญ" || mResult == "อำเภอเทพารักษ์" || mResult == "อำเภอแคนดง" || mResult == "อำเภอฆ้องชัย" || mResult == "อำเภอเมืองยาง" || mResult == "อำเภอลำทะเมนชัย" || mResult == "อำเภอหนองฮี" || mResult == "อำเภอซำสูง" || mResult == "อำเภอโนนศิลา" || mResult == "อำเภอหนองนาคำ" || mResult == "อำเภอดอนจาน") {
+    mResult = addText + mResult;
+    }
+    if (mResult == "อำเภอปทุมรัตน์") {
+    mResult = "อำเภอปทุมรัตต์";
+    }
+    if (mResult == "อำเภอหนองบุนนาก") {
+    mResult = "อำเภอหนองบุญนาก";
+    }
+    if (mResult == "อำเภอกุฉินารายณ์") {
+    mResult = "อำเภอกุฉินารายน์";
+    }
+    if (mResult == "อำเภอโคกโพธิ์ไชย") {
+    mResult = "กิ่งอำเภอโคกโพธิ์ชัย";
+    }
+    if (mResult == "อำเภอเมืองนครราชสีมา") {
+    mResult = "เมืองนครราชสีมา";
+    }
+    if (mResult == "อำเภอเวียงเก่า") {
+    mResult = "อำเภอภูเวียง";
+    }
+    if (mResult == "อำเภอโพทะเล") {
+    mResult = "โพทะเล";
+    }
+
+    //console.log('getDistrictFromLatlng lat: ' + lat + " long: "+lng)
+    //console.log("test: "  +mResult);
+    getDistrictIDFromDistrictName(mResult);
+
+    }
+    }
+
+
+
+    });
+
+    }
+    */
+
+    function DatePickResponse(dateText) {
+        var Day = dateText.substr(0, 2);
+        var Month = dateText.substr(3, 2);
+        var Year = dateText.substr(6, 7);
+        var result = Year + "-" + Month + "-" + Day;
+        return result;
+    }
+
+    //for test on url
+    //https://www.googleapis.com/fusiontables/v2/query?sql=SELECT CCA_2 FROM17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs WHERE NL_NAME_2 = 'อำเภอท่าตูม'&key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc
+    function getDistrictIDFromDistrictName(name) {
+        /* $.getJSON("https://www.googleapis.com/fusiontables/v2/query?sql="+
   "SELECT CCA_2 "+
   "FROM 17Vj_x8KaduQcuxi_C0M6teVPKoId_7qQyyJC_zRs "+
   "WHERE NL_NAME_2 = '"+name+"'"+
@@ -1039,109 +1045,105 @@ function(data, status){
 alert("Data: " + data + "\nStatus: " + status);
 }); */
 
-/*$.ajax({
-type: "POST",
-contentType: "charset=utf-8",
-url: 'http://sysnet.utcc.ac.th:8161/aparcas/api/District2.jsp',
-data: {
-id : res,
-name: name,
-co: co,
-no2: no2,
-o3: o3,
-so2:so2,
-pm25:pm25,
-radio: radio,
-timestamp: time
-}
-});*/
+        /*$.ajax({
+        type: "POST",
+        contentType: "charset=utf-8",
+        url: 'http://sysnet.utcc.ac.th:8161/aparcas/api/District2.jsp',
+        data: {
+        id : res,
+        name: name,
+        co: co,
+        no2: no2,
+        o3: o3,
+        so2:so2,
+        pm25:pm25,
+        radio: radio,
+        timestamp: time
+        }
+        });*/
 
-// });
-
-
-}
+        // });
 
 
-/* function showDetail(lat, lng) {
-//getDistrictFromLatlng(lat, lng);
-console.log("Lat: " + lat, " long: " + lng);
-console.log("District: " + mResult);
-
-}*/
-
-function getIconMarker(number) {
-
-  console.log("getICONmarker: " + number);
-  if (number > 300) {
-    return 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';//red
-  }
-  if (number > 201) {
-    return 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png';//orange
-  }
-  if (number > 100) {
-    return 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';//yellow
-  }
-  if (number > 51) {
-    return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'//green
-  }
-  if(number > 0){
-    return 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';//blue
-  }
-  return null;
-}
-
-function getfillColor(number) {
+    }
 
 
-  if (number > 300) {
-    return "#ff4d4d";//red
-  }
-  if (number > 201) {
-    return "#ff944d";//orange
-  }
-  if (number > 100) {
-    return "#ffff4d";//yellow
-  }
-  if (number > 51) {
-    return "#4dff88"//green
-  }
-  else {
-    return "#4d4dff";//blue
+    /* function showDetail(lat, lng) {
+    //getDistrictFromLatlng(lat, lng);
+    console.log("Lat: " + lat, " long: " + lng);
+    console.log("District: " + mResult);
 
-  }
-  return null;
-}
+    }*/
 
-function getStrokeColor(number) {
+    function getIconMarker(number) {
+
+        console.log("getICONmarker: " + number);
+        if (number > 300) {
+            return 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'; //red
+        }
+        if (number > 201) {
+            return 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png'; //orange
+        }
+        if (number > 100) {
+            return 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'; //yellow
+        }
+        if (number > 51) {
+            return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png' //green
+        }
+        if (number > 0) {
+            return 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'; //blue
+        }
+        return null;
+    }
+
+    function getfillColor(number) {
 
 
+        if (number > 300) {
+            return "#ff4d4d"; //red
+        }
+        if (number > 201) {
+            return "#ff944d"; //orange
+        }
+        if (number > 100) {
+            return "#ffff4d"; //yellow
+        }
+        if (number > 51) {
+            return "#4dff88" //green
+        } else {
+            return "#4d4dff"; //blue
 
-  if (number > 300) {
-    return "#ff0000";//red
-  }
-  if (number > 201) {
-    return "#ff6600";//orange
-  }
-  if (number > 100) {
-    return "#ffff00";//yellow
-  }
-  if (number > 51) {
-    return "#00cc00"//green
-  }
-  else {
-    return "#0066ff";//blue
-  }
-  return null;
-}
+        }
+        return null;
+    }
+
+    function getStrokeColor(number) {
 
 
 
-$("#clear").click(function(){
-  RemoveMarker();
-  getNotification("pe-7s-smile", "success", "<b>Success</b>");
-});
+        if (number > 300) {
+            return "#ff0000"; //red
+        }
+        if (number > 201) {
+            return "#ff6600"; //orange
+        }
+        if (number > 100) {
+            return "#ffff00"; //yellow
+        }
+        if (number > 51) {
+            return "#00cc00" //green
+        } else {
+            return "#0066ff"; //blue
+        }
+        return null;
+    }
 
 
+
+    $("#clear").click(function() {
+        RemoveMarker();
+        getNotification("pe-7s-smile", "success", "<b>Success</b>");
+    });
 </script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 
@@ -1154,8 +1156,7 @@ $("#clear").click(function(){
 <script src="bower_components/bootstrap-waitingfor/build/bootstrap-waitingfor.js"></script>
 
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap"
-type="text/javascript"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap" type="text/javascript"></script>
 
 
 
