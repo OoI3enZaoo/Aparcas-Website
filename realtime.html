@@ -17,7 +17,7 @@
 
 
 
-<link href="assets/css/style.css" rel="stylesheet" />
+
 
 
 
@@ -26,6 +26,7 @@
 
 
 
+<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
 
     <!-- Bootstrap core CSS     -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
@@ -34,9 +35,10 @@
     <link rel="stylesheet" href="bower_components/jquery/src/css/jquery-ui.css">
 
     <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
     <link href="https://fonts.googleapis.com/css?family=Mitr" rel="stylesheet">
 
-
+<link href="assets/css/style.css" rel="stylesheet" />
 
 
 
@@ -167,15 +169,12 @@
 
 
 <script>
-    var markers = [];
+    //var markers = [];
 
     function initMap() {
-
-
-
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 7,
-            center: new google.maps.LatLng(15.044938, 102.183838),
+          zoom: 11,
+          center: new google.maps.LatLng(13.756331, 100.501765),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }); //end of map
 
@@ -186,7 +185,7 @@
               title: "Hello World!"
           });*/
 
-
+        //
         var amq = org.activemq.Amq;
         amq.init({
             uri: 'amq',
@@ -235,39 +234,286 @@
             O3 = O3.toFixed(2);
             SO2 = SO2.toFixed(2);
             PM25 = PM25.toFixed(2);
-            Radio = Radio.toFixed(2);
+
 
             //  console.log("showData: id: " + id + " first_name: " + first_name + " last_name: " + last_name + " Lat: " + Lat + " Lng: " + Lng + " CO: " + CO + " NO2: " + NO2 + " O3: " + O3 + " SO2: " + SO2 + " PM25: " + PM25 + " Radio: " + Radio);
+            //
+            // var marker = new google.maps.Marker({
+            //     position: new google.maps.LatLng(Lat, Lng),
+            //     map: map,
+            //     icon: new google.maps.MarkerImage('http://maps.google.com/mapfiles/ms/icons/blue-dot.png'),
+            //     title: "Hello World!"
+            // });
+            //
+            // markers.push(marker);
 
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(Lat, Lng),
-                map: map,
-                icon: new google.maps.MarkerImage('http://maps.google.com/mapfiles/ms/icons/blue-dot.png'),
-                title: "Hello World!"
-            });
-
-            markers.push(marker);
-
-            var infoWindow = new google.maps.InfoWindow({
-                content: "<div class = 'text-primary'><b>การแจ้งเตือนปริมาณกัมมันตรังสี</b></div>" +
-                    "<div class = 'text-muted'>เวลาอัพเดทล่าสุด " + Time + "</div>" +
-                    "<div class = 'text-info'>ไอดีผู้ใช้: " + id + "</div>" +
-                    "<div class = 'text-info'>CO: " + CO + "</div>" +
-                    "<div class = 'text-info'>NO2: " + NO2 + "</div>" +
-                    "<div class = 'text-info'>O3: " + O3 + "</div>" +
-                    "<div class = 'text-info'>SO2: " + SO2 + "</div>" +
-                    "<div class = 'text-info'>PM2.5: " + PM25 + "</div>" +
-                    "<div class = 'text-info'>ค่ากัมมันตรังสี: " + Radio + "</div>",
-
-                maxWidth: 500
-            });
-            marker.addListener('click', function() {
-                infoWindow.open(map, marker);
-            });
+            // var infoWindow = new google.maps.InfoWindow({
+            //     content: "<div class = 'text-primary'><b>การแจ้งเตือนปริมาณกัมมันตรังสี</b></div>" +
+            //         "<div class = 'text-muted'>เวลาอัพเดทล่าสุด " + Time + "</div>" +
+            //         "<div class = 'text-info'>ไอดีผู้ใช้: " + id + "</div>" +
+            //         "<div class = 'text-info'>CO: " + CO + "</div>" +
+            //         "<div class = 'text-info'>NO2: " + NO2 + "</div>" +
+            //         "<div class = 'text-info'>O3: " + O3 + "</div>" +
+            //         "<div class = 'text-info'>SO2: " + SO2 + "</div>" +
+            //         "<div class = 'text-info'>PM2.5: " + PM25 + "</div>" +
+            //         "<div class = 'text-info'>ค่ากัมมันตรังสี: " + Radio + "</div>",
+            //
+            //     maxWidth: 500
+            // });
+            // marker.addListener('click', function() {
+            //     infoWindow.open(map, marker);
+            // });
 
         }
 
+        setDataOnMap();
 
+
+        function setDataOnMap() {
+
+
+            var good = [];
+            var mModerate = [];
+            var Unhealthy1 = [];
+            var Unhealthy2 = [];
+            var Unhealthy3 = [];
+
+
+            var check = false;
+
+
+            // $("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>ค้นหาเขต: " + mDate + "</h5></div>");
+
+            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp", function(result) {
+
+                var co = [];
+                var no2 = [];
+                var o3 = [];
+                var so2 = [];
+                var pm25 = [];
+                var radio = [];
+                var lat = [];
+                var lon = [];
+                var aqi = [];
+                var count = new Array(9000).fill(0);
+
+
+
+                var check = 0;
+                var m = 0;
+
+                var mDate = "2017-01-18"
+                  var re = new RegExp(mDate, 'g');
+                console.log("Some Sub_code");
+                for (i = 0; i < result.length; i++) {
+                  var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
+                  if (day.match(re)) {
+                    var disID = parseInt(result[i].grid_id);
+                    if (count[disID] != 0) {
+                        co[disID] = co[disID] + parseInt(result[i].co);
+                        no2[disID] = no2[disID] + parseInt(result[i].no2);
+                        o3[disID] = o3[disID] + parseInt(result[i].o3);
+                        so2[disID] = so2[disID] + parseInt(result[i].so2);
+                        pm25[disID] = pm25[disID] + parseInt(result[i].pm25);
+                        radio[disID] = radio[disID] + parseInt(result[i].radio);
+                        count[disID] = count[disID] + 1;
+                        console.log("Num2");
+                    }
+                    if (count[disID] == 0) {
+                        co[disID] = +parseInt(result[i].co);
+                        no2[disID] = +parseInt(result[i].no2);
+                        o3[disID] = +parseInt(result[i].o3);
+                        so2[disID] = +parseInt(result[i].so2);
+                        pm25[disID] = +parseInt(result[i].pm25);
+                        radio[disID] = +parseInt(result[i].radio);
+                        count[disID] = +1;
+                        console.log("Num");
+
+                    }
+
+                    aqi[disID] = parseInt(result[i].aqi);
+                    check = true;
+                    }
+                } // end for
+
+                var districtLayer = new google.maps.KmlLayer({
+                    url: 'http://sysnet.utcc.ac.th/aparcas/data/simplified.kml',
+                    map: map
+                });
+
+                  //KmlLayer.push(districtLayer);
+
+                // var geocoder = new google.maps.Geocoder();
+                // geocoder.geocode({
+                //     'address': sname
+                // }, function(results, status) {
+                //     if (status == google.maps.GeocoderStatus.OK) {
+                //           map.setCenter(results[0].geometry.location);
+                //           map.setZoom(13);
+                //     }
+                // });
+
+                var newDisrict = [];
+                var newCO = [];
+                var newNO2 = [];
+                var newO3 = [];
+                var newSO2 = [];
+                var newPM25 = [];
+                var newRadio = [];
+                var newAQI = []
+                var newlat = [];
+                var newLon = [];
+                var newAQI = [];
+                for (i = 0; i < co.length; i++) {
+                    if (co[i] != null) {
+                        console.log("count[i]: " + count[i] + " i: " + i);
+                        console.log("before divide: " + "co: " + co[i] + " no2: " + no2[i]);
+                        var resCO = co[i] / count[i];
+                        var resNO2 = no2[i] / count[i];
+                        var resO3 = o3[i] / count[i];
+                        var resSO2 = so2[i] / count[i];
+                        var resPM25 = pm25[i] / count[i];
+                        var resRadio = radio[i] / count[i];
+                        var resAQI = aqi[i] / count[i];
+
+                        console.log("after divide: " + "co: " + resCO + " no2: " + resNO2);
+
+                        resCO = resCO.toFixed(2);
+                        resNO2 = resNO2.toFixed(2);
+                        resO3 = resO3.toFixed(2);
+                        resSO2 = resSO2.toFixed(2);
+                        resPM25 = resPM25.toFixed(2);
+                        resRadio = resRadio.toFixed(2);
+                        resAQI =  resAQI.toFixed(2);
+
+                        co[i] = resCO;
+                        no2[i] = resNO2;
+                        o3[i] = resO3;
+                        so2[i] = resSO2;
+                        pm25[i] = resPM25;
+                        radio[i] = resRadio;
+                        aqi[i] = resAQI;
+
+
+                      var aqina = Math.max(resCO, resNO2, resO3, resSO2, resPM25);
+
+
+
+                        newDisrict.push(i);
+                        newCO.push(resCO);
+                        newO3.push(resO3);
+                        newSO2.push(resSO2);
+                        newNO2.push(resNO2);
+                        newPM25.push(resPM25);
+                        newRadio.push(resRadio);
+                        newAQI.push(aqina);
+                    }
+                }
+                for (i = 0; i < newDisrict.length; i++) {
+
+                    console.log("newDistrictID: " + newDisrict[i] + " AQI: " + newAQI[i] + " CO: " + newCO[i] + " NO2: " + newNO2[i] + " O3: " + newO3[i] + " so2: " + newSO2[i] + " PM2.5: " + newPM25[i] + " Radio: " + newRadio[i]);
+
+                    if (newAQI[i] > 0 && newAQI[i] < 51) {
+                        good.push(newDisrict[i]);
+                    }
+                    if (newAQI[i] > 50 && newAQI[i] < 99) {
+                        mModerate.push(newDisrict[i]);
+                    }
+                    if (newAQI[i] > 100 && newAQI[i] < 199) {
+                        Unhealthy1.push(newDisrict[i]);
+                    }
+                    if (newAQI[i] > 200 && newAQI[i] < 299) {
+                        Unhealthy2.push(newDisrict[i]);
+                    }
+                    if (newAQI[i] > 300) {
+                        Unhealthy3.push(newDisrict[i]);
+                    }
+
+                }
+
+                console.log("Good.length: " + good.length);
+                for (i = 0; i < good.length; i++) {
+                    console.log("Good: " + good[i]);
+                }
+
+                console.log("mModerate.length: " + mModerate.length);
+                for (i = 0; i < mModerate.length; i++) {
+                    console.log("mModerate: " + mModerate[i]);
+                }
+
+                console.log("Unhealthy1.length: " + Unhealthy1.length);
+                for (i = 0; i < Unhealthy1.length; i++) {
+                    console.log("Unhealthy1: " + Unhealthy1[i]);
+                }
+
+                console.log("Unhealthy2.length: " + Unhealthy2.length);
+                for (i = 0; i < Unhealthy2.length; i++) {
+                    console.log("Unhealthy2: " + Unhealthy2[i]);
+                }
+
+                console.log("Unhealthy3.length: " + Unhealthy3.length);
+                for (i = 0; i < Unhealthy3.length; i++) {
+                    console.log("Unhealthy3: " + Unhealthy3[i]);
+                }
+
+
+                var covered = {
+                    query: {
+                        select: 'geometry',
+                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                    },
+                    map: map,
+                    suppressInfoWindows: true,
+                    styles: [{
+                            polygonOptions: {
+
+                                fillColor: "#ffffff",
+                                opacity: .1,
+
+
+                            }
+                        },
+                        {
+
+                            where: "SUB_CODE IN (" + mModerate + ")",
+                            polygonOptions: {
+                                fillColor: "#4dff88",
+                                strokeColor: "#4dff88",
+
+                                strokeWeight: 0.1
+                            }
+                        },
+                        {
+
+                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                            polygonOptions: {
+                                fillColor: "#ffff4d",
+                                strokeColor: "#ffff4d",
+                                //fillColor: "#ff0000",
+                                // strokeColor: "#ff0000",
+                                strokeWeight: 0.1
+                            }
+                        },
+                        {
+
+                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                            polygonOptions: {
+                                fillColor: "#ff944d",
+                                strokeColor: "#ff944d",
+                                //fillColor: "#ff0000",
+                                // strokeColor: "#ff0000",
+                                strokeWeight: 0.1
+                            }
+                        }
+                    ]
+                };
+                var mLayer = new google.maps.FusionTablesLayer(covered);
+                //FusionTable.push(mLayer);
+                //      console.log("mLayer: " + mLayer);
+
+            }); //get json
+          }
 
 
     }
@@ -279,7 +525,7 @@
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap" type="text/javascript"></script>
 
-<script>
+<!-- <script>
     function setMapOnAll(map) {
         for (var i = 0; i < markers.length; i++) {
             markers[i].setMap(map);
@@ -308,6 +554,8 @@
         }
         return str;
     }
-</script>
+
+
+</script> -->
 
 </html>
