@@ -22,11 +22,32 @@ Vector<String> lon =  new Vector<String>();
 
 
 
+String date = request.getParameter("date");
+String grid = request.getParameter("grid");
+String sql = null;
+
+
  try {
 	  Class.forName("com.mysql.jdbc.Driver");
 	  Connection con = DriverManager.getConnection(urlDB,userDB,passDB);
 
-	  String sql = "select user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans ";
+//      String sql = "select user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' AND grid_id = "+grid+" ";
+if(date == null && grid == null){
+  sql = "select user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans";
+}
+else if(date != null && grid != null){
+  sql = "select user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' AND grid_id = "+grid+" ";
+}
+else if(date != null && grid == null){
+  sql = "select user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%'";
+}
+
+
+
+
+
+
+
       Statement stmt = con.createStatement();
       ResultSet rs = stmt.executeQuery(sql);
 
@@ -45,6 +66,7 @@ Vector<String> lon =  new Vector<String>();
        lon.addElement(rs.getString("lon"));
 
 	  }
+
 
 	  stmt.close();
       con.close();
@@ -77,4 +99,6 @@ for(int i=0; i<user_id.size(); i++){
 
 
 		out.print(jsonStr);
+
+
 %>

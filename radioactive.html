@@ -453,7 +453,7 @@
 
 
             console.log("setDataOnMap(" + gIndex + "," + startTime + "," + endTime + "," + date + ")");
-            $.getJSON('http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp', function(result) {
+
 
                 /*var mStartTime = Date.parse(startTime);
                 var mEndTime = Date.parse(endTime);
@@ -469,13 +469,21 @@
                 var dname = document.getElementById("dname").innerHTML;
                 var sname = document.getElementById("sname").innerHTML;
                 console.log("Dname: " + dname + " did: " + did);
-                var re = new RegExp(date, 'g');
+
+
+                if (did != 2222 && sid != 2222) {
+                  JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + date + "&grid="+sid+"";
+                }
+                if(sid == 2222 && did != 2222 || did == 2222 && sid == 2222){
+                  JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + date+"";
+                }
+                $.getJSON(JSONString, function(result) {
+
                 if (sid != 2222 && did != 2222) { // เลือกแขวง
                     for (i = 0; i < result.length; i++) {
-                        var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
-                        if (day.match(re)) {
-                            if (sid == result[i].grid_id) {
 
+                            if (sid == result[i].grid_id) {
+var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
                                 var restime = day;
                                 res1 = restime.substr(11, 2);
                                 res2 = restime.substr(14, 2);
@@ -504,7 +512,7 @@
 
                                     placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex); //call method for create circle on the map
                                 }
-                            }
+
                         }
                     } //for
                     if (check == false) {
@@ -525,10 +533,9 @@
                     console.log("do in allS");
                     for (j = 0; j < allS.length; j++) {
                         for (i = 0; i < result.length; i++) {
-                            var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
-                            if (day.match(re)) {
-                                if (allS[j] == result[i].grid_id) {
 
+                                if (allS[j] == result[i].grid_id) {
+var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
                                     var restime = day;
                                     res1 = restime.substr(11, 2);
                                     res2 = restime.substr(14, 2);
@@ -554,7 +561,7 @@
 
                                     }
                                 }
-                            }
+
                         }
                     }
                     if (check == false) {
@@ -575,7 +582,6 @@
                 if (did == 2222) { // if all dist
                     for (i = 0; i < result.length; i++) {
                         var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
-                        if (day.match(re)) {
                             var restime = day;
                             res1 = restime.substr(11, 2);
                             res2 = restime.substr(14, 2);
@@ -599,7 +605,6 @@
                                 check = true;
                                 placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex); //call method for create circle on the map
 
-                            }
                         }
                     }
                     if (check == false) {
