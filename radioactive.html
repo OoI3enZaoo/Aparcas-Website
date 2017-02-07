@@ -455,63 +455,63 @@
             console.log("setDataOnMap(" + gIndex + "," + startTime + "," + endTime + "," + date + ")");
 
 
-                /*var mStartTime = Date.parse(startTime);
-                var mEndTime = Date.parse(endTime);
-                console.log("StartTime: " + mStartTime + " EndTime: " + mEndTime); */
+            /*var mStartTime = Date.parse(startTime);
+            var mEndTime = Date.parse(endTime);
+            console.log("StartTime: " + mStartTime + " EndTime: " + mEndTime); */
 
 
-                var myLocation = [];
-                var myGas = [];
-                var myDateTime = [];
-                var check = false;
-                var did = document.getElementById("dname").value; //เขต
-                var sid = document.getElementById("sname").value; //แขวง
-                var dname = document.getElementById("dname").innerHTML;
-                var sname = document.getElementById("sname").innerHTML;
-                console.log("Dname: " + dname + " did: " + did);
+            var myLocation = [];
+            var myGas = [];
+            var myDateTime = [];
+            var check = false;
+            var did = document.getElementById("dname").value; //เขต
+            var sid = document.getElementById("sname").value; //แขวง
+            var dname = document.getElementById("dname").innerHTML;
+            var sname = document.getElementById("sname").innerHTML;
+            console.log("Dname: " + dname + " did: " + did);
 
 
-                if (did != 2222 && sid != 2222) {
-                  JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + date + "&grid="+sid+"";
-                }
-                if(sid == 2222 && did != 2222 || did == 2222 && sid == 2222){
-                  JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + date+"";
-                }
-                $.getJSON(JSONString, function(result) {
+            if (did != 2222 && sid != 2222) {
+                JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + date + "&grid=" + sid + "";
+            }
+            if (sid == 2222 && did != 2222 || did == 2222 && sid == 2222) {
+                JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + date + "";
+            }
+            $.getJSON(JSONString, function(result) {
 
                 if (sid != 2222 && did != 2222) { // เลือกแขวง
                     for (i = 0; i < result.length; i++) {
 
-                            if (sid == result[i].grid_id) {
-var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
-                                var restime = day;
-                                res1 = restime.substr(11, 2);
-                                res2 = restime.substr(14, 2);
-                                res3 = restime.substr(17, 2);
-                                restime = res1 + ":" + res2 + ":" + res3;
+                        if (sid == result[i].grid_id) {
+                            var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
+                            var restime = day;
+                            res1 = restime.substr(11, 2);
+                            res2 = restime.substr(14, 2);
+                            res3 = restime.substr(17, 2);
+                            restime = res1 + ":" + res2 + ":" + res3;
 
-                                if (restime >= startTime && restime <= endTime) {
+                            if (restime >= startTime && restime <= endTime) {
 
-                                    var mID = result[i].id;
-                                    var mLat = result[i].lat;
-                                    var mLong = result[i].lon;
-                                    var co = result[i].co;
-                                    var no2 = result[i].no2;
-                                    var o3 = result[i].o3;
-                                    var so2 = result[i].so2;
-                                    var pm25 = result[i].pm25;
-                                    var radio = result[i].radio;
-                                    var AQI = getAQI(co, no2, o3, so2, pm25); //get AQI from getAQI function
-
-
-                                    myLocation[i] = [mLat, mLong, mID];
-                                    myGas[i] = [radio];
-                                    myDateTime[i] = [day];
-                                    check = true;
+                                var mID = result[i].id;
+                                var mLat = result[i].lat;
+                                var mLong = result[i].lon;
+                                var co = result[i].co;
+                                var no2 = result[i].no2;
+                                var o3 = result[i].o3;
+                                var so2 = result[i].so2;
+                                var pm25 = result[i].pm25;
+                                var radio = result[i].radio;
+                                var AQI = getAQI(co, no2, o3, so2, pm25); //get AQI from getAQI function
 
 
-                                    placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex); //call method for create circle on the map
-                                }
+                                myLocation[i] = [mLat, mLong, mID];
+                                myGas[i] = [radio];
+                                myDateTime[i] = [day];
+                                check = true;
+
+
+                                placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex); //call method for create circle on the map
+                            }
 
                         }
                     } //for
@@ -533,34 +533,34 @@ var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
                     console.log("do in allS");
                     for (j = 0; j < allS.length; j++) {
                         for (i = 0; i < result.length; i++) {
+                            if (allS[j] == result[i].grid_id) {
 
-                                if (allS[j] == result[i].grid_id) {
-var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
-                                    var restime = day;
-                                    res1 = restime.substr(11, 2);
-                                    res2 = restime.substr(14, 2);
-                                    res3 = restime.substr(17, 2);
-                                    restime = res1 + ":" + res2 + ":" + res3;
+                                var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
+                                var restime = day;
+                                res1 = restime.substr(11, 2);
+                                res2 = restime.substr(14, 2);
+                                res3 = restime.substr(17, 2);
+                                restime = res1 + ":" + res2 + ":" + res3;
 
-                                    if (restime >= startTime && restime <= endTime) {
-                                        var mID = result[i].id;
-                                        var mLat = result[i].lat;
-                                        var mLong = result[i].lon;
-                                        var co = result[i].co;
-                                        var no2 = result[i].no2;
-                                        var o3 = result[i].o3;
-                                        var so2 = result[i].so2;
-                                        var pm25 = result[i].pm25;
-                                        var radio = result[i].radio;
-                                        var AQI = getAQI(co, no2, o3, so2, pm25); //get AQI from getAQI function
-                                        myLocation[i] = [mLat, mLong, mID];
-                                        myGas[i] = [radio];
-                                        myDateTime[i] = [day];
-                                        check = true;
-                                        placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex); //call method for create circle on the map
+                                if (restime >= startTime && restime <= endTime) {
+                                    var mID = result[i].id;
+                                    var mLat = result[i].lat;
+                                    var mLong = result[i].lon;
+                                    var co = result[i].co;
+                                    var no2 = result[i].no2;
+                                    var o3 = result[i].o3;
+                                    var so2 = result[i].so2;
+                                    var pm25 = result[i].pm25;
+                                    var radio = result[i].radio;
+                                    var AQI = getAQI(co, no2, o3, so2, pm25); //get AQI from getAQI function
+                                    myLocation[i] = [mLat, mLong, mID];
+                                    myGas[i] = [radio];
+                                    myDateTime[i] = [day];
+                                    check = true;
+                                    placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex); //call method for create circle on the map
 
-                                    }
                                 }
+                            }
 
                         }
                     }
@@ -582,28 +582,28 @@ var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
                 if (did == 2222) { // if all dist
                     for (i = 0; i < result.length; i++) {
                         var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
-                            var restime = day;
-                            res1 = restime.substr(11, 2);
-                            res2 = restime.substr(14, 2);
-                            res3 = restime.substr(17, 2);
-                            restime = res1 + ":" + res2 + ":" + res3;
+                        var restime = day;
+                        res1 = restime.substr(11, 2);
+                        res2 = restime.substr(14, 2);
+                        res3 = restime.substr(17, 2);
+                        restime = res1 + ":" + res2 + ":" + res3;
 
-                            if (restime >= startTime && restime <= endTime) {
-                                var mID = result[i].id;
-                                var mLat = result[i].lat;
-                                var mLong = result[i].lon;
-                                var co = result[i].co;
-                                var no2 = result[i].no2;
-                                var o3 = result[i].o3;
-                                var so2 = result[i].so2;
-                                var pm25 = result[i].pm25;
-                                var radio = result[i].radio;
-                                var AQI = getAQI(co, no2, o3, so2, pm25); //get AQI from getAQI function
-                                myLocation[i] = [mLat, mLong, mID];
-                                myGas[i] = [radio];
-                                myDateTime[i] = [day];
-                                check = true;
-                                placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex); //call method for create circle on the map
+                        if (restime >= startTime && restime <= endTime) {
+                            var mID = result[i].id;
+                            var mLat = result[i].lat;
+                            var mLong = result[i].lon;
+                            var co = result[i].co;
+                            var no2 = result[i].no2;
+                            var o3 = result[i].o3;
+                            var so2 = result[i].so2;
+                            var pm25 = result[i].pm25;
+                            var radio = result[i].radio;
+                            var AQI = getAQI(co, no2, o3, so2, pm25); //get AQI from getAQI function
+                            myLocation[i] = [mLat, mLong, mID];
+                            myGas[i] = [radio];
+                            myDateTime[i] = [day];
+                            check = true;
+                            placeMarker(myLocation[i], myGas[i], myDateTime[i], gIndex); //call method for create circle on the map
 
                         }
                     }
@@ -803,86 +803,49 @@ var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
 
         });*/
 
-        $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/grid_lut.jsp", function(result) {
-
-            var checkSame = ['55'];
-            var count = 1;
-            var districtname;
-
+        $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/getdistrict.jsp?data=d", function(d) {
             var query = "<li ><a href='#'data-value='2222'>เขตทั้งหมด</a></li>";
             $("#dropdownD").append(query);
-            for (i = 0; i < result.length; i++) {
-
-                districtname = result[i].dname;
-                var districtcode = result[i].dcode;
-
-                for (j = 0; j < checkSame.length; j++) {
-                    if (checkSame[j] == districtcode) {
-                        count = 0;
-                        break;
-                    }
-                }
-                if (count == 1) {
-                    var query = "<li ><a href='#'data-value='" + districtcode + "'>" + districtname + "</a></li>";
-                    $("#dropdownD").append(query);
-                    checkSame.push(districtcode);
-                }
-                count = 1;
-
-            } //for
-
+            for (i = 0; i < d.length; i++) {
+                var query = "<li ><a href='#'data-value='" + d[i].code + "'>" + d[i].name + "</a></li>";
+                $("#dropdownD").append(query);
+            }
 
             $(".dropdown-menu li a").click(function() { // show value when click
-                $("#dropdownS").empty();
-                $("#sname").text('คลิ๊กที่นี่ เพื่อเลือกแขวง');
-                document.getElementById("sname").value = "";
+                $(this).parents(".dropdown").find('.btn').html($(this).text());
+                $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
 
+                $("#dropdownS").empty();
+                allS = null;
+                allS = [];
+                $("#sname").text('แขวงทั้งหมด');
+                document.getElementById("sname").value = "2222";
+                var dname = document.getElementById("dname").innerHTML;
+                console.log("dname: " + dname);
                 $(this).parents(".dropdown").find('.btn').html($(this).text());
                 $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
                 var query = "<li ><a href='#'data-value='2222'>แขวงทั้งหมด</a></li>";
                 $("#dropdownS").append(query);
 
-                var dname = document.getElementById("dname").innerHTML;
-                var checkSame2 = ['55555'];
-                var count2 = 1;
-                allS = null;
-                allS = [];
-                console.log("dname: " + dname);
+                $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/getdistrict.jsp?data=s&checkdname=" + dname + "", function(s) {
+                    for (i = 0; i < s.length; i++) {
 
-                for (i = 0; i < result.length; i++) {
-                    var sname = result[i].sname;
-                    var scode = result[i].scode;
-                    for (j = 0; j < checkSame.length; j++) {
-
-                        if (checkSame2[j] == sname) {
-                            count2 = 0;
-                            break;
-                        }
+                        var query = "<li ><a href='#'data-value='" + s[i].code + "'>" + s[i].name + "</a></li>";
+                        $("#dropdownS").append(query);
+                        allS.push(s[i].code);
                     }
-                    if (result[i].dname == dname) {
-                        if (count2 == 1) {
-                            console.log("DNAME: " + dname + " Sname: " + sname);
-                            allS.push(scode);
-                            checkSame2.push(sname);
-                            var query = "<li ><a href='#'data-value='" + scode + "'>" + sname + "</a></li>";
-                            $("#dropdownS").append(query);
-
-                        }
-                        count2 = 1;
+                    for (i = 0; i < allS.length; i++) {
+                        console.log("AllS: " + allS[i]);
                     }
-                }
-                for (i = 0; i < allS.length; i++) {
-                    console.log("allS: " + allS[i]);
-                }
-                $(".dropdown-menu li a").click(function() { // show value when click
-                    $(this).parents(".dropdown").find('.btn').html($(this).text());
-                    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+                    $(".dropdown-menu li a").click(function() { // show value when click
+                        $(this).parents(".dropdown").find('.btn').html($(this).text());
+                        $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+                    });
                 });
 
             });
 
         });
-
 
 
     });

@@ -381,96 +381,52 @@
     ctx.fillStyle = '#ffcccc';
     ctx.fillRect(0, 0, 80, 80);
 
-
-    $("#dropdownD").click(function() {
-
-
-    });
-    $(".dropdown-menu li a ").click(function() { // show value when click
-        $(this).parents(".dropdown").find('.btn').html($(this).text());
-        $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-    });
-
-
-    $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/grid_lut.jsp", function(result) {
-
-        var checkSame = ['55'];
-        var count = 1;
-        var districtname;
-        var countna = 0;
-
+    $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/getdistrict.jsp?data=d", function(d) {
         var query = "<li ><a href='#'data-value='2222'>เขตทั้งหมด</a></li>";
         $("#dropdownD").append(query);
-        for (i = 0; i < result.length; i++) {
-
-            districtname = result[i].dname;
-            var districtcode = result[i].dcode;
-
-            for (j = 0; j < checkSame.length; j++) {
-                if (checkSame[j] == districtcode) {
-                    count = 0;
-                    break;
-                }
-            }
-            if (count == 1) {
-                var query = "<li ><a href='#' data-value='" + districtcode + "'>" + districtname + "</a></li>";
-                $("#dropdownD").append(query);
-                checkSame.push(districtcode);
-                countna ++;
-                console.log("districtname: " + districtname+ "count: " + countna);
-            }
-            count = 1;
-
-        } //for
+        for (i = 0; i < d.length; i++) {
+            var query = "<li ><a href='#'data-value='" + d[i].code + "'>" + d[i].name + "</a></li>";
+            $("#dropdownD").append(query);
+        }
 
         $(".dropdown-menu li a").click(function() { // show value when click
-            $("#dropdownS").empty();
-            $("#sname").text('คลิ๊กที่นี่ เพื่อเลือกแขวง');
-            document.getElementById("sname").value = "";
             $(this).parents(".dropdown").find('.btn').html($(this).text());
             $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
 
+            $("#dropdownS").empty();
             allS = null;
             allS = [];
+            $("#sname").text('แขวงทั้งหมด');
+            document.getElementById("sname").value = "2222";
+            var dname = document.getElementById("dname").innerHTML;
+            console.log("dname: " + dname);
+            $(this).parents(".dropdown").find('.btn').html($(this).text());
+            $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
             var query = "<li ><a href='#'data-value='2222'>แขวงทั้งหมด</a></li>";
             $("#dropdownS").append(query);
 
-            var dname = document.getElementById("dname").innerHTML;
-            var checkSame2 = ['55555'];
-            var count2 = 1;
+            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/getdistrict.jsp?data=s&checkdname=" + dname + "", function(s) {
+                for (i = 0; i < s.length; i++) {
 
-            console.log("dname: " + dname);
-
-            for (i = 0; i < result.length; i++) {
-                var sname = result[i].sname;
-                var scode = result[i].scode;
-                for (j = 0; j < checkSame.length; j++) {
-
-                    if (checkSame2[j] == sname) {
-                        count2 = 0;
-                        break;
-                    }
+                    var query = "<li ><a href='#'data-value='" + s[i].code + "'>" + s[i].name + "</a></li>";
+                    $("#dropdownS").append(query);
+                    allS.push(s[i].code);
                 }
-                if (result[i].dname == dname) {
-                    if (count2 == 1) {
-                        console.log("DNAME: " + dname + " Sname: " + sname);
-                        checkSame2.push(sname);
-                        var query = "<li ><a href='#'data-value='" + scode + "'>" + sname + "</a></li>";
-                        $("#dropdownS").append(query);
-                        allS.push(scode);
-
-                    }
-                    count2 = 1;
+                for (i = 0; i < allS.length; i++) {
+                    console.log("AllS: " + allS[i]);
                 }
-            }
-            $(".dropdown-menu li a").click(function() { // show value when click
-                $(this).parents(".dropdown").find('.btn').html($(this).text());
-                $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+                $(".dropdown-menu li a").click(function() { // show value when click
+                    $(this).parents(".dropdown").find('.btn').html($(this).text());
+                    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+                });
             });
 
         });
 
     });
+
+
+
 
 
 
@@ -539,6 +495,7 @@
             var radio = [];
             var lat = [];
             var lon = [];
+            var aqi = [];
             var count = new Array(9000).fill(0);
 
             var JSONString = "";
@@ -567,6 +524,7 @@
                                 pm25[disID] = pm25[disID] + parseInt(result[i].pm25);
                                 radio[disID] = radio[disID] + parseInt(result[i].radio);
                                 count[disID] = count[disID] + 1;
+                                aqi[disID] = aqi[disID] + parseInt(result[i].aqi);
                                 console.log("Num2");
                             }
                             if (count[disID] == 0) {
@@ -576,9 +534,11 @@
                                 so2[disID] = +parseInt(result[i].so2);
                                 pm25[disID] = +parseInt(result[i].pm25);
                                 radio[disID] = +parseInt(result[i].radio);
+                                aqi[disID] =+ parseInt(result[i].aqi);
                                 count[disID] = +1;
                                 console.log("Num");
                             }
+
                             check = true;
                             console.log("Time: " + mDate + " District: " + disID + " co: " + co[disID] + " no2: " + no2[disID] + " o3: " + o3[disID] + " so2: " + so2[disID] + " pm25: " + pm25[disID] + " radio: " + radio[disID] +
                                 " count: " + count[disID]);
@@ -620,6 +580,7 @@
                                     pm25[disID] = pm25[disID] + parseInt(result[i].pm25);
                                     radio[disID] = radio[disID] + parseInt(result[i].radio);
                                     count[disID] = count[disID] + 1;
+                                    aqi[disID] = aqi[disID] + parseInt(result[i].aqi);
                                     console.log("Num2");
                                 }
                                 if (count[disID] == 0) {
@@ -630,10 +591,12 @@
                                     pm25[disID] = +parseInt(result[i].pm25);
                                     radio[disID] = +parseInt(result[i].radio);
                                     count[disID] = +1;
+                                    aqi[disID] =+ parseInt(result[i].aqi);
                                     console.log("Num");
 
                                 }
                                 check = true;
+
                             }
                         }
                 }
@@ -671,6 +634,7 @@
                             pm25[disID] = pm25[disID] + parseInt(result[i].pm25);
                             radio[disID] = radio[disID] + parseInt(result[i].radio);
                             count[disID] = count[disID] + 1;
+                            aqi[disID] = aqi[disID] + parseInt(result[i].aqi);
                             console.log("Num2");
                         }
                         if (count[disID] == 0) {
@@ -681,6 +645,7 @@
                             pm25[disID] = +parseInt(result[i].pm25);
                             radio[disID] = +parseInt(result[i].radio);
                             count[disID] = +1;
+                            aqi[disID] = + parseInt(result[i].aqi);
                             console.log("Num");
 
                         }
@@ -717,6 +682,7 @@
             var newAQI = []
             var newlat = [];
             var newLon = [];
+            var newaqi = [];
             for (i = 0; i < co.length; i++) {
                 if (co[i] != null) {
                     console.log("count[i]: " + count[i] + " i: " + i);
@@ -727,7 +693,7 @@
                     var resSO2 = so2[i] / count[i];
                     var resPM25 = pm25[i] / count[i];
                     var resRadio = radio[i] / count[i];
-
+                    var resAQI = aqi[i] / count[i];
 
                     console.log("after divide: " + "co: " + resCO + " no2: " + resNO2);
 
@@ -737,13 +703,15 @@
                     resSO2 = resSO2.toFixed(2);
                     resPM25 = resPM25.toFixed(2);
                     resRadio = resRadio.toFixed(2);
+                    resAQI = resAQI.toFixed(2);
                     co[i] = resCO;
                     no2[i] = resNO2;
                     o3[i] = resO3;
                     so2[i] = resSO2;
                     pm25[i] = resPM25;
                     radio[i] = resRadio;
-                    var aqina = Math.max(resCO, resNO2, resO3, resSO2, resPM25);
+                    aqi[i] = resAQI;
+                    var aqina = resAQI;
 
 
 
@@ -2479,7 +2447,7 @@
 
 
     $("#dropdownDistrict").empty();
-    $("#txtDate").val('');
+    //$("#txtDate").val('');
     //document.getElementById("mDistrict").innerHTML = "District";
 
 
