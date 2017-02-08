@@ -33,13 +33,13 @@ String sql = null;
 
 //      String sql = "select user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' AND grid_id = "+grid+" ";
 if(date == null && grid == null){
-  sql = "select user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans";
+  sql = "select user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans where grid_id > 0";
 }
 else if(date != null && grid != null){
   sql = "select user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' AND grid_id = "+grid+" ";
 }
 else if(date != null && grid == null){
-  sql = "select user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%'";
+  sql = "select user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' and grid_id > 0";
 }
 
 

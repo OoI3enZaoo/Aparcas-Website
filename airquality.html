@@ -348,7 +348,7 @@
     var FusionTable = [];
     var KmlLayer = [];
     var haveChart = false;
-
+    var firsttime = true;
     var markers = [];
     var allS = [];
 
@@ -433,7 +433,7 @@
     function initMap() {
 
 
-
+        setDataOnMap();
         $('#Search').click(function() {
 
             $("#showInfo").empty();
@@ -457,9 +457,10 @@
                 waitingDialog.show('Loading...');
                 console.log('mdate: ' + mDate);
 
-                setDataOnMap(mDate, dname, sname);
+                setDataOnMap();
             }
             //});//getJSON
+
         }); //date Click
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 11,
@@ -471,7 +472,7 @@
 
 
 
-        function setDataOnMap(date, dname, sname) {
+        function setDataOnMap() {
 
             RemoveMarker();
             var good = [];
@@ -479,7 +480,7 @@
             var Unhealthy1 = [];
             var Unhealthy2 = [];
             var Unhealthy3 = [];
-
+            var date = document.getElementById("txtDate").value;
             mydate = date;
             var mDate = DatePickResponse(mydate);
             var check = false;
@@ -497,23 +498,32 @@
             var lon = [];
             var aqi = [];
             var count = new Array(9000).fill(0);
-
             var JSONString = "";
             var sid = document.getElementById("sname").value;
             var did = document.getElementById("dname").value;
             var dname = document.getElementById("dname").innerHTML;
             var sname = document.getElementById("sname").innerHTML;
-            if (did != 2222 && sid != 2222) {
-              JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + mDate + "&grid="+sid+"";
-            }
-            if(sid == 2222 && did != 2222 || did == 2222 && sid == 2222){
-              JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + mDate+"";
-            }
+
+
+            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/getlasttime.jsp", function(res) {
+              if(firsttime == true){
+                mDate = res[0].mTime;
+                console.log("Time: " + mDate);
+                firsttime = false;
+              }
+              if (did != 2222 && sid != 2222) {
+                  JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + mDate + "&grid=" + sid + "";
+              }
+              if (sid == 2222 && did != 2222 || did == 2222 && sid == 2222) {
+                  JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + mDate + "";
+              }
                 $.getJSON(JSONString, function(result) {
+                    console.log("JSON: " + JSONString);
+                    console.log("lengthna: " + result.length);
 
                     if (did != 2222 && sid != 2222) {
-                    console.log("Some Sub_code");
-                    for (i = 0; i < result.length; i++) {
+                        console.log("Some Sub_code");
+                        for (i = 0; i < result.length; i++) {
                             var disID = parseInt(result[i].grid_id);
                             if (count[disID] != 0) {
 
@@ -525,7 +535,6 @@
                                 radio[disID] = radio[disID] + parseInt(result[i].radio);
                                 count[disID] = count[disID] + 1;
                                 aqi[disID] = aqi[disID] + parseInt(result[i].aqi);
-                                console.log("Num2");
                             }
                             if (count[disID] == 0) {
                                 co[disID] = +parseInt(result[i].co);
@@ -534,1941 +543,1942 @@
                                 so2[disID] = +parseInt(result[i].so2);
                                 pm25[disID] = +parseInt(result[i].pm25);
                                 radio[disID] = +parseInt(result[i].radio);
-                                aqi[disID] =+ parseInt(result[i].aqi);
+                                aqi[disID] = aqi[disID] + parseInt(result[i].aqi);
                                 count[disID] = +1;
-                                console.log("Num");
                             }
 
                             check = true;
                             console.log("Time: " + mDate + " District: " + disID + " co: " + co[disID] + " no2: " + no2[disID] + " o3: " + o3[disID] + " so2: " + so2[disID] + " pm25: " + pm25[disID] + " radio: " + radio[disID] +
                                 " count: " + count[disID]);
+                        }
+
+                        if (check == false) {
+                            getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
+                        } else {
+                            var districtLayer = new google.maps.KmlLayer({
+                                url: 'http://sysnet.utcc.ac.th/aparcas/data/simplified.kml',
+                                map: map
+                            });
+                            KmlLayer.push(districtLayer);
+                            var geocoder = new google.maps.Geocoder();
+                            geocoder.geocode({
+                                'address': sname
+                            }, function(results, status) {
+                                if (status == google.maps.GeocoderStatus.OK) {
+                                    map.setCenter(results[0].geometry.location);
+                                    map.setZoom(13);
+                                }
+                            });
+                            getNotification("pe-7s-smile", "success", "<b>กดที่จุดแผนที่ที่ต้องการเพื่อดูข้อมูล</b>");
+                        }
                     }
 
-                    if (check == false) {
-                        getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
-                    } else {
-                        var districtLayer = new google.maps.KmlLayer({
-                            url: 'http://sysnet.utcc.ac.th/aparcas/data/simplified.kml',
-                            map: map
-                        });
-                        KmlLayer.push(districtLayer);
-                        var geocoder = new google.maps.Geocoder();
-                        geocoder.geocode({
-                            'address': sname
-                        }, function(results, status) {
-                            if (status == google.maps.GeocoderStatus.OK) {
-                                map.setCenter(results[0].geometry.location);
-                                map.setZoom(13);
+                    if (sid == 2222 && did != 2222) {
+
+                        console.log("all Sub_code");
+                        console.log("AllS: " + allS.length);
+                        for (j = 0; j < allS.length; j++) {
+                            for (i = 0; i < result.length; i++) {
+                                if (allS[j] == result[i].grid_id) {
+                                    var disID = parseInt(result[i].grid_id);
+                                    if (count[disID] != 0) {
+                                        co[disID] = co[disID] + parseInt(result[i].co);
+                                        no2[disID] = no2[disID] + parseInt(result[i].no2);
+                                        o3[disID] = o3[disID] + parseInt(result[i].o3);
+                                        so2[disID] = so2[disID] + parseInt(result[i].so2);
+                                        pm25[disID] = pm25[disID] + parseInt(result[i].pm25);
+                                        radio[disID] = radio[disID] + parseInt(result[i].radio);
+                                        count[disID] = count[disID] + 1;
+                                        aqi[disID] = aqi[disID] + parseInt(result[i].aqi);
+                                    }
+                                    if (count[disID] == 0) {
+                                        co[disID] = +parseInt(result[i].co);
+                                        no2[disID] = +parseInt(result[i].no2);
+                                        o3[disID] = +parseInt(result[i].o3);
+                                        so2[disID] = +parseInt(result[i].so2);
+                                        pm25[disID] = +parseInt(result[i].pm25);
+                                        radio[disID] = +parseInt(result[i].radio);
+                                        count[disID] = +1;
+                                        aqi[disID] = +parseInt(result[i].aqi);
+
+                                    }
+                                    check = true;
+
+                                }
                             }
-                        });
-                        getNotification("pe-7s-smile", "success", "<b>กดที่จุดแผนที่ที่ต้องการเพื่อดูข้อมูล</b>");
+                        }
+                        if (check == false) {
+                            getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
+                        } else {
+                            var districtLayer = new google.maps.KmlLayer({
+                                url: 'http://sysnet.utcc.ac.th/aparcas/data/simplified.kml',
+                                map: map
+                            });
+                            KmlLayer.push(districtLayer);
+                            var geocoder = new google.maps.Geocoder();
+                            geocoder.geocode({
+                                'address': dname
+                            }, function(results, status) {
+                                if (status == google.maps.GeocoderStatus.OK) {
+                                    map.setCenter(results[0].geometry.location);
+                                    map.setZoom(13);
+                                }
+                            });
+                            getNotification("pe-7s-smile", "success", "<b>กดที่จุดแผนที่ที่ต้องการเพื่อดูข้อมูล</b>");
+                        }
                     }
-            }
 
-            if(sid == 2222 && did != 2222){
-                console.log("all Sub_code");
-                console.log("AllS: " + allS.length);
-                for (j = 0; j < allS.length; j++) {
-                    for (i = 0; i < result.length; i++) {
-                            if (allS[j] == result[i].grid_id) {
-                                var disID = parseInt(result[i].grid_id);
-                                if (count[disID] != 0) {
-                                    co[disID] = co[disID] + parseInt(result[i].co);
-                                    no2[disID] = no2[disID] + parseInt(result[i].no2);
-                                    o3[disID] = o3[disID] + parseInt(result[i].o3);
-                                    so2[disID] = so2[disID] + parseInt(result[i].so2);
-                                    pm25[disID] = pm25[disID] + parseInt(result[i].pm25);
-                                    radio[disID] = radio[disID] + parseInt(result[i].radio);
-                                    count[disID] = count[disID] + 1;
-                                    aqi[disID] = aqi[disID] + parseInt(result[i].aqi);
-                                    console.log("Num2");
-                                }
-                                if (count[disID] == 0) {
-                                    co[disID] = +parseInt(result[i].co);
-                                    no2[disID] = +parseInt(result[i].no2);
-                                    o3[disID] = +parseInt(result[i].o3);
-                                    so2[disID] = +parseInt(result[i].so2);
-                                    pm25[disID] = +parseInt(result[i].pm25);
-                                    radio[disID] = +parseInt(result[i].radio);
-                                    count[disID] = +1;
-                                    aqi[disID] =+ parseInt(result[i].aqi);
-                                    console.log("Num");
 
-                                }
-                                check = true;
+                    if (did == 2222 && sid == 2222) {
+                        console.log("All district ");
+
+                        for (i = 0; i < result.length; i++) {
+                            var disID = parseInt(result[i].grid_id);
+                            if (count[disID] != 0) {
+                                co[disID] = co[disID] + parseInt(result[i].co);
+                                no2[disID] = no2[disID] + parseInt(result[i].no2);
+                                o3[disID] = o3[disID] + parseInt(result[i].o3);
+                                so2[disID] = so2[disID] + parseInt(result[i].so2);
+                                pm25[disID] = pm25[disID] + parseInt(result[i].pm25);
+                                radio[disID] = radio[disID] + parseInt(result[i].radio);
+                                count[disID] = count[disID] + 1;
+                                aqi[disID] = aqi[disID] + parseInt(result[i].aqi);
+                            }
+                            if (count[disID] == 0) {
+                                co[disID] = +parseInt(result[i].co);
+                                no2[disID] = +parseInt(result[i].no2);
+                                o3[disID] = +parseInt(result[i].o3);
+                                so2[disID] = +parseInt(result[i].so2);
+                                pm25[disID] = +parseInt(result[i].pm25);
+                                radio[disID] = +parseInt(result[i].radio);
+                                count[disID] = +1;
+                                aqi[disID] = +parseInt(result[i].aqi);
 
                             }
+                            check = true;
                         }
-                }
-                if (check == false) {
-                    getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
-                } else {
-                    var districtLayer = new google.maps.KmlLayer({
-                        url: 'http://sysnet.utcc.ac.th/aparcas/data/simplified.kml',
-                        map: map
-                    });
-                    KmlLayer.push(districtLayer);
-                    var geocoder = new google.maps.Geocoder();
-                    geocoder.geocode({
-                        'address': dname
-                    }, function(results, status) {
-                        if (status == google.maps.GeocoderStatus.OK) {
-                            map.setCenter(results[0].geometry.location);
-                            map.setZoom(13);
+                        if (check == false) {
+                            getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
+                        } else {
+                            var districtLayer = new google.maps.KmlLayer({
+                                url: 'http://sysnet.utcc.ac.th/aparcas/data/simplified.kml',
+                                map: map
+                            });
+                            KmlLayer.push(districtLayer);
+                            // var geocoder = new google.maps.Geocoder();
+                            // geocoder.geocode({
+                            //     'address': "กรุงเทพมหานคร"
+                            // }, function(results, status) {
+                            //     if (status == google.maps.GeocoderStatus.OK) {
+                            map.setCenter(new google.maps.LatLng(13.756331, 100.501765)); //bangkok
+                            map.setZoom(11);
+                            //     }
+                            // });
+                            getNotification("pe-7s-smile", "success", "<b>กดที่จุดแผนที่ที่ต้องการเพื่อดูข้อมูล</b>");
                         }
-                    });
-                    getNotification("pe-7s-smile", "success", "<b>กดที่จุดแผนที่ที่ต้องการเพื่อดูข้อมูล</b>");
-                }
-            }
+                    }
+
+                    var newDisrict = [];
+                    var newCO = [];
+                    var newNO2 = [];
+                    var newO3 = [];
+                    var newSO2 = [];
+                    var newPM25 = [];
+                    var newRadio = [];
+                    var newAQI = []
+                    var newlat = [];
+                    var newLon = [];
+                    var newaqi = [];
+                    for (i = 0; i < co.length; i++) {
+                        if (co[i] != null) {
+                            console.log("count[i]: " + count[i] + " i: " + i);
+                            console.log("before divide: " + "co: " + co[i] + " no2: " + no2[i]);
+                            var resCO = co[i] / count[i];
+                            var resNO2 = no2[i] / count[i];
+                            var resO3 = o3[i] / count[i];
+                            var resSO2 = so2[i] / count[i];
+                            var resPM25 = pm25[i] / count[i];
+                            var resRadio = radio[i] / count[i];
+                            var resAQI = aqi[i] / count[i];
+
+                            console.log("after divide: " + "co: " + resCO + " no2: " + resNO2);
+
+                            resCO = resCO.toFixed(2);
+                            resNO2 = resNO2.toFixed(2);
+                            resO3 = resO3.toFixed(2);
+                            resSO2 = resSO2.toFixed(2);
+                            resPM25 = resPM25.toFixed(2);
+                            resRadio = resRadio.toFixed(2);
+                            resAQI = resAQI.toFixed(2);
+                            co[i] = resCO;
+                            no2[i] = resNO2;
+                            o3[i] = resO3;
+                            so2[i] = resSO2;
+                            pm25[i] = resPM25;
+                            radio[i] = resRadio;
+                            aqi[i] = resAQI;
+                            var aqina = resAQI;
 
 
-            if (did == 2222 && sid == 2222) {
-                console.log("All district ");
-                for (i = 0; i < result.length; i++) {
-                        var disID = parseInt(result[i].grid_id);
-                        if (count[disID] != 0) {
-                            co[disID] = co[disID] + parseInt(result[i].co);
-                            no2[disID] = no2[disID] + parseInt(result[i].no2);
-                            o3[disID] = o3[disID] + parseInt(result[i].o3);
-                            so2[disID] = so2[disID] + parseInt(result[i].so2);
-                            pm25[disID] = pm25[disID] + parseInt(result[i].pm25);
-                            radio[disID] = radio[disID] + parseInt(result[i].radio);
-                            count[disID] = count[disID] + 1;
-                            aqi[disID] = aqi[disID] + parseInt(result[i].aqi);
-                            console.log("Num2");
+
+                            newDisrict.push(i);
+                            newCO.push(resCO);
+                            newO3.push(resO3);
+                            newSO2.push(resSO2);
+                            newNO2.push(resNO2);
+                            newPM25.push(resPM25);
+                            newRadio.push(resRadio);
+                            newAQI.push(aqina);
                         }
-                        if (count[disID] == 0) {
-                            co[disID] = +parseInt(result[i].co);
-                            no2[disID] = +parseInt(result[i].no2);
-                            o3[disID] = +parseInt(result[i].o3);
-                            so2[disID] = +parseInt(result[i].so2);
-                            pm25[disID] = +parseInt(result[i].pm25);
-                            radio[disID] = +parseInt(result[i].radio);
-                            count[disID] = +1;
-                            aqi[disID] = + parseInt(result[i].aqi);
-                            console.log("Num");
+                    }
+                    for (i = 0; i < newDisrict.length; i++) {
 
+                        console.log("newDistrictID: " + newDisrict[i] + " AQI: " + newAQI[i] + " CO: " + newCO[i] + " NO2: " + newNO2[i] + " O3: " + newO3[i] + " so2: " + newSO2[i] + " PM2.5: " + newPM25[i] + " Radio: " + newRadio[i]);
+
+                        if (newAQI[i] > 0 && newAQI[i] < 51) {
+                            good.push(newDisrict[i]);
                         }
-                        check = true;
-                }
-                if (check == false) {
-                    getNotification("pe-7s-close-circle", "danger", "<b>Error</b> ไม่พบข้อมูล");
-                } else {
-                    var districtLayer = new google.maps.KmlLayer({
-                        url: 'http://sysnet.utcc.ac.th/aparcas/data/simplified.kml',
-                        map: map
-                    });
-                    KmlLayer.push(districtLayer);
-                    // var geocoder = new google.maps.Geocoder();
-                    // geocoder.geocode({
-                    //     'address': "กรุงเทพมหานคร"
-                    // }, function(results, status) {
-                    //     if (status == google.maps.GeocoderStatus.OK) {
-                    map.setCenter(new google.maps.LatLng(13.756331, 100.501765)); //bangkok
-                    map.setZoom(11);
-                    //     }
-                    // });
-                    getNotification("pe-7s-smile", "success", "<b>กดที่จุดแผนที่ที่ต้องการเพื่อดูข้อมูล</b>");
-                }
-            }
+                        if (newAQI[i] > 50 && newAQI[i] < 99) {
+                            mModerate.push(newDisrict[i]);
+                        }
+                        if (newAQI[i] > 100 && newAQI[i] < 199) {
+                            Unhealthy1.push(newDisrict[i]);
+                        }
+                        if (newAQI[i] > 200 && newAQI[i] < 299) {
+                            Unhealthy2.push(newDisrict[i]);
+                        }
+                        if (newAQI[i] > 300) {
+                            Unhealthy3.push(newDisrict[i]);
+                        }
 
-            var newDisrict = [];
-            var newCO = [];
-            var newNO2 = [];
-            var newO3 = [];
-            var newSO2 = [];
-            var newPM25 = [];
-            var newRadio = [];
-            var newAQI = []
-            var newlat = [];
-            var newLon = [];
-            var newaqi = [];
-            for (i = 0; i < co.length; i++) {
-                if (co[i] != null) {
-                    console.log("count[i]: " + count[i] + " i: " + i);
-                    console.log("before divide: " + "co: " + co[i] + " no2: " + no2[i]);
-                    var resCO = co[i] / count[i];
-                    var resNO2 = no2[i] / count[i];
-                    var resO3 = o3[i] / count[i];
-                    var resSO2 = so2[i] / count[i];
-                    var resPM25 = pm25[i] / count[i];
-                    var resRadio = radio[i] / count[i];
-                    var resAQI = aqi[i] / count[i];
+                    }
 
-                    console.log("after divide: " + "co: " + resCO + " no2: " + resNO2);
+                    console.log("Good.length: " + good.length);
+                    for (i = 0; i < good.length; i++) {
+                        console.log("Good: " + good[i]);
+                    }
 
-                    resCO = resCO.toFixed(2);
-                    resNO2 = resNO2.toFixed(2);
-                    resO3 = resO3.toFixed(2);
-                    resSO2 = resSO2.toFixed(2);
-                    resPM25 = resPM25.toFixed(2);
-                    resRadio = resRadio.toFixed(2);
-                    resAQI = resAQI.toFixed(2);
-                    co[i] = resCO;
-                    no2[i] = resNO2;
-                    o3[i] = resO3;
-                    so2[i] = resSO2;
-                    pm25[i] = resPM25;
-                    radio[i] = resRadio;
-                    aqi[i] = resAQI;
-                    var aqina = resAQI;
+                    console.log("mModerate.length: " + mModerate.length);
+                    for (i = 0; i < mModerate.length; i++) {
+                        console.log("mModerate: " + mModerate[i]);
+                    }
+
+                    console.log("Unhealthy1.length: " + Unhealthy1.length);
+                    for (i = 0; i < Unhealthy1.length; i++) {
+                        console.log("Unhealthy1: " + Unhealthy1[i]);
+                    }
+
+                    console.log("Unhealthy2.length: " + Unhealthy2.length);
+                    for (i = 0; i < Unhealthy2.length; i++) {
+                        console.log("Unhealthy2: " + Unhealthy2[i]);
+                    }
+
+                    console.log("Unhealthy3.length: " + Unhealthy3.length);
+                    for (i = 0; i < Unhealthy3.length; i++) {
+                        console.log("Unhealthy3: " + Unhealthy3[i]);
+                    }
 
 
 
-                    newDisrict.push(i);
-                    newCO.push(resCO);
-                    newO3.push(resO3);
-                    newSO2.push(resSO2);
-                    newNO2.push(resNO2);
-                    newPM25.push(resPM25);
-                    newRadio.push(resRadio);
-                    newAQI.push(aqina);
-                }
-            }
-            for (i = 0; i < newDisrict.length; i++) {
-
-                console.log("newDistrictID: " + newDisrict[i] + " AQI: " + newAQI[i] + " CO: " + newCO[i] + " NO2: " + newNO2[i] + " O3: " + newO3[i] + " so2: " + newSO2[i] + " PM2.5: " + newPM25[i] + " Radio: " + newRadio[i]);
-
-                if (newAQI[i] > 0 && newAQI[i] < 51) {
-                    good.push(newDisrict[i]);
-                }
-                if (newAQI[i] > 50 && newAQI[i] < 99) {
-                    mModerate.push(newDisrict[i]);
-                }
-                if (newAQI[i] > 100 && newAQI[i] < 199) {
-                    Unhealthy1.push(newDisrict[i]);
-                }
-                if (newAQI[i] > 200 && newAQI[i] < 299) {
-                    Unhealthy2.push(newDisrict[i]);
-                }
-                if (newAQI[i] > 300) {
-                    Unhealthy3.push(newDisrict[i]);
-                }
-
-            }
-
-            console.log("Good.length: " + good.length);
-            for (i = 0; i < good.length; i++) {
-                console.log("Good: " + good[i]);
-            }
-
-            console.log("mModerate.length: " + mModerate.length);
-            for (i = 0; i < mModerate.length; i++) {
-                console.log("mModerate: " + mModerate[i]);
-            }
-
-            console.log("Unhealthy1.length: " + Unhealthy1.length);
-            for (i = 0; i < Unhealthy1.length; i++) {
-                console.log("Unhealthy1: " + Unhealthy1[i]);
-            }
-
-            console.log("Unhealthy2.length: " + Unhealthy2.length);
-            for (i = 0; i < Unhealthy2.length; i++) {
-                console.log("Unhealthy2: " + Unhealthy2[i]);
-            }
-
-            console.log("Unhealthy3.length: " + Unhealthy3.length);
-            for (i = 0; i < Unhealthy3.length; i++) {
-                console.log("Unhealthy3: " + Unhealthy3[i]);
-            }
+                    /*
+                                              var covered = {
+                                              query: {
+                                              select: 'geometry',
+                                              from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+                                              where :"DCODE = 3305",
+                                            },
+                                            map: map,
+                                            suppressInfoWindows: true ,
+                                            styles: [{
+                                            polygonOptions: {
+                                            strokeColor: "#ff0000",
+                                            fillColor: "#ff0000",
+                                          }
+                                        }]};*/
 
 
+                    if (good.length > 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
 
-            /*
-                                      var covered = {
-                                      query: {
-                                      select: 'geometry',
-                                      from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-                                      where :"DCODE = 3305",
-                                    },
-                                    map: map,
-                                    suppressInfoWindows: true ,
-                                    styles: [{
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
                                     polygonOptions: {
-                                    strokeColor: "#ff0000",
-                                    fillColor: "#ff0000",
-                                  }
-                                }]};*/
-
-
-            if (good.length > 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                strokeColor: "#ffffff",
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-            if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                strokeColor: "#ffffff",
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                strokeColor: "#ffffff",
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-            if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length == 0) {
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                strokeColor: "#ffffff",
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0) {
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                strokeColor: "#ffffff",
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-
-
-            if (mModerate.length > 0 && good.length == 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-
-            if (Unhealthy1.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-
-            if (Unhealthy2.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy3.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-                                //fillColor: getfillColor(aqi),
-                                //strokeColor: getStrokeColor(aqi),
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                //   fillColor: getfillColor(aqi),
-                                // strokeColor: getStrokeColor(aqi),
-                                fillColor: "#ff944d ",
-                                strokeColor: "#ff944d ",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-            if (Unhealthy3.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (good.length > 0 && Unhealthy1.length > 0 && mModerate.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (good.length > 0 && Unhealthy2.length > 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy3.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (good.length > 0 && Unhealthy3.length > 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (mModerate.length > 0 && Unhealthy1.length > 0 && good.length == 0 && Unhealthy3.length == 0 && Unhealthy2.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (mModerate.length > 0 && Unhealthy2.length > 0 && good.length == 0 && Unhealthy3.length == 0 && Unhealthy1.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (mModerate.length > 0 && Unhealthy3.length > 0 && good.length == 0 && Unhealthy2.length == 0 && Unhealthy1.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (Unhealthy1.length > 0 && Unhealthy2.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy3.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (Unhealthy1.length > 0 && Unhealthy3.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy2.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-            if (Unhealthy2.length > 0 && Unhealthy3.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy1.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-
-            if (good.length > 0 && mModerate.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length == 0 && Unhealthy1.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-
-            if (good.length > 0 && mModerate.length > 0 && Unhealthy2.length > 0 && Unhealthy2.length == 0 && Unhealthy1.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-            if (good.length > 0 && mModerate.length > 0 && Unhealthy3.length > 0 && Unhealthy2.length == 0 && Unhealthy1.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-            if (good.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && mModerate.length == 0 && Unhealthy3.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (good.length > 0 && Unhealthy1.length > 0 && Unhealthy3.length > 0 && mModerate.length == 0 && Unhealthy2.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (good.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && mModerate.length == 0 && Unhealthy1.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-            if (mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && good.length == 0 && Unhealthy3.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy3.length > 0 && good.length == 0 && Unhealthy2.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && good.length == 0 && mModerate.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy3.length > 0 && Unhealthy2.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && good.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (good.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && mModerate.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (good.length > 0 && mModerate.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && Unhealthy1.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-            if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy3.length > 0 && Unhealthy2.length == 0) {
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + good + ")",
-                            polygonOptions: {
-
-                                fillColor: "#4d4dff",
-                                strokeColor: "#4d4dff",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-                            where: "SUB_CODE IN (" + Unhealthy3 + ")",
-                            polygonOptions: {
-
-                                fillColor: "#ff4d4d",
-                                strokeColor: "#ff4d4d",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-            }
-
-
-            var mLayer = new google.maps.FusionTablesLayer(covered);
-            FusionTable.push(mLayer);
-            console.log("mLayer: " + mLayer);
-
-
-            var pname = document.getElementById("pname").value;
-            console.log("pname: " + pname);
-
-
-
-
-            var infoWindow = new google.maps.InfoWindow({
-                maxWidth: 500
+
+                                        strokeColor: "#ffffff",
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+                    if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        strokeColor: "#ffffff",
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        strokeColor: "#ffffff",
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+                    if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length == 0) {
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        strokeColor: "#ffffff",
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0) {
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        strokeColor: "#ffffff",
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+
+
+                    if (mModerate.length > 0 && good.length == 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+
+                    if (Unhealthy1.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+
+                    if (Unhealthy2.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy3.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+                                        //fillColor: getfillColor(aqi),
+                                        //strokeColor: getStrokeColor(aqi),
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        //   fillColor: getfillColor(aqi),
+                                        // strokeColor: getStrokeColor(aqi),
+                                        fillColor: "#ff944d ",
+                                        strokeColor: "#ff944d ",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+                    if (Unhealthy3.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (good.length > 0 && Unhealthy1.length > 0 && mModerate.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (good.length > 0 && Unhealthy2.length > 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy3.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (good.length > 0 && Unhealthy3.length > 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (mModerate.length > 0 && Unhealthy1.length > 0 && good.length == 0 && Unhealthy3.length == 0 && Unhealthy2.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (mModerate.length > 0 && Unhealthy2.length > 0 && good.length == 0 && Unhealthy3.length == 0 && Unhealthy1.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (mModerate.length > 0 && Unhealthy3.length > 0 && good.length == 0 && Unhealthy2.length == 0 && Unhealthy1.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (Unhealthy1.length > 0 && Unhealthy2.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy3.length == 0) {
+
+console.log("Ben");
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                                ,
+
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (Unhealthy1.length > 0 && Unhealthy3.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy2.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+                    if (Unhealthy2.length > 0 && Unhealthy3.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy1.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+
+                    if (good.length > 0 && mModerate.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length == 0 && Unhealthy1.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+
+                    if (good.length > 0 && mModerate.length > 0 && Unhealthy2.length > 0 && Unhealthy2.length == 0 && Unhealthy1.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+                    if (good.length > 0 && mModerate.length > 0 && Unhealthy3.length > 0 && Unhealthy2.length == 0 && Unhealthy1.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+                    if (good.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && mModerate.length == 0 && Unhealthy3.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (good.length > 0 && Unhealthy1.length > 0 && Unhealthy3.length > 0 && mModerate.length == 0 && Unhealthy2.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (good.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && mModerate.length == 0 && Unhealthy1.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+                    if (mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && good.length == 0 && Unhealthy3.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy3.length > 0 && good.length == 0 && Unhealthy2.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && good.length == 0 && mModerate.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy3.length > 0 && Unhealthy2.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && good.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (good.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && mModerate.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (good.length > 0 && mModerate.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && Unhealthy1.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy2 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ff944d",
+                                        strokeColor: "#ff944d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+                    if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy3.length > 0 && Unhealthy2.length == 0) {
+
+                        var covered = {
+                            query: {
+                                select: 'geometry',
+                                from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                            },
+                            map: map,
+                            suppressInfoWindows: true,
+                            styles: [{
+                                    polygonOptions: {
+
+                                        fillColor: "#ffffff",
+                                        opacity: .1,
+
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + good + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#4d4dff",
+                                        strokeColor: "#4d4dff",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + mModerate + ")",
+                                    polygonOptions: {
+                                        fillColor: "#4dff88",
+                                        strokeColor: "#4dff88",
+
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+
+                                    where: "SUB_CODE IN (" + Unhealthy1 + ")",
+                                    polygonOptions: {
+                                        fillColor: "#ffff4d",
+                                        strokeColor: "#ffff4d",
+                                        //fillColor: "#ff0000",
+                                        // strokeColor: "#ff0000",
+                                        strokeWeight: 0.1
+                                    }
+                                },
+                                {
+                                    where: "SUB_CODE IN (" + Unhealthy3 + ")",
+                                    polygonOptions: {
+
+                                        fillColor: "#ff4d4d",
+                                        strokeColor: "#ff4d4d",
+                                        strokeWeight: 0.1
+                                    }
+                                }
+                            ]
+                        };
+                    }
+
+
+                    var mLayer = new google.maps.FusionTablesLayer(covered);
+                    FusionTable.push(mLayer);
+                    console.log("mLayer: " + mLayer);
+
+
+                    var pname = document.getElementById("pname").value;
+                    console.log("pname: " + pname);
+
+
+
+
+                    var infoWindow = new google.maps.InfoWindow({
+                        maxWidth: 500
+                    });
+
+                    google.maps.event.addListener(mLayer, 'click', function(ev) {
+
+                        var districtID = parseInt(ev.row['SUB_CODE'].value);
+                        var DName = ev.row['DNAME'].value;
+                        var SName = ev.row['SNAME'].value;
+                        var aqi = Math.max(co[districtID], no2[districtID], o3[districtID], so2[districtID], pm25[districtID]);
+                        var content = "<div class = 'text-primary'><b>การแจ้งเตือนสภาพอากาศ</b></div>" +
+                            "<div class = 'text-muted'>ค่าเฉลี่ยทั้งวันของวัน " + mDate + "</div>" +
+                            "<div class = 'text-info'>" + DName + "</div>" +
+                            "<div class = 'text-info'>" + SName + "</div>" +
+                            "<div class = 'text-info'>AQI: " + aqi + "</div>" +
+                            "<div class = 'text-info'>CO: " + co[districtID] + "</div>" +
+                            "<div class = 'text-info'>NO2: " + no2[districtID] + "</div>" +
+                            "<div class = 'text-info'>O3: " + o3[districtID] + "</div>" +
+                            "<div class = 'text-info'>SO2: " + so2[districtID] + "</div>" +
+                            "<div class = 'text-info'>PM2.5: " + pm25[districtID] + "</div>" +
+                            "<div class = 'text-info'>ค่ากัมมันตรังสี: " + radio[districtID] + "</div>" +
+                            "<button id = 'showGraph' type ='button'  class = 'btn btn-primary btn-sm btn-block' onClick = 'showGraph(" + districtID + ")' >Show Graph</button>";
+
+                        infoWindow.setContent(content);
+                        infoWindow.setPosition(ev.latLng);
+                        infoWindow.open(map);
+                    });
+
+                    waitingDialog.hide();
+
+
+                });
             });
 
-            google.maps.event.addListener(mLayer, 'click', function(ev) {
-
-                var districtID = parseInt(ev.row['SUB_CODE'].value);
-                var DName = ev.row['DNAME'].value;
-                var SName = ev.row['SNAME'].value;
-                var aqi = Math.max(co[districtID], no2[districtID], o3[districtID], so2[districtID], pm25[districtID]);
-                var content = "<div class = 'text-primary'><b>การแจ้งเตือนสภาพอากาศ</b></div>" +
-                    "<div class = 'text-muted'>ค่าเฉลี่ยทั้งวันของวัน " + mDate + "</div>" +
-                    "<div class = 'text-info'>" + DName + "</div>" +
-                    "<div class = 'text-info'>" + SName + "</div>" +
-                    "<div class = 'text-info'>AQI: " + aqi + "</div>" +
-                    "<div class = 'text-info'>CO: " + co[districtID] + "</div>" +
-                    "<div class = 'text-info'>NO2: " + no2[districtID] + "</div>" +
-                    "<div class = 'text-info'>O3: " + o3[districtID] + "</div>" +
-                    "<div class = 'text-info'>SO2: " + so2[districtID] + "</div>" +
-                    "<div class = 'text-info'>PM2.5: " + pm25[districtID] + "</div>" +
-                    "<div class = 'text-info'>ค่ากัมมันตรังสี: " + radio[districtID] + "</div>" +
-                    "<button id = 'showGraph' type ='button'  class = 'btn btn-primary btn-sm btn-block' onClick = 'showGraph(" + districtID + ")' >Show Graph</button>";
-
-                infoWindow.setContent(content);
-                infoWindow.setPosition(ev.latLng);
-                infoWindow.open(map);
-            });
-
-            waitingDialog.hide();
-
-
-});
 
 
 
-
-    $("#dropdownDistrict").empty();
-    //$("#txtDate").val('');
-    //document.getElementById("mDistrict").innerHTML = "District";
-
+            $("#dropdownDistrict").empty();
+            //$("#txtDate").val('');
+            //document.getElementById("mDistrict").innerHTML = "District";
 
 
-    } //setcircle on map
+
+        } //setcircle on map
 
 
-    /*  // Create the legend and display on the map
-    var legend = document.createElement('div');
-    legend.id = 'legend';
-    var content = [];
-    content.push('<h3>Air Quality Index</h3>');
-    content.push('<p><div class="color blue"></div>0-50 Good</p>');
-    content.push('<p><div class="color green"></div>51-100 Moderate</p>');
-    content.push('<p><div class="color yellow"></div>100-200 Unhealthy for Sensitive Groups</p>');
-    content.push('<p><div class="color orange"></div>201-300 Unhealthy</p>');
-    content.push('<p><div class="color red"></div>300+ Very Unhealty</p>');
-    legend.innerHTML = content.join('');
-    legend.index = 1;
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
-    */
+        /*  // Create the legend and display on the map
+        var legend = document.createElement('div');
+        legend.id = 'legend';
+        var content = [];
+        content.push('<h3>Air Quality Index</h3>');
+        content.push('<p><div class="color blue"></div>0-50 Good</p>');
+        content.push('<p><div class="color green"></div>51-100 Moderate</p>');
+        content.push('<p><div class="color yellow"></div>100-200 Unhealthy for Sensitive Groups</p>');
+        content.push('<p><div class="color orange"></div>201-300 Unhealthy</p>');
+        content.push('<p><div class="color red"></div>300+ Very Unhealty</p>');
+        legend.innerHTML = content.join('');
+        legend.index = 1;
+        map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+        */
 
     } // init map
 
@@ -2589,7 +2599,7 @@
         var radio = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
         var checkSame2 = [55];
 
-        $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date="+mDate+"", function(result) {
+        $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + mDate + "", function(result) {
             var count = 1;
             for (i = 0; i < result.length; i++) {
                 var rco = parseInt(result[i].co);
