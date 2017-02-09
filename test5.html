@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ben</title>
+  </head>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <body>
+
+
+    <div id="full-width" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div id="map" style="width:100%; height:1000px;"></div>
+            </div>
+        </div>
+    </div>
+
+  </body>
+
+  <script>
+  function initMap() {
+  var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+var mapOptions = {
+  zoom: 4,
+  center: myLatlng
+}
+var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+var marker = new google.maps.Marker({
+    position: myLatlng,
+    icon: new google.maps.MarkerImage('https://cdn3.iconfinder.com/data/icons/map-markers-1/512/radioactive-512.png', undefined, undefined, undefined, new google.maps.Size(47, 47)),
+    title:"Hello World!"
+});
+
+// To add the marker to the map, call setMap();
+marker.setMap(map);
+}
+
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap" type="text/javascript"></script>
+</html>

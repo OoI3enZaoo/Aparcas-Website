@@ -1,4 +1,4 @@
-http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=2017-02-08<!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -26,7 +26,7 @@ http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=2017-02-08<!doctype ht
 
 
 
-<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
 
     <!-- Bootstrap core CSS     -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
@@ -38,7 +38,7 @@ http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=2017-02-08<!doctype ht
 
     <link href="https://fonts.googleapis.com/css?family=Mitr" rel="stylesheet">
 
-<link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
 
 
 
@@ -169,12 +169,13 @@ http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=2017-02-08<!doctype ht
 
 
 <script>
-    //var markers = [];
+    var markers = [];
+    var FusionTable = [];
 
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 11,
-          center: new google.maps.LatLng(13.756331, 100.501765),
+            zoom: 11,
+            center: new google.maps.LatLng(13.756331, 100.501765),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }); //end of map
 
@@ -200,23 +201,15 @@ http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=2017-02-08<!doctype ht
                 var mID;
                 var mLat;
                 var mLng;
-                var mCO;
-                var mNO2;
-                var mO3;
-                var mSO2;
-                var mPM25;
                 var mRadio;
-                mID = eval(jsonObj.id);
+                var mTime;
+                mID = jsonObj.uid;
                 mLat = jsonObj.lat;
                 mLng = jsonObj.lon;
-                mCO = eval(jsonObj.co);
-                mNO2 = eval(jsonObj.no2);
-                mO3 = eval(jsonObj.o3);
-                mSO2 = eval(jsonObj.so2);
-                mPM25 = eval(jsonObj.pm25);
-                mRadio = jsonObj.rad;
-                mTime = jsonObj.tstamp;
-                UpdateMap(mID, mLat, mLng, mCO, mNO2, mO3, mSO2, mPM25, mRadio, mTime);
+                mRadio = eval(jsonObj.rad);
+                mTime = jsonObj.ts;
+                UpdateMap(mID, mLat, mLng ,mRadio, mTime);
+
 
             },
             myId: 'test0',
@@ -227,42 +220,33 @@ http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=2017-02-08<!doctype ht
 
 
 
-        function UpdateMap(id, Lat, Lng, CO, NO2, O3, SO2, PM25, Radio, Time) {
+        function UpdateMap(id, Lat, Lng, Radio, Time) {
+          var time =moment.unix(Time).format("YYYY-MM-DD HH:mm:ss");  // 1481662579 to 2016-12-14 03:56:19
             console.log("UpdateMap()");
-            CO = CO.toFixed(2);
-            NO2 = NO2.toFixed(2);
-            O3 = O3.toFixed(2);
-            SO2 = SO2.toFixed(2);
-            PM25 = PM25.toFixed(2);
+             console.log("showData: id: " + id + "Lat: " + Lat + " Lng: " + Lng + " Radio: " + Radio + " Time: " + time);
 
 
-            //  console.log("showData: id: " + id + " first_name: " + first_name + " last_name: " + last_name + " Lat: " + Lat + " Lng: " + Lng + " CO: " + CO + " NO2: " + NO2 + " O3: " + O3 + " SO2: " + SO2 + " PM25: " + PM25 + " Radio: " + Radio);
-            //
-            // var marker = new google.maps.Marker({
-            //     position: new google.maps.LatLng(Lat, Lng),
-            //     map: map,
-            //     icon: new google.maps.MarkerImage('http://maps.google.com/mapfiles/ms/icons/blue-dot.png'),
-            //     title: "Hello World!"
-            // });
-            //
-            // markers.push(marker);
 
-            // var infoWindow = new google.maps.InfoWindow({
-            //     content: "<div class = 'text-primary'><b>การแจ้งเตือนปริมาณกัมมันตรังสี</b></div>" +
-            //         "<div class = 'text-muted'>เวลาอัพเดทล่าสุด " + Time + "</div>" +
-            //         "<div class = 'text-info'>ไอดีผู้ใช้: " + id + "</div>" +
-            //         "<div class = 'text-info'>CO: " + CO + "</div>" +
-            //         "<div class = 'text-info'>NO2: " + NO2 + "</div>" +
-            //         "<div class = 'text-info'>O3: " + O3 + "</div>" +
-            //         "<div class = 'text-info'>SO2: " + SO2 + "</div>" +
-            //         "<div class = 'text-info'>PM2.5: " + PM25 + "</div>" +
-            //         "<div class = 'text-info'>ค่ากัมมันตรังสี: " + Radio + "</div>",
-            //
-            //     maxWidth: 500
-            // });
-            // marker.addListener('click', function() {
-            //     infoWindow.open(map, marker);
-            // });
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(Lat, Lng),
+                map: map,
+                icon: new google.maps.MarkerImage(RadioMarker(Radio), undefined, undefined, undefined, new google.maps.Size(30, 30)),
+                title: "Hello World!"
+            });
+
+            markers.push(marker);
+
+            var infoWindow = new google.maps.InfoWindow({
+                content: "<div class = 'text-primary'><b>การแจ้งเตือนปริมาณกัมมันตรังสี</b></div>" +
+                    "<div class = 'text-muted'>เวลาอัพเดทล่าสุด " + time + "</div>" +
+                    "<div class = 'text-info'>ไอดีผู้ใช้: " + id + "</div>" +
+                    "<div class = 'text-info'>ค่ากัมมันตรังสี: " + Radio + "</div>",
+
+                maxWidth: 500
+            });
+            marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+            });
 
         }
 
@@ -279,61 +263,23 @@ http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=2017-02-08<!doctype ht
             var Unhealthy3 = [];
 
 
-            var check = false;
 
+            var aqi = [];
+            var tstamp = [];
+            var count = 0;
 
             // $("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>ค้นหาเขต: " + mDate + "</h5></div>");
 
-            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=2017-02-08", function(result) {
-
-                var co = [];
-                var no2 = [];
-                var o3 = [];
-                var so2 = [];
-                var pm25 = [];
-                var radio = [];
-                var lat = [];
-                var lon = [];
-                var aqi = [];
-                var count = new Array(9000).fill(0);
+            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/grid_lut.jsp", function(result) {
 
 
 
-                var check = 0;
-                var m = 0;
-
-                var mDate = "2017-02-08"
-                  var re = new RegExp(mDate, 'g');
                 console.log("Some Sub_code");
                 for (i = 0; i < result.length; i++) {
-                  var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
-                  if (day.match(re)) {
-                    var disID = parseInt(result[i].grid_id);
-                    if (count[disID] != 0) {
-                        co[disID] = co[disID] + parseInt(result[i].co);
-                        no2[disID] = no2[disID] + parseInt(result[i].no2);
-                        o3[disID] = o3[disID] + parseInt(result[i].o3);
-                        so2[disID] = so2[disID] + parseInt(result[i].so2);
-                        pm25[disID] = pm25[disID] + parseInt(result[i].pm25);
-                        radio[disID] = radio[disID] + parseInt(result[i].radio);
-                        count[disID] = count[disID] + 1;
-                        console.log("Num2");
-                    }
-                    if (count[disID] == 0) {
-                        co[disID] = +parseInt(result[i].co);
-                        no2[disID] = +parseInt(result[i].no2);
-                        o3[disID] = +parseInt(result[i].o3);
-                        so2[disID] = +parseInt(result[i].so2);
-                        pm25[disID] = +parseInt(result[i].pm25);
-                        radio[disID] = +parseInt(result[i].radio);
-                        count[disID] = +1;
-                        console.log("Num");
+                    var grid_id = parseInt(result[i].id);
+                    aqi[grid_id] = result[i].aqi;
+                    tstamp[grid_id] = result[i].timestamp;
 
-                    }
-
-                    aqi[disID] = parseInt(result[i].aqi);
-                    check = true;
-                    }
                 } // end for
 
                 var districtLayer = new google.maps.KmlLayer({
@@ -341,7 +287,7 @@ http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=2017-02-08<!doctype ht
                     map: map
                 });
 
-                  //KmlLayer.push(districtLayer);
+                //KmlLayer.push(districtLayer);
 
                 // var geocoder = new google.maps.Geocoder();
                 // geocoder.geocode({
@@ -353,80 +299,40 @@ http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=2017-02-08<!doctype ht
                 //     }
                 // });
 
-                var newDisrict = [];
-                var newCO = [];
-                var newNO2 = [];
-                var newO3 = [];
-                var newSO2 = [];
-                var newPM25 = [];
-                var newRadio = [];
-                var newAQI = []
-                var newlat = [];
-                var newLon = [];
+
                 var newAQI = [];
-                for (i = 0; i < co.length; i++) {
-                    if (co[i] != null) {
-                        console.log("count[i]: " + count[i] + " i: " + i);
-                        console.log("before divide: " + "co: " + co[i] + " no2: " + no2[i]);
-                        var resCO = co[i] / count[i];
-                        var resNO2 = no2[i] / count[i];
-                        var resO3 = o3[i] / count[i];
-                        var resSO2 = so2[i] / count[i];
-                        var resPM25 = pm25[i] / count[i];
-                        var resRadio = radio[i] / count[i];
-                        var resAQI = aqi[i] / count[i];
+                var grid_id = [];
 
-                        console.log("after divide: " + "co: " + resCO + " no2: " + resNO2);
+                for (i = 0; i < aqi.length; i++) {
+                    if (aqi[i] != null) {
+                        grid_id.push(i);
+                        newAQI.push(aqi[i]);
 
-                        resCO = resCO.toFixed(2);
-                        resNO2 = resNO2.toFixed(2);
-                        resO3 = resO3.toFixed(2);
-                        resSO2 = resSO2.toFixed(2);
-                        resPM25 = resPM25.toFixed(2);
-                        resRadio = resRadio.toFixed(2);
-                        resAQI =  resAQI.toFixed(2);
-
-                        co[i] = resCO;
-                        no2[i] = resNO2;
-                        o3[i] = resO3;
-                        so2[i] = resSO2;
-                        pm25[i] = resPM25;
-                        radio[i] = resRadio;
-                        aqi[i] = resAQI;
-
-
-                      var aqina = Math.max(resCO, resNO2, resO3, resSO2, resPM25);
-
-
-
-                        newDisrict.push(i);
-                        newCO.push(resCO);
-                        newO3.push(resO3);
-                        newSO2.push(resSO2);
-                        newNO2.push(resNO2);
-                        newPM25.push(resPM25);
-                        newRadio.push(resRadio);
-                        newAQI.push(aqina);
                     }
                 }
-                for (i = 0; i < newDisrict.length; i++) {
+                for (i = 0; i < grid_id.length; i++) {
 
-                    console.log("newDistrictID: " + newDisrict[i] + " AQI: " + newAQI[i] + " CO: " + newCO[i] + " NO2: " + newNO2[i] + " O3: " + newO3[i] + " so2: " + newSO2[i] + " PM2.5: " + newPM25[i] + " Radio: " + newRadio[i]);
-
+                    console.log("grid_id: " + grid_id[i] + " AQI: " + newAQI[i]);
+                    //Benna
                     if (newAQI[i] > 0 && newAQI[i] < 51) {
-                        good.push(newDisrict[i]);
+                        good.push(grid_id[i]);
+                        count++
                     }
                     if (newAQI[i] > 50 && newAQI[i] < 99) {
-                        mModerate.push(newDisrict[i]);
+                        mModerate.push(grid_id[i]);
+                        count++
                     }
                     if (newAQI[i] > 100 && newAQI[i] < 199) {
-                        Unhealthy1.push(newDisrict[i]);
+                        Unhealthy1.push(grid_id[i]);
+                        count++
                     }
                     if (newAQI[i] > 200 && newAQI[i] < 299) {
-                        Unhealthy2.push(newDisrict[i]);
+                        Unhealthy2.push(grid_id[i]);
+                        count++
                     }
                     if (newAQI[i] > 300) {
-                        Unhealthy3.push(newDisrict[i]);
+                        Unhealthy3.push(grid_id[i]);
+                        count++
                     }
 
                 }
@@ -457,55 +363,1680 @@ http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=2017-02-08<!doctype ht
                 }
 
 
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+                if (good.length > 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 1");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
 
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
 
-                                fillColor: "#ffffff",
-                                opacity: .1,
+                                    strokeColor: "#ffffff",
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
 
 
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
                             }
+                        ]
+                    };
+                }
+
+                if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 2");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    strokeColor: "#ffffff",
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 3");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    strokeColor: "#ffffff",
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+
+                if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 4");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
                         },
 
-                        {
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
 
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
+                                    strokeColor: "#ffffff",
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
                             }
+                        ]
+                    };
+                }
+                if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0) {
+                    console.log("CASE: 5");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
                         },
-                        {
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
 
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
+                                    strokeColor: "#ffffff",
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
                             }
-                        }
-                    ]
-                };
+                        ]
+                    };
+                }
+
+
+
+                if (mModerate.length > 0 && good.length == 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 6");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+
+
+                if (Unhealthy1.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 7");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+
+
+                if (Unhealthy2.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 8");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+                                    //fillColor: getfillColor(aqi),
+                                    //strokeColor: getStrokeColor(aqi),
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    //   fillColor: getfillColor(aqi),
+                                    // strokeColor: getStrokeColor(aqi),
+                                    fillColor: "#ff944d ",
+                                    strokeColor: "#ff944d ",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+
+                if (Unhealthy3.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0) {
+                    console.log("CASE: 9");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (good.length > 0 && Unhealthy1.length > 0 && mModerate.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 10");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (good.length > 0 && Unhealthy2.length > 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 11");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (good.length > 0 && Unhealthy3.length > 0 && mModerate.length == 0 && Unhealthy1.length == 0 && Unhealthy2.length == 0) {
+                    console.log("CASE: 12");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (mModerate.length > 0 && Unhealthy1.length > 0 && good.length == 0 && Unhealthy3.length == 0 && Unhealthy2.length == 0) {
+                    console.log("CASE: 13");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (mModerate.length > 0 && Unhealthy2.length > 0 && good.length == 0 && Unhealthy3.length == 0 && Unhealthy1.length == 0) {
+                    console.log("CASE: 14");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (mModerate.length > 0 && Unhealthy3.length > 0 && good.length == 0 && Unhealthy2.length == 0 && Unhealthy1.length == 0) {
+                    console.log("CASE: 15");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (Unhealthy1.length > 0 && Unhealthy2.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 16");
+                    console.log("Ben");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (Unhealthy1.length > 0 && Unhealthy3.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy2.length == 0) {
+                    console.log("CASE: 17");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+
+                if (Unhealthy2.length > 0 && Unhealthy3.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy1.length == 0) {
+                    console.log("CASE: 18");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+
+
+                if (good.length > 0 && mModerate.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length == 0 && Unhealthy1.length == 0) {
+                    console.log("CASE: 19");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+
+
+                if (good.length > 0 && mModerate.length > 0 && Unhealthy3.length > 0 && Unhealthy2.length == 0 && Unhealthy1.length == 0) {
+                    console.log("CASE: 20");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+
+                if (good.length > 0 && mModerate.length > 0 && Unhealthy3.length > 0 && Unhealthy2.length == 0 && Unhealthy1.length == 0) {
+                    console.log("CASE: 21");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+
+                if (good.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && mModerate.length == 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 22");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (good.length > 0 && Unhealthy1.length > 0 && Unhealthy3.length > 0 && mModerate.length == 0 && Unhealthy2.length == 0) {
+                    console.log("CASE: 23");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (good.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && mModerate.length == 0 && Unhealthy1.length == 0) {
+                    console.log("CASE: 24");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+
+                if (mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && good.length == 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 25");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy3.length > 0 && good.length == 0 && Unhealthy2.length == 0) {
+                    console.log("CASE: 26");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (good.length == 0 && mModerate.length == 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0) {
+                    console.log("CASE: 27");
+                    console.log("benna");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy3.length > 0 && Unhealthy2.length == 0) {
+                    console.log("CASE: 28");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length == 0) {
+                    console.log("CASE: 29");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && good.length == 0) {
+                    console.log("CASE: 30");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (good.length > 0 && Unhealthy1.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && mModerate.length == 0) {
+                    console.log("CASE: 31");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (good.length > 0 && mModerate.length > 0 && Unhealthy2.length > 0 && Unhealthy3.length > 0 && Unhealthy1.length == 0) {
+                    console.log("CASE: 32");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy2 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ff944d",
+                                    strokeColor: "#ff944d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                if (good.length > 0 && mModerate.length > 0 && Unhealthy1.length > 0 && Unhealthy3.length > 0 && Unhealthy2.length == 0) {
+                    console.log("CASE: 33");
+                    var covered = {
+                        query: {
+                            select: 'geometry',
+                            from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
+
+                        },
+                        map: map,
+                        suppressInfoWindows: true,
+                        styles: [{
+                                polygonOptions: {
+
+                                    fillColor: "#ffffff",
+                                    opacity: .1,
+
+                                }
+                            },
+                            {
+                                where: "id IN (" + good + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#4d4dff",
+                                    strokeColor: "#4d4dff",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + mModerate + ")",
+                                polygonOptions: {
+                                    fillColor: "#4dff88",
+                                    strokeColor: "#4dff88",
+
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+
+                                where: "id IN (" + Unhealthy1 + ")",
+                                polygonOptions: {
+                                    fillColor: "#ffff4d",
+                                    strokeColor: "#ffff4d",
+                                    //fillColor: "#ff0000",
+                                    // strokeColor: "#ff0000",
+                                    strokeWeight: 0.1
+                                }
+                            },
+                            {
+                                where: "id IN (" + Unhealthy3 + ")",
+                                polygonOptions: {
+
+                                    fillColor: "#ff4d4d",
+                                    strokeColor: "#ff4d4d",
+                                    strokeWeight: 0.1
+                                }
+                            }
+                        ]
+                    };
+                }
+                console.log("count: " + count);
                 var mLayer = new google.maps.FusionTablesLayer(covered);
-                //FusionTable.push(mLayer);
-                //      console.log("mLayer: " + mLayer);
+                FusionTable.push(mLayer);
+                console.log("mLayer: " + mLayer);
+
+
+
+                var infoWindow = new google.maps.InfoWindow({
+                    maxWidth: 500
+                });
+
+                google.maps.event.addListener(mLayer, 'click', function(ev) {
+
+                    var grid_id = parseInt(ev.row['id'].value);
+                    var DName = ev.row['DNAME'].value;
+                    var SName = ev.row['SNAME'].value;
+
+                    var content = "<div class = 'text-primary'><b>การแจ้งเตือนสภาพอากาศ</b></div>" +
+                        "<div class = 'text-muted'>ค่าเฉลี่ยทั้งวันของวัน " + tstamp[grid_id] + "</div>" +
+                        "<div class = 'text-info'>" + DName + "</div>" +
+                        "<div class = 'text-info'>" + SName + "</div>" +
+                        "<div class = 'text-info'>AQI: " + aqi[grid_id] + "</div>";
+
+
+
+                    infoWindow.setContent(content);
+                    infoWindow.setPosition(ev.latLng);
+                    infoWindow.open(map);
+                });
+
 
             }); //get json
-          }
+        }
 
+
+    }
+
+    function RemoveMarker() {
+        for (i = 0; i < FusionTable.length; i++) {
+            FusionTable[i].setMap(null);
+            console.log("FusionTable: " + i);
+        }
+        for (var i = 0; i < KmlLayer.length; i++) {
+            KmlLayer[i].setMap(null);
+        }
+
+
+    }
+    function RadioMarker(radio){
+
+      var mRadio = parseInt(radio);
+
+      if (radio > 1) {
+          return  "icon/marker_rad_red.png";
+      }
+      if(radio > 0.5){
+        return  "icon/marker_rad_yellow.png";
+      }
+      if(radio < 0.5){
+          return  "icon/marker_rad_green.png";
+      }
+      return null;
 
     }
 </script>
