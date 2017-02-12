@@ -19,17 +19,18 @@ Vector<String> rad =  new Vector<String>();
 Vector<String> tstamp =  new Vector<String>();
 Vector<String> lat =  new Vector<String>();
 Vector<String> lon =  new Vector<String>();
+Vector<String> DateVec =  new Vector<String>();
 
 
 
 
 String date = request.getParameter("date");
 String grid = request.getParameter("grid");
-//String grids [] = result.getParameter("grids")
 String[] grids = request.getParameterValues("grids");
-
+String data = request.getParameter("data");
 
 String sql = null;
+
 
 
 
@@ -39,29 +40,35 @@ String sql = null;
 
 
 
-if(date == null && grid == null && grids == null){
-  sql = "select id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans where grid_id > 0 and aqi > 0";
+if(date == null && grid == null && grids == null && data == null){
+  sql = "select from_unixtime(tstamp),id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans where grid_id > 0 and aqi > 0";
 }
-else if(date != null && grid != null&& grids == null){
-  sql = "select id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' AND grid_id = "+grid+" and aqi > 0";
+else if(date != null && grid != null&& grids == null&& data == null){
+  sql = "select from_unixtime(tstamp),id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' AND grid_id = "+grid+" and aqi > 0";
 }
-else if(date != null && grid == null && grids == null){
-  sql = "select id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' and grid_id > 0 and aqi > 0";
+else if(date != null && grid == null && grids == null&& data == null){
+  sql = "select from_unixtime(tstamp),id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' and grid_id > 0 and aqi > 0";
+}
+else if (data != null && grids == null){
+  sql = "select from_unixtime(tstamp),id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) > DATE_SUB(NOW(), INTERVAL 70 Hour) and aqi > 0" ;
 }
 else if(grids != null)
 {
 String result = "";
 for(int i = 0; i<grids.length; i++){
     if(i+1 == grids.length ){
-      result = result + grids[i] ;
+      result = result +grids[i];
     }else{
-      result = result + grids[i] + ",";
+      result = result  +grids[i] + ",";
     }
   }
+//out.println("result: " + result);
+  //sql = "select id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' and grid_id IN ("+result+") and aqi >0";
+  sql = "select from_unixtime(tstamp),id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' and  grid_id IN ("+result+") ";
 
-  sql = "select id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' and grid_id IN ("+result+") and aqi >0";
 
 }
+//out.println("SQL: " + sql);
 
 
 
@@ -74,9 +81,12 @@ for(int i = 0; i<grids.length; i++){
       ResultSet rs = stmt.executeQuery(sql);
 
 	  while (rs.next()) {
+
+      DateVec.addElement(rs.getString("from_unixtime(tstamp)"));
       id.addElement(rs.getString("id"));
 		user_id.addElement(rs.getString("user_id"));
 		grid_id.addElement(rs.getString("grid_id"));
+
 		aqi.addElement(rs.getString("aqi"));
        co_avg.addElement(rs.getString("co_avg"));
        no2_avg.addElement(rs.getString("no2_avg"));
@@ -113,6 +123,7 @@ jsonStr += "{\"id\":\""+id.elementAt(i)+"\",";
 	jsonStr += "\"radio\":\""+rad.elementAt(i)+"\",";
 	jsonStr += "\"lat\":\""+lat.elementAt(i)+"\",";
 	jsonStr += "\"lon\":\""+lon.elementAt(i)+"\",";
+  jsonStr += "\"Date\":\""+DateVec.elementAt(i)+"\",";
 	jsonStr += "\"timestamp\":\""+tstamp.elementAt(i)+"\"}";
 
 		if((i+1) != user_id.size()){

@@ -6,6 +6,8 @@ String userDB = "root";
 String passDB = "";
 String urlDB = "jdbc:mysql://sysnet.utcc.ac.th/Aparcas?";
 
+String sql = null;
+String data = request.getParameter("data");
 Vector<String> idVec =  new Vector<String>();
 Vector<String> scode =  new Vector<String>();
 Vector<String> sname =  new Vector<String>();
@@ -25,7 +27,13 @@ Vector<String> tstampVec =  new Vector<String>();
  try {
 	  Class.forName("com.mysql.jdbc.Driver");
 	  Connection con = DriverManager.getConnection(urlDB,userDB,passDB);
-	  String sql = "select id,SUB_CODE ,SNAME,DCODE,DNAME ,xmin,xmax,ymin,ymax ,PNAME,PCODE,aqi ,tstamp from grid_lut where aqi >0  order by id DESC limit 140";
+    if(data == null){
+      sql = "select id,SUB_CODE ,SNAME,DCODE,DNAME ,xmin,xmax,ymin,ymax ,PNAME,PCODE,aqi ,tstamp from grid_lut where aqi >0  order by id DESC limit 140";
+
+    }
+    else if (data.equals("3HourAgo")){
+      sql = "SELECT id,SUB_CODE ,SNAME,DCODE,DNAME ,xmin,xmax,ymin,ymax ,PNAME,PCODE,aqi ,tstamp  FROM grid_lut WHERE tstamp > DATE_SUB(NOW(), INTERVAL 70 Hour)";
+    }
       Statement stmt = con.createStatement();
       ResultSet rs = stmt.executeQuery(sql);
 

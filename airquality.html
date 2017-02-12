@@ -351,6 +351,9 @@
     var firsttime = true;
     var markers = [];
     var allS = [];
+    var AllDID = [];
+    var AllsID = [];
+
 
     // $(".selectpicker").selectpicker({
     //   style: 'btn-info',
@@ -412,18 +415,41 @@
                     $("#dropdownS").append(query);
                     allS.push(s[i].code);
                 }
+                var grids = "";
                 for (i = 0; i < allS.length; i++) {
                     console.log("AllS: " + allS[i]);
+                    grids += "&grids="+allS[i]+"";
                 }
+                console.log("Grids: http://sysnet.utcc.ac.th/aparcas/api/getGridID.jsp?" + grids);
+                $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/getGridID.jsp?" + grids,function(res3){
+                  AllDID = [];
+                    for(i = 0; i<res3.length; i++){
+                        AllDID.push(res3[i].id);
+                    }
+                });
                 $(".dropdown-menu li a").click(function() { // show value when click
                     $(this).parents(".dropdown").find('.btn').html($(this).text());
                     $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+                    var snameI = document.getElementById("sname").innerHTML;
+                    var snameV = document.getElementById("sname").value;
+                    console.log("snameI: " + snameI + "snameV: " + snameV);
+
+                    $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/getGridID.jsp?grids="+snameV+"",function(res4){
+                      console.log("LengthS: " +res4.length);
+                      AllsID = [];
+                        for(i = 0; i<res4.length; i++){
+                            AllsID.push(res4[i].id);
+                        }
+                    });
+
                 });
             });
 
         });
 
     });
+
+
 
 
 
@@ -481,6 +507,7 @@
             var Unhealthy1 = [];
             var Unhealthy2 = [];
             var Unhealthy3 = [];
+
             var date = document.getElementById("txtDate").value;
             mydate = date;
             var mDate = DatePickResponse(mydate);
@@ -506,33 +533,48 @@
             var dname = document.getElementById("dname").innerHTML;
             var sname = document.getElementById("sname").innerHTML;
 
-
+            var test = 0;
             $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/getlasttime.jsp", function(res) {
               if(firsttime == true){
                 mDate = res[0].mTime;
                 console.log("Time: " + mDate);
                 firsttime = false;
                 mydate = mDate;
+
+                var year = mDate.substr(0, 4);
+                var month = mDate.substr(5, 2);
+                var day = mDate.substr(8, 2);
+                var formatDate = day + "/"+month + "/" + year;
+                $("#txtDate").val(formatDate);
+
+
               }
               if (did != 2222 && sid != 2222) {
-                  JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + mDate + "&grid=" + sid + "";
+                var grids = "";
 
+                for(i = 0; i<AllsID.length; i++){
+                  console.log("AllsID: " + AllsID[i]);
+                  grids += "&grids="+AllsID[i]+"";
+                }
+                  JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + mDate + "&grid=" + grids + "";
+                    test  =1 ;
               }
               if (did == 2222 && sid == 2222) {
                   JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + mDate + "";
+                  test =  2;
               }
               if(sid == 2222 && did != 2222 ){
                 var grids = "";
-                for(i = 0; i<allS.length; i++){
-                  console.log("AllS: " + allS[i]);
-                  grids += "&grids="+allS[i]+"";
-
+                for(i = 0; i<AllDID.length; i++){
+                  console.log("AllDID: " + AllDID[i]);
+                  grids += "&grids="+AllDID[i]+"";
                 }
-                console.log("Grids: " + grids);
-                JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + mDate + grids;
+                JSONString = "http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=" + mDate + grids + "";
+                test =3;
               }
+              console.log("sid: "   + sid + " did:" + did );
                 $.getJSON(JSONString, function(result) {
-                    console.log("JSON: " + JSONString);
+                    console.log("JSONna: " + JSONString + " test: " + test);
                     console.log("lengthna: " + result.length);
 
                     if (did != 2222 && sid != 2222) {
@@ -1116,6 +1158,7 @@
 
                     if (Unhealthy1.length > 0 && good.length == 0 && mModerate.length == 0 && Unhealthy2.length == 0 && Unhealthy3.length == 0) {
 
+                      console.log("BENunhealthy1");
                         var covered = {
                             query: {
                                 select: 'geometry',
@@ -2426,7 +2469,7 @@ console.log("Ben");
                         };
                     }
 
-console.log("count: "+counter);
+console.log("countma: "+counter);
                     var mLayer = new google.maps.FusionTablesLayer(covered);
                     FusionTable.push(mLayer);
                     console.log("mLayer: " + mLayer);

@@ -171,6 +171,7 @@
 <script>
     var markers = [];
     var FusionTable = [];
+    var markercheck = false;
 
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -208,7 +209,7 @@
                 mLng = jsonObj.lon;
                 mRadio = eval(jsonObj.rad);
                 mTime = jsonObj.ts;
-                UpdateMap(mID, mLat, mLng ,mRadio, mTime);
+                UpdateMap(mID, mLat, mLng, mRadio, mTime);
 
 
             },
@@ -218,19 +219,17 @@
 
         amq.addListener(myHandler.myId, myHandler.myDestination, myHandler.rcvMessage);
 
-
-
         function UpdateMap(id, Lat, Lng, Radio, Time) {
-          var time =moment.unix(Time).format("YYYY-MM-DD HH:mm:ss");  // 1481662579 to 2016-12-14 03:56:19
+            var time = moment.unix(Time).format("YYYY-MM-DD HH:mm:ss"); // 1481662579 to 2016-12-14 03:56:19
             console.log("UpdateMap()");
-             console.log("showData: id: " + id + "Lat: " + Lat + " Lng: " + Lng + " Radio: " + Radio + " Time: " + time);
+            console.log("showData: id: " + id + "Lat: " + Lat + " Lng: " + Lng + " Radio: " + Radio + " Time: " + time);
 
 
 
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(Lat, Lng),
                 map: map,
-                icon: new google.maps.MarkerImage(RadioMarker(Radio), undefined, undefined, undefined, new google.maps.Size(30, 30)),
+                icon: new google.maps.MarkerImage(getColorMarker(Radio), undefined, undefined, undefined, new google.maps.Size(40, 40)),
                 title: "Hello World!"
             });
 
@@ -250,8 +249,92 @@
 
         }
 
+        setMarkerOnMap();
         setDataOnMap();
+        setLegendOnMap();
 
+
+        function setLegendOnMap() {
+            // Create the legend and display on the map
+            var legend = document.createElement('div');
+            legend.id = 'legend';
+            var content = [];
+
+
+            content.push("<div class='panel-group' id='accordion'>");
+            content.push("<div class='panel panel-default'>");
+            content.push("<div class='panel-heading'>");
+            content.push("<h4 class='panel-title'>");
+            content.push("<a data-toggle='collapse' data-parent='#accordion' href='#collapse1'>");
+            content.push("ดัชนีคุณภาพอากาศ</a>");
+            content.push("</h4>");
+            content.push("</div>");
+            content.push("<div id='collapse1' class='panel-collapse collapse'>");
+            content.push("<div class='panel-body'>");
+            content.push('<p><div class="color blue"></div>0-50 คุณภาพดี</p>');
+            content.push('<p><div class="color green"></div>51-100 คุณภาพปานกลาง</p>');
+            content.push('<p><div class="color yellow"></div>100-200 มีผลกระทบต่อสุขภาพ</p>');
+            content.push('<p><div class="color orange"></div>201-300 มีผลกระทบต่อสุขภาพมาก</p>');
+            content.push('<p><div class="color red"></div>300+ อันตราย</p></div>');
+            content.push("</div>");
+            content.push("</div>");
+            content.push("<br>");
+
+            content.push("<div class='panel panel-default'>");
+            content.push("<div class='panel-heading'>");
+            content.push("<h4 class='panel-title'>");
+            content.push("<a data-toggle='collapse' data-parent='#accordion' href='#collapse2'>");
+            content.push("ดัชนีรังสี</a>");
+            content.push("</h4>");
+            content.push("</div>");
+            content.push("<div id='collapse2' class='panel-collapse collapse'>");
+            content.push("<div class='panel-body'>");
+            content.push("<p><img src = 'icon/marker_rad_green.png' style = 'height: 35px; width:35px' class = 'img-rounded'> ต่ำกว่า 0.5 คุณภาพดี</p>");
+            content.push("<p><img src = 'icon/marker_rad_yellow.png' style = 'height: 35px; width:35px' class = 'img-rounded'> 0.5-0.9 เฝ้าระวัง</p>");
+            content.push("<p><img src = 'icon/marker_rad_red.png' style = 'height: 35px; width:35px' class = 'img-rounded'> มากกว่า 1 ฉุกเฉิน</p>");
+
+            content.push("</div>");
+            content.push("</div>");
+
+
+            content.push("</div>");
+
+
+            legend.innerHTML = content.join('');
+            legend.index = 1;
+            map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
+        }
+
+        function setMarkerOnMap() {
+
+            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?data=3HourAgo", function(result) {
+                for (i = 0; i < result.length; i++) {
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(result[i].lat, result[i].lon),
+                        map: map,
+                        icon: new google.maps.MarkerImage(getColorMarker(result[i].radio), undefined, undefined, undefined, new google.maps.Size(40, 40)),
+                        title: "Hello World!"
+                    });
+
+                    markers.push(marker);
+
+
+                    marker.content = "<div class = 'text-primary'><b>การแจ้งเตือนปริมาณกัมมันตรังสี</b></div>" +
+                        "<div class = 'text-muted'>เวลาอัพเดทล่าสุด " + result[i].Date + "</div>" +
+                        "<div class = 'text-info'>ไอดีผู้ใช้: " + result[i].user_id + "</div>" +
+                        "<div class = 'text-info'>ค่ากัมมันตรังสี: " + result[i].radio + "</div>";
+                    var infoWindow = new google.maps.InfoWindow();
+                    google.maps.event.addListener(marker, 'click', function() {
+                        //  infoWindow.open(map, marker);
+                        infoWindow.setContent(this.content);
+                        infoWindow.open(this.getMap(), this);
+                    });
+
+                }
+
+
+            });
+        }
 
         function setDataOnMap() {
 
@@ -270,7 +353,7 @@
 
             // $("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>ค้นหาเขต: " + mDate + "</h5></div>");
 
-            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/grid_lut.jsp", function(result) {
+            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/grid_lut.jsp?data=3HourAgo", function(result) {
 
 
 
@@ -2007,10 +2090,11 @@
 
 
             }); //get json
-        }
+        } //setDataOnMap
 
 
-    }
+
+    } //initMap
 
     function RemoveMarker() {
         for (i = 0; i < FusionTable.length; i++) {
@@ -2023,20 +2107,21 @@
 
 
     }
-    function RadioMarker(radio){
 
-      var mRadio = parseInt(radio);
+    function getColorMarker(radio) {
 
-      if (radio > 1) {
-          return  "icon/marker_rad_red.png";
-      }
-      if(radio > 0.5){
-        return  "icon/marker_rad_yellow.png";
-      }
-      if(radio < 0.5){
-          return  "icon/marker_rad_green.png";
-      }
-      return null;
+        var mRadio = parseInt(radio);
+
+        if (radio > 1) {
+            return "icon/marker_rad_red.png";
+        }
+        if (radio > 0.5) {
+            return "icon/marker_rad_yellow.png";
+        }
+        if (radio < 0.5) {
+            return "icon/marker_rad_green.png";
+        }
+        return null;
 
     }
 </script>
