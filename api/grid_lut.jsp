@@ -28,18 +28,18 @@ Vector<String> tstampVec =  new Vector<String>();
 	  Class.forName("com.mysql.jdbc.Driver");
 	  Connection con = DriverManager.getConnection(urlDB,userDB,passDB);
     if(data == null){
-      sql = "select id,SUB_CODE ,SNAME,DCODE,DNAME ,xmin,xmax,ymin,ymax ,PNAME,PCODE,aqi ,tstamp from grid_lut where aqi >0  order by id DESC limit 140";
+      sql = "select id,scode ,SNAME,DCODE,DNAME ,xmin,xmax,ymin,ymax ,PNAME,PCODE,aqi ,tstamp from grid_lut where aqi >0  order by id DESC";
 
     }
     else if (data.equals("3HourAgo")){
-      sql = "SELECT id,SUB_CODE ,SNAME,DCODE,DNAME ,xmin,xmax,ymin,ymax ,PNAME,PCODE,aqi ,tstamp  FROM grid_lut WHERE tstamp > DATE_SUB(NOW(), INTERVAL 70 Hour)";
+      sql = "SELECT id,scodeVec ,SNAME,DCODE,DNAME ,xmin,xmax,ymin,ymax ,PNAME,PCODE,aqi ,tstamp  FROM grid_lut WHERE tstamp > DATE_SUB(NOW(), INTERVAL 10 minute) ";
     }
       Statement stmt = con.createStatement();
       ResultSet rs = stmt.executeQuery(sql);
 
 	  while (rs.next()) {
         idVec.addElement(rs.getString("id"));
-        scode.addElement(rs.getString("SUB_CODE"));
+        scode.addElement(rs.getString("scode"));
         sname.addElement(rs.getString("SNAME"));
         dcode.addElement(rs.getString("DCODE"));
         dname.addElement(rs.getString("DNAME"));

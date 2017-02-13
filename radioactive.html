@@ -469,7 +469,7 @@
             var sname = document.getElementById("sname").innerHTML;
             console.log("Dname: " + dname + " did: " + did);
 
-            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/getlasttime.jsp", function(res) {
+            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/LastDateInRecord.jsp", function(res) {
                     if (firsttime == true) {
                         date = res[0].mTime;
                         console.log("Time: " + date);

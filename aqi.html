@@ -30,8 +30,7 @@
     <link rel="stylesheet" href="bower_components/jquery/src/css/jquery-ui.css">
 
 
-    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
-    />
+    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 
     <link href="https://fonts.googleapis.com/css?family=Mitr" rel="stylesheet">
 
@@ -43,73 +42,73 @@
 
 
     <style type="text/css">
+        html,
+        body {
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'Mitr', sans-serif;
+            margin: auto;
+            position: relative;
+            padding: 0 0 0 0;
+            height: 100%;
+            width: 100%;
+        }
 
+        table {
+            border: 1px solid black;
+        }
 
+        th {
+            padding: 0px 0px 0px 50px;
+        }
 
-      html, body {
-        margin-left:auto;
-        margin-right:auto;
-        font-family: 'Mitr', sans-serif;
-        margin: auto;
-        position: relative;
-        padding: 0 0 0 0;
-        height: 100%;
-        width: 100%;
-      }
+        .modal-body {
+            position: relative;
+            overflow-y: auto;
+            max-height: 400px;
+            padding: 15px;
+        }
 
-table{
-    border: 1px solid black;
-}
-th{
-    padding: 0px 0px 0px 50px;
-}
-.modal-body {
-    position: relative;
-    overflow-y: auto;
-    max-height: 400px;
-    padding: 15px;
-}
+        #legend {
+            background: #FFF;
+            padding: 10px;
+            margin: 5px;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+        }
 
-  #legend {
-    background: #FFF;
-    padding: 10px;
-    margin: 5px;
-    font-size: 12px;
-    font-family: Arial, sans-serif;
-  }
+        .color {
+            border: 1px solid;
+            height: 12px;
+            width: 12px;
+            margin-right: 3px;
+            float: left;
+        }
 
-  .color {
-    border: 1px solid;
-    height: 12px;
-    width: 12px;
-    margin-right: 3px;
-    float: left;
-  }
+        .blue {
+            background: #4d4dff;
+        }
 
-  .blue {
-    background: #4d4dff;
-  }
+        .green {
+            background: #4dff88;
+        }
 
-  .green {
-    background: #4dff88;
-  }
+        .yellow {
+            background: #ffff4d;
+        }
 
-  .yellow {
-    background: #ffff4d;
-  }
+        .orange {
+            background: #ff944d;
+        }
 
-  .orange {
-    background: #ff944d;
-  }
+        .red {
+            background: #ff4d4d;
+        }
 
-  .red {
-    background: #ff4d4d;
-  }
-
-  #full-width {
-       padding: 0 0 0 0;
-   }
-</style>
+        #full-width {
+            padding: 0 0 0 0;
+        }
+    </style>
 
 
 </head>
@@ -118,198 +117,194 @@ th{
 
 
     <header>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
-            <h4><strong>Air Pollution and Radioactive Contamination Analyzing System (APARCAS)</strong> &nbsp;&nbsp;</h4>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4><strong>Air Pollution and Radioactive Contamination Analyzing System (APARCAS)</strong> &nbsp;&nbsp;</h4>
 
+                </div>
+
+            </div>
         </div>
-
-    </div>
-</div>
-</header>
+    </header>
 
 
-<section class="menu-section">
+    <section class="menu-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <ul id="menu-top" class="nav navbar-nav navbar-right">
+                        <li><a href="realtime.html">คุณภาพอากาศแบบเรียลไทม์</a></li>
+                        <li><a href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
+                        <li><a href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
+                        <li><a href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
+                        <!-- <li><a href="predict.html">พยากรณ์คุณภาพอากาศ</a></li> -->
+                        <li><a class="menu-top-active" href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
 
-                <ul id="menu-top" class="nav navbar-nav navbar-right">
-                    <li><a href="realtime.html">คุณภาพอากาศแบบเรียลไทม์</a></li>
-                    <li><a href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
-                    <li><a href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
-                    <li><a href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
-                    <!-- <li><a href="predict.html">พยากรณ์คุณภาพอากาศ</a></li> -->
-                    <li><a class="menu-top-active" href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
-                </ul>
+                <br>
+                <h3 class="title text-center">ดัชนีคุณภาพอากาศ</h3>
+                <h4 class="category text-center">การปรับตัวต่อค่าดัชนีคุณภาพในอากาศที่พบเจอ</h4>
+                <br>
+
+
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <th style="background-color: #ff4d4d">
+                            <h5><b>ดัชนี</b></h5>
+                        </th>
+                        <th style="background-color: #ff4d4d">
+                            <h5><b>คุณภาพ</b></h5>
+                        </th>
+                        <th style="background-color: #ff4d4d">
+                            <h5><b>การปรับตัว</b></h5>
+                        </th>
+
+                    </thead>
+                    <tbody>
+                        <tr style="background-color:#b3e0ff">
+                            <td>0-50</td>
+                            <td>คุณภาพดี</td>
+                            <td>คุณภาพอากาศอยู่ในเกณฑ์ดี ไม่มีผลกระทบต่อสุขภาพ</td>
+
+                        </tr>
+                        <tr style="background-color:#c2f0c2">
+                            <td>51-100</td>
+                            <td>คุณภาพปานกลาง</td>
+                            <td>คุณภาพปานกลาง ไม่มีผลกระทบต่อสุขภาพ</td>
+
+                        </tr>
+                        <tr style="background-color:#ffffb3">
+
+
+                            <td>100-200</td>
+                            <td>มีผลกระทบต่อสุขภาพ</td>
+                            <td>คุณภาพอากาศมีผลกระทบต่อสุขภาพ ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br> ไม่ควรทำกิจกรรมภายนอกอาคารเป็นเวลานาน
+                            </td>
+
+                        </tr>
+                        <tr style="background-color:#ffd9b3">
+                            <td>201-300</td>
+                            <td>มีผลกระทบต่อสุขภาพมาก</td>
+                            <td>คุณภาพอากาศมีผลกระทบต่อสุขภาพมาก ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงกิจกรรมภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br> ควรจำกัดการออกกำลังภายนอกอาคาร
+                            </td>
+
+                        </tr>
+                        <tr style="background-color:#ffcccc">
+                            <td>มากกว่า300</td>
+                            <td>อันตราย</td>
+                            <td>คุณภาพอากาศอยู่ในอันตราย บุคคลทั่วไปควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร สำหรับผู้ป่วยโรคระบบทางเดินหารใจ ควรอยู่ภายในอาคาร</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <a href="#" onclick="whatAQI()"><h4  style="margin-left: 80%; padding-top: 0"  >ดัชนีคุณภาพอากาศคืออะไร?</h4></a>
+                <a href="#"><h4 style="margin-left: 80%; padding-top: 0">การคำนวณดัชนีคุณภาพอากาศ</h4></a>
+
+
+                <br>
+                <h3 class="title text-center">ดัชนีรังสี</h3>
+                <h4 class="category text-center">การปรับตัวต่อค่าดัชนีคุณภาพในอากาศที่พบเจอ</h4>
+                <br>
+
+
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <th style="background-color: #ff4d4d">
+                            <h5><b>ดัชนี</b></h5>
+                        </th>
+                        <th style="background-color: #ff4d4d">
+                            <h5><b>สัญลักษณ์</b></h5>
+                        </th>
+                        <th style="background-color: #ff4d4d">
+                            <h5><b>คุณภาพ</b></h5>
+                        </th>
+                        <th style="background-color: #ff4d4d">
+                            <h5><b>การปรับตัว</b></h5>
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color:#CFD9C8">
+                            <td>ต่ำกว่า 0.5</td>
+                            <td><img src='icon/marker_rad_green.png' style='height: 50px; width:50px' class='img-rounded'> </img>
+                            </td>
+                            <td>คุณภาพดี</td>
+                            <td>คุณภาพอากาศอยู่ในเกณฑ์ดี ไม่มีผลกระทบต่อสุขภาพ</td>
+                        </tr>
+                        <tr style="background-color:#CFD9C8">
+                            <td>0.5-0.9</td>
+                            <td><img src='icon/marker_rad_yellow.png' style='height: 50px; width:50px' class='img-rounded'> </img>
+                            </td>
+                            <td>เฝ้าระวัง</td>
+                            <td>คุณภาพปานกลาง ไม่มีผลกระทบต่อสุขภาพ</td>
+                        </tr>
+                        <tr style="background-color:#CFD9C8">
+                            <td>มากกว่า 1</td>
+                            <td><img src='icon/marker_rad_red.png' style='height: 50px; width:50px' class='img-rounded'> </img>
+                            </td>
+                            <td>อันตราย</td>
+                            <td>คุณภาพอากาศมีผลกระทบต่อสุขภาพ ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br> ไม่ควรทำกิจกรรมภายนอกอาคารเป็นเวลานาน
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+                <a href="#"><h4  style="margin-left: 80%; padding-top: 0"  >ดัชนีรังสีคืออะไร?</h4>
+            </a>
+                <a href="#"><h4 style="margin-left: 80%; padding-top: 0">การคำนวณดัชนีรังสี</h4>
+            </a>
+
+<br><br><br><br><br><br>
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="whatAQI" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-primary">ดัชนีคุณภาพอากาศคืออะไร?</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-info">ดัชนีคุณภาพอากาศ เป็นการรายงานข้อมูลคุณภาพอากาศในรูปแบบที่ง่ายต่อความเข้าใจต่อประชาชนทั่วไป เพื่อเผยแพร่ประชาสัมพันธ์ให้สาธารณชนได้รับทราบถึงสถานการณ์มลพิษทางอากาศในแต่ละพื้นที่ว่าอยู่ในระดับใด มีผลกระทบต่อสุขภาพอนามัยหรือไม่ ซึ่งดัชนีคุณภาพอากาศเป็นรูปแบบสากลที่ใช้กันอย่างแพร่หลายในหลายประเทศ
+                        เช่น สหรัฐอเมริกา ออสเตรเลีย สิงคโปร์ มาเลเซีย และประเทศไทย เป็นต้น</p>
+                    <p class="text-muted">อ้างอิง: <a href="http://www.pcd.go.th/info_serv/air_aqi.htm" target="_blank">http://www.pcd.go.th/info_serv/air_aqi.htm</a></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</section>
-
-
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-
-            <br>
-            <h2 class="title text-center">ดัชนีคุณภาพอากาศ</h2>
-            <h3 class="category text-center">การปรับตัวต่อค่าดัชนีคุณภาพในอากาศที่พบเจอ</h3>
-            <br>
-
-
-            <table class="table table-hover table-striped">
-                <thead>
-                    <th style="background-color: #ff4d4d" >
-<h4><b>ดัชนี</b></h4>
-</th>
-<th style="background-color: #ff4d4d">
-<h4><b>คุณภาพ</b></h4>
-</th>
-<th style="background-color: #ff4d4d">
-<h4><b>การปรับตัว</b></h4>
-</th>
-
-</thead>
-<tbody>
-    <tr style="background-color:#b3e0ff">
-<td>0-50</td>
-<td>คุณภาพดี</td>
-<td>คุณภาพอากาศอยู่ในเกณฑ์ดี ไม่มีผลกระทบต่อสุขภาพ</td>
-
-</tr>
-<tr style="background-color:#c2f0c2">
-<td>51-100</td>
-<td>คุณภาพปานกลาง</td>
-<td>คุณภาพปานกลาง ไม่มีผลกระทบต่อสุขภาพ</td>
-
-</tr>
-<tr style="background-color:#ffffb3">
-
-
-<td>100-200</td>
-<td>มีผลกระทบต่อสุขภาพ</td>
-<td>คุณภาพอากาศมีผลกระทบต่อสุขภาพ ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br>    ไม่ควรทำกิจกรรมภายนอกอาคารเป็นเวลานาน
-</td>
-
-</tr>
-<tr style="background-color:#ffd9b3">
-<td>201-300</td>
-<td>มีผลกระทบต่อสุขภาพมาก</td>
-<td>คุณภาพอากาศมีผลกระทบต่อสุขภาพมาก ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงกิจกรรมภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br>    ควรจำกัดการออกกำลังภายนอกอาคาร
-</td>
-
-</tr>
-<tr style="background-color:#ffcccc">
-<td>มากกว่า300</td>
-<td>อันตราย</td>
-<td>คุณภาพอากาศอยู่ในอันตราย บุคคลทั่วไปควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร สำหรับผู้ป่วยโรคระบบทางเดินหารใจ ควรอยู่ภายในอาคาร</td>
-</tr>
-
-</tbody>
-</table>
-<a  href="#" onclick="whatAQI()"><h4  style="margin-left: 80%; padding-top: 0"  >ดัชนีคุณภาพอากาศคืออะไร?</h4>
-</a>
-<a href="#"><h4 style="margin-left: 80%; padding-top: 0">การคำนวณดัชนีคุณภาพอากาศ</h4>
-</a>
-
-
-<!--
-
-<br>
-<h2 class="title text-center">ดัชนีรังสี</h2>
-<h3 class="category text-center">การปรับตัวต่อค่าดัชนีรังสีในอากาศที่พบเจอ</h3>
-<br>
-
-
-<table class="table table-hover table-striped">
-    <thead>
-        <th style="background-color: #ff4d4d" >
-<h4><b>ดัชนี</b></h4>
-</th>
-<th style="background-color: #ff4d4d">
-<h4><b>คุณภาพ</b></h4>
-</th>
-<th style="background-color: #ff4d4d">
-<h4><b>การปรับตัว</b></h4>
-</th>
-
-</thead>
-<tbody>
-    <tr style="background-color:#b3e0ff">
-<td>0-50</td>
-<td>คุณภาพดี</td>
-<td>คุณภาพอากาศอยู่ในเกณฑ์ดี ไม่มีผลกระทบต่อสุขภาพ</td>
-
-</tr>
-<tr style="background-color:#c2f0c2">
-<td>51-100</td>
-<td>คุณภาพปานกลาง</td>
-<td>คุณภาพปานกลาง ไม่มีผลกระทบต่อสุขภาพ</td>
-
-</tr>
-<tr style="background-color:#ffffb3">
-
-
-<td>100-200</td>
-<td>มีผลกระทบต่อสุขภาพ</td>
-<td>คุณภาพอากาศมีผลกระทบต่อสุขภาพ ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br>    ไม่ควรทำกิจกรรมภายนอกอาคารเป็นเวลานาน
-</td>
-
-</tr>
-<tr style="background-color:#ffd9b3">
-<td>201-300</td>
-<td>มีผลกระทบต่อสุขภาพมาก</td>
-<td>คุณภาพอากาศมีผลกระทบต่อสุขภาพมาก ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงกิจกรรมภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br>    ควรจำกัดการออกกำลังภายนอกอาคาร
-</td>
-
-</tr>
-<tr style="background-color:#ffcccc">
-<td>มากกว่า300</td>
-<td>อันตราย</td>
-<td>คุณภาพอากาศอยู่ในอันตราย บุคคลทั่วไปควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร สำหรับผู้ป่วยโรคระบบทางเดินหารใจ ควรอยู่ภายในอาคาร</td>
-</tr>
-
-</tbody>
-</table> -->
-</div>
-
-
-
-
-
-</div>
-</div>
-
-
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="whatAQI" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-primary">ดัชนีคุณภาพอากาศคืออะไร?</h4>
-            </div>
-            <div class="modal-body">
-                <p class ="text-info">ดัชนีคุณภาพอากาศ เป็นการรายงานข้อมูลคุณภาพอากาศในรูปแบบที่ง่ายต่อความเข้าใจต่อประชาชนทั่วไป เพื่อเผยแพร่ประชาสัมพันธ์ให้สาธารณชนได้รับทราบถึงสถานการณ์มลพิษทางอากาศในแต่ละพื้นที่ว่าอยู่ในระดับใด มีผลกระทบต่อสุขภาพอนามัยหรือไม่ ซึ่งดัชนีคุณภาพอากาศเป็นรูปแบบสากลที่ใช้กันอย่างแพร่หลายในหลายประเทศ เช่น สหรัฐอเมริกา ออสเตรเลีย สิงคโปร์ มาเลเซีย และประเทศไทย เป็นต้น</p>
-                <p class ="text-muted">อ้างอิง: <a href= "http://www.pcd.go.th/info_serv/air_aqi.htm" target="_blank">http://www.pcd.go.th/info_serv/air_aqi.htm</a></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
@@ -327,10 +322,9 @@ th{
 
 
 <script>
-function whatAQI(){
-    console.log("what aqi");
-    $("#whatAQI").modal();
-}
-</script
-
-</html>
+    function whatAQI() {
+        console.log("what aqi");
+        $("#whatAQI").modal();
+    }
+    </script>
+    </html>

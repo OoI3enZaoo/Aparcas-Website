@@ -388,7 +388,7 @@
         var query = "<li ><a href='#'data-value='2222'>เขตทั้งหมด</a></li>";
         $("#dropdownD").append(query);
         for (i = 0; i < d.length; i++) {
-            var query = "<li ><a href='#'data-value='" + d[i].code + "'>" + d[i].name + "</a></li>";
+            var query = "<li ><a href='#'data-value='" + d[i].dcode + "'>" + d[i].dname + "</a></li>";
             $("#dropdownD").append(query);
         }
 
@@ -411,7 +411,7 @@
             $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/getdistrict.jsp?data=s&checkdname=" + dname + "", function(s) {
                 for (i = 0; i < s.length; i++) {
 
-                    var query = "<li ><a href='#'data-value='" + s[i].code + "'>" + s[i].name + "</a></li>";
+                    var query = "<li ><a href='#'data-value='" + s[i].scode + "'>" + s[i].sname + "</a></li>";
                     $("#dropdownS").append(query);
                     allS.push(s[i].code);
                 }
@@ -534,7 +534,7 @@
             var sname = document.getElementById("sname").innerHTML;
 
             var test = 0;
-            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/getlasttime.jsp", function(res) {
+            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/LastDateInRecord.jsp", function(res) {
               if(firsttime == true){
                 mDate = res[0].mTime;
                 console.log("Time: " + mDate);
