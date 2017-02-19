@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="aparcaslogo.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Aparcas Project</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+
+
+	<link href="css/bootstrap-toggle.min.css" rel="stylesheet">
+	<script src="js/bootstrap-toggle.min.js"></script>
+
+
+<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+
+    <!-- Bootstrap core CSS     -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <!-- Animation library for notifications   -->
+    <link href="bower_components/bootstrap/dist/css/animate.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="bower_components/jquery/src/css/jquery-ui.css">
+
+
+    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Mitr" rel="stylesheet">
+
+
+
+
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+
+
+    <style type="text/css">
+        #map {
+            position: relative;
+            width: 100%;
+            height: 88vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'Mitr', sans-serif;
+            margin: auto;
+            padding: 0 0 0 0;
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        table {
+            border: 1px solid black;
+        }
+
+        th {
+            padding: 0px 0px 0px 50px;
+        }
+
+        .modal-body {
+            position: relative;
+            overflow-y: auto;
+            max-height: 400px;
+            padding: 15px;
+        }
+
+        #legend {
+            background: #FFF;
+            padding: 10px;
+            margin: 5px;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+        }
+
+        .color {
+            border: 1px solid;
+            height: 12px;
+            width: 12px;
+            margin-right: 3px;
+            float: left;
+        }
+
+        .blue {
+            background: #4d4dff;
+        }
+
+        .green {
+            background: #4dff88;
+        }
+
+        .yellow {
+            background: #ffff4d;
+        }
+
+        .orange {
+            background: #ff944d;
+        }
+
+        .red {
+            background: #ff4d4d;
+        }
+
+        #full-width {
+            padding: 0 0 0 0;
+        }
+
+        #directions-panel {
+            margin-top: 10px;
+            background-color: #FFEE77;
+            padding: 10px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4><strong>Air Pollution and Radioactive Contamination Analyzing System (APARCAS)</strong> &nbsp;&nbsp;</h4>
+
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+
+    <section class="menu-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <ul id="menu-top" class="nav navbar-nav navbar-right">
+                        <li><a href="realtime.html">คุณภาพอากาศแบบเรียลไทม์</a></li>
+                        <li><a href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
+                        <li><a href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
+                        <li><a class="menu-top-active" href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
+                        <!-- <li><a  href="predict.html">พยากรณ์คุณภาพอากาศ</a></li> -->
+                        <li><a href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div id="full-width" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-7">
+                <div id="map"></div>
+
+            </div>
+            <div class="col-sm-5">
+                <br>
+
+
+                <h4 class="text-center text-primary">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</h4>
+                <br>
+				<center><p>กรุณากำหนดตำแหน่งต้นทางและปลายทางสำหรับค้นหาเส้นทางหลีกเลี่ยงมลพิษบนแผนที่!</p></center>				
+				<br>
+				<form>
+                    <div class="form-group">
+                        <h5 class="col-sm-3 col-sm-offset-2 text-info"><input type="checkbox" id="start-toggle" checked data-toggle="toggle">&nbsp;&nbsp;ตำแหน่งต้นทาง:</h5>
+                        <div class="col-sm-5 ">							
+                            <input type="text" class="form-control" id="start_text" readonly>
+							<br><br>
+                        </div>
+						
+						<br><br><br>
+
+						<h5 class="col-sm-3 col-sm-offset-2 text-info"><input type="checkbox" id="end-toggle" data-toggle="toggle">&nbsp;&nbsp;ตำแหน่งปลายทาง:</h5>
+                        <div class="col-sm-5 ">							
+                            <input type="text" class="form-control" id="end_text" readonly>
+							<br><br>
+                        </div>
+						
+						<br><br><br>
+
+						<h5 class="col-sm-3 col-sm-offset-2 text-info">&nbsp;&nbsp;โหมดการเดินทาง:</h5>
+                        <div class="col-sm-5 ">							
+                            <select class="form-control" id="travelMode">
+								<option value="WALKING">เดิน</option>
+								<option value="DRIVING" selected>ขับรถ</option>
+							</select>
+							<br><br>
+                        </div>
+						
+						<br><br><br>
+
+                        <div class="form-group">
+                            <div class="col-sm-2  col-sm-offset-1">
+                                &nbsp;
+                            </div>
+							<div class="col-sm-3">
+                                <button type="button" id="Search" class="btn btn-lg btn-success btn-block" onClick="generateRoute()">ค้นหา</button>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <button id="clear" type="button" class="btn btn-lg btn-danger btn-block" onClick="clearRoute()">ล้าง</button>
+                            </div>
+                        </div>
+						<br><br>
+                        </form>
+                        <br><br>
+
+
+                        <div class="row">
+							<div clsss="col-sm-5 col-sm-offset-3">
+								<center><button type="button" id="detailBtn" class="btn btn-default btn-lg" style="display: none;" data-toggle="modal" data-target="#routeDetail">รายละเอียดเส้นทางหลีกเลี่ยงมลพิษ</button></center>
+								<!-- <div id="directions-panel"></div> -->
+                            </div>
+                        </div>
+                    </div>
+
+			</form>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<div class="modal fade" id="routeDetail" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">รายละเอียดเส้นทางหลีกเลี่ยงมลพิษ</h4>
+        </div>
+        <div class="modal-body" id="routeContent">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+</body>
+
+<script>
+	var marker_start;
+	var marker_end;
+	var map;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 11,
+            center: new google.maps.LatLng(13.756331, 100.501765),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }); //end of map
+        //setDataOnMap();
+		
+		$(function() {
+			$('#start-toggle').change(function() {
+			  //alert($(this).prop('checked'));
+			  if($(this).prop('checked')){
+				$('#end-toggle').bootstrapToggle('off')
+			  }else{
+				$('#end-toggle').bootstrapToggle('on')
+			  }
+			})
+		})
+
+		$(function() {
+			$('#end-toggle').change(function() {
+			  if($(this).prop('checked')){
+				$('#start-toggle').bootstrapToggle('off')
+			  }else{
+				$('#start-toggle').bootstrapToggle('on')
+			  }
+			})
+		})
+
+		map.addListener('click', function(e) {
+			placeMarker(e.latLng, map);
+		});
+
+		var start_icon = 'http://sysnet.utcc.ac.th/aparcas/icon/start_flag80.png';
+		var end_icon = 'http://sysnet.utcc.ac.th/aparcas/icon/end_flag80.png';
+		var geocoder = new google.maps.Geocoder;
+
+		function placeMarker(location, m) {
+			if($('#start-toggle').prop('checked')){
+				if(marker_start != null){
+					marker_start.setPosition(location);
+				}else{
+					marker_start = new google.maps.Marker({
+						position: location, 
+						map: m,
+						icon: start_icon
+					});
+				}
+				geocodeLatLng(geocoder,m,location,1);
+				
+			}else{
+				if(marker_end != null){
+					marker_end.setPosition(location);
+				}else{
+					marker_end = new google.maps.Marker({
+						position: location, 
+						map: m,
+						icon: end_icon
+					});
+				}
+				geocodeLatLng(geocoder,m,location,2); 
+			}
+		}
+		
+		
+
+		function geocodeLatLng(geocoder, map, loc, flag) {
+			var latlng = loc;
+			geocoder.geocode({'location': latlng}, function(results, status) {
+			  if (status === 'OK') {
+				if (results[1]) {
+					addr_txt = results[1].formatted_address;
+					if(flag == 1){
+						$('#start_text').val(addr_txt);
+					}else{
+						$('#end_text').val(addr_txt);
+					}
+				} else {
+				  window.alert('No results found');			}
+			  } else {
+				window.alert('Geocoder failed due to: ' + status);
+			  }
+			});
+		  }
+    }    
+	
+	var directionsService
+	var directionsDisplay;
+	function generateRoute(){
+		clearRoute();
+		directionsService = new google.maps.DirectionsService;
+        directionsDisplay = new google.maps.DirectionsRenderer;
+
+        directionsDisplay.setMap(map);
+		directionsDisplay.setPanel(document.getElementById('routeContent'));
+
+		var travelMode = document.getElementById('travelMode').value;
+		//alert(travelMode);
+		calculateAndDisplayRoute(directionsService, directionsDisplay, travelMode);
+	}
+
+	function clearRoute(){
+		if (directionsDisplay != null) {
+			directionsDisplay.setMap(null);
+			directionsDisplay = null;
+		}
+		document.getElementById("detailBtn").style.display = "none";
+		document.getElementById("routeContent").innerHTML = "";
+
+	}
+
+    function calculateAndDisplayRoute(directionsService, directionsDisplay, tMode) {
+        var waypts = [];
+            /*waypts.push({
+              location: 'ห้างหุ้นส่วนจำกัด ดิว ไดส์ 11/64 ซอยพหลโยธิน 32, ถนนพหลโยธิน, แขวงลาดยาว เขตจตุจักร กรุงเทพมหานคร, 10900 แขวง เสนานิคม เขต จตุจักร กรุงเทพมหานคร 10900',
+              stopover: false
+
+            });*/
+		
+        directionsService.route({
+            origin: marker_start.getPosition(),
+            destination: marker_end.getPosition(),
+            waypoints: waypts,
+            optimizeWaypoints: true,
+            travelMode: tMode
+        }, function(response, status) {
+            if (status === 'OK') {
+                directionsDisplay.setDirections(response);
+				document.getElementById("detailBtn").style.display = "block";
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    }
+</script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap-notify.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap&&language=th" type="text/javascript"></script>
+
+
+</html>

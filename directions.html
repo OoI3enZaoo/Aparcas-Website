@@ -15,10 +15,8 @@
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
 
 
-
-
-
-
+	<link href="css/bootstrap-toggle.min.css" rel="stylesheet">
+	<script src="js/bootstrap-toggle.min.js"></script>
 
 
 <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
@@ -173,358 +171,253 @@
                 <br>
 
 
-                <h4 class="text-center text-primary">กรุณาเลือกพื้นที่และวันที่เพื่อค้นหาเส้นทางหลีกเลี่ยงมลพิษ</h4>
+                <h4 class="text-center text-primary">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</h4>
                 <br>
-
-                <from>
+				<center><p>กรุณากำหนดตำแหน่งต้นทางและปลายทางสำหรับค้นหาเส้นทางหลีกเลี่ยงมลพิษบนแผนที่!</p></center>
+				<br>
+				<form>
                     <div class="form-group">
-                        <h5 class=" col-sm-1 col-sm-offset-2 text-info">ต้นทาง:</h5>
-                        <div class="col-sm-6 ">
-
-                            <input id="txtDate" type='text' class="form-control" placeholder="กรอกพื้นที่ต้นทาง" style="width: 100%;" />
+                        <h5 class="col-sm-3 col-sm-offset-2 text-info"><input type="checkbox" id="start-toggle" checked data-toggle="toggle">&nbsp;&nbsp;ตำแหน่งต้นทาง:</h5>
+                        <div class="col-sm-5 ">
+                            <input type="text" class="form-control" id="start_text" readonly>
+							<br><br>
                         </div>
 
-                        <br>
-                        <br>
-                        <br>
+						<br><br><br>
+
+						<h5 class="col-sm-3 col-sm-offset-2 text-info"><input type="checkbox" id="end-toggle" data-toggle="toggle">&nbsp;&nbsp;ตำแหน่งปลายทาง:</h5>
+                        <div class="col-sm-5 ">
+                            <input type="text" class="form-control" id="end_text" readonly>
+							<br><br>
+                        </div>
+
+						<br><br><br>
+
+						<h5 class="col-sm-3 col-sm-offset-2 text-info">&nbsp;&nbsp;โหมดการเดินทาง:</h5>
+                        <div class="col-sm-5 ">
+                            <select class="form-control" id="travelMode">
+								<option value="WALKING">เดิน</option>
+								<option value="DRIVING" selected>ขับรถ</option>
+							</select>
+							<br><br>
+                        </div>
+
+						<br><br><br>
+
                         <div class="form-group">
-                            <h5 class="col-sm-1  col-sm-offset-2 text-info">ปลายทาง:</h5>
-                            <div class="col-sm-6">
-                                <input id="txtDate" type='text' class="form-control" placeholder="กรอกพื้นที่ปลายทาง" style="width: 100%;" />
+                            <div class="col-sm-2  col-sm-offset-1">
+                                &nbsp;
+                            </div>
+							<div class="col-sm-3">
+                                <button type="button" id="Search" class="btn btn-lg btn-success btn-block" onClick="generateRoute()">ค้นหา</button>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <button id="clear" type="button" class="btn btn-lg btn-danger btn-block" onClick="clearRoute()">ล้าง</button>
                             </div>
                         </div>
-
-                        <br><br>
-                        <br>
-
-
-
-                        <div class="form-group col-sm-offset-3">
-
-                            <div class="col-sm-4">
-                                <button type="button" id="Search" class="btn btn-lg btn-success btn-block">ค้นหา</button>
-                            </div>
-
-                            <div class="col-sm-4">
-                                <button id="clear" type="button" class="btn btn-lg btn-danger btn-block">ล้าง</button>
-                            </div>
-
-                        </div>
+						<br><br>
                         </form>
                         <br><br>
+
+
                         <div class="row">
-                        <div clsss="col-sm-1">
-
-                                <div id="directions-panel"></div>
-
+							<div clsss="col-sm-5 col-sm-offset-3">
+								<center><button type="button" id="detailBtn" class="btn btn-default btn-lg" style="display: none;" data-toggle="modal" data-target="#routeDetail">รายละเอียดเส้นทางหลีกเลี่ยงมลพิษ</button></center>
+								<!-- <div id="directions-panel"></div> -->
                             </div>
                         </div>
                     </div>
 
+			</form>
 
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<div class="modal fade" id="routeDetail" role="dialog">
+    <div class="modal-dialog">
 
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">รายละเอียดเส้นทางหลีกเลี่ยงมลพิษ</h4>
+        </div>
+        <div class="modal-body" id="routeContent">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
 
-
+    </div>
+  </div>
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 </body>
 
 <script>
+	var marker_start;
+	var marker_end;
+	var map;
+
     function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
             zoom: 11,
             center: new google.maps.LatLng(13.756331, 100.501765),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }); //end of map
-        setDataOnMap();
+        //setDataOnMap();
 
+		$(function() {
+			$('#start-toggle').change(function() {
+			  //alert($(this).prop('checked'));
+			  if($(this).prop('checked')){
+				$('#end-toggle').bootstrapToggle('off')
+			  }else{
+				$('#end-toggle').bootstrapToggle('on')
+			  }
+			})
+		})
 
-        function setDataOnMap() {
+		$(function() {
+			$('#end-toggle').change(function() {
+			  if($(this).prop('checked')){
+				$('#start-toggle').bootstrapToggle('off')
+			  }else{
+				$('#start-toggle').bootstrapToggle('on')
+			  }
+			})
+		})
 
+		map.addListener('click', function(e) {
+			placeMarker(e.latLng, map);
+		});
 
-            var good = [];
-            var mModerate = [];
-            var Unhealthy1 = [];
-            var Unhealthy2 = [];
-            var Unhealthy3 = [];
+		var start_icon = 'http://sysnet.utcc.ac.th/aparcas/icon/start_flag80.png';
+		var end_icon = 'http://sysnet.utcc.ac.th/aparcas/icon/end_flag80.png';
+		var geocoder = new google.maps.Geocoder;
 
+		function placeMarker(location, m) {
+			if($('#start-toggle').prop('checked')){
+				if(marker_start != null){
+					marker_start.setPosition(location);
+				}else{
+					marker_start = new google.maps.Marker({
+						position: location,
+						map: m,
+						icon: start_icon
+					});
+				}
+				geocodeLatLng(geocoder,m,location,1);
 
-            var check = false;
-
-
-            // $("#showInfo").append("<div class='col-md-12'><h5 class = 'text-info text-center'>ค้นหาเขต: " + mDate + "</h5></div>");
-
-            $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/event_trans.jsp?date=2017-01-18", function(result) {
-
-                var co = [];
-                var no2 = [];
-                var o3 = [];
-                var so2 = [];
-                var pm25 = [];
-                var radio = [];
-                var lat = [];
-                var lon = [];
-                var aqi = [];
-                var count = new Array(9000).fill(0);
-
-
-
-                var check = 0;
-                var m = 0;
-
-                var mDate = "2017-01-18"
-                  var re = new RegExp(mDate, 'g');
-                console.log("Some Sub_code");
-                for (i = 0; i < result.length; i++) {
-                  var day = moment.unix(result[i].timestamp).format("YYYY-MM-DD HH:mm:ss");
-                  if (day.match(re)) {
-                    var disID = parseInt(result[i].grid_id);
-                    if (count[disID] != 0) {
-                        co[disID] = co[disID] + parseInt(result[i].co);
-                        no2[disID] = no2[disID] + parseInt(result[i].no2);
-                        o3[disID] = o3[disID] + parseInt(result[i].o3);
-                        so2[disID] = so2[disID] + parseInt(result[i].so2);
-                        pm25[disID] = pm25[disID] + parseInt(result[i].pm25);
-                        radio[disID] = radio[disID] + parseInt(result[i].radio);
-                        count[disID] = count[disID] + 1;
-                        console.log("Num2");
-                    }
-                    if (count[disID] == 0) {
-                        co[disID] = +parseInt(result[i].co);
-                        no2[disID] = +parseInt(result[i].no2);
-                        o3[disID] = +parseInt(result[i].o3);
-                        so2[disID] = +parseInt(result[i].so2);
-                        pm25[disID] = +parseInt(result[i].pm25);
-                        radio[disID] = +parseInt(result[i].radio);
-                        count[disID] = +1;
-                        console.log("Num");
-
-                    }
-
-                    aqi[disID] = parseInt(result[i].aqi);
-                    check = true;
-                    }
-                } // end for
-
-                var districtLayer = new google.maps.KmlLayer({
-                    url: 'http://sysnet.utcc.ac.th/aparcas/data/simplified.kml',
-                    map: map
-                });
-
-                  //KmlLayer.push(districtLayer);
-
-                // var geocoder = new google.maps.Geocoder();
-                // geocoder.geocode({
-                //     'address': sname
-                // }, function(results, status) {
-                //     if (status == google.maps.GeocoderStatus.OK) {
-                //          map.setCenter(results[0].geometry.location);
-                //          map.setZoom(13);
-                //     }
-                // });
-
-                var newDisrict = [];
-                var newCO = [];
-                var newNO2 = [];
-                var newO3 = [];
-                var newSO2 = [];
-                var newPM25 = [];
-                var newRadio = [];
-                var newAQI = []
-                var newlat = [];
-                var newLon = [];
-                var newAQI = [];
-                for (i = 0; i < co.length; i++) {
-                    if (co[i] != null) {
-                        console.log("count[i]: " + count[i] + " i: " + i);
-                        console.log("before divide: " + "co: " + co[i] + " no2: " + no2[i]);
-                        var resCO = co[i] / count[i];
-                        var resNO2 = no2[i] / count[i];
-                        var resO3 = o3[i] / count[i];
-                        var resSO2 = so2[i] / count[i];
-                        var resPM25 = pm25[i] / count[i];
-                        var resRadio = radio[i] / count[i];
-                        var resAQI = aqi[i] / count[i];
-
-                        console.log("after divide: " + "co: " + resCO + " no2: " + resNO2);
-
-                        resCO = resCO.toFixed(2);
-                        resNO2 = resNO2.toFixed(2);
-                        resO3 = resO3.toFixed(2);
-                        resSO2 = resSO2.toFixed(2);
-                        resPM25 = resPM25.toFixed(2);
-                        resRadio = resRadio.toFixed(2);
-                        resAQI =  resAQI.toFixed(2);
-
-                        co[i] = resCO;
-                        no2[i] = resNO2;
-                        o3[i] = resO3;
-                        so2[i] = resSO2;
-                        pm25[i] = resPM25;
-                        radio[i] = resRadio;
-                        aqi[i] = resAQI;
-
-
-                      var aqina = Math.max(resCO, resNO2, resO3, resSO2, resPM25);
+			}else{
+				if(marker_end != null){
+					marker_end.setPosition(location);
+				}else{
+					marker_end = new google.maps.Marker({
+						position: location,
+						map: m,
+						icon: end_icon
+					});
+				}
+				geocodeLatLng(geocoder,m,location,2);
+			}
+		}
 
 
 
-                        newDisrict.push(i);
-                        newCO.push(resCO);
-                        newO3.push(resO3);
-                        newSO2.push(resSO2);
-                        newNO2.push(resNO2);
-                        newPM25.push(resPM25);
-                        newRadio.push(resRadio);
-                        newAQI.push(aqina);
-                    }
-                }
-                for (i = 0; i < newDisrict.length; i++) {
-
-                    console.log("newDistrictID: " + newDisrict[i] + " AQI: " + newAQI[i] + " CO: " + newCO[i] + " NO2: " + newNO2[i] + " O3: " + newO3[i] + " so2: " + newSO2[i] + " PM2.5: " + newPM25[i] + " Radio: " + newRadio[i]);
-
-                    if (newAQI[i] > 0 && newAQI[i] < 51) {
-                        good.push(newDisrict[i]);
-                    }
-                    if (newAQI[i] > 50 && newAQI[i] < 99) {
-                        mModerate.push(newDisrict[i]);
-                    }
-                    if (newAQI[i] > 100 && newAQI[i] < 199) {
-                        Unhealthy1.push(newDisrict[i]);
-                    }
-                    if (newAQI[i] > 200 && newAQI[i] < 299) {
-                        Unhealthy2.push(newDisrict[i]);
-                    }
-                    if (newAQI[i] > 300) {
-                        Unhealthy3.push(newDisrict[i]);
-                    }
-
-                }
-
-                console.log("Good.length: " + good.length);
-                for (i = 0; i < good.length; i++) {
-                    console.log("Good: " + good[i]);
-                }
-
-                console.log("mModerate.length: " + mModerate.length);
-                for (i = 0; i < mModerate.length; i++) {
-                    console.log("mModerate: " + mModerate[i]);
-                }
-
-                console.log("Unhealthy1.length: " + Unhealthy1.length);
-                for (i = 0; i < Unhealthy1.length; i++) {
-                    console.log("Unhealthy1: " + Unhealthy1[i]);
-                }
-
-                console.log("Unhealthy2.length: " + Unhealthy2.length);
-                for (i = 0; i < Unhealthy2.length; i++) {
-                    console.log("Unhealthy2: " + Unhealthy2[i]);
-                }
-
-                console.log("Unhealthy3.length: " + Unhealthy3.length);
-                for (i = 0; i < Unhealthy3.length; i++) {
-                    console.log("Unhealthy3: " + Unhealthy3[i]);
-                }
-
-
-                var covered = {
-                    query: {
-                        select: 'geometry',
-                        from: '1x40iw0b31K2vTT6ZiSUxBWUfBbznoppAtERA7S2G',
-
-                    },
-                    map: map,
-                    suppressInfoWindows: true,
-                    styles: [{
-                            polygonOptions: {
-
-                                fillColor: "#ffffff",
-                                opacity: .1,
-
-
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + mModerate + ")",
-                            polygonOptions: {
-                                fillColor: "#4dff88",
-                                strokeColor: "#4dff88",
-
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy1 + ")",
-                            polygonOptions: {
-                                fillColor: "#ffff4d",
-                                strokeColor: "#ffff4d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        },
-                        {
-
-                            where: "SUB_CODE IN (" + Unhealthy2 + ")",
-                            polygonOptions: {
-                                fillColor: "#ff944d",
-                                strokeColor: "#ff944d",
-                                //fillColor: "#ff0000",
-                                // strokeColor: "#ff0000",
-                                strokeWeight: 0.1
-                            }
-                        }
-                    ]
-                };
-                var mLayer = new google.maps.FusionTablesLayer(covered);
-                //FusionTable.push(mLayer);
-                //      console.log("mLayer: " + mLayer);
-
-            }); //get json
-
-            var directionsService = new google.maps.DirectionsService;
-            var directionsDisplay = new google.maps.DirectionsRenderer;
-            directionsDisplay.setMap(map);
-          calculateAndDisplayRoute(directionsService, directionsDisplay);
-
-
-        }
+		function geocodeLatLng(geocoder, map, loc, flag) {
+			var latlng = loc;
+			geocoder.geocode({'location': latlng}, function(results, status) {
+			  if (status === 'OK') {
+				if (results[1]) {
+					addr_txt = results[1].formatted_address;
+					if(flag == 1){
+						$('#start_text').val(addr_txt);
+					}else{
+						$('#end_text').val(addr_txt);
+					}
+				} else {
+				  window.alert('No results found');			}
+			  } else {
+				window.alert('Geocoder failed due to: ' + status);
+			  }
+			});
+		  }
     }
 
-    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        var waypts = [];
-        /*var checkboxArray = document.getElementById('waypoints');
-        for (var i = 0; i < checkboxArray.length; i++) {
-          if (checkboxArray.options[i].selected) {*/
-            waypts.push({
-              location: 'ซอยเสนานิคม',
-              stopover: false
+	var directionsService
+	var directionsDisplay;
+	function generateRoute(){
+		clearRoute();
+		directionsService = new google.maps.DirectionsService;
+        directionsDisplay = new google.maps.DirectionsRenderer;
 
-            });
-        //  }
-      //  }
+        directionsDisplay.setMap(map);
+		directionsDisplay.setPanel(document.getElementById('routeContent'));
+
+		var travelMode = document.getElementById('travelMode').value;
+		//alert(travelMode);
+		calculateAndDisplayRoute(directionsService, directionsDisplay, travelMode);
+	}
+
+	function clearRoute(){
+		if (directionsDisplay != null) {
+			directionsDisplay.setMap(null);
+			directionsDisplay = null;
+		}
+		document.getElementById("detailBtn").style.display = "none";
+		document.getElementById("routeContent").innerHTML = "";
+
+	}
+
+    function calculateAndDisplayRoute(directionsService, directionsDisplay, tMode) {
 
         directionsService.route({
-            origin: 'ซ้งเป็ดพะโล้',
-            destination: 'มหาวิทยาลัย ศรีปทุม',
-            waypoints: waypts,
-            optimizeWaypoints: true,
-            travelMode: 'DRIVING'
+            origin: marker_start.getPosition(),
+            destination: marker_end.getPosition(),
+			provideRouteAlternatives: true,
+            travelMode: tMode
         }, function(response, status) {
             if (status === 'OK') {
-                directionsDisplay.setDirections(response);
-                var route = response.routes[0];
-                var summaryPanel = document.getElementById('directions-panel');
-                summaryPanel.innerHTML = '';
-                // For each route, display summary information.
-                for (var i = 0; i < route.legs.length; i++) {
-                    var routeSegment = i + 1;
-                    summaryPanel.innerHTML += '<b>การเดินทางจาก ซ้งเป็ดพะโล้ ไป มหาวิทยาลัยศรีปทุม: ' + routeSegment +
-                        '</b><br>';
-                    summaryPanel.innerHTML +='1.ซ้งเป็ดพะโล้'+ '<br>';
-                    summaryPanel.innerHTML +='2.ห้างหุ้นส่วนจำกัด ดิว ไดส์ 11/64 ซอยพหลโยธิน 32, ถนนพหลโยธิน, แขวงลาดยาว เขตจตุจักร กรุงเทพมหานคร, 10900 แขวง เสนานิคม เขต จตุจักร กรุงเทพมหานคร 10900' + '<br>';
-                    summaryPanel.innerHTML +='3.ขับตามถนนพหลโยธิน' + '<br><br>';
-                }
+				//console.log(JSON.stringify(response));
+				cnt = 0;
+				var passedGridCount = -1;
+				var selected_route = [];
+				var resultObj = response;
+
+
+				for(var i=0; i < response.routes.length; i++){
+					var this_route = response.routes[i];
+					$.post("/aparcas/api/routing.jsp",
+					{
+						route: JSON.stringify(this_route),
+					},
+					function(data, status){
+						routingOutput = JSON.parse(data.trim());
+						passedGridNo = routingOutput.danger_grid.length;
+
+						if(passedGridCount == -1){
+							passedGridCount = passedGridNo;
+							selected_route.push(this_route);
+						}else{
+							if(passedGridCount < passedGridNo){
+								passedGridCount = passedGridNo;
+								selected_route[0] = this_route;
+							}
+						}
+
+						console.log("ajax resp("+cnt+") = "+data.trim()+", cnt = "+passedGridNo);
+						cnt++;
+
+						if(cnt == response.routes.length){
+							console.log(" route selected = "+JSON.stringify(selected_route)+", cnt = "+passedGridCount);
+							resultObj.routes = selected_route;
+							directionsDisplay.setDirections(response);
+							//document.getElementById("detailBtn").style.display = "block";
+						}
+					});
+				}
+
+
             } else {
                 window.alert('Directions request failed due to ' + status);
             }
@@ -532,14 +425,8 @@
     }
 </script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-
-
-
-
-
 <script src="bower_components/bootstrap/dist/js/bootstrap-notify.js"></script>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap" type="text/javascript"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWgbWYxPgHHo-PU4IuhjjZhjh1PXfhYkc&callback=initMap&&language=th" type="text/javascript"></script>
 
 
 </html>

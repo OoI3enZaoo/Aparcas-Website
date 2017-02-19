@@ -24,6 +24,7 @@ Vector<String> DateVec =  new Vector<String>();
 
 
 
+
 String date = request.getParameter("date");
 String grid = request.getParameter("grid");
 String[] grids = request.getParameterValues("grids");
@@ -50,7 +51,7 @@ else if(date != null && grid == null && grids == null&& data == null){
   sql = "select from_unixtime(tstamp),id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) LIKE '"+date+"%' and grid_id > 0 and aqi > 0";
 }
 else if (data != null && grids == null){
-  sql = "select from_unixtime(tstamp),id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) > DATE_SUB(NOW(), INTERVAL 10 MINUTE) and aqi > 0 " ;
+  sql = "select from_unixtime(tstamp),id,user_id,grid_id,aqi,co_avg,no2_avg,o3_avg,so2_avg,pm25_avg,rad,tstamp,lat,lon from event_trans WHERE from_unixtime(tstamp) > DATE_SUB(NOW(), INTERVAL 3 HOUR)  limit 70" ;
 }
 else if(grids != null)
 {

@@ -1,0 +1,1240 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="simplified" id="simplified">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+	<SimpleField name="timestamp_1" type="string"></SimpleField>
+	<SimpleField name="begin_1" type="string"></SimpleField>
+	<SimpleField name="end_1" type="string"></SimpleField>
+	<SimpleField name="altitudeMode_1" type="string"></SimpleField>
+	<SimpleField name="tessellate_1" type="int"></SimpleField>
+	<SimpleField name="extrude_1" type="int"></SimpleField>
+	<SimpleField name="visibility_1" type="int"></SimpleField>
+	<SimpleField name="drawOrder_1" type="int"></SimpleField>
+	<SimpleField name="icon_1" type="string"></SimpleField>
+	<SimpleField name="OBJECTID" type="float"></SimpleField>
+	<SimpleField name="AREA" type="float"></SimpleField>
+	<SimpleField name="dcode" type="string"></SimpleField>
+	<SimpleField name="dname" type="string"></SimpleField>
+	<SimpleField name="dname_e" type="string"></SimpleField>
+	<SimpleField name="pcode" type="string"></SimpleField>
+	<SimpleField name="no_female" type="float"></SimpleField>
+	<SimpleField name="pname" type="string"></SimpleField>
+	<SimpleField name="no_male" type="float"></SimpleField>
+	<SimpleField name="no_health" type="int"></SimpleField>
+	<SimpleField name="no_temple" type="int"></SimpleField>
+	<SimpleField name="no_commu" type="int"></SimpleField>
+	<SimpleField name="no_hos" type="int"></SimpleField>
+	<SimpleField name="no_sch" type="int"></SimpleField>
+</Schema>
+<Folder><name>simplified</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">29.00000</SimpleData>
+		<SimpleData name="AREA">11804564.00000</SimpleData>
+		<SimpleData name="dcode">1025</SimpleData>
+		<SimpleData name="dname">เขตบางพลัด</SimpleData>
+		<SimpleData name="dname_e">Bang Phlat</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">53750.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">46569.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">23</SimpleData>
+		<SimpleData name="no_commu">46</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">11</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.516493492102,13.8003346432798 100.514119233016,13.7955697328417 100.503839984014,13.7837324841039 100.496961530286,13.7682413246625 100.490997440162,13.7619069543123 100.468930404657,13.7874631627031 100.466307222455,13.7870991552404 100.466506044372,13.7889465518729 100.50112641183,13.8006956560989 100.515232750626,13.8131409805962 100.517457734657,13.8087386506429 100.516493492102,13.8003346432798</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">30.00000</SimpleData>
+		<SimpleData name="AREA">16319268.00000</SimpleData>
+		<SimpleData name="dcode">1017</SimpleData>
+		<SimpleData name="dname">เขตห้วยขวาง</SimpleData>
+		<SimpleData name="dname_e">Huai Khwang</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">42026.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">35694.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">3</SimpleData>
+		<SimpleData name="no_commu">25</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.588533614381,13.8028206031748 100.590213782924,13.7864784278378 100.593600318712,13.7793868460281 100.594901393261,13.7625906425373 100.597723087714,13.7574912852792 100.604311778425,13.751049982704 100.600387584936,13.747303946208 100.598178402215,13.7412010929609 100.563285503122,13.7479023700874 100.566324129809,13.7605661764388 100.573446302994,13.7711824590168 100.574904360011,13.8010745357564 100.588533614381,13.8028206031748</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">31.00000</SimpleData>
+		<SimpleData name="AREA">17075578.00000</SimpleData>
+		<SimpleData name="dcode">1045</SimpleData>
+		<SimpleData name="dname">เขตวังทองหลาง</SimpleData>
+		<SimpleData name="dname_e">Wang Thong Lang</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">62158.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">52925.00000</SimpleData>
+		<SimpleData name="no_health">0</SimpleData>
+		<SimpleData name="no_temple">1</SimpleData>
+		<SimpleData name="no_commu">19</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.612954685793,13.7949467449647 100.615012462357,13.7997295281176 100.623664649023,13.8001368887629 100.625959334,13.788090926238 100.629074410319,13.7886928659587 100.63066413743,13.7841368949727 100.629290406455,13.7750754537463 100.62826610218,13.7756437743556 100.630486291984,13.7632378625404 100.615239346262,13.761246913568 100.604105593967,13.7512400139396 100.597723087714,13.7574912852792 100.594901393261,13.7625906425373 100.593600318712,13.7793868460281 100.590213782924,13.7864784278378 100.588533614381,13.8028206031748 100.596404943775,13.8012645881048 100.595958027131,13.7992981136332 100.59967181026,13.7961272616441 100.612954685793,13.7949467449647</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">32.00000</SimpleData>
+		<SimpleData name="AREA">51732144.00000</SimpleData>
+		<SimpleData name="dcode">1048</SimpleData>
+		<SimpleData name="dname">เขตทวีวัฒนา</SimpleData>
+		<SimpleData name="dname_e">Thawi Watthana</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">40264.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">35196.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">3</SimpleData>
+		<SimpleData name="no_commu">13</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.396725025095,13.8018694385114 100.411065333895,13.8013536027066 100.405879602166,13.749505368353 100.368543037915,13.7539652875618 100.352702476548,13.7521645007137 100.359362581206,13.7380109003084 100.333490977951,13.7352016201134 100.329196691612,13.7660309059273 100.330409649545,13.7881418381086 100.32792087047,13.8041718916741 100.396725025095,13.8018694385114</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">33.00000</SimpleData>
+		<SimpleData name="AREA">128628048.00000</SimpleData>
+		<SimpleData name="dcode">1011</SimpleData>
+		<SimpleData name="dname">เขตลาดกระบัง</SimpleData>
+		<SimpleData name="dname_e">Lat Krabang</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">83816.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">77034.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">13</SimpleData>
+		<SimpleData name="no_commu">60</SimpleData>
+		<SimpleData name="no_hos">1</SimpleData>
+		<SimpleData name="no_sch">20</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.795137525596,13.7939889052703 100.796430209772,13.7910815908626 100.793938895479,13.7838635645597 100.800782791679,13.7816308377213 100.808518100559,13.7816238072369 100.814775982395,13.7842168572807 100.822999524143,13.7796426561079 100.8227925641,13.7776976115655 100.832244807486,13.7675398248888 100.837388460308,13.7675692853681 100.842162564094,13.7709612814645 100.855335114113,13.7711188175333 100.860612683039,13.7704677995784 100.863747440674,13.7674977315526 100.868051596181,13.7499372514383 100.87373094412,13.743052480924 100.880416634352,13.7400925444673 100.855141580432,13.6993576714047 100.860742532024,13.6969792912179 100.859347189337,13.6894656645522 100.787970126164,13.7166906100697 100.766577093328,13.7153994696669 100.766708084318,13.7166898912394 100.752099474686,13.7160075627794 100.730721682235,13.7168112457451 100.730339344979,13.7184917006447 100.709690709918,13.7184004424728 100.708330472961,13.7308515112072 100.709811434919,13.7564916776779 100.706646659887,13.7567994598617 100.716083946085,13.7716780551825 100.716364637035,13.7781443123934 100.733682451268,13.774789404215 100.738949891077,13.7773587118619 100.738997922679,13.7717398420031 100.746315572718,13.7720055195814 100.746435580628,13.7778920718449 100.755033137571,13.7778648015611 100.759478754302,13.7756954832846 100.764825655293,13.781734357352 100.77680502915,13.7830942604268 100.78216146226,13.7818534251365 100.78269423717,13.7988968467552 100.788564725945,13.8003748719484 100.795137525596,13.7939889052703</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">34.00000</SimpleData>
+		<SimpleData name="AREA">8465891.00000</SimpleData>
+		<SimpleData name="dcode">1026</SimpleData>
+		<SimpleData name="dname">เขตดินแดง</SimpleData>
+		<SimpleData name="dname_e">Din Daeng</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">70163.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">61684.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">2</SimpleData>
+		<SimpleData name="no_commu">22</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.574904360011,13.8010745357564 100.572862413949,13.7694359872287 100.566542740026,13.7610212647136 100.56490041517,13.755147198549 100.552495416871,13.7559736409033 100.543464421742,13.7627069812418 100.548505872645,13.7639871633743 100.549993198987,13.7666477709018 100.561624858425,13.7882739619677 100.561441288764,13.7950059157581 100.566456042537,13.7946813696229 100.567493689723,13.799276806608 100.574904360011,13.8010745357564</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">35.00000</SimpleData>
+		<SimpleData name="AREA">35767720.00000</SimpleData>
+		<SimpleData name="dcode">1019</SimpleData>
+		<SimpleData name="dname">เขตตลิ่งชัน</SimpleData>
+		<SimpleData name="dname_e">Taling Chan</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">56372.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">50414.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">30</SimpleData>
+		<SimpleData name="no_commu">43</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">16</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.425751977355,13.8004891590234 100.457848208083,13.7983189301996 100.469680751629,13.7948586467218 100.466395492099,13.7892941027558 100.467870183916,13.7798638673352 100.4576752983,13.7773459340823 100.453632285728,13.7682353525761 100.45426513917,13.7627988287122 100.461967376621,13.7515995575373 100.462310081118,13.7443297162125 100.457108362713,13.7440260336746 100.456250460667,13.7421192268386 100.450024922377,13.7405423257224 100.435012936636,13.740100142816 100.421480436061,13.7442531251593 100.416418851641,13.7473647882262 100.405879602166,13.749505368353 100.411065333895,13.8013536027066 100.425751977355,13.8004891590234</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">36.00000</SimpleData>
+		<SimpleData name="AREA">11329900.00000</SimpleData>
+		<SimpleData name="dcode">1002</SimpleData>
+		<SimpleData name="dname">เขตดุสิต</SimpleData>
+		<SimpleData name="dname_e">Dusit</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">51302.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">57513.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">17</SimpleData>
+		<SimpleData name="no_commu">45</SimpleData>
+		<SimpleData name="no_hos">1</SimpleData>
+		<SimpleData name="no_sch">9</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.537430715407,13.7978532113031 100.519168265248,13.7527407108133 100.517376476141,13.7532613397089 100.515925104688,13.7572848756554 100.503889038088,13.7698024813252 100.499042604092,13.7729088224659 100.50257448519,13.7811741591781 100.516493492102,13.8003346432798 100.532346369271,13.7982578325537 100.533241102418,13.7998329942249 100.537430715407,13.7978532113031</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">37.00000</SimpleData>
+		<SimpleData name="AREA">28068656.00000</SimpleData>
+		<SimpleData name="dcode">1044</SimpleData>
+		<SimpleData name="dname">เขตสะพานสูง</SimpleData>
+		<SimpleData name="dname_e">Saphan Sung</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">47694.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">41224.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">1</SimpleData>
+		<SimpleData name="no_commu">28</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.704965746851,13.7977220515116 100.706083618918,13.79835490319 100.710420794492,13.7909323403159 100.716680827675,13.7770416635679 100.716057527107,13.7716217482668 100.706646659887,13.7567994598617 100.709811434919,13.7564916776779 100.708373051499,13.7321030645186 100.6589702447,13.7377232105188 100.663462051094,13.7401650822191 100.66316760646,13.7422527694453 100.66625423514,13.7468417183846 100.672603503636,13.7494188454593 100.677399656752,13.7490213253365 100.67902403196,13.752003217171 100.669737158443,13.7562817449674 100.668878100083,13.7664358300103 100.664641135551,13.7754241845732 100.704965746851,13.7977220515116</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">39.00000</SimpleData>
+		<SimpleData name="AREA">9214668.00000</SimpleData>
+		<SimpleData name="dcode">1014</SimpleData>
+		<SimpleData name="dname">เขตพญาไท</SimpleData>
+		<SimpleData name="dname_e">Phaya Thai</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">36894.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">36639.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">1</SimpleData>
+		<SimpleData name="no_commu">29</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.550688408726,13.7961575556018 100.561441288764,13.7950059157581 100.561827067889,13.7889540051939 100.548505872645,13.7639871633743 100.543464421742,13.7627069812418 100.527896477018,13.7743585197645 100.537430715407,13.7978532113031 100.550688408726,13.7961575556018</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">40.00000</SimpleData>
+		<SimpleData name="AREA">12323945.00000</SimpleData>
+		<SimpleData name="dcode">1020</SimpleData>
+		<SimpleData name="dname">เขตบางกอกน้อย</SimpleData>
+		<SimpleData name="dname_e">Bangkok Noi</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">62888.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">57144.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">32</SimpleData>
+		<SimpleData name="no_commu">43</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">15</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.468694857173,13.7876035518218 100.490997440162,13.7619069543123 100.487873338029,13.7554016080468 100.488377767508,13.7482438252521 100.478182388793,13.7463661748392 100.477006864893,13.7440658820224 100.466971397294,13.7429585359637 100.462310081118,13.7443297162125 100.461820565266,13.751971050368 100.45426513917,13.7627988287122 100.453515062079,13.7665693716044 100.457572457747,13.7772606672015 100.46783573546,13.7798087055195 100.46625053221,13.7867220932288 100.468694857173,13.7876035518218</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">41.00000</SimpleData>
+		<SimpleData name="AREA">7167652.00000</SimpleData>
+		<SimpleData name="dcode">1037</SimpleData>
+		<SimpleData name="dname">เขตราชเทวี</SimpleData>
+		<SimpleData name="dname_e">Ratchathewi</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">38014.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">34886.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">4</SimpleData>
+		<SimpleData name="no_commu">25</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.538969173005,13.7660186180493 100.552495416871,13.7559736409033 100.56490041517,13.755147198549 100.563285503122,13.7479023700874 100.525353055058,13.7492675752005 100.519168265248,13.7527407108133 100.527896477018,13.7743585197645 100.538969173005,13.7660186180493</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">42.00000</SimpleData>
+		<SimpleData name="AREA">5361067.00000</SimpleData>
+		<SimpleData name="dcode">1001</SimpleData>
+		<SimpleData name="dname">เขตพระนคร</SimpleData>
+		<SimpleData name="dname_e">Phra Nakhon</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">30548.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">28223.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">23</SimpleData>
+		<SimpleData name="no_commu">21</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">11</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.503889038088,13.7698024813252 100.509428969252,13.7636376268181 100.505858739515,13.7561386988407 100.503475903779,13.7452019988859 100.499920062494,13.7387016987912 100.493964810562,13.7406677494213 100.490506550644,13.7442502145424 100.488117255479,13.7490905878146 100.487746415698,13.7546148106143 100.489693167566,13.7601193822873 100.496961530286,13.7682413246625 100.499042604092,13.7729088224659 100.503889038088,13.7698024813252</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">43.00000</SimpleData>
+		<SimpleData name="AREA">2504113.00000</SimpleData>
+		<SimpleData name="dcode">1008</SimpleData>
+		<SimpleData name="dname">เขตป้อมปราบศัตรูพ่าย</SimpleData>
+		<SimpleData name="dname_e">Pom Prap Sattru Phai</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">26781.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">25312.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">11</SimpleData>
+		<SimpleData name="no_commu">15</SimpleData>
+		<SimpleData name="no_hos">1</SimpleData>
+		<SimpleData name="no_sch">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.512080150049,13.761020288884 100.517274320072,13.754808828439 100.515740561784,13.7380298970623 100.503907331811,13.7467857855085 100.505858739515,13.7561386988407 100.509428969252,13.7636376268181 100.512080150049,13.761020288884</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">44.00000</SimpleData>
+		<SimpleData name="AREA">8032768.00000</SimpleData>
+		<SimpleData name="dcode">1007</SimpleData>
+		<SimpleData name="dname">เขตปทุมวัน</SimpleData>
+		<SimpleData name="dname_e">Parthum Wan</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">29559.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">25437.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">6</SimpleData>
+		<SimpleData name="no_commu">16</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">8</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.519168265248,13.7527407108133 100.525353055058,13.7492675752005 100.550085469885,13.7484421774482 100.552918253581,13.7227687431785 100.515740561784,13.7380298970623 100.517376476141,13.7532613397089 100.519168265248,13.7527407108133</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">45.00000</SimpleData>
+		<SimpleData name="AREA">47890656.00000</SimpleData>
+		<SimpleData name="dcode">1040</SimpleData>
+		<SimpleData name="dname">เขตบางแค</SimpleData>
+		<SimpleData name="dname_e">Bang Khae</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">101978.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">90298.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">5</SimpleData>
+		<SimpleData name="no_commu">47</SimpleData>
+		<SimpleData name="no_hos">1</SimpleData>
+		<SimpleData name="no_sch">12</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.400989728209,13.7504473460912 100.41340174897,13.747926742091 100.414415098496,13.7388032284539 100.416755208641,13.7381287737399 100.417785768262,13.7312187610531 100.42488552024,13.7321575661799 100.427848946991,13.6876481108059 100.393630831996,13.6693972447975 100.388417632823,13.6680422637046 100.387438483982,13.6704444431727 100.384844099149,13.6714137877217 100.385263684224,13.6758805362813 100.381345643037,13.6917357760853 100.352683280553,13.7520425668227 100.368476005355,13.7539679197302 100.400989728209,13.7504473460912</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">46.00000</SimpleData>
+		<SimpleData name="AREA">24113560.00000</SimpleData>
+		<SimpleData name="dcode">1034</SimpleData>
+		<SimpleData name="dname">เขตสวนหลวง</SimpleData>
+		<SimpleData name="dname_e">Suanluang</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">61730.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">53689.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">4</SimpleData>
+		<SimpleData name="no_commu">46</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">8</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.651153823161,13.7409561800073 100.65929988332,13.738414723176 100.649760390117,13.7287935539413 100.647928957883,13.7173456264176 100.651549621503,13.7179948488095 100.649200422442,13.7075254480442 100.650999652466,13.7029623701361 100.634059767667,13.7007416874504 100.632343250642,13.7044442999532 100.630419344094,13.7039722768044 100.630082073659,13.7054218624922 100.616371232134,13.7045209559122 100.615843947343,13.7068417780917 100.606292050153,13.7054984386536 100.60188411464,13.712018207914 100.607202856296,13.7157168070353 100.606865901527,13.7191888591853 100.60528923624,13.7201685453442 100.605030032504,13.7377082228504 100.598384037492,13.7385434079343 100.601029231177,13.7479212155598 100.610624535847,13.7437764914302 100.635845200274,13.7501061038565 100.645632101434,13.7464333408028 100.64858504284,13.7440928932464 100.647494127575,13.742629108052 100.651153823161,13.7409561800073</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">47.00000</SimpleData>
+		<SimpleData name="AREA">12996544.00000</SimpleData>
+		<SimpleData name="dcode">1039</SimpleData>
+		<SimpleData name="dname">เขตวัฒนา</SimpleData>
+		<SimpleData name="dname_e">Vadhana</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">42694.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">38153.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">2</SimpleData>
+		<SimpleData name="no_commu">17</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">8</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.563285503122,13.7479023700874 100.598178402215,13.7412010929609 100.598498644066,13.7383144293824 100.605030032504,13.7377082228504 100.60528923624,13.7201685453442 100.606865901527,13.7191888591853 100.607202856296,13.7157168070353 100.60188411464,13.712018207914 100.605695650606,13.7065915173396 100.601643113464,13.704678918468 100.598550803704,13.710175476711 100.550700125726,13.7428667529332 100.550085469885,13.7484421774482 100.563285503122,13.7479023700874</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">48.00000</SimpleData>
+		<SimpleData name="AREA">6298272.00000</SimpleData>
+		<SimpleData name="dcode">1016</SimpleData>
+		<SimpleData name="dname">เขตบางกอกใหญ่</SimpleData>
+		<SimpleData name="dname_e">Bangkok Yai</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">38845.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">35019.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">13</SimpleData>
+		<SimpleData name="no_commu">34</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.488377767508,13.7482438252521 100.492048456623,13.7423245272162 100.487371074621,13.7351607366603 100.484689116756,13.7249034982841 100.475857884682,13.7221688610014 100.467715754439,13.7247461871951 100.462818248268,13.7325210271781 100.462030846018,13.7444093378108 100.471540021481,13.7432285004364 100.477142411274,13.7441147876171 100.478182388793,13.7463661748392 100.488377767508,13.7482438252521</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">49.00000</SimpleData>
+		<SimpleData name="AREA">19182494.00000</SimpleData>
+		<SimpleData name="dcode">1022</SimpleData>
+		<SimpleData name="dname">เขตภาษีเจริญ</SimpleData>
+		<SimpleData name="dname_e">Phasi Charoen</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">68937.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">61556.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">27</SimpleData>
+		<SimpleData name="no_commu">54</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">13</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.462030846018,13.7444093378108 100.462852214827,13.7324067011983 100.467353796193,13.7250873213495 100.471845247969,13.7227679421318 100.469242248189,13.7159630912197 100.462829322507,13.7178949255174 100.463553801496,13.7138533328442 100.45530995761,13.7118161179648 100.455928402794,13.7083649939659 100.452824250824,13.7100804414767 100.450050260217,13.7053362290077 100.439185216269,13.7093997491394 100.434736333057,13.6987598985953 100.43772933368,13.6936803006328 100.427848946991,13.6876481108059 100.425011998958,13.7317602192013 100.417785768262,13.7312187610531 100.416755208641,13.7381287737399 100.414415098496,13.7388032284539 100.41340174897,13.747926742091 100.435012936636,13.740100142816 100.450024922377,13.7405423257224 100.456250460667,13.7421192268386 100.457108362713,13.7440260336746 100.462030846018,13.7444093378108</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">50.00000</SimpleData>
+		<SimpleData name="AREA">1392972.75000</SimpleData>
+		<SimpleData name="dcode">1013</SimpleData>
+		<SimpleData name="dname">เขตสัมพันธวงศ์</SimpleData>
+		<SimpleData name="dname_e">Samphanthawong</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">14414.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">13587.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">13</SimpleData>
+		<SimpleData name="no_commu">19</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">3</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.505674179225,13.7456190909486 100.515740561784,13.7380298970623 100.515540134094,13.7324707810094 100.51328374794,13.7296428654495 100.508387759537,13.7360636839714 100.499920062494,13.7387016987912 100.503907331811,13.7467857855085 100.505674179225,13.7456190909486</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">51.00000</SimpleData>
+		<SimpleData name="AREA">13240401.00000</SimpleData>
+		<SimpleData name="dcode">1033</SimpleData>
+		<SimpleData name="dname">เขตคลองเตย</SimpleData>
+		<SimpleData name="dname_e">Khlong Toei</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">57241.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">53240.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">3</SimpleData>
+		<SimpleData name="no_commu">41</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.565297865813,13.7337116434527 100.598664606324,13.7100854801141 100.601643113464,13.704678918468 100.583479237919,13.6970007530981 100.564305333816,13.7057551612053 100.554895767009,13.7056506660631 100.550700125726,13.7428667529332 100.565297865813,13.7337116434527</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">52.00000</SimpleData>
+		<SimpleData name="AREA">8461864.00000</SimpleData>
+		<SimpleData name="dcode">1015</SimpleData>
+		<SimpleData name="dname">เขตธนบุรี</SimpleData>
+		<SimpleData name="dname_e">Thon buri</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">63888.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">57651.00000</SimpleData>
+		<SimpleData name="no_health">3</SimpleData>
+		<SimpleData name="no_temple">25</SimpleData>
+		<SimpleData name="no_commu">45</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">17</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.493806043642,13.740785093613 100.49873061809,13.7389642901735 100.492209118458,13.7231361608276 100.493189674107,13.7128783445037 100.498735966826,13.7051205621555 100.492034309993,13.7005780638447 100.490039489593,13.6949629995661 100.482546579056,13.6948317279173 100.479541261021,13.6980587479952 100.477012696262,13.7087958800592 100.47173381241,13.70720023743 100.466235892886,13.7099684996058 100.468654435858,13.7125993474896 100.471711780829,13.7224941611937 100.477778176489,13.7224376062269 100.484689116756,13.7249034982841 100.488853736648,13.7385020528139 100.492048456623,13.7423245272162 100.493806043642,13.740785093613</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">53.00000</SimpleData>
+		<SimpleData name="AREA">5965976.00000</SimpleData>
+		<SimpleData name="dcode">1018</SimpleData>
+		<SimpleData name="dname">เขตคลองสาน</SimpleData>
+		<SimpleData name="dname_e">Khlong San</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">41138.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">36333.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">8</SimpleData>
+		<SimpleData name="no_commu">44</SimpleData>
+		<SimpleData name="no_hos">1</SimpleData>
+		<SimpleData name="no_sch">7</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.499920062494,13.7387016987912 100.510216641352,13.7344920736459 100.512853021182,13.724294184482 100.511852172303,13.7182563435648 100.509002816479,13.7133958666867 100.498735966826,13.7051205621555 100.493189674107,13.7128783445037 100.492209118458,13.7231361608276 100.496586522503,13.7358722539538 100.499920062494,13.7387016987912</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">54.00000</SimpleData>
+		<SimpleData name="AREA">53728764.00000</SimpleData>
+		<SimpleData name="dcode">1032</SimpleData>
+		<SimpleData name="dname">เขตประเวศ</SimpleData>
+		<SimpleData name="dname_e">Pra Wet</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">83349.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">75108.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">6</SimpleData>
+		<SimpleData name="no_commu">41</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">16</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.708373051499,13.7321030645186 100.712342046756,13.7012934546719 100.710975998536,13.7011108363424 100.705196052917,13.6743533872897 100.6997880792,13.6640514060047 100.698269347772,13.6563099919149 100.678345238552,13.6614688731212 100.666613775289,13.6671181600416 100.661189354946,13.6716965864397 100.659879738088,13.6701416380069 100.655426311969,13.6722435806817 100.653809563926,13.6689766493179 100.645013950711,13.6698385033864 100.64058419218,13.6764662810252 100.637113281951,13.6952066209972 100.634059767667,13.7007416874504 100.650999652466,13.7029623701361 100.649200422442,13.7075254480442 100.651549621503,13.7179948488095 100.647928957883,13.7173456264176 100.649748992397,13.7287337476625 100.651856602672,13.7294947380358 100.656695963241,13.7366945056658 100.667204082394,13.7370847162052 100.708373051499,13.7321030645186</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">55.00000</SimpleData>
+		<SimpleData name="AREA">4012576.00000</SimpleData>
+		<SimpleData name="dcode">1004</SimpleData>
+		<SimpleData name="dname">เขตบางรัก</SimpleData>
+		<SimpleData name="dname_e">Bang Rak</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">24348.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">21739.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">4</SimpleData>
+		<SimpleData name="no_commu">16</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.52163665435,13.7357190833499 100.52962801895,13.732501401558 100.54470067923,13.7261919168035 100.517417292358,13.718103589225 100.512151475379,13.7193335905822 100.512338698482,13.7294351003709 100.515396741864,13.7320999168849 100.515740561784,13.7380298970623 100.52163665435,13.7357190833499</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">56.00000</SimpleData>
+		<SimpleData name="AREA">36201384.00000</SimpleData>
+		<SimpleData name="dcode">1023</SimpleData>
+		<SimpleData name="dname">เขตหนองแขม</SimpleData>
+		<SimpleData name="dname_e">Nong Khaem</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">78807.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">69491.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">7</SimpleData>
+		<SimpleData name="no_commu">71</SimpleData>
+		<SimpleData name="no_hos">1</SimpleData>
+		<SimpleData name="no_sch">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.359362581206,13.7380109003084 100.381417413213,13.6915579678221 100.385263684224,13.6758805362813 100.384844099149,13.6714137877217 100.360559742061,13.6612980655915 100.357098079089,13.6616616774194 100.356621852961,13.6599195643733 100.348833544652,13.6548431216557 100.339595702493,13.654937229252 100.341311387805,13.6613294424243 100.337664881385,13.6772754365719 100.33624837943,13.6769192173247 100.333613644003,13.6814534379493 100.3303521056,13.6998053396165 100.330300449379,13.7034634472974 100.333468543564,13.7081008772615 100.332636027658,13.7123428817617 100.338457689646,13.7126278307093 100.338913299881,13.7168481788464 100.336124398187,13.7212589815659 100.336553631885,13.7293960606125 100.333490977951,13.7352016201134 100.359362581206,13.7380109003084</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">58.00000</SimpleData>
+		<SimpleData name="AREA">7259143.00000</SimpleData>
+		<SimpleData name="dcode">1028</SimpleData>
+		<SimpleData name="dname">เขตสาทร</SimpleData>
+		<SimpleData name="dname_e">Sathon</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">45097.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">41117.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">3</SimpleData>
+		<SimpleData name="no_commu">25</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.552918253581,13.7227687431785 100.553652218953,13.7165417385689 100.548978786231,13.7192342687178 100.541734133213,13.7105747421004 100.54358421776,13.7070062371232 100.539141090312,13.7044170520994 100.537674664959,13.7071899438294 100.533408773593,13.7053701508487 100.52866636672,13.7058955444121 100.5299988682,13.7025913331228 100.526944326618,13.7010531786271 100.514593520809,13.7048985355171 100.516923339353,13.7096638347459 100.508194944529,13.7123070273143 100.512151475379,13.7193335905822 100.517417292358,13.718103589225 100.54470067923,13.7261919168035 100.552918253581,13.7227687431785</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">60.00000</SimpleData>
+		<SimpleData name="AREA">12504782.00000</SimpleData>
+		<SimpleData name="dcode">1012</SimpleData>
+		<SimpleData name="dname">เขตยานนาวา</SimpleData>
+		<SimpleData name="dname_e">Yan na wa</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">42966.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">39515.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">8</SimpleData>
+		<SimpleData name="no_commu">22</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.554895767009,13.7056506660631 100.551645916921,13.7011446669927 100.551833681513,13.6802559948369 100.546440014322,13.6719136812917 100.540843918203,13.6694322097895 100.534071607503,13.6703385977214 100.516785665421,13.6827848960408 100.524153552987,13.6924671672162 100.531413954474,13.6990176860722 100.52866636672,13.7058955444121 100.533408773593,13.7053701508487 100.537674664959,13.7071899438294 100.539141090312,13.7044170520994 100.54352554097,13.70695801708 100.541734133213,13.7105747421004 100.548978786231,13.7192342687178 100.553652218953,13.7165417385689 100.554895767009,13.7056506660631</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">62.00000</SimpleData>
+		<SimpleData name="AREA">23167158.00000</SimpleData>
+		<SimpleData name="dcode">1035</SimpleData>
+		<SimpleData name="dname">เขตจอมทอง</SimpleData>
+		<SimpleData name="dname_e">Chom Thong</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">82531.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">76115.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">17</SimpleData>
+		<SimpleData name="no_commu">53</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">11</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.469242248189,13.7159630912197 100.466156848357,13.7095226393171 100.47173381241,13.70720023743 100.477012696262,13.7087958800592 100.479564598016,13.6980021115352 100.482642246663,13.6952526226817 100.481524520083,13.6905124325826 100.488986157687,13.6845908559567 100.487423001137,13.6824420643922 100.488563376984,13.6795617782129 100.480201541315,13.6691892788605 100.482131471043,13.6647845288036 100.475605085594,13.6635646879017 100.475929549685,13.6609277214999 100.470097365984,13.6602075481338 100.470344571654,13.6589846077462 100.46283524966,13.6540459067412 100.449915894581,13.659325183069 100.453473083769,13.6688468513417 100.451583141301,13.6754410519913 100.448847995998,13.6753621417138 100.448573078007,13.6817107203555 100.447224775212,13.6816632331855 100.434736333057,13.6987598985953 100.439185216269,13.7093997491394 100.450050260217,13.7053362290077 100.452824250824,13.7100804414767 100.455928402794,13.7083649939659 100.45530995761,13.7118161179648 100.463553801496,13.7138533328442 100.462829322507,13.7178949255174 100.469242248189,13.7159630912197</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">63.00000</SimpleData>
+		<SimpleData name="AREA">8312167.00000</SimpleData>
+		<SimpleData name="dcode">1031</SimpleData>
+		<SimpleData name="dname">เขตบางคอแหลม</SimpleData>
+		<SimpleData name="dname_e">Bang Kho laen</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">50150.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">46272.00000</SimpleData>
+		<SimpleData name="no_health">3</SimpleData>
+		<SimpleData name="no_temple">11</SimpleData>
+		<SimpleData name="no_commu">29</SimpleData>
+		<SimpleData name="no_hos">1</SimpleData>
+		<SimpleData name="no_sch">7</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.516923339353,13.7096638347459 100.514593520809,13.7048985355171 100.522183618007,13.7030350228597 100.524893235742,13.7009065114052 100.5299988682,13.7025913331228 100.531413954474,13.6990176860722 100.524153552987,13.6924671672162 100.516785665421,13.6827848960408 100.496923350762,13.6877847917437 100.490457227602,13.6933989111035 100.489945016067,13.6962935047054 100.492034309993,13.7005780638447 100.508194944529,13.7123070273143 100.516923339353,13.7096638347459</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">64.00000</SimpleData>
+		<SimpleData name="AREA">13578695.00000</SimpleData>
+		<SimpleData name="dcode">1009</SimpleData>
+		<SimpleData name="dname">เขตพระโขนง</SimpleData>
+		<SimpleData name="dname_e">Phra Khanong</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">50796.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">43686.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">4</SimpleData>
+		<SimpleData name="no_commu">45</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">4</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.605695650606,13.7065915173396 100.606443544272,13.705343790545 100.615843947343,13.7068417780917 100.616371232134,13.7045209559122 100.632343250642,13.7044442999532 100.637113281951,13.6952066209972 100.64021542531,13.6778607179793 100.624658806399,13.678340595557 100.622741158388,13.6844827350287 100.610519133046,13.6843252438775 100.600326486382,13.6799361773767 100.588738883798,13.6830377423573 100.588184884464,13.691231879259 100.583479237919,13.6970007530981 100.605695650606,13.7065915173396</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">66.00000</SimpleData>
+		<SimpleData name="AREA">12333130.00000</SimpleData>
+		<SimpleData name="dcode">1024</SimpleData>
+		<SimpleData name="dname">เขตราษฏร์บูรณะ</SimpleData>
+		<SimpleData name="dname_e">Rat Burana</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">45552.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">42289.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">7</SimpleData>
+		<SimpleData name="no_commu">28</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.490039489593,13.6949629995661 100.495622099441,13.6884197695379 100.513179481954,13.6844713365888 100.52279309846,13.6784079987919 100.520378362487,13.6756748513508 100.522039953139,13.6744036559943 100.521075949801,13.6691373447392 100.517620797089,13.6673043094195 100.517581062945,13.6618176260788 100.513830892859,13.6614439373544 100.508618540667,13.6633513805058 100.506482771171,13.6599180680449 100.503405443027,13.6619660986077 100.499548988072,13.6540087046012 100.496405681646,13.6561293623003 100.496953994402,13.6589757570075 100.493852687841,13.6601650673278 100.491341497027,13.6565270811919 100.484107295936,13.657752376639 100.481975199568,13.6619662530995 100.475829936733,13.6618175822028 100.475605085594,13.6635646879017 100.482131471043,13.6647845288036 100.480201541315,13.6691892788605 100.488563376984,13.6795617782129 100.487423001137,13.6824420643922 100.488986157687,13.6845908559567 100.48196767642,13.6897696683229 100.481715391191,13.6928502688452 100.48327588779,13.6950307475604 100.490039489593,13.6949629995661</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">67.00000</SimpleData>
+		<SimpleData name="AREA">35857236.00000</SimpleData>
+		<SimpleData name="dcode">1050</SimpleData>
+		<SimpleData name="dname">เขตบางบอน</SimpleData>
+		<SimpleData name="dname_e">Bang Bon</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">54392.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">50376.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">2</SimpleData>
+		<SimpleData name="no_commu">11</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">8</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.43772933368,13.6936803006328 100.446832548928,13.6825310722504 100.37516348515,13.6184812090385 100.371976920842,13.6208571045456 100.371042252128,13.6255686912098 100.36505330584,13.6274627480879 100.361639254908,13.6329258058107 100.358655073035,13.6342800576051 100.356178880915,13.6422521794851 100.352103612016,13.6402245731038 100.340934548286,13.6390070769229 100.338506308129,13.6424802562729 100.339480338946,13.6549706221735 100.348833544652,13.6548431216557 100.356621852961,13.6599195643733 100.357098079089,13.6616616774194 100.360559742061,13.6612980655915 100.383309004957,13.6717274553039 100.387438483982,13.6704444431727 100.388417632823,13.6680422637046 100.393330772598,13.6692667235793 100.43772933368,13.6936803006328</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">68.00000</SimpleData>
+		<SimpleData name="AREA">18947526.00000</SimpleData>
+		<SimpleData name="dcode">1047</SimpleData>
+		<SimpleData name="dname">เขตบางนา</SimpleData>
+		<SimpleData name="dname_e">Bang Na</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">51225.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">45814.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">4</SimpleData>
+		<SimpleData name="no_commu">40</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">7</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.588738883798,13.6830377423573 100.600326486382,13.6799361773767 100.610519133046,13.6843252438775 100.622741158388,13.6844827350287 100.624658806399,13.678340595557 100.64021542531,13.6778607179793 100.645310895528,13.6695879624369 100.653809563926,13.6689766493179 100.650023186742,13.6592635932544 100.650252619041,13.6517168399898 100.63965448221,13.653890896384 100.634413026299,13.6474174115343 100.630085197472,13.6491994294403 100.630810149844,13.6512126221917 100.618643948232,13.6550016546624 100.619099468612,13.6563997325596 100.617617651194,13.656990155777 100.616503700893,13.6539162327166 100.607152660398,13.6566615746825 100.607781311754,13.6585534480586 100.605377086605,13.6592650270969 100.600583211302,13.658403392263 100.601459965411,13.6605976249327 100.596219060957,13.660787330349 100.579049935156,13.6687793891409 100.588738883798,13.6830377423573</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">69.00000</SimpleData>
+		<SimpleData name="AREA">122207808.00000</SimpleData>
+		<SimpleData name="dcode">1021</SimpleData>
+		<SimpleData name="dname">เขตบางขุนเทียน</SimpleData>
+		<SimpleData name="dname_e">Bang Khun thain</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">84668.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">76974.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">15</SimpleData>
+		<SimpleData name="no_commu">49</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">16</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.448573078007,13.6817107203555 100.448847995998,13.6753621417138 100.451583141301,13.6754410519913 100.453473083769,13.6688468513417 100.449915894581,13.659325183069 100.46283524966,13.6540459067412 100.470344571654,13.6589846077462 100.475762313629,13.6307636221727 100.472144627841,13.6240889831099 100.480475238742,13.6174440196585 100.481669509631,13.6124798280132 100.479503106874,13.6058294041918 100.473186592688,13.5992351638855 100.473651177492,13.5938481886863 100.469762655617,13.5926858315054 100.463924581218,13.6058695094507 100.457537394756,13.6043713664246 100.453896457073,13.6059395684652 100.4508281958,13.5944657400993 100.446597148278,13.5871003623188 100.444582041698,13.552346302346 100.453917488839,13.5001497813111 100.436136732308,13.4959481465755 100.418855947886,13.4955696280675 100.409887956273,13.493818984606 100.406588707399,13.5079725627434 100.406674088936,13.5198753988689 100.41114986365,13.5261883193321 100.4148106419,13.5386788502489 100.418568445513,13.5408666826041 100.420017578607,13.5453896853226 100.414788167537,13.5510929803608 100.415172112349,13.5572266137653 100.412581090307,13.5572695280912 100.411961604492,13.5555396344284 100.408614646315,13.5546025592031 100.40439747521,13.5551506129741 100.401341447533,13.5529055346553 100.395244244115,13.5541012841796 100.391283240534,13.5633475027763 100.391596050147,13.5688646410415 100.389662114339,13.5697014398197 100.385044251807,13.578991929845 100.385724218017,13.5858845019248 100.380991467785,13.5914658150148 100.38347737179,13.5935436459569 100.378611563099,13.6013189877015 100.374919894443,13.6181130473333 100.446832548928,13.6825310722504 100.448573078007,13.6817107203555</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">10.00000</SimpleData>
+		<SimpleData name="AREA">36691444.00000</SimpleData>
+		<SimpleData name="dcode">1036</SimpleData>
+		<SimpleData name="dname">เขตดอนเมือง</SimpleData>
+		<SimpleData name="dname_e">Don Mueang</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">83519.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">82691.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">7</SimpleData>
+		<SimpleData name="no_commu">81</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.622376587371,13.9503409021498 100.626403138787,13.9259928398406 100.610878376555,13.899625569623 100.59477599968,13.8876043913579 100.582893080573,13.8906803621958 100.587706821456,13.8993536705096 100.559045839854,13.9144675849183 100.567832578236,13.9515718937796 100.574248110902,13.9545653110812 100.591394341248,13.9504325378691 100.605653669036,13.944143825734 100.604329810119,13.9538693625125 100.614355789906,13.9543623085691 100.622376587371,13.9503409021498</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">11.00000</SimpleData>
+		<SimpleData name="AREA">240448192.00000</SimpleData>
+		<SimpleData name="dcode">1003</SimpleData>
+		<SimpleData name="dname">เขตหนองจอก</SimpleData>
+		<SimpleData name="dname_e">Nong Chok</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">78970.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">75401.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">16</SimpleData>
+		<SimpleData name="no_commu">87</SimpleData>
+		<SimpleData name="no_hos">1</SimpleData>
+		<SimpleData name="no_sch">37</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.820307941049,13.9367449333203 100.840026435965,13.9407157533533 100.914121115909,13.9486758887018 100.90677223275,13.8854014076402 100.906229122205,13.8606007066566 100.904447674442,13.8586545340492 100.902138791777,13.8490078257713 100.912660133821,13.8467534651876 100.907850245291,13.8380086345894 100.938508864318,13.8142659914995 100.928649026016,13.8015023847587 100.909612193326,13.7900399311386 100.880416634352,13.7400925444673 100.87373094412,13.743052480924 100.868380960706,13.7494252441182 100.864748678087,13.7649843926152 100.860612683039,13.7704677995784 100.842162564094,13.7709612814645 100.837388460308,13.7675692853681 100.832244807486,13.7675398248888 100.8227925641,13.7776976115655 100.822999524143,13.7796426561079 100.814775982395,13.7842168572807 100.810305549696,13.7818275766866 100.801434913441,13.7815797429024 100.793623559182,13.7842725835818 100.796113932442,13.7887226722435 100.795136172551,13.794114320097 100.796887239655,13.7972547252464 100.807779571685,13.8080601543165 100.803522033151,13.8079310296939 100.801730484483,13.809477277379 100.80089485283,13.817404225556 100.803870109594,13.8258217423743 100.805902263105,13.8261547581261 100.80801532073,13.8369645976069 100.806416918156,13.8453535878505 100.808538064717,13.8513403688454 100.808410267939,13.8535036785761 100.806634698624,13.8534128477656 100.799362717221,13.8495540102731 100.787421200827,13.8798843530808 100.790962983767,13.8819552802584 100.798279509268,13.8924377451162 100.792904557171,13.8939798551684 100.792231965572,13.8974249362514 100.792559370301,13.9314454442555 100.820307941049,13.9367449333203</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">12.00000</SimpleData>
+		<SimpleData name="AREA">43612880.00000</SimpleData>
+		<SimpleData name="dcode">1042</SimpleData>
+		<SimpleData name="dname">เขตสายไหม</SimpleData>
+		<SimpleData name="dname_e">Sai Mai</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">98186.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">87801.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">8</SimpleData>
+		<SimpleData name="no_commu">69</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">9</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.658789817495,13.9305876404796 100.689709101161,13.93092311092 100.687102755751,13.9206846547812 100.687619577908,13.9172283418158 100.683804694307,13.9136765632003 100.683632729533,13.9116497153217 100.686954096656,13.9093535636538 100.692295115407,13.8980262733072 100.692110331879,13.886751932443 100.690024175394,13.8843801846586 100.689861491664,13.8795637407472 100.684523600044,13.8741627274329 100.681286006246,13.879679366726 100.675768494545,13.8791139252184 100.673691176346,13.8810861564529 100.672503263527,13.8796853865475 100.669364528547,13.8811293043358 100.664858533106,13.8810798206513 100.661985407902,13.8787470510686 100.659063881069,13.8796831965255 100.656005818077,13.8817534654823 100.655326957613,13.8855825775505 100.653135666489,13.8863577968123 100.652670814195,13.8829397776622 100.644244321424,13.8827401418182 100.642955611088,13.8857248276399 100.640241572146,13.8867542765084 100.629652712856,13.8855517882635 100.623890658887,13.8829395052353 100.608828164158,13.8883799971631 100.611399770743,13.8924000484594 100.608637307908,13.8958338370925 100.626490755416,13.9262814972527 100.622376587371,13.9503409021498 100.625479205548,13.9478571188966 100.626519554289,13.9379989975956 100.639679449038,13.9376418342455 100.639625830175,13.9323387028486 100.641103436468,13.9314180977501 100.658789817495,13.9305876404796</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">13.00000</SimpleData>
+		<SimpleData name="AREA">120176920.00000</SimpleData>
+		<SimpleData name="dcode">1046</SimpleData>
+		<SimpleData name="dname">เขตคลองสามวา</SimpleData>
+		<SimpleData name="dname_e">Khlong Sam Wa</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">86548.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">78804.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">10</SimpleData>
+		<SimpleData name="no_commu">73</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">18</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.79259981315,13.9315151920089 100.792231965572,13.8974249362514 100.792904557171,13.8939798551684 100.798279509268,13.8924377451162 100.790962983767,13.8819552802584 100.787412090196,13.8799781909266 100.799428885001,13.8495128525227 100.749308147526,13.8221089643533 100.746722929135,13.8248117835799 100.744071485595,13.8349299271939 100.739992913224,13.8374128370909 100.735803763023,13.8366912191417 100.735183304245,13.8378412329323 100.729642851874,13.8358343121399 100.729752547624,13.8276763304172 100.722414354192,13.827532513874 100.722342252803,13.8374561503132 100.720261091822,13.8373069422503 100.720179946601,13.8315353022211 100.714611137938,13.8313856250467 100.715449706997,13.8218780145944 100.705915249593,13.821220271597 100.696802776902,13.815528120385 100.697012160376,13.8204154282008 100.690651001367,13.8323575553654 100.687923525865,13.834691365263 100.687804520612,13.8386318975267 100.683847804878,13.8481101419062 100.670773347444,13.8533607631001 100.68050702885,13.8587783533468 100.68311171938,13.8619872490418 100.68577465388,13.8692495274398 100.684591373463,13.8745000787335 100.689861491664,13.8795637407472 100.690024175394,13.8843801846586 100.692110331879,13.886751932443 100.692295115407,13.8980262733072 100.686954096656,13.9093535636538 100.683638583889,13.9115796258003 100.683804694307,13.9136765632003 100.687587181881,13.9171472190518 100.6873097277,13.9193195273468 100.712436628481,13.9210209414298 100.79259981315,13.9315151920089</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">14.00000</SimpleData>
+		<SimpleData name="AREA">22669208.00000</SimpleData>
+		<SimpleData name="dcode">1041</SimpleData>
+		<SimpleData name="dname">เขตหลักสี่</SimpleData>
+		<SimpleData name="dname_e">Lak Si</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">58013.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">53107.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">1</SimpleData>
+		<SimpleData name="no_commu">73</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.559045839854,13.9144675849183 100.587706821456,13.8993536705096 100.582893080573,13.8906803621958 100.59477599968,13.8876043913579 100.588191462572,13.8796624584405 100.586576679792,13.8589408345633 100.56556309301,13.8557791218795 100.543805015161,13.8498791062974 100.559045839854,13.9144675849183</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">16.00000</SimpleData>
+		<SimpleData name="AREA">40959096.00000</SimpleData>
+		<SimpleData name="dcode">1005</SimpleData>
+		<SimpleData name="dname">เขตบางเขน</SimpleData>
+		<SimpleData name="dname_e">Bang Khen</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">98252.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">90000.00000</SimpleData>
+		<SimpleData name="no_health">0</SimpleData>
+		<SimpleData name="no_temple">4</SimpleData>
+		<SimpleData name="no_commu">74</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">5</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.610846493363,13.8996144815717 100.608637307908,13.8958338370925 100.611399770743,13.8924000484594 100.608828164158,13.8883799971631 100.622981860271,13.8830540088666 100.629652712856,13.8855517882635 100.640241572146,13.8867542765084 100.642955611088,13.8857248276399 100.644244321424,13.8827401418182 100.652670814195,13.8829397776622 100.653135666489,13.8863577968123 100.655345878667,13.885559852542 100.656744341153,13.8809541822761 100.661743364602,13.8787803320195 100.664858533106,13.8810798206513 100.672503263527,13.8796853865475 100.673691176346,13.8810861564529 100.675834369259,13.8791078244843 100.681286006246,13.879679366726 100.685774964826,13.8693726763459 100.68314452754,13.8620469043146 100.68050702885,13.8587783533468 100.675509159019,13.8564297968908 100.668991925882,13.8568313425905 100.664722398438,13.8546854730693 100.663176854069,13.8559738254845 100.661218210662,13.8491707923584 100.659203492654,13.8478919087792 100.641108564455,13.8467088283776 100.632989255223,13.8425419438693 100.62870609338,13.8426789160044 100.620664858424,13.8481499202797 100.613920761939,13.849109638833 100.606891321445,13.8492790114188 100.589984458893,13.8439535060558 100.586520451439,13.8586643789589 100.588191462572,13.8796624584405 100.596000268405,13.8887963195547 100.610846493363,13.8996144815717</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">20.00000</SimpleData>
+		<SimpleData name="AREA">32656716.00000</SimpleData>
+		<SimpleData name="dcode">1030</SimpleData>
+		<SimpleData name="dname">เขตจตุจักร</SimpleData>
+		<SimpleData name="dname_e">Chatu Chak</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">85223.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">76186.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">2</SimpleData>
+		<SimpleData name="no_commu">41</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">7</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.586691642134,13.8583299554626 100.591098927213,13.8377116098002 100.588406014752,13.8030993789973 100.567493689723,13.799276806608 100.56608735739,13.7946114054346 100.537430715407,13.7978532113031 100.544963573514,13.8177916839133 100.542881239236,13.8208702063459 100.536960523728,13.8216384075311 100.543518766294,13.8496097346477 100.56556309301,13.8557791218795 100.586691642134,13.8583299554626</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">21.00000</SimpleData>
+		<SimpleData name="AREA">25380514.00000</SimpleData>
+		<SimpleData name="dcode">1043</SimpleData>
+		<SimpleData name="dname">เขตคันนายาว</SimpleData>
+		<SimpleData name="dname_e">Khan Na Yao</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">46450.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">40719.00000</SimpleData>
+		<SimpleData name="no_health">0</SimpleData>
+		<SimpleData name="no_temple">2</SimpleData>
+		<SimpleData name="no_commu">39</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">2</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.675509159019,13.8564297968908 100.670917982565,13.8526457199616 100.676885572118,13.8516434391191 100.683847804878,13.8481101419062 100.687804520612,13.8386318975267 100.687923525865,13.834691365263 100.690651001367,13.8323575553654 100.697012160376,13.8204154282008 100.697606478312,13.8125997051796 100.701901056672,13.8091172333199 100.700565769383,13.8044942023073 100.704965746851,13.7977220515116 100.675127724546,13.7812315991258 100.673822784119,13.7837701930096 100.676607742583,13.7867102762104 100.673575810905,13.7962396581446 100.668700089273,13.8056629211811 100.666599195787,13.8050580305307 100.664142343024,13.8100911910368 100.662890412687,13.8100318812075 100.660164570614,13.8239519322329 100.66142821162,13.8334747337697 100.657906803236,13.8329765819004 100.657334354134,13.835574574887 100.648630799129,13.8338786041311 100.647752716624,13.8440734857636 100.650225764575,13.8448522544725 100.647999236502,13.846321356081 100.661218210662,13.8491707923584 100.663176854069,13.8559738254845 100.664722398438,13.8546854730693 100.668991925882,13.8568313425905 100.675509159019,13.8564297968908</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">22.00000</SimpleData>
+		<SimpleData name="AREA">61120416.00000</SimpleData>
+		<SimpleData name="dcode">1010</SimpleData>
+		<SimpleData name="dname">เขตมีนบุรี</SimpleData>
+		<SimpleData name="dname_e">Min Buri</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">71556.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">64680.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">6</SimpleData>
+		<SimpleData name="no_commu">62</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">13</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.808410267939,13.8535036785761 100.806416918156,13.8453535878505 100.80801532073,13.8369645976069 100.805902263105,13.8261547581261 100.803870109594,13.8258217423743 100.80089485283,13.817404225556 100.801730484483,13.809477277379 100.803522033151,13.8079310296939 100.807779571685,13.8080601543165 100.797805078273,13.7986105195599 100.795137525596,13.7939889052703 100.788564725945,13.8003748719484 100.781841533027,13.7984206143685 100.78216146226,13.7818534251365 100.77680502915,13.7830942604268 100.764825655293,13.781734357352 100.759478754302,13.7756954832846 100.755033137571,13.7778648015611 100.746435580628,13.7778920718449 100.746315572718,13.7720055195814 100.738997922679,13.7717398420031 100.738949891077,13.7773587118619 100.733682451268,13.774789404215 100.716364637035,13.7781443123934 100.706270874123,13.7981129509828 100.704921553126,13.7977652913438 100.700584971462,13.8044319289672 100.70205395032,13.8086789318711 100.697767089353,13.8123477733675 100.696802776902,13.815528120385 100.705915249593,13.821220271597 100.715449706997,13.8218780145944 100.714611137938,13.8313856250467 100.720179946601,13.8315353022211 100.720209946093,13.8372700174194 100.722342252803,13.8374561503132 100.722414354192,13.827532513874 100.729752547624,13.8276763304172 100.729642851874,13.8358343121399 100.735183304245,13.8378412329323 100.735803763023,13.8366912191417 100.739992913224,13.8374128370909 100.744071485595,13.8349299271939 100.746722929135,13.8248117835799 100.749308147526,13.8221089643533 100.808410267939,13.8535036785761</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">23.00000</SimpleData>
+		<SimpleData name="AREA">21266434.00000</SimpleData>
+		<SimpleData name="dcode">1038</SimpleData>
+		<SimpleData name="dname">เขตลาดพร้าว</SimpleData>
+		<SimpleData name="dname_e">Lat Phrao</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">66354.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">55826.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">4</SimpleData>
+		<SimpleData name="no_commu">32</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">6</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.618993159546,13.8485372193449 100.62870609338,13.8426789160044 100.632989255223,13.8425419438693 100.637200254236,13.8447351380699 100.612916610411,13.7948735530767 100.59967181026,13.7961272616441 100.595958027131,13.7992981136332 100.596404943775,13.8012645881048 100.588361801718,13.8028872468408 100.591092814038,13.8374077127048 100.589904533746,13.8437630753072 100.606971800777,13.8492954314559 100.618993159546,13.8485372193449</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">24.00000</SimpleData>
+		<SimpleData name="AREA">12885789.00000</SimpleData>
+		<SimpleData name="dcode">1029</SimpleData>
+		<SimpleData name="dname">เขตบางซื่อ</SimpleData>
+		<SimpleData name="dname_e">Bang Sue</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">70880.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">64121.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">9</SimpleData>
+		<SimpleData name="no_commu">50</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">7</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.539092747105,13.8305411104704 100.536960523728,13.8216384075311 100.542881239236,13.8208702063459 100.544976733672,13.8179463975364 100.537430715407,13.7978532113031 100.533241102418,13.7998329942249 100.532346369271,13.7982578325537 100.516493492102,13.8003346432798 100.517655734275,13.8058346757213 100.516330006202,13.8119794334671 100.50737418237,13.8164186604751 100.506393169546,13.8188562689304 100.507696115308,13.8227871643985 100.51015556828,13.8242330226023 100.509319694568,13.8255070634321 100.511827365578,13.8260870886563 100.513067850498,13.8247122429382 100.536121275211,13.8461637101586 100.543518766294,13.8496097346477 100.539092747105,13.8305411104704</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">25.00000</SimpleData>
+		<SimpleData name="AREA">23404956.00000</SimpleData>
+		<SimpleData name="dcode">1027</SimpleData>
+		<SimpleData name="dname">เขตบึงกุ่ม</SimpleData>
+		<SimpleData name="dname_e">Bueng Kum</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">78889.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">67308.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">5</SimpleData>
+		<SimpleData name="no_commu">41</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">8</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.647999236502,13.846321356081 100.650225764575,13.8448522544725 100.647763141565,13.844158154312 100.648630799129,13.8338786041311 100.657334354134,13.835574574887 100.657906803236,13.8329765819004 100.66142821162,13.8334747337697 100.660164570614,13.8239519322329 100.662890412687,13.8100318812075 100.664142343024,13.8100911910368 100.666599195787,13.8050580305307 100.668700089273,13.8056629211811 100.676607742583,13.7867102762104 100.673822784119,13.7837701930096 100.675127724546,13.7812315991258 100.656136829906,13.7707587776353 100.648046569728,13.7848006561696 100.64271804257,13.7869672067757 100.640536325045,13.7919734766029 100.639282317312,13.804102944647 100.634136744582,13.8094554701018 100.631035535779,13.8154598233604 100.631366144325,13.8191895513935 100.625988178008,13.8192817335283 100.624467359969,13.817385726639 100.637200254236,13.8447351380699 100.64127409285,13.8467337060726 100.648143682644,13.8476208395318 100.647999236502,13.846321356081</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">28.00000</SimpleData>
+		<SimpleData name="AREA">27587404.00000</SimpleData>
+		<SimpleData name="dcode">1006</SimpleData>
+		<SimpleData name="dname">เขตบางกะปิ</SimpleData>
+		<SimpleData name="dname_e">Bang Kapi</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">80825.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">67820.00000</SimpleData>
+		<SimpleData name="no_health">1</SimpleData>
+		<SimpleData name="no_temple">5</SimpleData>
+		<SimpleData name="no_commu">28</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">11</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.624467359969,13.817385726639 100.625988178008,13.8192817335283 100.631366144325,13.8191895513935 100.631035535779,13.8154598233604 100.634136744582,13.8094554701018 100.639282317312,13.804102944647 100.640536325045,13.7919734766029 100.64271804257,13.7869672067757 100.648046569728,13.7848006561696 100.656136829906,13.7707587776353 100.664641135551,13.7754241845732 100.668878100083,13.7664358300103 100.669737158443,13.7562817449674 100.678996117931,13.7520598991358 100.677399656752,13.7490213253365 100.672603503636,13.7494188454593 100.66625423514,13.7468417183846 100.66316760646,13.7422527694453 100.663462051094,13.7401650822191 100.65877576237,13.7384182469202 100.649297656366,13.7415403031145 100.645632101434,13.7464333408028 100.635845200274,13.7501061038565 100.610624535847,13.7437764914302 100.601259147516,13.7480767758975 100.61456777768,13.7609123538869 100.630486291984,13.7632378625404 100.62826610218,13.7756437743556 100.629290406455,13.7750754537463 100.630668709679,13.7839628657732 100.629074410319,13.7886928659587 100.625959334,13.788090926238 100.62363381881,13.8001924557944 100.615012462357,13.7997295281176 100.624467359969,13.817385726639</coordinates></LineString>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#simplified">
+		<SimpleData name="altitudeMode">clampToGround</SimpleData>
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="OBJECTID">72.00000</SimpleData>
+		<SimpleData name="AREA">32950616.00000</SimpleData>
+		<SimpleData name="dcode">1049</SimpleData>
+		<SimpleData name="dname">เขตทุ่งครุ</SimpleData>
+		<SimpleData name="dname_e">Thung khru</SimpleData>
+		<SimpleData name="pcode">10</SimpleData>
+		<SimpleData name="no_female">61249.00000</SimpleData>
+		<SimpleData name="pname">กรุงเทพมหานคร</SimpleData>
+		<SimpleData name="no_male">54574.00000</SimpleData>
+		<SimpleData name="no_health">2</SimpleData>
+		<SimpleData name="no_temple">4</SimpleData>
+		<SimpleData name="no_commu">30</SimpleData>
+		<SimpleData name="no_hos">0</SimpleData>
+		<SimpleData name="no_sch">8</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><altitudeMode>clampToGround</altitudeMode><coordinates>100.475829936733,13.6618175822028 100.481975199568,13.6619662530995 100.484107295936,13.657752376639 100.491341497027,13.6565270811919 100.493852687841,13.6601650673278 100.496953994402,13.6589757570075 100.496405681646,13.6561293623003 100.499548988072,13.6540087046012 100.503405443027,13.6619660986077 100.506482771171,13.6599180680449 100.508618540667,13.6633513805058 100.513830892859,13.6614439373544 100.517581062945,13.6618176260788 100.516845306438,13.654541999662 100.521608662607,13.6423819453741 100.51693371746,13.6377235945136 100.518077953746,13.6348974316776 100.514249881912,13.6284835683632 100.51641043924,13.6126411881761 100.520375104858,13.6090068706946 100.521059753181,13.6051462354781 100.513718285593,13.6025729180279 100.511441877995,13.5968184231232 100.504581413679,13.5976497771147 100.499602484811,13.5955148307212 100.498679331673,13.5912593735584 100.494641797022,13.5876146908808 100.489644677392,13.5883474283716 100.482137967836,13.5925164914899 100.48067194255,13.5979817355579 100.476931775205,13.5993372809245 100.476868509301,13.6038540715036 100.47963816514,13.606091879637 100.481600843779,13.6152757284176 100.478428459672,13.6197352987757 100.472144627841,13.6240889831099 100.475762313629,13.6307636221727 100.470086532806,13.6601375554989 100.475829936733,13.6618175822028</coordinates></LineString>
+  </Placemark>
+</Folder>
+</Document></kml>

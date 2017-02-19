@@ -31,8 +31,8 @@ Vector<String> tstampVec =  new Vector<String>();
       sql = "select id,scode ,SNAME,DCODE,DNAME ,xmin,xmax,ymin,ymax ,PNAME,PCODE,aqi ,tstamp from grid_lut where aqi >0  order by id DESC";
 
     }
-    else if (data.equals("3HourAgo")){
-      sql = "SELECT id,scodeVec ,SNAME,DCODE,DNAME ,xmin,xmax,ymin,ymax ,PNAME,PCODE,aqi ,tstamp  FROM grid_lut WHERE tstamp > DATE_SUB(NOW(), INTERVAL 10 minute) ";
+    else{
+      sql = "SELECT id,SCODE ,SNAME,DCODE,DNAME ,xmin,xmax,ymin,ymax ,PNAME,PCODE,aqi ,tstamp  FROM grid_lut WHERE tstamp > DATE_SUB(NOW(), INTERVAL 3 HOUR)  limit 100";
     }
       Statement stmt = con.createStatement();
       ResultSet rs = stmt.executeQuery(sql);

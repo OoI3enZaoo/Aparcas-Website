@@ -160,7 +160,7 @@
                         <li><a class="menu-top-active" href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
                         <li><a href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
                         <li><a href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
-                        <!-- <li><a href="predict.html">พยากรณ์คุณภาพอากาศ</a></li> -->
+                        <li><a href="predict.jsp">พยากรณ์คุณภาพอากาศ</a></li>
                         <li><a href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
                     </ul>
                 </div>
@@ -532,7 +532,7 @@
                                     check = true;
 
 
-                                    placeMarker(myLocation[i], myGas[i], myDateTime[i]); //call method for create circle on the map
+                                    placeMarker(myLocation[i], myGas[i], myDateTime[i], result[i].grid_id); //call method for create circle on the map
                                 }
 
 
@@ -573,7 +573,7 @@
                                     myGas[i] = [radio];
                                     myDateTime[i] = [day];
                                     check = true;
-                                    placeMarker(myLocation[i], myGas[i], myDateTime[i]); //call method for create circle on the map
+                                    placeMarker(myLocation[i], myGas[i], myDateTime[i], result[i].grid_id); //call method for create circle on the map
 
 
                                 }
@@ -660,8 +660,7 @@
                             // // Add the circle for this city to the map.
                             // var circle = new google.maps.Circle(covered);//Circles
 
-
-
+                              console.log("grid_id: " + grid_id);
                             $.getJSON("http://sysnet.utcc.ac.th/aparcas/api/getdistrict.jsp?data=sd&grid_id=" + grid_id+ "", function(DSName) {
                                     console.log("benL" + JSON.stringify(DSName));
 
@@ -671,8 +670,8 @@
                                     var marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(mValue[0], mValue[1]),
                                         map: map,
-                                        icon: new google.maps.MarkerImage(getColorMarker(mGas[0]), undefined, undefined, undefined, new google.maps.Size(40, 40)),
-                                        title: "Hello World!"
+                                        icon: new google.maps.MarkerImage(getColorMarker(mGas[0]), undefined, undefined, undefined, new google.maps.Size(40, 40))
+                                        //title: "Hello World!"
                                     });
 
                                     markers.push(marker);

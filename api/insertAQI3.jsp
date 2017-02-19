@@ -8,8 +8,8 @@ String passDB = "";
 String urlDB = "jdbc:mysql://sysnet.utcc.ac.th/Aparcas?characterEncoding=UTF-8";
 
 
-String did = request.getParameter("did");
-String dname = request.getParameter("dname");
+String id = request.getParameter("id");
+String name = request.getParameter("name");
 
 
 
@@ -17,7 +17,7 @@ String dname = request.getParameter("dname");
 	  Class.forName("com.mysql.jdbc.Driver");
 	  Connection con = DriverManager.getConnection(urlDB,userDB,passDB);
 
-	  String sql = "INSERT INTO AQI3 VALUES ("+did+",'"+dname+"')";
+	  String sql = "INSERT INTO AQI3 VALUES ("+id+",'"+name+"')";
 
       Statement stmt = con.createStatement();
       stmt.executeUpdate(sql);   

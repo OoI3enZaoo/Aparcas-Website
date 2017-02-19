@@ -35,7 +35,7 @@ Statement stmt;
 	  Class.forName("com.mysql.jdbc.Driver");
 	  Connection con = DriverManager.getConnection(urlDB,userDB,passDB);
 
-	  sql = "select unix_timestamp(tstamp) as tstamp, user_id from grid_lut where scode = '"+scode+"' and tstamp = (SELECT max(tstamp) FROM `grid_lut` WHERE scode = '"+scode+"') ";
+	  sql = "select unix_timestamp(tstamp) as tstamp, user_id from grid_lut where scode = '"+scode+"' and tstamp = (SELECT max(tstamp) FROM `grid_lut` WHERE scode = '"+scode+"' and tstamp not like 0) and user_id not like ''";
       stmt = con.createStatement();
       rs = stmt.executeQuery(sql);
 

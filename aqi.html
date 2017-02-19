@@ -139,7 +139,7 @@
                         <li><a href="radioactive.html">ประวัติปริมาณกัมมันตรังสี</a></li>
                         <li><a href="airquality.html">ประวัติคุณภาพอากาศ</a></li>
                         <li><a href="directions.html">ค้นหาเส้นทางหลีกเลี่ยงมลพิษ</a></li>
-                        <!-- <li><a href="predict.html">พยากรณ์คุณภาพอากาศ</a></li> -->
+                        <li><a href="predict.jsp">พยากรณ์คุณภาพอากาศ</a></li>
                         <li><a class="menu-top-active" href="aqi.html">ดัชนีคุณภาพอากาศ</a></li>
                     </ul>
                 </div>
@@ -189,7 +189,7 @@
                         <tr style="background-color:#ffffb3">
 
 
-                            <td>100-200</td>
+                            <td>101-200</td>
                             <td>มีผลกระทบต่อสุขภาพ</td>
                             <td>คุณภาพอากาศมีผลกระทบต่อสุขภาพ ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br> ไม่ควรทำกิจกรรมภายนอกอาคารเป็นเวลานาน
                             </td>
@@ -210,9 +210,10 @@
 
                     </tbody>
                 </table>
-                <a href="#" onclick="whatAQI()"><h4  style="margin-left: 80%; padding-top: 0"  >ดัชนีคุณภาพอากาศคืออะไร?</h4></a>
-                <a href="#"><h4 style="margin-left: 80%; padding-top: 0">การคำนวณดัชนีคุณภาพอากาศ</h4></a>
-
+                <a href="#" onclick="whatAQI()"><h4  style="margin-left: 80%; padding-top: 0"  >ดัชนีคุณภาพอากาศคืออะไร?</h4>
+</a>
+                <a href="#" onclick="formularAQI()"><h4 style="margin-left: 80%; padding-top: 0">การคำนวณดัชนีคุณภาพอากาศ</h4>
+</a>
 
                 <br>
                 <h3 class="title text-center">ดัชนีรังสี</h3>
@@ -234,6 +235,7 @@
                         <th style="background-color: #ff4d4d">
                             <h5><b>การปรับตัว</b></h5>
                         </th>
+
                     </thead>
                     <tbody>
                         <tr style="background-color:#CFD9C8">
@@ -241,21 +243,23 @@
                             <td><img src='icon/marker_rad_green.png' style='height: 50px; width:50px' class='img-rounded'> </img>
                             </td>
                             <td>คุณภาพดี</td>
-                            <td>คุณภาพอากาศอยู่ในเกณฑ์ดี ไม่มีผลกระทบต่อสุขภาพ</td>
+                            <td>ไม่ส่งผลกระทบต่อสุขภาพ</td>
+
                         </tr>
                         <tr style="background-color:#CFD9C8">
                             <td>0.5-0.9</td>
                             <td><img src='icon/marker_rad_yellow.png' style='height: 50px; width:50px' class='img-rounded'> </img>
                             </td>
                             <td>เฝ้าระวัง</td>
-                            <td>คุณภาพปานกลาง ไม่มีผลกระทบต่อสุขภาพ</td>
+                            <td>ไม่ควรอยู่ในพื้นที่ดังกล่าว หากรับในปริมาณที่มากเกินไปจะทำให้เกิดความเสียหายต่อเซลล์ในร่างกายได้</td>
+
                         </tr>
                         <tr style="background-color:#CFD9C8">
                             <td>มากกว่า 1</td>
                             <td><img src='icon/marker_rad_red.png' style='height: 50px; width:50px' class='img-rounded'> </img>
                             </td>
                             <td>อันตราย</td>
-                            <td>คุณภาพอากาศมีผลกระทบต่อสุขภาพ ผู้ป่วยโรคระบบทางเดินหายใจ ควรหลีกเลี่ยงการออกกำลังภายนอกอาคาร บุคคลทั่วไป โดยเฉพาะเด็กและผู้สูงอายุ<br> ไม่ควรทำกิจกรรมภายนอกอาคารเป็นเวลานาน
+                            <td>ควรหลีกเลี่ยงพื้นที่ดังกล่าว ทำให้เสียชีวิต
                             </td>
 
                         </tr>
@@ -263,12 +267,10 @@
 
                     </tbody>
                 </table>
-                <a href="#"><h4  style="margin-left: 80%; padding-top: 0"  >ดัชนีรังสีคืออะไร?</h4>
-            </a>
-                <a href="#"><h4 style="margin-left: 80%; padding-top: 0">การคำนวณดัชนีรังสี</h4>
-            </a>
 
-<br><br><br><br><br><br>
+                <a href="#" onclick = "formularRAD()"><h4 style="margin-left: 80%; padding-top: 0">การคำนวณดัชนีรังสี</h4>
+</a>
+
 
 
             </div>
@@ -307,6 +309,53 @@
     </div>
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="formularAQI" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="width: 800px; height: 550px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-primary">การคำนวณค่า AQI</h4>
+                </div>
+                <div class="modal-body">
+                  <img class = "img-rounded" src = "img/formula.JPG" ></img>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade"id ="formularRAD" role="dialog">
+        <div class="modal-dialog">
+    <div class="modal-content" >
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title text-primary">การคำนวณรังสี?</h4>
+        </div>
+        <div class="modal-body">
+            <p class="text-info">5 เท่าของค่าเฉลี่ยทั้งปีของปริมาณกัมมันตรังสีบริเวณนั้นๆ โดยปกติค่าเฉลี่ยทั้งปีอยู่ที่ประมาณ</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+
+
 
 </body>
 
@@ -325,6 +374,15 @@
     function whatAQI() {
         console.log("what aqi");
         $("#whatAQI").modal();
+    }
+    function formularAQI() {
+        console.log("formular aqi");
+        $("#formularAQI").modal();
+    }
+
+    function formularRAD() {
+        console.log("formular RAD");
+        $("#formularRAD").modal();
     }
     </script>
     </html>
